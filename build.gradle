@@ -1,105 +1,105 @@
 buildscript {
-	ext {
-		queryDslVersion = "5.0.0"
-	}
+    ext {
+        queryDslVersion = "5.0.0"
+    }
 }
 
 plugins {
-	id 'org.springframework.boot' version '2.7.4'
-	id 'io.spring.dependency-management' version '1.0.14.RELEASE'
-	id 'java'
+    id 'org.springframework.boot' version '2.7.4'
+    id 'io.spring.dependency-management' version '1.0.14.RELEASE'
+    id 'java'
 }
 
 group = 'com'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-batch'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-web-services'
-	implementation 'org.flywaydb:flyway-core'
-	implementation 'org.flywaydb:flyway-mysql'
-	implementation 'org.springframework.session:spring-session-core'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'mysql:mysql-connector-java'
-	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.batch:spring-batch-test'
+    implementation 'org.springframework.boot:spring-boot-starter-batch'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-web-services'
+    implementation 'org.flywaydb:flyway-core'
+    implementation 'org.flywaydb:flyway-mysql'
+    implementation 'org.springframework.session:spring-session-core'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'mysql:mysql-connector-java'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.batch:spring-batch-test'
 
-	//zxing QR 생성기
-	implementation 'com.google.zxing:javase:3.5.0'
+    //zxing QR 생성기
+    implementation 'com.google.zxing:javase:3.5.0'
 
-	//Cloudinary 클라우드 스토리지
-	implementation 'com.cloudinary:cloudinary-core:1.33.0'
-	implementation 'com.cloudinary:cloudinary-http44:1.33.0'
-	implementation 'com.cloudinary:cloudinary-taglib:1.33.0'
+    //Cloudinary 클라우드 스토리지
+    implementation 'com.cloudinary:cloudinary-core:1.33.0'
+    implementation 'com.cloudinary:cloudinary-http44:1.33.0'
+    implementation 'com.cloudinary:cloudinary-taglib:1.33.0'
 
-	//Algolia 검색엔진
-	implementation 'com.algolia:algoliasearch-core:3.16.6'
-	implementation 'com.algolia:algoliasearch-apache:3.16.6'
-	implementation 'com.algolia:algoliasearch-java-net:3.16.6'
-	implementation 'com.algolia:algoliasearch-apache-uber:3.16.6'
+    //Algolia 검색엔진
+    implementation 'com.algolia:algoliasearch-core:3.16.6'
+    implementation 'com.algolia:algoliasearch-apache:3.16.6'
+    implementation 'com.algolia:algoliasearch-java-net:3.16.6'
+    implementation 'com.algolia:algoliasearch-apache-uber:3.16.6'
 
-	//Hibernate
-	implementation 'org.hibernate:hibernate-core'
-	implementation 'org.hibernate.validator:hibernate-validator'
+    //Hibernate
+    implementation 'org.hibernate:hibernate-core'
+    implementation 'org.hibernate.validator:hibernate-validator'
 
-	//QueryDSL JPA
-	// querydsl 디펜던시 추가
-	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
-	annotationProcessor(
-			"javax.persistence:javax.persistence-api",
-			"javax.annotation:javax.annotation-api",
-			"com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
+    //QueryDSL JPA
+    // querydsl 디펜던시 추가
+    implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+    annotationProcessor(
+            "javax.persistence:javax.persistence-api",
+            "javax.annotation:javax.annotation-api",
+            "com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
 
-	//MapStuct(DTO->Entity 변환. type-safe bean)
-	implementation "org.mapstruct:mapstruct:1.5.2.Final"
-	annotationProcessor "org.mapstruct:mapstruct-processor:1.5.2.Final"
-	annotationProcessor "org.projectlombok:lombok-mapstruct-binding:0.2.0"
+    //MapStuct(DTO->Entity 변환. type-safe bean)
+    implementation "org.mapstruct:mapstruct:1.5.2.Final"
+    annotationProcessor "org.mapstruct:mapstruct-processor:1.5.2.Final"
+    annotationProcessor "org.projectlombok:lombok-mapstruct-binding:0.2.0"
 
-	//SendGrid 이메일 API
-	implementation 'com.sendgrid:sendgrid-java:4.9.3'
-	//aop
-	implementation 'org.springframework.boot:spring-boot-starter-aop'
-	implementation 'org.springframework.boot:spring-boot-configuration-processor'
+    //SendGrid 이메일 API
+    implementation 'com.sendgrid:sendgrid-java:4.9.3'
+    //aop
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.springframework.boot:spring-boot-configuration-processor'
 
 }
 
 clean {
-	delete file('src/main/generated') // 인텔리제이 Annotation processor 생성물 생성 위치
+    delete file('src/main/generated') // 인텔리제이 Annotation processor 생성물 생성 위치
 }
 
 compileJava {
-	options.compilerArgs << '-Aquerydsl.generatedAnnotationClass=com.querydsl.core.annotations.Generated'
+    options.compilerArgs << '-Aquerydsl.generatedAnnotationClass=com.querydsl.core.annotations.Generated'
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
 
 // plain 파일 생성하지 않음으로 MANIFEST.MF(no main manifest attrubute in) 오류 방지
 jar {
-	enabled = false
+    enabled = false
 }

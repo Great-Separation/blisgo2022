@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no">
+    <title>분리ㅅㄱ</title>
+    <meta name="theme-color" content="#ffffff">
+    <meta name="twitter:image" content="/assets/img/favicon/512x512.png">
+    <meta http-equiv="imagetoolbar" content="no">
+    <meta http-equiv="Publisher" content="분리ㅅㄱ">
+    <meta http-equiv="Author" content="옥재욱">
+    <meta name="twitter:title" content="분리ㅅㄱ">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="description" content="분리배출 도우미">
+    <meta property="og:type" content="website">
+    <meta name="twitter:description" content="분리배출 도우미">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:image" content="/assets/img/favicon/512x512.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/assets/img/favicon/180x180.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon/16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon/32x32.png">
+    <link rel="icon" type="image/png" sizes="180x180" href="/assets/img/favicon/180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicon/192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/img/favicon/512x512.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/cmmn/style.css">
+<link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
+</head>
+
+<body class="bg-light">
+    <main>
+        <div class="row g-0 justify-content-center align-items-center vh-100">
+            <div class="col-md-6 col-xl-4">
+                <div class="card border-0">
+                    <div class="card-body text-center">
+                        <h4>인터넷에 연결되지 않음</h4>
+                        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_debgr4jk.json" mode="normal" loop="" autoplay=""></lottie-player><button class="btn btn-danger" type="button">갱신</button>
+                    </div>
+                    <div class="card-body text-center"></div>
+                </div>
+            </div>
+        </div>
+    </main><!-- Inline the page's JavaScript file. -->
+    <script>
+      // Manual reload feature.
+      document.querySelector("button").addEventListener("click", () => {
+        window.location.reload();
+      });
+
+      // Listen to changes in the network state, reload when online.
+      // This handles the case when the device is completely offline.
+      window.addEventListener('online', () => {
+        window.location.reload();
+      });
+
+      // Check if the server is responding and reload the page if it is.
+      // This handles the case when the device is online, but the server
+      // is offline or misbehaving.
+      async function checkNetworkAndReload() {
+        try {
+          const response = await fetch('.');
+          // Verify we get a valid response from the server
+          if (response.status >= 200 && response.status < 500) {
+            window.location.reload();
+            return;
+          }
+        } catch {
+          // Unable to connect to the server, ignore.
+        }
+        window.setTimeout(checkNetworkAndReload, 2500);
+      }
+
+      checkNetworkAndReload();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@lottiefiles/lottie-player@1.5.7/dist/lottie-player.min.js"></script>
+    <script src="/assets/js/bs-init.js"></script>
+    <script src="/assets/js/pwabuilder-register.mjs" type="module"></script>
+    <script src="/assets/js/user/oauth-google.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko" oncontextmenu="return false" ondragstart="return false" onselectstart="return false" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no">
+    <title>상세정보 - 분리ㅅㄱ</title>
+    <meta name="theme-color" content="#ffffff">
+    <meta name="twitter:image" content="/assets/img/favicon/512x512.png">
+    <meta http-equiv="imagetoolbar" content="no">
+    <meta http-equiv="Publisher" content="분리ㅅㄱ">
+    <meta http-equiv="Author" content="옥재욱">
+    <meta name="twitter:title" content="분리ㅅㄱ">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="description" content="분리배출 도우미">
+    <meta property="og:type" content="website">
+    <meta name="twitter:description" content="분리배출 도우미">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:image" content="/assets/img/favicon/512x512.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/assets/img/favicon/180x180.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon/16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon/32x32.png">
+    <link rel="icon" type="image/png" sizes="180x180" href="/assets/img/favicon/180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicon/192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/img/favicon/512x512.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/cmmn/style.css">
+<link rel="manifest" href="/manifest.json" crossorigin="use-credentials"><script th:inline="javascript">
+var sdictionary= [[${dictionary}]];
+</script>
+</head>
+
+<body class="bg-light">
+    <main id="main" class="vh-100">
+        <section class="pt-2">
+            <div class="container" id="category-product">
+                <article id="info" class="pb-2">
+                    <div class="row g-0">
+                        <div class="col-md-6 text-center p-1"><img class="img-fluid shadow-sm" src="https://via.placeholder.com/640" alt="사전 이미지" width="639" height="639" th:src="${dictionary.thumbnail}"><img></div>
+                        <div class="col-md-6 align-self-center p-1">
+                            <div class="row g-0">
+                                <div class="col-12 py-1">
+                                    <ol class="breadcrumb d-inline-flex mt-1 mb-1">
+                                        <li class="breadcrumb-item"><a><span th:text="${dictionary.category}">대분류</span></a></li>
+                                        <li class="breadcrumb-item"><a><span th:text="${dictionary.dicNo}">도감 번호</span></a></li>
+                                    </ol>
+                                    <hr class="mt-1 mb-0">
+                                </div>
+                            </div>
+                            <div class="row g-0 justify-content-start">
+                                <div class="col-9 align-self-center py-1">
+                                    <h1 class="m-0" th:text="${dictionary.name}">이름</h1>
+                                </div>
+                                <div class="col-3 align-self-center">
+                                    <div class="btn-group btn-group-sm float-end" role="group" id="product-icon"><button class="btn btn-link" data-bs-toggle="toast" data-bss-tooltip="" id="btn-toast" type="button" value="${dogamCheck}" th:onclick="@{~/dogamBookmark(dicNo=${dictionary.dicNo})}" title="도감에 추가하기" th:if="${session.mem != null}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-64 0 512 512" width="1em" height="1em" fill="currentColor">
+                                                <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                                                <path d="M384 48V512l-192-112L0 512V48C0 21.5 21.5 0 48 0h288C362.5 0 384 21.5 384 48z"></path>
+                                            </svg></button><button class="btn btn-link" data-bs-toggle="modal" data-bss-tooltip="" id="btn-share" type="button" data-bs-target="#modal-share" title="공유하기"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor">
+                                                <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                                                <path d="M448 127.1C448 181 405 223.1 352 223.1C326.1 223.1 302.6 213.8 285.4 197.1L191.3 244.1C191.8 248 191.1 251.1 191.1 256C191.1 260 191.8 263.1 191.3 267.9L285.4 314.9C302.6 298.2 326.1 288 352 288C405 288 448 330.1 448 384C448 437 405 480 352 480C298.1 480 256 437 256 384C256 379.1 256.2 376 256.7 372.1L162.6 325.1C145.4 341.8 121.9 352 96 352C42.98 352 0 309 0 256C0 202.1 42.98 160 96 160C121.9 160 145.4 170.2 162.6 186.9L256.7 139.9C256.2 135.1 256 132 256 128C256 74.98 298.1 32 352 32C405 32 448 74.98 448 128L448 127.1zM95.1 287.1C113.7 287.1 127.1 273.7 127.1 255.1C127.1 238.3 113.7 223.1 95.1 223.1C78.33 223.1 63.1 238.3 63.1 255.1C63.1 273.7 78.33 287.1 95.1 287.1zM352 95.1C334.3 95.1 320 110.3 320 127.1C320 145.7 334.3 159.1 352 159.1C369.7 159.1 384 145.7 384 127.1C384 110.3 369.7 95.1 352 95.1zM352 416C369.7 416 384 401.7 384 384C384 366.3 369.7 352 352 352C334.3 352 320 366.3 320 384C320 401.7 334.3 416 352 416z"></path>
+                                            </svg></button></div>
+                                </div>
+                            </div>
+                            <div class="row g-0">
+                                <div class="col-auto d-flex align-items-center py-1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -32 576 576" width="1em" height="1em" fill="currentColor" id="product-star" color="var(--bs-yellow)">
+                                        <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                                        <path d="M381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.2 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.954 275.9-.0391 288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3z"></path>
+                                    </svg><span id="product-rating" th:text="${dictionary.popularity}+'/10'">별점/10</span></div>
+                                <div class="col align-self-center py-1 px-1"><span class="badge rounded-pill bg-secondary d-inline-flex mx-1" id="product-badge" th:each="hashtags : ${hashtagAndGuide}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" class="text-white">
+                                            <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                                            <path d="M416 127.1h-58.23l9.789-58.74c2.906-17.44-8.875-33.92-26.3-36.83c-17.53-2.875-33.92 8.891-36.83 26.3L292.9 127.1H197.8l9.789-58.74c2.906-17.44-8.875-33.92-26.3-36.83c-17.53-2.875-33.92 8.891-36.83 26.3L132.9 127.1H64c-17.67 0-32 14.33-32 32C32 177.7 46.33 191.1 64 191.1h58.23l-21.33 128H32c-17.67 0-32 14.33-32 32c0 17.67 14.33 31.1 32 31.1h58.23l-9.789 58.74c-2.906 17.44 8.875 33.92 26.3 36.83C108.5 479.9 110.3 480 112 480c15.36 0 28.92-11.09 31.53-26.73l11.54-69.27h95.12l-9.789 58.74c-2.906 17.44 8.875 33.92 26.3 36.83C268.5 479.9 270.3 480 272 480c15.36 0 28.92-11.09 31.53-26.73l11.54-69.27H384c17.67 0 32-14.33 32-31.1c0-17.67-14.33-32-32-32h-58.23l21.33-128H416c17.67 0 32-14.32 32-31.1C448 142.3 433.7 127.1 416 127.1zM260.9 319.1H165.8L187.1 191.1h95.12L260.9 319.1z"></path>
+                                        </svg><span class="text-white" th:text="${hashtags.guide.guideName}">태그명</span></span></div>
+                            </div>
+                            <div class="row g-0">
+                                <div class="col-12">
+                                    <hr class="mt-1 mb-1">
+                                </div>
+                                <div class="col-12 text-muted py-1">
+                                    <div class="vstack"><span th:each="guides: ${hashtagAndGuide}" th:utext="${guides.guide.guideContent}">태그에 해당되는 폐기물 공통 처리 안내&nbsp;</span></div>
+                                </div>
+                                <div class="col-12 text-muted py-1">
+                                    <div class="vstack gap-1">
+                                        <h6 class="py-2" th:utext="${dictionary.treatment}">해당 폐기물 만의 취급 내용</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article id="describe">
+                    <hr>
+                    <div>
+                        <ul class="nav nav-tabs mb-2" role="tablist" id="myTab">
+                            <li class="nav-item" role="presentation" th:if="${i.index==0}" th:each="guides, i : ${hashtagAndGuide}"><a class="nav-link active" role="tab" data-bs-toggle="tab" th:href="@{'#'+${guides.guide.guideName}}" th:text="${guides.guide.guideName}">태그1</a></li>
+                            <li class="nav-item" role="presentation" th:unless="${i.index==0}" th:each="guides, i : ${hashtagAndGuide}"><a class="nav-link" role="tab" data-bs-toggle="tab" th:href="@{'#'+${guides.guide.guideName}}" th:text="${guides.guide.guideName}">태그2</a></li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane description active show" role="tabpanel" th:if="${i.index==0}" th:attr="id=${guides.guide.guideName}" th:each="guides, i : ${hashtagAndGuide}"><img class="img-fluid copyright" src="https://via.placeholder.com/1280x720" width="100%" height="100%" alt="설명서" th:src="${guides.guide.imagePath}"></div>
+                            <div class="tab-pane specifications" role="tabpanel" th:unless="${i.index==0}" th:attr="id=${guides.guide.guideName}" th:each="guides, i : ${hashtagAndGuide}"><img class="img-fluid copyright" src="https://via.placeholder.com/1280x720" width="100%" height="100%" alt="설명서" th:src="${guides.guide.imagePath}"></div>
+                        </div>
+                    </div>
+                    <hr th:if="${hashtagAndGuide != null}">
+                </article>
+                <div class="modal fade" role="dialog" tabindex="-1" id="modal-share">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">공유하기</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-center"></div>
+                            <div class="modal-footer"><script>
+    window.onload=function(){
+	    var obShareUrl = document.getElementById("ShareUrl");
+	    obShareUrl.value = window.document.location.href;
+    };
+    function copyURLToClipboard(){
+	    var obShareUrl = document.getElementById("ShareUrl");
+	    obShareUrl.select();
+	    document.execCommand("copy");
+	    obShareUrl.blur();
+    }
+</script>
+                                <div class="input-group"><span class="input-group-text bg-white"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -64 640 640" width="1em" height="1em" fill="currentColor">
+                                            <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                                            <path d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"></path>
+                                        </svg></span><input class="form-control" type="url" id="ShareUrl" readonly=""><button class="btn btn-primary" type="button" onclick="copyURLToClipboard()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor">
+                                            <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                                            <path d="M384 96L384 0h-112c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48H464c26.51 0 48-21.49 48-48V128h-95.1C398.4 128 384 113.6 384 96zM416 0v96h96L416 0zM192 352V128h-144c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48h192c26.51 0 48-21.49 48-48L288 416h-32C220.7 416 192 387.3 192 352z"></path>
+                                        </svg></button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container container text-center pb-3" id="similar-waste">
+                <div class="row g-0">
+                    <div class="col">
+                        <!-- Start: Intro -->
+                        <div class="intro">
+                            <h2 class="text-center">연관된 폐기물</h2>
+                        </div><!-- End: Intro -->
+                    </div>
+                </div>
+                <div class="row g-0">
+                    <div class="col-6 col-lg-3 spacer-slider p-1" data-bs-toggle="tooltip" data-bss-tooltip="" th:each="relatedDictionary: ${relatedDictionaries}">
+                        <figure class="figure position-relative mb-0"><a th:href="@{~/dictionary/{dicNo}(dicNo=${relatedDictionary.dicNo})}"><img class="img-fluid" src="https://via.placeholder.com/640" width="640px" height="640px" alt="사전 이미지" th:src="${relatedDictionary.thumbnail}"></a>
+                            <figcaption class="figure-caption bg-black bg-opacity-50 p-1 text-white position-absolute bottom-0 translate-middle-x start-50 w-100" th:text="${relatedDictionary.name}">제품명</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main><!-- Start: Thymeleaf Navbar -->
+    <div th:replace="~{/cmmn/navbar::navbar}" th:if=""></div><!-- End: Thymeleaf Navbar -->
+    <div class="toast-container d-flex position-fixed bottom-0 end-0 p-3" id="toast-bookmark">
+        <div class="toast fade hide" role="alert" id="toast-dogam-success" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header"><img class="me-2" th:src="${dictionary.thumbnail}" width="50px"><strong class="me-auto">도감에 추가되었습니다</strong><small>방금</small><button class="btn-close close" data-bs-dismiss="toast"></button></div>
+        </div>
+        <div class="toast fade hide" role="alert" id="toast-dogam-fail" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header"><img class="me-2" th:src="${dictionary.thumbnail}" width="50px"><strong class="me-auto">이미 추가되었습니다</strong><small>방금</small><button class="btn-close close" data-bs-dismiss="toast"></button></div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/bs-init.js"></script>
+    <script src="/assets/js/dictionary/toast.js"></script>
+    <script src="/assets/js/pwabuilder-register.mjs" type="module"></script>
+</body>
+
+</html>

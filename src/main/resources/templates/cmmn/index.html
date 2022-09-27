@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko" oncontextmenu="return false" ondragstart="return false" onselectstart="return false" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no">
+    <title>분리ㅅㄱ</title>
+    <meta name="theme-color" content="#ffffff">
+    <meta name="twitter:image" content="/assets/img/favicon/512x512.png">
+    <meta http-equiv="imagetoolbar" content="no">
+    <meta http-equiv="Publisher" content="분리ㅅㄱ">
+    <meta http-equiv="Author" content="옥재욱">
+    <meta name="twitter:title" content="분리ㅅㄱ">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="description" content="분리배출 도우미">
+    <meta property="og:type" content="website">
+    <meta name="twitter:description" content="분리배출 도우미">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:image" content="/assets/img/favicon/512x512.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/assets/img/favicon/180x180.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon/16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon/32x32.png">
+    <link rel="icon" type="image/png" sizes="180x180" href="/assets/img/favicon/180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicon/192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/img/favicon/512x512.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-theme-classic">
+    <link rel="stylesheet" href="/assets/css/cmmn/style.css">
+<link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
+</head>
+
+<body class="bg-light" oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+    <div class="container-fluid vh-100 p-0" id="highlight">
+        <div class="row g-0 d-flex justify-content-center align-items-center vh-100 bg-black bg-opacity-75">
+            <div class="col-10 col-sm-10 col-lg-8 col-xxl-6 text-center text-white pb-5 mb-5">
+                <div class="vstack">
+                    <h1>분리ㅅㄱ</h1>
+                    <p class="lead">분리배출을 더욱 편리하게!<br></p>
+                </div>
+                <div class="vstack m-auto w-auto">
+                    <div id="autocomplete"></div><pwa-install class="text-start"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -32 576 576" width="1em" height="1em" fill="currentColor">
+    <path d="M420.55,301.93a24,24,0,1,1,24-24,24,24,0,0,1-24,24m-265.1,0a24,24,0,1,1,24-24,24,24,0,0,1-24,24m273.7-144.48,47.94-83a10,10,0,1,0-17.27-10h0l-48.54,84.07a301.25,301.25,0,0,0-246.56,0L116.18,64.45a10,10,0,1,0-17.27,10h0l47.94,83C64.53,202.22,8.24,285.55,0,384H576c-8.24-98.45-64.54-181.78-146.85-226.55"></path>
+</svg> PWA</pwa-install>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main>
+        <div class="container container text-center my-5" id="recent-waste">
+            <article>
+                <h2 class="text-center">최근 등록된 폐기물</h2>
+                <div class="carousel slide carousel-dark carousel-fade" data-bs-ride="carousel" data-bs-keyboard="false" id="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active p-2">
+                            <div class="row">
+                                <div class="col-6 col-lg-3 spacer-slider p-1" th:each="i : ${#numbers.sequence(0, 3)}"><figure class="figure position-relative mb-0"><a th:href="@{~/dictionary/{dicNo}(dicNo=${recentProducts.get(i).dicNo})}"><img class="img-fluid" src="https://via.placeholder.com/640" alt="사전 이미지" width="640px" height="640px" th:src="${recentProducts.get(i).thumbnail}"></a><figcaption class="figure-caption bg-black bg-opacity-50 p-1 text-white position-absolute bottom-0 translate-middle-x start-50 w-100" th:text="${recentProducts.get(i).name}">제품명<br></figcaption></figure></div></div></div><div class="carousel-item p-2"><div class="row"><div class="col-6 col-lg-3 spacer-slider p-1" th:each="i : ${#numbers.sequence(4, 7)}"><figure class="figure position-relative mb-0"><a th:href="@{~/dictionary/{dicNo}(dicNo=${recentProducts.get(i).dicNo})}"><img class="img-fluid" src="https://via.placeholder.com/640" alt="사전 이미지" width="640px" height="640px" th:src="${recentProducts.get(i).thumbnail}"></a><figcaption class="figure-caption bg-black bg-opacity-50 p-1 text-white position-absolute bottom-0 translate-middle-x start-50 w-100" th:text="${recentProducts.get(i).name}">제품명<br></figcaption></figure></div></div></div><div class="carousel-item p-2"><div class="row"><div class="col-6 col-lg-3 spacer-slider p-1" th:each="i : ${#numbers.sequence(8, 11)}"><figure class="figure position-relative mb-0"><a th:href="@{~/dictionary/{dicNo}(dicNo=${recentProducts.get(i).dicNo})}"><img class="img-fluid" src="https://via.placeholder.com/640" alt="사전 이미지" width="640px" height="640px" th:src="${recentProducts.get(i).thumbnail}"></a><figcaption class="figure-caption bg-black bg-opacity-50 p-1 text-white position-absolute bottom-0 translate-middle-x start-50 w-100" th:text="${recentProducts.get(i).name}">제품명<br></figcaption></figure></div></div></div></div><div><!-- Start: Previous --><a class="carousel-control-prev w-auto" href="#carousel" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></a><!-- End: Previous --><!-- Start: Next --><a class="carousel-control-next w-auto" href="#carousel" role="button" data-bs-slide="next"><span class="carousel-control-next-icon"></span></a><!-- End: Next --></div></div></article></div></main><!-- Start: Thymeleaf Navbar --><div th:replace="~{/cmmn/navbar::navbar}" th:if=""></div><!-- End: Thymeleaf Navbar --><!-- Start: Thymeleaf footer --><div th:replace="~{/cmmn/footer::footer}"></div><!-- End: Thymeleaf footer --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script><script src="/assets/js/bs-init.js"></script><script src="/assets/js/cmmn/algolia.mjs" type="module"></script><script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script><script src="https://cdn.jsdelivr.net/npm/@pwabuilder/pwainstall" type="module"></script><script src="https://cdn.jsdelivr.net/npm/algoliasearch"></script><script src="/assets/js/cmmn/unsplash.js"></script><script src="/assets/js/pwabuilder-register.mjs" type="module"></script></body></html>

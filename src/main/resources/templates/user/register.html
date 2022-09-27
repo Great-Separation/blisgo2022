@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko" oncontextmenu="return false" ondragstart="return false" onselectstart="return false" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no">
+    <title>회원가입 - 분리ㅅㄱ</title>
+    <meta name="theme-color" content="#ffffff">
+    <meta name="twitter:image" content="/assets/img/favicon/512x512.png">
+    <meta http-equiv="imagetoolbar" content="no">
+    <meta http-equiv="Publisher" content="분리ㅅㄱ">
+    <meta http-equiv="Author" content="옥재욱">
+    <meta name="twitter:title" content="분리ㅅㄱ">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="description" content="분리배출 도우미">
+    <meta property="og:type" content="website">
+    <meta name="twitter:description" content="분리배출 도우미">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:image" content="/assets/img/favicon/512x512.png">
+    <meta http-equiv="" content="">
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/assets/img/favicon/180x180.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon/16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon/32x32.png">
+    <link rel="icon" type="image/png" sizes="180x180" href="/assets/img/favicon/180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicon/192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/img/favicon/512x512.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/cmmn/style.css">
+<link rel="manifest" href="/manifest.json" crossorigin="use-credentials"><style>
+.id_input_re_1{
+		color : green;
+		display : none;
+	}
+
+.id_input_re_2{
+		color : red;
+		display : none;
+	}
+</style>
+</head>
+
+<body class="bg-light">
+    <main class="vh-100">
+        <div class="row g-0 justify-content-center align-items-center vh-100">
+            <div class="col-md-6 col-xl-4">
+                <form th:action="@{~/user/register}" th:method="post">
+                    <div class="card border-0">
+                        <div class="card-header text-center bg-white">
+                            <h4>회원 가입</h4>
+                        </div>
+                        <div class="card-body"><input class="form-control" type="text" required="" minlength="1" placeholder="사용자 이름" name="nickname"><input class="form-control email-imput form-control mt-2 mb-2" type="email" data-bs-toggle="tooltip" data-bss-tooltip="" required="" placeholder="이메일" minlength="6" name="email" title="사용 가능한 이메일입니다. 이메일이 이미 존재합니다."><input class="form-control password-input form-control-borderless mb-2" type="password" required="" placeholder="비밀번호" minlength="6" name="pass">
+                            <div class="form-check py-2"><input class="form-check-input" type="checkbox" for="remember" name="register-check-agree" required=""><label class="form-check-label" for="formCheck"><small class="form-text"><span style="color: rgb(33, 37, 41);">약관을 확인했으며&nbsp;</span><a href="#" data-bs-target="#modal-agreement" data-bs-toggle="modal">개인정보 수집 및 이용</a><span style="color: rgb(33, 37, 41);">&nbsp;에 동의합니다</span><br></small></label></div><button class="btn btn-primary d-block box-shadow w-100 mt-2" id="submit-user-2" type="submit">가입하기</button>
+                        </div>
+                        <div class="card-footer bg-white text-center"><small class="form-text">이미 계정이 있으신가요?&nbsp;<a id="login-link" class="text-decoration-none ps-2" th:href="@{~/user/login}">로그인</a></small></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <div class="modal" role="dialog" tabindex="-1" id="modal-agreement">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header"><small class="form-text"><span style="color: rgb(33, 37, 41);">개인정보 수집 및 이용</span><br></small><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                <div class="modal-body"><small th:text="${termsOfAgreement}">약관 내용</small></div>
+            </div>
+        </div>
+    </div><!-- Start: Thymeleaf Navbar -->
+    <div th:replace="~{/cmmn/navbar::navbar}" th:if=""></div><!-- End: Thymeleaf Navbar -->
+    <!-- Start: Thymeleaf footer -->
+    <div th:replace="~{/cmmn/footer::footer}"></div><!-- End: Thymeleaf footer -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/bs-init.js"></script>
+    <script src="/assets/js/pwabuilder-register.mjs" type="module"></script>
+    <script src="/assets/js/user/register-check.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+#usericon-desktop {
+  cursor: pointer;
+}
+
+#usericon-mobile {
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+#main {
+  padding-top: 56px;
+}
+

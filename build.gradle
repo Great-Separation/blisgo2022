@@ -88,18 +88,24 @@ dependencies {
 }
 
 clean {
-    delete file('src/main/generated') // 인텔리제이 Annotation processor 생성물 생성 위치
+    delete file('src/main/generated') // Annotation processor 생성물 생성 위치
 }
 
 compileJava {
     options.compilerArgs << '-Aquerydsl.generatedAnnotationClass=com.querydsl.core.annotations.Generated'
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
-}
-
 // plain 파일 생성하지 않음으로 MANIFEST.MF(no main manifest attrubute in) 오류 방지
 jar {
     enabled = false
 }
+
+//    '패키지.패키지.메인클래스네임
+manifest {
+    attributes 'Main-Class': 'com.blisgo.BlisgoApplication'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+

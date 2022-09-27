@@ -98,3 +98,8 @@ compileJava {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+// plain 파일 생성하지 않음으로 MANIFEST.MF(no main manifest attrubute in) 오류 방지
+jar {
+	enabled = false
+}

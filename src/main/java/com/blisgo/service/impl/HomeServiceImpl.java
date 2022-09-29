@@ -1,7 +1,7 @@
 package com.blisgo.service.impl;
 
 import com.blisgo.domain.mapper.DictionaryMapper;
-import com.blisgo.domain.repository.impl.DictionaryRepositoryImpl;
+import com.blisgo.domain.repository.DictionaryRepository;
 import com.blisgo.service.HomeService;
 import com.blisgo.web.dto.DictionaryDTO;
 import org.springframework.stereotype.Service;
@@ -11,9 +11,9 @@ import java.util.List;
 @Service
 public class HomeServiceImpl implements HomeService {
 
-    private final DictionaryRepositoryImpl dictionaryRepository;
+    private final DictionaryRepository dictionaryRepository;
 
-    public HomeServiceImpl(DictionaryRepositoryImpl dictionaryRepository) {
+    public HomeServiceImpl(DictionaryRepository dictionaryRepository) {
         this.dictionaryRepository = dictionaryRepository;
     }
 

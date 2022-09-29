@@ -21,8 +21,8 @@ import static com.blisgo.domain.entity.QDictionary.dictionary;
 import static com.blisgo.domain.entity.QGuide.guide;
 import static com.blisgo.domain.entity.QHashtag.hashtag;
 
-@Transactional
 @Repository
+@Transactional
 public class DictionaryRepositoryImpl implements DictionaryRepository {
 
     private final JPAQueryFactory jpaQueryFactory;

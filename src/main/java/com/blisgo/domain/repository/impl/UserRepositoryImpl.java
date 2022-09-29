@@ -16,8 +16,8 @@ import java.util.List;
 import static com.blisgo.domain.entity.QDogam.dogam;
 import static com.blisgo.domain.entity.QUser.user;
 
-@Transactional
 @Repository
+@Transactional
 public class UserRepositoryImpl implements UserRepository {
     private final JPAQueryFactory jpaQueryFactory;
 

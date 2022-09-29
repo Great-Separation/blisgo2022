@@ -1,25 +1,23 @@
 package com.blisgo.service.impl;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.blisgo.domain.entity.Reply;
 import com.blisgo.domain.mapper.BoardMapper;
 import com.blisgo.domain.mapper.ReplyMapper;
 import com.blisgo.domain.mapper.UserMapper;
-import com.blisgo.domain.repository.impl.ReplyRepositoryImpl;
+import com.blisgo.domain.repository.ReplyRepository;
 import com.blisgo.service.ReplyService;
 import com.blisgo.web.dto.BoardDTO;
 import com.blisgo.web.dto.ReplyDTO;
 import com.blisgo.web.dto.UserDTO;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ReplyServiceImpl implements ReplyService {
-    private final ReplyRepositoryImpl replyRepository;
+    private final ReplyRepository replyRepository;
 
-    public ReplyServiceImpl(ReplyRepositoryImpl replyRepository) {
+    public ReplyServiceImpl(ReplyRepository replyRepository) {
         this.replyRepository = replyRepository;
     }
 

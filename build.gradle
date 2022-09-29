@@ -2,12 +2,17 @@ buildscript {
     ext {
         queryDslVersion = "5.0.0"
     }
+
+    dependencies {
+        classpath "org.flywaydb:flyway-mysql:9.3.1"
+    }
 }
 
 plugins {
     id 'org.springframework.boot' version '2.7.4'
     id 'io.spring.dependency-management' version '1.0.14.RELEASE'
     id 'java'
+    id "org.flywaydb.flyway" version '9.3.1'
 }
 
 group = 'com'
@@ -48,9 +53,6 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.batch:spring-batch-test'
 
-    //zxing QR 생성기
-    implementation 'com.google.zxing:javase:3.5.0'
-
     //Cloudinary 클라우드 스토리지
     implementation 'com.cloudinary:cloudinary-core:1.33.0'
     implementation 'com.cloudinary:cloudinary-http44:1.33.0'
@@ -79,12 +81,12 @@ dependencies {
     annotationProcessor "org.mapstruct:mapstruct-processor:1.5.2.Final"
     annotationProcessor "org.projectlombok:lombok-mapstruct-binding:0.2.0"
 
-    //SendGrid 이메일 API
-    implementation 'com.sendgrid:sendgrid-java:4.9.3'
     //aop
     implementation 'org.springframework.boot:spring-boot-starter-aop'
     implementation 'org.springframework.boot:spring-boot-configuration-processor'
 
+    // 테스트 서버 h2
+    testImplementation 'com.h2database:h2:2.1.214'
 }
 
 clean {
@@ -95,12 +97,20 @@ compileJava {
     options.compilerArgs << '-Aquerydsl.generatedAnnotationClass=com.querydsl.core.annotations.Generated'
 }
 
+flyway {
+    url = 'jdbc:mysql://m7az7525jg6ygibs.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/dgqpy0sm968c8va4?&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8'
+    user = 'lrsnvwzil9dfof0n'
+    password = 'qoljsbmqrnr694h9'
+    cleanDisabled = false
+    // driver = 'com.mysql.jdbc.Driver'  기본으로 등록되어있다.
+}
+flywayMigrate.dependsOn classes
+
 // plain 파일 생성하지 않음으로 MANIFEST.MF(no main manifest attrubute in) 오류 방지
 jar {
     enabled = false
 }
 
-//    '패키지.패키지.메인클래스네임
 manifest {
     attributes 'Main-Class': 'com.blisgo.BlisgoApplication'
 }

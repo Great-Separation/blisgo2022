@@ -5,7 +5,7 @@ import com.blisgo.domain.entity.cmmn.Wastes;
 import com.blisgo.domain.mapper.DictionaryMapper;
 import com.blisgo.domain.mapper.HashtagMapper;
 import com.blisgo.domain.mapper.UserMapper;
-import com.blisgo.domain.repository.impl.DictionaryRepositoryImpl;
+import com.blisgo.domain.repository.DictionaryRepository;
 import com.blisgo.service.DictionaryService;
 import com.blisgo.web.dto.DictionaryDTO;
 import com.blisgo.web.dto.HashtagDTO;
@@ -18,12 +18,12 @@ import java.util.Random;
 
 @Service
 public class DictionaryServiceImpl implements DictionaryService {
-    private final DictionaryRepositoryImpl dictionaryRepository;
+    private final DictionaryRepository dictionaryRepository;
 
     private static int index = 0;
     private static final int limit = 24;
 
-    public DictionaryServiceImpl(DictionaryRepositoryImpl dictionaryRepository) {
+    public DictionaryServiceImpl(DictionaryRepository dictionaryRepository) {
         this.dictionaryRepository = dictionaryRepository;
     }
 

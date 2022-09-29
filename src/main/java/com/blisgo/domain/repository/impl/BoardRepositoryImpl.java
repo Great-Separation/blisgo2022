@@ -16,8 +16,8 @@ import java.util.List;
 
 import static com.blisgo.domain.entity.QBoard.board;
 
-@Transactional
 @Repository
+@Transactional
 public class BoardRepositoryImpl implements BoardRepository {
 
 	private final JPAQueryFactory jpaQueryFactory;

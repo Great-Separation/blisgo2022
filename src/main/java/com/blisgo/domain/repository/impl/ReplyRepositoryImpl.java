@@ -16,8 +16,8 @@ import static com.blisgo.domain.entity.QBoard.board;
 import static com.blisgo.domain.entity.QReply.reply;
 import static com.blisgo.domain.entity.QUser.user;
 
-@Transactional
 @Repository
+@Transactional
 public class ReplyRepositoryImpl implements ReplyRepository {
 
     private final JPAQueryFactory jpaQueryFactory;

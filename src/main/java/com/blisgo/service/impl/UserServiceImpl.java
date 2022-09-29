@@ -3,7 +3,7 @@ package com.blisgo.service.impl;
 import com.blisgo.domain.entity.User;
 import com.blisgo.domain.mapper.DogamMapper;
 import com.blisgo.domain.mapper.UserMapper;
-import com.blisgo.domain.repository.impl.UserRepositoryImpl;
+import com.blisgo.domain.repository.UserRepository;
 import com.blisgo.service.UserService;
 import com.blisgo.web.dto.DogamDTO;
 import com.blisgo.web.dto.UserDTO;
@@ -19,12 +19,12 @@ import java.util.stream.Stream;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private final UserRepositoryImpl userRepository;
+    private final UserRepository userRepository;
 
     private static int index = 0;
     private static final int limit = 24;
 
-    public UserServiceImpl(UserRepositoryImpl userRepository) {
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

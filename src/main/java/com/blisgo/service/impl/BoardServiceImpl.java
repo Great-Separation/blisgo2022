@@ -3,7 +3,7 @@ package com.blisgo.service.impl;
 import com.blisgo.domain.entity.Board;
 import com.blisgo.domain.mapper.BoardMapper;
 import com.blisgo.domain.mapper.UserMapper;
-import com.blisgo.domain.repository.impl.BoardRepositoryImpl;
+import com.blisgo.domain.repository.BoardRepository;
 import com.blisgo.service.BoardService;
 import com.blisgo.util.HtmlContentParse;
 import com.blisgo.web.dto.BoardDTO;
@@ -16,16 +16,16 @@ import java.util.List;
 @Service
 public class BoardServiceImpl implements BoardService {
 
-    private final BoardRepositoryImpl boardRepository;
+    private final BoardRepository boardRepository;
 
     private static int index = 0;
-	private static final int limit = 12;
+    private static final int limit = 12;
 
-	public BoardServiceImpl(BoardRepositoryImpl boardRepository) {
-		this.boardRepository = boardRepository;
-	}
+    public BoardServiceImpl(BoardRepository boardRepository) {
+        this.boardRepository = boardRepository;
+    }
 
-	@Override
+    @Override
     public void addBoard(BoardDTO boardDTO, UserDTO userDTO) {
         var board = BoardMapper.INSTANCE.toEntity(boardDTO);
         var user = UserMapper.INSTANCE.toEntity(userDTO);
@@ -40,11 +40,11 @@ public class BoardServiceImpl implements BoardService {
         String bdContentImgRemoved;
         index = 0;
         List<BoardDTO> board = new ArrayList<>();
-		@SuppressWarnings("lint")
+        @SuppressWarnings("lint")
         var rs = boardRepository.selectBoardList(index, limit);
         // List<BoardDTO> boardDTOArray = BoardMapper.INSTANCE.toDTOList(rs);
-		@SuppressWarnings("lint")
-		List<BoardDTO> boardDTOArray = rs;
+        @SuppressWarnings("lint")
+        List<BoardDTO> boardDTOArray = rs;
 
         for (BoardDTO b : boardDTOArray) {
             bdContentImgRemoved = HtmlContentParse.removeImg(b.getBdContent());
@@ -62,10 +62,10 @@ public class BoardServiceImpl implements BoardService {
         index += limit;
 
         List<BoardDTO> board = new ArrayList<>();
-		@SuppressWarnings("lint")
+        @SuppressWarnings("lint")
         var rs = boardRepository.selectBoardList(index, limit);
         // List<BoardDTO> boardDTOArray = BoardMapper.INSTANCE.toDTOList(rs);
-		@SuppressWarnings("lint")
+        @SuppressWarnings("lint")
         List<BoardDTO> boardDTOArray = rs;
 
         for (BoardDTO b : boardDTOArray) {

@@ -4,6 +4,7 @@ import com.blisgo.domain.mapper.DictionaryMapper;
 import com.blisgo.domain.repository.DictionaryRepository;
 import com.blisgo.service.HomeService;
 import com.blisgo.web.dto.DictionaryDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class HomeServiceImpl implements HomeService {
 
     private final DictionaryRepository dictionaryRepository;
 
+    @Autowired
     public HomeServiceImpl(DictionaryRepository dictionaryRepository) {
         this.dictionaryRepository = dictionaryRepository;
     }

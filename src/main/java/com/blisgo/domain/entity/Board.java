@@ -27,7 +27,7 @@ public class Board extends BaseTimeEntity {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "mem_no", nullable = false)
     @Comment("회원 번호(FK)")
-    private User user;
+    private Account account;
 
     @Column(nullable = false, length = 45)
     @Comment("글 제목")
@@ -60,10 +60,10 @@ public class Board extends BaseTimeEntity {
     private final List<Reply> reply = new ArrayList<>();
 
     @Builder
-    public Board(Integer bdNo, User user, String bdTitle, String bdCategory, String bdContent, Integer bdViews,
+    public Board(Integer bdNo, Account account, String bdTitle, String bdCategory, String bdContent, Integer bdViews,
                  Integer bdFavorite, Integer bdReplyCount, String bdThumbnail) {
         this.bdNo = bdNo;
-        this.user = user;
+        this.account = account;
         this.bdTitle = bdTitle;
         this.bdCategory = bdCategory;
         this.bdContent = bdContent;
@@ -73,8 +73,8 @@ public class Board extends BaseTimeEntity {
         this.bdThumbnail = bdThumbnail;
     }
 
-    public static Board createBoardWithThumbnail(User user, Board board, String boardThumbnail) {
-        return Board.builder().bdNo(board.getBdNo()).user(user).bdTitle(board.getBdTitle())
+    public static Board createBoardWithThumbnail(Account account, Board board, String boardThumbnail) {
+        return Board.builder().bdNo(board.getBdNo()).account(account).bdTitle(board.getBdTitle())
                 .bdCategory(board.getBdCategory()).bdContent(board.getBdContent()).bdViews(board.getBdViews())
                 .bdFavorite(board.getBdFavorite()).bdReplyCount(board.getBdReplyCount()).bdThumbnail(boardThumbnail)
                 .build();

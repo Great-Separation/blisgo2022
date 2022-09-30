@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 
 import com.blisgo.domain.entity.Board;
-import com.blisgo.domain.entity.User;
+import com.blisgo.domain.entity.Account;
 import com.blisgo.util.TimeManager;
 
 import lombok.Builder;
@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class ReplyDTO {
 	private Integer replyNo;
 	private Board board;
-	private User user;
+	private Account account;
 	@NotNull(message = "댓글 내용을 입력해주세요")
 	private String content;
 	@Null(message = "Controller단에서 계산되는 값입니다.")
@@ -28,11 +28,11 @@ public class ReplyDTO {
 	private String timeDiff;
 
 	@Builder
-	public ReplyDTO(Integer replyNo, Board board, User user, String content, LocalDateTime createdDate,
-			LocalDateTime modiDateTime) {
+	public ReplyDTO(Integer replyNo, Board board, Account account, String content, LocalDateTime createdDate,
+                    LocalDateTime modiDateTime) {
 		this.replyNo = replyNo;
 		this.board = board;
-		this.user = user;
+		this.account = account;
 		this.content = content;
 		this.createdDate = createdDate;
 		this.modifiedDate = modiDateTime;

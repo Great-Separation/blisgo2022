@@ -4,12 +4,13 @@ import com.blisgo.domain.entity.Dogam;
 import com.blisgo.domain.entity.cmmn.Wastes;
 import com.blisgo.domain.mapper.DictionaryMapper;
 import com.blisgo.domain.mapper.HashtagMapper;
-import com.blisgo.domain.mapper.UserMapper;
+import com.blisgo.domain.mapper.AccountMapper;
 import com.blisgo.domain.repository.DictionaryRepository;
 import com.blisgo.service.DictionaryService;
 import com.blisgo.web.dto.DictionaryDTO;
 import com.blisgo.web.dto.HashtagDTO;
-import com.blisgo.web.dto.UserDTO;
+import com.blisgo.web.dto.AccountDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class DictionaryServiceImpl implements DictionaryService {
     private static int index = 0;
     private static final int limit = 24;
 
+    @Autowired
     public DictionaryServiceImpl(DictionaryRepository dictionaryRepository) {
         this.dictionaryRepository = dictionaryRepository;
     }
@@ -85,10 +87,10 @@ public class DictionaryServiceImpl implements DictionaryService {
     }
 
     @Override
-    public boolean addDogam(DictionaryDTO dictionaryDTO, UserDTO userDTO) {
+    public boolean addDogam(DictionaryDTO dictionaryDTO, AccountDTO accountDTO) {
         var dictionary = DictionaryMapper.INSTANCE.toEntity(dictionaryDTO);
-        var user = UserMapper.INSTANCE.toEntity(userDTO);
-        var dogam = Dogam.builder().dictionary(dictionary).user(user).build();
+        var account = AccountMapper.INSTANCE.toEntity(accountDTO);
+        var dogam = Dogam.builder().dictionary(dictionary).account(account).build();
 
         return dictionaryRepository.insertDogam(dogam);
     }

@@ -31,21 +31,21 @@ public class Reply extends BaseTimeEntity {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "mem_no", nullable = false)
 	@Comment("회원 번호(FK)")
-	private User user;
+	private Account account;
 
 	@Column(nullable = false, length = 300)
 	@Comment("댓글 내용")
 	private String content;
 
 	@Builder
-	public Reply(Integer replyNo, Board board, User user, String content) {
+	public Reply(Integer replyNo, Board board, Account account, String content) {
 		this.replyNo = replyNo;
 		this.board = board;
-		this.user = user;
+		this.account = account;
 		this.content = content;
 	}
 
-	public static Reply createReply(Integer replyNo, Board board, User user, String content) {
-		return Reply.builder().replyNo(replyNo).board(board).user(user).content(content).build();
+	public static Reply createReply(Integer replyNo, Board board, Account account, String content) {
+		return Reply.builder().replyNo(replyNo).board(board).account(account).content(content).build();
 	}
 }

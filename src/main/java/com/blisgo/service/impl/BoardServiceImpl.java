@@ -1,13 +1,14 @@
 package com.blisgo.service.impl;
 
 import com.blisgo.domain.entity.Board;
+import com.blisgo.domain.mapper.AccountMapper;
 import com.blisgo.domain.mapper.BoardMapper;
-import com.blisgo.domain.mapper.UserMapper;
 import com.blisgo.domain.repository.BoardRepository;
 import com.blisgo.service.BoardService;
 import com.blisgo.util.HtmlContentParse;
 import com.blisgo.web.dto.BoardDTO;
-import com.blisgo.web.dto.UserDTO;
+import com.blisgo.web.dto.AccountDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,14 +22,15 @@ public class BoardServiceImpl implements BoardService {
     private static int index = 0;
     private static final int limit = 12;
 
+    @Autowired
     public BoardServiceImpl(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
 
     @Override
-    public void addBoard(BoardDTO boardDTO, UserDTO userDTO) {
+    public void addBoard(BoardDTO boardDTO, AccountDTO accountDTO) {
         var board = BoardMapper.INSTANCE.toEntity(boardDTO);
-        var user = UserMapper.INSTANCE.toEntity(userDTO);
+        var user = AccountMapper.INSTANCE.toEntity(accountDTO);
 
         String boardThumbnail = HtmlContentParse.parseThumbnail(board.getBdContent());
         board = Board.createBoardWithThumbnail(user, board, boardThumbnail);

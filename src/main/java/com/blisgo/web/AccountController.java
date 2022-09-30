@@ -1,9 +1,9 @@
 package com.blisgo.web;
 
-import com.blisgo.service.UserService;
+import com.blisgo.service.AccountService;
 import com.blisgo.util.CloudinaryUtil;
 import com.blisgo.web.dto.DogamDTO;
-import com.blisgo.web.dto.UserDTO;
+import com.blisgo.web.dto.AccountDTO;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,16 +14,16 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("user")
-public class UserController {
-    private final UserService userService;
+@RequestMapping("account")
+public class AccountController {
+    private final AccountService accountService;
 
     private final ModelAndView mv = new ModelAndView();
     CloudinaryUtil cloudinaryUtil;
     String url;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public AccountController(AccountService accountService) {
+        this.accountService = accountService;
     }
 
     /**
@@ -41,21 +41,21 @@ public class UserController {
     /**
      * 회원 로그인 전송
      *
-     * @param userDTO 사용자
+     * @param accountDTO 사용자
      * @param session 세션
      * @return mv
      */
     @PostMapping("login")
-    public ModelAndView login(UserDTO userDTO, HttpSession session) {
-        UserDTO registeredUser = userService.findUser(userDTO);
+    public ModelAndView login(AccountDTO accountDTO, HttpSession session) {
+        AccountDTO registeredAccount = accountService.findAccount(accountDTO);
 
-        if (registeredUser == null) {
+        if (registeredAccount == null) {
             // alertMsg = new AlertMsg(res, "없는 회원입니다. 회원가입 후 로그인 진행하시길 바랍니다.",
             // "insertBoarder");
             url = RouteUrlHelper.combine(folder.user, page.register);
         } else {
-            if (userDTO.getPass().equals(registeredUser.getPass())) {
-                session.setAttribute("mem", registeredUser);
+            if (accountDTO.getPass().equals(registeredAccount.getPass())) {
+                session.setAttribute("mem", registeredAccount);
                 // alertMsg = new AlertMsg(res, "/");
                 url = RouteUrlHelper.combine("");
             } else {
@@ -74,7 +74,7 @@ public class UserController {
      */
     @GetMapping("register")
     public ModelAndView register() {
-        String termsOfAgreement = userService.findTermsOfAgreement();
+        String termsOfAgreement = accountService.findTermsOfAgreement();
         mv.addObject("termsOfAgreement", termsOfAgreement);
 
         url = RouteUrlHelper.combine(folder.user, page.register);
@@ -86,12 +86,12 @@ public class UserController {
     /**
      * 회원가입 전송
      *
-     * @param userDTO 사용자
+     * @param accountDTO 사용자
      * @return mv
      */
     @PostMapping("register")
-    public ModelAndView registerPOST(@Valid UserDTO userDTO) {
-        if (userService.addUser(userDTO)) {
+    public ModelAndView registerPOST(@Valid AccountDTO accountDTO) {
+        if (accountService.addAccount(accountDTO)) {
             // alertMsg = new AlertMsg(res, "회원가입 성공", "login");
             url = RouteUrlHelper.combine(folder.user, page.login);
             mv.setView(new RedirectView(url, false));
@@ -105,8 +105,8 @@ public class UserController {
 
     // FIXME [이메일 중복 확인] 프론트단 ajax 수정 필요
 //	@PostMapping("register/check")
-//	public @ResponseBody boolean registerCheck(UserDTO userDTO) {
-//		if (userService.emailCheck(userDTO) > 0) {
+//	public @ResponseBody boolean registerCheck(AccountDTO userDTO) {
+//		if (accountService.emailCheck(userDTO) > 0) {
 //			return false;
 //		} else {
 //			return true;
@@ -126,9 +126,9 @@ public class UserController {
 
     // FIXME [회원 비밀번호 분실 인증 이메일, 전화번호 전송] 테스트 불가. 메일전송 API 교체 혹은 네이버 SMS API 사용
 //	@PostMapping("verify")
-//	public ModelAndView verifyEmailPOST(ModelAndView mv, HttpSession session, UserDTO userDTO) {
+//	public ModelAndView verifyEmailPOST(ModelAndView mv, HttpSession session, AccountDTO userDTO) {
 //
-//		if (userService.emailCheck(userDTO) > 0) {
+//		if (accountService.emailCheck(userDTO) > 0) {
 //			String email = userDTO.email();
 //			String nickname = userDTO.nickname();
 //
@@ -166,14 +166,14 @@ public class UserController {
     // TODO [이메일 혹은 전화번호 인증 후 비밀번호 변경 페이지(POST)] 사용 위치 파악 후 조치
 //	@PutMapping("changepwd")
 //	public ModelAndView pwchangeConfirm(ModelAndView mv, HttpSession session, HttpServletRequest req,
-//			HttpServletResponse res, UserDTO userDTO) {
-//		User user = modelMapper.map(userDTO, User.class);
+//			HttpServletResponse res, AccountDTO userDTO) {
+//		Account user = modelMapper.map(userDTO, Account.class);
 //
 //		String pass = req.getParameter("pw-new");
 //		String newPwConfirm = req.getParameter("pw-confirm");
 //
 //		if (pass.equals(newPwConfirm)) {
-//			userService.updatePassword(user, pass);
+//			accountService.updatePassword(user, pass);
 //			session.invalidate();
 //			// alertMsg = new AlertMsg(res, "비밀번호가 변경되었습니다", "/");
 //			mv.setViewName("/");
@@ -189,13 +189,13 @@ public class UserController {
      * 마이페이지
      *
      * @param session 세션
-     * @param userDTO 사용자
+     * @param accountDTO 사용자
      * @return mv
      */
     @GetMapping("mypage")
-    public ModelAndView mypage(HttpSession session, UserDTO userDTO) {
-        userDTO = (UserDTO) session.getAttribute("mem");
-        List<DogamDTO> dogamList = userService.findDogam(userDTO);
+    public ModelAndView mypage(HttpSession session, AccountDTO accountDTO) {
+        accountDTO = (AccountDTO) session.getAttribute("mem");
+        List<DogamDTO> dogamList = accountService.findDogam(accountDTO);
         mv.addObject("dogamList", dogamList);
         url = RouteUrlHelper.combine(folder.user, page.mypage);
         mv.setViewName(url);
@@ -207,20 +207,20 @@ public class UserController {
      *
      * @param session     세션
      * @param profile_img 업로드된 프로필 이미지
-     * @param userDTO     사용자
+     * @param accountDTO     사용자
      * @return mv
      */
     // FIXME [마이페이지 프로필 업데이트] 회원 정보 변경 즉시 반영되지 않음
     @PutMapping("mypage/update-profile-img")
     public ModelAndView mypageUpdateProfileImg(HttpSession session,
-                                               @RequestParam("upload-img") MultipartFile profile_img, UserDTO userDTO) {
-        userDTO = (UserDTO) session.getAttribute("mem");
+                                               @RequestParam("upload-img") MultipartFile profile_img, AccountDTO accountDTO) {
+        accountDTO = (AccountDTO) session.getAttribute("mem");
         cloudinaryUtil = new CloudinaryUtil();
         String profile_img_url = cloudinaryUtil.uploadImage(profile_img);
 
-        userService.modifyUserProfileImg(userDTO, profile_img_url);
+        accountService.modifyAccountProfileImg(accountDTO, profile_img_url);
         session.removeAttribute("mem");
-        session.setAttribute("mem", userDTO);
+        session.setAttribute("mem", accountDTO);
         url = RouteUrlHelper.combine(folder.user, page.mypage);
         mv.setView(new RedirectView(url, false));
         return mv;
@@ -230,16 +230,16 @@ public class UserController {
      * 마이페이지 닉네임 변경
      *
      * @param session 세션
-     * @param userDTO 사용자
+     * @param accountDTO 사용자
      * @return mv
      */
     @PutMapping("mypage/update-nickname")
-    public ModelAndView mypageUpdateNickname(HttpSession session, UserDTO userDTO) {
+    public ModelAndView mypageUpdateNickname(HttpSession session, AccountDTO accountDTO) {
 
-        if (userService.modifyUserNickname(userDTO)) {
-            userDTO = userService.findUser(userDTO);
+        if (accountService.modifyAccountNickname(accountDTO)) {
+            accountDTO = accountService.findAccount(accountDTO);
             session.removeAttribute("mem");
-            session.setAttribute("mem", userDTO);
+            session.setAttribute("mem", accountDTO);
             // alertMsg = new AlertMsg(res, "회원 정보가 변경되었습니다.", "mypage");
             url = RouteUrlHelper.combine(folder.user, page.mypage);
             mv.setView(new RedirectView(url, false));
@@ -256,17 +256,17 @@ public class UserController {
      * 회원 비밀번호 변경
      *
      * @param session 세션
-     * @param userDTO 사용자
+     * @param accountDTO 사용자
      * @param newPass 신규 비밀번호
      * @return mv
      */
     @PutMapping("mypage/update-password")
-    public ModelAndView mypageUpdatePassword(HttpSession session, UserDTO userDTO,
+    public ModelAndView mypageUpdatePassword(HttpSession session, AccountDTO accountDTO,
                                              @RequestParam("newPass") String newPass) {
-        UserDTO userBefore = (UserDTO) session.getAttribute("mem");
+        AccountDTO userBefore = (AccountDTO) session.getAttribute("mem");
 
-        if (userDTO.getPass().equals(userService.findUser(userBefore).getPass())) {
-            userService.modifyUserPass(userBefore, newPass);
+        if (accountDTO.getPass().equals(accountService.findAccount(userBefore).getPass())) {
+            accountService.modifyAccountPass(userBefore, newPass);
             session.invalidate();
             // alertMsg = new AlertMsg(res, "변경된 비밀번호로 다시 로그인바랍니다.", "login");
             url = RouteUrlHelper.combine(folder.user, page.login);
@@ -287,9 +287,9 @@ public class UserController {
      */
     @DeleteMapping("mypage")
     public ModelAndView mypageDeleteAccount(HttpSession session) {
-        UserDTO userInfo = (UserDTO) session.getAttribute("mem");
+        AccountDTO userInfo = (AccountDTO) session.getAttribute("mem");
 
-        if (userService.removeUser(userInfo)) {
+        if (accountService.removeAccount(userInfo)) {
             // alertMsg = new AlertMsg(res, "회원 탈퇴되었습니다.", "/logout");
             session.invalidate();
             url = RouteUrlHelper.combine("");
@@ -306,13 +306,13 @@ public class UserController {
      * 마이페이지 도감 더보기
      *
      * @param session 세션
-     * @param userDTO 사용자
+     * @param accountDTO 사용자
      * @return json
      */
     @PostMapping("dogam/more")
-    public @ResponseBody List<DogamDTO> dictionaryLoadMore(HttpSession session, UserDTO userDTO) {
-        userDTO = (UserDTO) session.getAttribute("mem");
-        return userService.findDogamMore(userDTO);
+    public @ResponseBody List<DogamDTO> dictionaryLoadMore(HttpSession session, AccountDTO accountDTO) {
+        accountDTO = (AccountDTO) session.getAttribute("mem");
+        return accountService.findDogamMore(accountDTO);
     }
 
     /**

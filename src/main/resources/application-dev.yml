@@ -68,5 +68,3 @@ server:
 logging:
   level:
     root: info
-  file:
-    name: app.log

@@ -16,7 +16,7 @@ import java.io.Serializable;
 public class Hashtag {
 
 	@Id
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "dic_no", nullable = false)
 	@Comment("사전 번호(FK)")

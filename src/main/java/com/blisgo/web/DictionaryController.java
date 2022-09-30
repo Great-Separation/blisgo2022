@@ -1,9 +1,9 @@
 package com.blisgo.web;
 
 import com.blisgo.service.DictionaryService;
+import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.DictionaryDTO;
 import com.blisgo.web.dto.HashtagDTO;
-import com.blisgo.web.dto.UserDTO;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -80,14 +80,14 @@ public class DictionaryController {
      *
      * @param session       세션
      * @param dictionaryDTO 폐기물
-     * @param userDTO       사용자
+     * @param accountDTO       사용자
      * @return 북마크 추가
      */
     @PutMapping("dogam/{dicNo}")
-    public @ResponseBody boolean addBookmark(HttpSession session, DictionaryDTO dictionaryDTO, UserDTO userDTO) {
-        userDTO = (UserDTO) session.getAttribute("mem");
+    public @ResponseBody boolean addBookmark(HttpSession session, DictionaryDTO dictionaryDTO, AccountDTO accountDTO) {
+        accountDTO = (AccountDTO) session.getAttribute("mem");
 
-        return dictionaryService.addDogam(dictionaryDTO, userDTO);
+        return dictionaryService.addDogam(dictionaryDTO, accountDTO);
     }
 
 }

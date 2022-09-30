@@ -87,6 +87,9 @@ dependencies {
 
     // 테스트 서버 h2
     testImplementation 'com.h2database:h2:2.1.214'
+
+    // 객체 모니터링
+    implementation 'org.javers:javers-core:6.7.0'
 }
 
 clean {

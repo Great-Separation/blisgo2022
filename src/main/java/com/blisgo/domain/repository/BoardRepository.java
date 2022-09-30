@@ -2,10 +2,11 @@ package com.blisgo.domain.repository;
 
 import com.blisgo.domain.entity.Board;
 import com.blisgo.web.dto.BoardDTO;
+import org.springframework.data.repository.Repository;
 
 import java.util.List;
 
-public interface BoardRepository {
+public interface BoardRepository extends Repository<Board, Integer> {
     void insertBoard(Board boardEntity);
 
     List<BoardDTO> selectBoardList(int index, int limit);

@@ -1,8 +1,8 @@
 package com.blisgo.service;
 
+import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.BoardDTO;
 import com.blisgo.web.dto.ReplyDTO;
-import com.blisgo.web.dto.UserDTO;
 
 import java.util.List;
 
@@ -20,9 +20,9 @@ public interface ReplyService {
      *
      * @param replyDTO 댓글
      * @param boardDTO 게시글
-     * @param userDTO  사용자 TODO [addReply] 실행 결과 반드시 반환
+     * @param accountDTO  사용자 TODO [addReply] 실행 결과 반드시 반환
      */
-    void addReply(ReplyDTO replyDTO, BoardDTO boardDTO, UserDTO userDTO);
+    void addReply(ReplyDTO replyDTO, BoardDTO boardDTO, AccountDTO accountDTO);
 
     /**
      * 댓글 삭제 메서드

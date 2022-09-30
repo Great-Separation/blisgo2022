@@ -25,7 +25,7 @@ $(document).ready(function () {
 							clone.find("#bdTitle").text(data.bdTitle);
 							clone.find("#bdContent").text(data.bdContent);
 							clone.find("#modifiedDate").text(convertMysqlDate2Js(data.modifiedDate));
-							clone.find("#nickname").text(data.user.nickname);
+							clone.find("#nickname").text(data.account.nickname);
 							clone.find("#bdReplyCount").text(data.bdReplyCount);
 							clone.find("#bdFavorite").text(data.bdFavorite);
 							clone.find("#bdThumbnail").attr("src", data.bdThumbnail);

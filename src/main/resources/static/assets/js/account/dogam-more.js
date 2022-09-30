@@ -16,7 +16,7 @@ $(document).ready(function () {
                 $('#loading').css("display", "inline");
                 $.ajax({
                     type: "post",
-                    url: "/user/dogam/more",
+                    url: "/account/dogam/more",
                     cache: false,
                     success: function (dictionaries) {
                         var sample = $("#dictionary").clone();

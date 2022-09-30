@@ -5,7 +5,7 @@ import com.blisgo.service.ReplyService;
 import com.blisgo.util.CloudinaryUtil;
 import com.blisgo.web.dto.BoardDTO;
 import com.blisgo.web.dto.ReplyDTO;
-import com.blisgo.web.dto.UserDTO;
+import com.blisgo.web.dto.AccountDTO;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -171,13 +171,13 @@ public class BoardController {
      *
      * @param session  세션
      * @param boardDTO 게시글
-     * @param userDTO  사용자
+     * @param accountDTO  사용자
      * @return mv
      */
     @PostMapping("write")
-    public ModelAndView writePOST(HttpSession session, @Valid BoardDTO boardDTO, UserDTO userDTO) {
-        userDTO = (UserDTO) session.getAttribute("mem");
-        boardService.addBoard(boardDTO, userDTO);
+    public ModelAndView writePOST(HttpSession session, @Valid BoardDTO boardDTO, AccountDTO accountDTO) {
+        accountDTO = (AccountDTO) session.getAttribute("mem");
+        boardService.addBoard(boardDTO, accountDTO);
         url = RouteUrlHelper.combine(page.board);
         mv.setView(new RedirectView(url, false));
         return mv;

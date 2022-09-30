@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class UserDTO {
+public class AccountDTO {
 	private Integer memNo;
 	@NotNull(message = "닉네임을 입력해주세요")
 	private String nickname;
@@ -30,8 +30,8 @@ public class UserDTO {
 	private LocalDateTime modifiedDate;
 
 	@Builder
-	public UserDTO(Integer memNo, String nickname, String email, String pass, Integer memPoint, String profileImage,
-			LocalDateTime createdDate) {
+	public AccountDTO(Integer memNo, String nickname, String email, String pass, Integer memPoint, String profileImage,
+					  LocalDateTime createdDate) {
 		this.memNo = memNo;
 		this.nickname = nickname;
 		this.email = email;

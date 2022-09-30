@@ -42,4 +42,5 @@ public class Guide {
 		this.guideContent = guideContent;
 		this.imagePath = imagePath;
 	}
+
 }

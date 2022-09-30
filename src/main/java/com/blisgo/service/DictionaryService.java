@@ -1,8 +1,8 @@
 package com.blisgo.service;
 
+import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.DictionaryDTO;
 import com.blisgo.web.dto.HashtagDTO;
-import com.blisgo.web.dto.UserDTO;
 
 import java.util.List;
 
@@ -64,8 +64,8 @@ public interface DictionaryService {
      * 북마크 기능 메서드
      *
      * @param dictionaryDTO 폐기물
-     * @param userDTO       사용자
+     * @param accountDTO       사용자
      * @return 북마크 추가
      */
-    boolean addDogam(DictionaryDTO dictionaryDTO, UserDTO userDTO);
+    boolean addDogam(DictionaryDTO dictionaryDTO, AccountDTO accountDTO);
 }

@@ -27,15 +27,16 @@ public class DictionaryRepositoryImpl implements DictionaryRepository {
 
     private final JPAQueryFactory jpaQueryFactory;
 
-    private final JdbcTemplate jdbcTemplate;
-
     private final EntityManager entityManager;
 
-    public DictionaryRepositoryImpl(JPAQueryFactory jpaQueryFactory, JdbcTemplate jdbcTemplate, EntityManager entityManager) {
+    private final JdbcTemplate jdbcTemplate;
+
+    public DictionaryRepositoryImpl(JPAQueryFactory jpaQueryFactory, EntityManager entityManager, JdbcTemplate jdbcTemplate) {
         this.jpaQueryFactory = jpaQueryFactory;
-        this.jdbcTemplate = jdbcTemplate;
         this.entityManager = entityManager;
+        this.jdbcTemplate = jdbcTemplate;
     }
+
 
     @Override
     public List<Dictionary> selectRecentDictionaryList() {
@@ -74,7 +75,7 @@ public class DictionaryRepositoryImpl implements DictionaryRepository {
     @Modifying
     @Override
     public void updateDictionaryPopularity() {
-        String sql = "update dictionary inner join(select *, NTILE(10) OVER (ORDER BY hit) as star from dictionary) dic on dic.dic_no=dictionary.dic_no set dictionary.popularity=dic.star";
+        String sql = "update dictionary inner join(select *, NTILE(10) OVER (ORDER BY hit) as star from dictionary) dic on dic_no=dic.dic_no set popularity=dic.star";
         jdbcTemplate.update(sql);
     }
 

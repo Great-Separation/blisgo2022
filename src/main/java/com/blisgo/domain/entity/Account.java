@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @DynamicInsert
 @Entity
-public class User extends BaseTimeEntity {
+public class Account extends BaseTimeEntity {
 	@Id
 	@GeneratedValue
 	@Comment("회원 번호(PK)")
@@ -42,17 +42,17 @@ public class User extends BaseTimeEntity {
 	@Comment("회원 프로필 이미지")
 	private String profileImage;
 
-	@OneToMany(mappedBy = "user", orphanRemoval = true)
+	@OneToMany(mappedBy = "account", orphanRemoval = true)
 	private final List<Reply> reply = new ArrayList<>();
 
-	@OneToMany(mappedBy = "user", orphanRemoval = true)
+	@OneToMany(mappedBy = "account", orphanRemoval = true)
 	private final List<Board> board = new ArrayList<>();
 
-	@OneToMany(mappedBy = "user", orphanRemoval = true)
+	@OneToMany(mappedBy = "account", orphanRemoval = true)
 	private final List<Dogam> dogam = new ArrayList<>();
 
 	@Builder
-	public User(Integer memNo, String nickname, String email, String pass, Integer memPoint, String profileImage) {
+	public Account(Integer memNo, String nickname, String email, String pass, Integer memPoint, String profileImage) {
 		this.memNo = memNo;
 		this.nickname = nickname;
 		this.email = email;
@@ -61,9 +61,9 @@ public class User extends BaseTimeEntity {
 		this.profileImage = profileImage;
 	}
 
-	public static User createUser(User user, String default_profile_img) {
-		return User.builder().memNo(user.getMemNo()).nickname(user.getNickname()).email(user.getEmail())
-				.pass(user.getPass()).memPoint(user.getMemPoint()).profileImage(default_profile_img).build();
+	public static Account createAccount(Account account, String default_profile_img) {
+		return Account.builder().memNo(account.getMemNo()).nickname(account.getNickname()).email(account.getEmail())
+				.pass(account.getPass()).memPoint(account.getMemPoint()).profileImage(default_profile_img).build();
 	}
 
 }

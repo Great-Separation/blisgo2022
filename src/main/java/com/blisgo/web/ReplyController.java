@@ -1,9 +1,9 @@
 package com.blisgo.web;
 
 import com.blisgo.service.ReplyService;
+import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.BoardDTO;
 import com.blisgo.web.dto.ReplyDTO;
-import com.blisgo.web.dto.UserDTO;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,14 +27,14 @@ public class ReplyController {
     /**
      * 댓글 작성
      *
-     * @param userDTO  사용자
+     * @param accountDTO  사용자
      * @param boardDTO 게시글
      * @param replyDTO 댓글
      * @return mv
      */
     @PostMapping("{bdNo}")
-    public ModelAndView replyPOST(UserDTO userDTO, BoardDTO boardDTO, @Valid ReplyDTO replyDTO) {
-        replyService.addReply(replyDTO, boardDTO, userDTO);
+    public ModelAndView replyPOST(AccountDTO accountDTO, BoardDTO boardDTO, @Valid ReplyDTO replyDTO) {
+        replyService.addReply(replyDTO, boardDTO, accountDTO);
         url = RouteUrlHelper.combine(page.board, boardDTO.getBdNo());
         mv.setView(new RedirectView(url, false));
         return mv;

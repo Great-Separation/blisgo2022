@@ -4,9 +4,8 @@ spring:
       on-profile: prod
 
   flyway:
-    enabled: false
-    baseline-on-migrate: false
-
+    enabled: true
+    baseline-on-migrate: true
     encoding: UTF-8
     url: jdbc:mysql://ble5mmo2o5v9oouq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/y3x4bvgs6r1un7cq?&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8
     user: b7y3nvk6ini8s9pa
@@ -69,5 +68,3 @@ server:
 logging:
   level:
     root: info
-  file:
-    name: app.log

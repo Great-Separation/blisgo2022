@@ -19,18 +19,18 @@ public class Dogam {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "mem_no", nullable = false)
 	@Comment("회원 번호(PK, FK)")
-	private User user;
+	private Account account;
 
 	@Id
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "dic_no", nullable = false)
 	@Comment("사전 번호(PK, FK)")
 	private Dictionary dictionary;
 
 	@Builder
-	public Dogam(User user, Dictionary dictionary) {
-		this.user = user;
+	public Dogam(Account account, Dictionary dictionary) {
+		this.account = account;
 		this.dictionary = dictionary;
 	}
 }
@@ -42,6 +42,6 @@ class DogamPK implements Serializable {
 	@Serial
 	private static final long serialVersionUID = 1L;
 
-	private User user;
+	private Account account;
 	private Dictionary dictionary;
 }

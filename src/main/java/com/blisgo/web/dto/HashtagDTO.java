@@ -2,7 +2,6 @@ package com.blisgo.web.dto;
 
 import com.blisgo.domain.entity.Dictionary;
 import com.blisgo.domain.entity.Guide;
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

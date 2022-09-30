@@ -20,7 +20,7 @@ spring.datasource.jdbc-url=jdbc:mysql://ble5mmo2o5v9oouq.cbetxkdyhwsb.us-east-1.
 #Flyway DB migration
 spring.flyway.enabled=false
 spring.flyway.url=jdbc:mysql://ble5mmo2o5v9oouq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/y3x4bvgs6r1un7cq?&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8
-spring.flyway.user=b7y3nvk6ini8s9pa
+spring.flyway.account=b7y3nvk6ini8s9pa
 spring.flyway.password=ute85ortnqmipr4o
 spring.flyway.encoding=UTF-8
 spring.flyway.outOfOrder=true

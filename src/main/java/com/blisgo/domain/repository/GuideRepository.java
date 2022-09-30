@@ -1,5 +1,8 @@
 package com.blisgo.domain.repository;
 
-public interface GuideRepository {
+import com.blisgo.domain.entity.Guide;
+import org.springframework.data.repository.Repository;
+
+public interface GuideRepository extends Repository<Guide, Integer> {
 
 }

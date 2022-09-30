@@ -9,7 +9,6 @@ import javax.annotation.PostConstruct;
 import java.util.TimeZone;
 
 @EnableScheduling
-@EnableJpaAuditing
 @SpringBootApplication
 public class BlisgoApplication {
     @PostConstruct

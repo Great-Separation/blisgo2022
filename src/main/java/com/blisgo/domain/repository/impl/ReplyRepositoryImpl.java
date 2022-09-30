@@ -12,9 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.util.List;
 
+import static com.blisgo.domain.entity.QAccount.account;
 import static com.blisgo.domain.entity.QBoard.board;
 import static com.blisgo.domain.entity.QReply.reply;
-import static com.blisgo.domain.entity.QUser.user;
 
 @Repository
 @Transactional
@@ -32,9 +32,9 @@ public class ReplyRepositoryImpl implements ReplyRepository {
     @Override
     public List<Reply> selectReplyInnerJoinUser(Board boardEntity) {
         return jpaQueryFactory
-                .select(Projections.fields(Reply.class, reply.user,
+                .select(Projections.fields(Reply.class, reply.account,
                         reply.createdDate, reply.content))
-                .from(reply).innerJoin(user).on(reply.user.memNo.eq(user.memNo))
+                .from(reply).innerJoin(account).on(reply.account.memNo.eq(account.memNo))
                 .where(reply.board.bdNo.eq(boardEntity.getBdNo())).fetch();
     }
 

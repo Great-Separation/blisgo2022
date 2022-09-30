@@ -1,7 +1,7 @@
 package com.blisgo.service;
 
 import com.blisgo.web.dto.BoardDTO;
-import com.blisgo.web.dto.UserDTO;
+import com.blisgo.web.dto.AccountDTO;
 
 import java.util.List;
 
@@ -11,9 +11,9 @@ public interface BoardService {
      * 글 등록 메서드
      *
      * @param boardDTO 게시글
-     * @param userDTO  사용자 TODO [addBoard] 실행 결과 반드시 반환
+     * @param accountDTO  사용자 TODO [addBoard] 실행 결과 반드시 반환
      */
-    void addBoard(BoardDTO boardDTO, UserDTO userDTO);
+    void addBoard(BoardDTO boardDTO, AccountDTO accountDTO);
 
     /**
      * 글 목록을 가지고 오는 메서드(페이징 없을때)

@@ -45,8 +45,8 @@
                 <div class="card-body">
                     <div class="row g-0">
                         <div class="col-auto">
-                            <form id="profile" th:method="put" th:action="@{~/user/mypage/update-profile-img}" enctype="multipart/form-data"><input class="form-control d-none" type="file" id="upload" name="upload-img" accept="image/*">
-                                <div class="vstack position-relative"><img class="img-fluid border rounded-circle border-0" id="usericon-desktop-image" src="https://i.pravatar.cc/200" width="100px" alt="프로필이미지" th:src="${session.mem.profileImage}"><label class="form-label m-0" id="upload-img" for="upload"><span class="badge bg-dark border rounded-circle border-0 btn btn-dark position-absolute bottom-0 end-0 p-1" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" title="사진 업로드"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor" class="m-1">
+                            <form id="profile" th:method="put" th:action="@{~/account/mypage/update-profile-img}" enctype="multipart/form-data"><input class="form-control d-none" type="file" id="upload" name="upload-img" accept="image/*">
+                                <div class="vstack position-relative"><img class="img-fluid border rounded-circle border-0" id="accounticon-desktop-image" src="https://i.pravatar.cc/200" width="100px" alt="프로필이미지" th:src="${session.mem.profileImage}"><label class="form-label m-0" id="upload-img" for="upload"><span class="badge bg-dark border rounded-circle border-0 btn btn-dark position-absolute bottom-0 end-0 p-1" data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="bottom" title="사진 업로드"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor" class="m-1">
                                                 <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
                                                 <path d="M194.6 32H317.4C338.1 32 356.4 45.22 362.9 64.82L373.3 96H448C483.3 96 512 124.7 512 160V416C512 451.3 483.3 480 448 480H64C28.65 480 0 451.3 0 416V160C0 124.7 28.65 96 64 96H138.7L149.1 64.82C155.6 45.22 173.9 32 194.6 32H194.6zM256 384C309 384 352 341 352 288C352 234.1 309 192 256 192C202.1 192 160 234.1 160 288C160 341 202.1 384 256 384z"></path>
                                             </svg></span></label></div>
@@ -116,7 +116,7 @@
     <div class="modal fade" role="dialog" tabindex="-1" id="modal-password">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
             <div class="modal-content">
-                <form th:method="put" th:action="@{~/user/mypage/update-password}">
+                <form th:method="put" th:action="@{~/account/mypage/update-password}">
                     <div class="modal-header">
                         <h4 class="modal-title">비밀번호 변경</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -140,7 +140,7 @@
                 <div class="modal-body">
                     <p>탈퇴 후 데이터는 모두 사라지며 복구할 수 없습니다.</p>
                 </div>
-                <div class="modal-footer"><a class="btn btn-danger" role="button" th:href="@{~/user/mypage}" th:method="delete">확인</a><button class="btn btn-light" type="button" data-bs-dismiss="modal">취소</button></div>
+                <div class="modal-footer"><a class="btn btn-danger" role="button" th:href="@{~/account/mypage}" th:method="delete">확인</a><button class="btn btn-light" type="button" data-bs-dismiss="modal">취소</button></div>
             </div>
         </div>
     </div><!-- Start: Thymeleaf Navbar -->
@@ -148,13 +148,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/js/bs-init.js"></script>
+    <script src="/assets/js/account/dogam-more.js"></script>
+    <script src="/assets/js/account/pass-check.js"></script>
+    <script src="/assets/js/account/profile-update.js"></script>
     <script src="/assets/js/cmmn/aos.mjs" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-throttle-debounce"></script>
     <script src="/assets/js/pwabuilder-register.mjs" type="module"></script>
-    <script src="/assets/js/user/dogam-more.js"></script>
-    <script src="/assets/js/user/pass-check.js"></script>
-    <script src="/assets/js/user/profile-update.js"></script>
 </body>
 
 </html>

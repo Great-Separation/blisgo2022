@@ -1,7 +1,7 @@
 package com.blisgo.web;
 
 enum folder {
-	user, cmmn, dictionary, community
+	account, cmmn, dictionary, community
 }
 
 enum page {

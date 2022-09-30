@@ -30,7 +30,7 @@ public class ReplyRepositoryImpl implements ReplyRepository {
     }
 
     @Override
-    public List<Reply> selectReplyInnerJoinUser(Board boardEntity) {
+    public List<Reply> selectReplyInnerJoinAccount(Board boardEntity) {
         return jpaQueryFactory
                 .select(Projections.fields(Reply.class, reply.account,
                         reply.createdDate, reply.content))

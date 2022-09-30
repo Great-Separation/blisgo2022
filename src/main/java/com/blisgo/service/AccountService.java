@@ -75,7 +75,7 @@ public interface AccountService {
      * 회원 프로필 이미지 변경 메서드
      *
      * @param accountDTO 사용자
-     * @param profile_img_url 신규 프로필 이미지 TODO [modifyUserProfileImg] 실행 결과 반드시 반환
+     * @param profile_img_url 신규 프로필 이미지 TODO [modifyAccountProfileImg] 실행 결과 반드시 반환
      */
     void modifyAccountProfileImg(AccountDTO accountDTO, String profile_img_url);
 

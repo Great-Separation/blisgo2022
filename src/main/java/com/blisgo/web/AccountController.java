@@ -33,7 +33,7 @@ public class AccountController {
      */
     @GetMapping("login")
     public ModelAndView login() {
-        url = RouteUrlHelper.combine(folder.user, page.login);
+        url = RouteUrlHelper.combine(folder.account, page.login);
         mv.setViewName(url);
         return mv;
     }
@@ -52,7 +52,7 @@ public class AccountController {
         if (registeredAccount == null) {
             // alertMsg = new AlertMsg(res, "없는 회원입니다. 회원가입 후 로그인 진행하시길 바랍니다.",
             // "insertBoarder");
-            url = RouteUrlHelper.combine(folder.user, page.register);
+            url = RouteUrlHelper.combine(folder.account, page.register);
         } else {
             if (accountDTO.getPass().equals(registeredAccount.getPass())) {
                 session.setAttribute("mem", registeredAccount);
@@ -60,7 +60,7 @@ public class AccountController {
                 url = RouteUrlHelper.combine("");
             } else {
                 // alertMsg = new AlertMsg(res, "비밀번호가 틀렸습니다. 다시 확인해주세요", "login");
-                url = RouteUrlHelper.combine(folder.user, page.login);
+                url = RouteUrlHelper.combine(folder.account, page.login);
             }
         }
         mv.setView(new RedirectView(url, false));
@@ -77,7 +77,7 @@ public class AccountController {
         String termsOfAgreement = accountService.findTermsOfAgreement();
         mv.addObject("termsOfAgreement", termsOfAgreement);
 
-        url = RouteUrlHelper.combine(folder.user, page.register);
+        url = RouteUrlHelper.combine(folder.account, page.register);
         mv.setViewName(url);
         return mv;
 
@@ -93,11 +93,11 @@ public class AccountController {
     public ModelAndView registerPOST(@Valid AccountDTO accountDTO) {
         if (accountService.addAccount(accountDTO)) {
             // alertMsg = new AlertMsg(res, "회원가입 성공", "login");
-            url = RouteUrlHelper.combine(folder.user, page.login);
+            url = RouteUrlHelper.combine(folder.account, page.login);
             mv.setView(new RedirectView(url, false));
         } else {
             // alertMsg = new AlertMsg(res, "회원가입 실패", "register");
-            url = RouteUrlHelper.combine(folder.user, page.register);
+            url = RouteUrlHelper.combine(folder.account, page.register);
             mv.setViewName(url);
         }
         return mv;
@@ -120,7 +120,7 @@ public class AccountController {
      */
     @GetMapping("verify")
     public ModelAndView verify() {
-        url = RouteUrlHelper.combine(folder.user, page.verify);
+        url = RouteUrlHelper.combine(folder.account, page.verify);
         return mv;
     }
 
@@ -197,7 +197,7 @@ public class AccountController {
         accountDTO = (AccountDTO) session.getAttribute("mem");
         List<DogamDTO> dogamList = accountService.findDogam(accountDTO);
         mv.addObject("dogamList", dogamList);
-        url = RouteUrlHelper.combine(folder.user, page.mypage);
+        url = RouteUrlHelper.combine(folder.account, page.mypage);
         mv.setViewName(url);
         return mv;
     }
@@ -221,7 +221,7 @@ public class AccountController {
         accountService.modifyAccountProfileImg(accountDTO, profile_img_url);
         session.removeAttribute("mem");
         session.setAttribute("mem", accountDTO);
-        url = RouteUrlHelper.combine(folder.user, page.mypage);
+        url = RouteUrlHelper.combine(folder.account, page.mypage);
         mv.setView(new RedirectView(url, false));
         return mv;
     }
@@ -241,11 +241,11 @@ public class AccountController {
             session.removeAttribute("mem");
             session.setAttribute("mem", accountDTO);
             // alertMsg = new AlertMsg(res, "회원 정보가 변경되었습니다.", "mypage");
-            url = RouteUrlHelper.combine(folder.user, page.mypage);
+            url = RouteUrlHelper.combine(folder.account, page.mypage);
             mv.setView(new RedirectView(url, false));
         } else {
             // alertMsg = new AlertMsg(res, "회원 정보 변경이 실패했습니다.", "/changepwd");
-            url = RouteUrlHelper.combine(folder.user, page.chgpw);
+            url = RouteUrlHelper.combine(folder.account, page.chgpw);
             mv.setViewName(url);
         }
 
@@ -263,17 +263,17 @@ public class AccountController {
     @PutMapping("mypage/update-password")
     public ModelAndView mypageUpdatePassword(HttpSession session, AccountDTO accountDTO,
                                              @RequestParam("newPass") String newPass) {
-        AccountDTO userBefore = (AccountDTO) session.getAttribute("mem");
+        AccountDTO accountBefore = (AccountDTO) session.getAttribute("mem");
 
-        if (accountDTO.getPass().equals(accountService.findAccount(userBefore).getPass())) {
-            accountService.modifyAccountPass(userBefore, newPass);
+        if (accountDTO.getPass().equals(accountService.findAccount(accountBefore).getPass())) {
+            accountService.modifyAccountPass(accountBefore, newPass);
             session.invalidate();
             // alertMsg = new AlertMsg(res, "변경된 비밀번호로 다시 로그인바랍니다.", "login");
-            url = RouteUrlHelper.combine(folder.user, page.login);
+            url = RouteUrlHelper.combine(folder.account, page.login);
             mv.setView(new RedirectView(url, false));
         } else {
             // alertMsg = new AlertMsg(res, "이전 비밀번호가 틀렸습니다. 다시 확인바랍니다.", "mypage");
-            url = RouteUrlHelper.combine(folder.user, page.mypage);
+            url = RouteUrlHelper.combine(folder.account, page.mypage);
             mv.setViewName(url);
         }
         return mv;
@@ -287,16 +287,16 @@ public class AccountController {
      */
     @DeleteMapping("mypage")
     public ModelAndView mypageDeleteAccount(HttpSession session) {
-        AccountDTO userInfo = (AccountDTO) session.getAttribute("mem");
+        AccountDTO accountInfo = (AccountDTO) session.getAttribute("mem");
 
-        if (accountService.removeAccount(userInfo)) {
+        if (accountService.removeAccount(accountInfo)) {
             // alertMsg = new AlertMsg(res, "회원 탈퇴되었습니다.", "/logout");
             session.invalidate();
             url = RouteUrlHelper.combine("");
             mv.setView(new RedirectView(url, false));
         } else {
             // alertMsg = new AlertMsg(res, "회원 탈퇴 실패했습니다. 다시 시도해주시기바랍니다.", "mypage");
-            url = RouteUrlHelper.combine(folder.user, page.mypage);
+            url = RouteUrlHelper.combine(folder.account, page.mypage);
             mv.setViewName(url);
         }
         return mv;

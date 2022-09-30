@@ -30,10 +30,10 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public void addBoard(BoardDTO boardDTO, AccountDTO accountDTO) {
         var board = BoardMapper.INSTANCE.toEntity(boardDTO);
-        var user = AccountMapper.INSTANCE.toEntity(accountDTO);
+        var account = AccountMapper.INSTANCE.toEntity(accountDTO);
 
         String boardThumbnail = HtmlContentParse.parseThumbnail(board.getBdContent());
-        board = Board.createBoardWithThumbnail(user, board, boardThumbnail);
+        board = Board.createBoardWithThumbnail(account, board, boardThumbnail);
         boardRepository.insertBoard(board);
     }
 

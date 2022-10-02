@@ -16,7 +16,7 @@ import javax.persistence.*;
 @DynamicUpdate
 public class Reply extends BaseTimeEntity {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "reply_no")
 	@Comment("댓글 번호(PK)")
 	private Integer replyNo;

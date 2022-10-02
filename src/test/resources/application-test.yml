@@ -22,25 +22,26 @@ spring:
       enabled: false
       path: /h2-console
   jpa:
-    defer-datasource-initialization: true
+    defer-datasource-initialization: false
     open-in-view: true
     hibernate:
-      use-new-id-generator-mappings: true
+      use-new-id-generator-mappings: false
     show-sql: true
     properties:
       hibernate:
         physical_naming_strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
         format_sql: true
-        show_sql: true
+        show_sql: false
         dialect: org.hibernate.dialect.MySQL8Dialect
         hbm2ddl:
-          auto: create
+          auto: create-drop
         connection:
           driver_class: org.h2.Driver
           url: jdbc:h2:mem:testdb;MODE=MySQL;DB_CLOSE_DELAY=-1
           username: sa
           password:
         current_session_context_class: thread
+        generate_statistics: true
     database-platform: org.hibernate.dialect.H2Dialect
 
 
@@ -52,3 +53,4 @@ logging:
   level:
     '[org.springframework.web]': DEBUG
     '[org.hibernate]': DEBUG
+    '[org.hibernate.SQL]': off

@@ -50,7 +50,7 @@ public interface AccountService {
      * 회원 비밀번호 변경 메서드
      *
      * @param accountDTO 사용자
-     * @param newPass 신규 비밀번호
+     * @param newPass    신규 비밀번호
      * @return 회원 비밀번호 변경
      */
     boolean modifyAccountPass(AccountDTO accountDTO, String newPass);
@@ -74,10 +74,10 @@ public interface AccountService {
     /**
      * 회원 프로필 이미지 변경 메서드
      *
-     * @param accountDTO 사용자
+     * @param accountDTO      사용자
      * @param profile_img_url 신규 프로필 이미지 TODO [modifyAccountProfileImg] 실행 결과 반드시 반환
      */
-    void modifyAccountProfileImg(AccountDTO accountDTO, String profile_img_url);
+    boolean modifyAccountProfileImg(AccountDTO accountDTO, String profile_img_url);
 
     /**
      * 회원가입시 약관 동의서 불러오는 메서드

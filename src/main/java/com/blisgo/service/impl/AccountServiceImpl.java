@@ -58,7 +58,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public boolean modifyAccountNickname(AccountDTO accountDTO) {
         var account = AccountMapper.INSTANCE.toEntity(accountDTO);
-        return accountRepository.updateNickname(account) > 0;
+        return accountRepository.updateNickname(account);
     }
 
     @Override
@@ -71,8 +71,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public boolean modifyAccountPass(AccountDTO accountDTO, String newPass) {
         var account = AccountMapper.INSTANCE.toEntity(accountDTO);
-        long result = accountRepository.updatePassword(account, newPass);
-        return result > 0;
+        return accountRepository.updatePassword(account, newPass);
     }
 
     @Override
@@ -94,9 +93,9 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void modifyAccountProfileImg(AccountDTO accountDTO, String profile_img_url) {
+    public boolean modifyAccountProfileImg(AccountDTO accountDTO, String profile_img_url) {
         var account = AccountMapper.INSTANCE.toEntity(accountDTO);
-        accountRepository.updateProfileImg(account, profile_img_url);
+        return accountRepository.updateProfileImg(account, profile_img_url);
     }
 
     @Override

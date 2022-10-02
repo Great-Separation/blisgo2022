@@ -40,29 +40,22 @@ public class ReplyRepositoryImpl implements ReplyRepository {
 
     @Modifying
     @Override
-    public void updateReplyCount(Board boardEntity, boolean flag) {
-        if (flag) {
-            jpaQueryFactory.update(board).set(board.bdReplyCount, board.bdReplyCount.add(1))
-                    .where(board.bdNo.eq(boardEntity.getBdNo())).execute();
-        } else {
-            jpaQueryFactory.update(board).set(board.bdReplyCount, board.bdReplyCount.subtract(1))
-                    .where(board.bdNo.eq(boardEntity.getBdNo())).execute();
-        }
-
+    public boolean updateReplyCount(Board boardEntity, boolean isReplied) {
+        return jpaQueryFactory.update(board).set(board.bdReplyCount, isReplied ? board.bdReplyCount.add(1) : board.bdReplyCount.subtract(1))
+                .where(board.bdNo.eq(boardEntity.getBdNo())).execute() > 0;
     }
 
     @Modifying
     @Override
-    public void insertReply(Reply replyEntity) {
+    public boolean insertReply(Reply replyEntity) {
         entityManager.persist(replyEntity);
-
+        return true;
     }
 
     @Modifying
     @Override
-    public void deleteReply(Reply replyEntity) {
-        jpaQueryFactory.delete(reply).where(reply.replyNo.eq(replyEntity.getReplyNo())).execute();
-
+    public boolean deleteReply(Reply replyEntity) {
+        return jpaQueryFactory.delete(reply).where(reply.replyNo.eq(replyEntity.getReplyNo())).execute() > 0;
     }
 
 }

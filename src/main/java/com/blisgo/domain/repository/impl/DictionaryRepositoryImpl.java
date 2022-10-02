@@ -53,7 +53,7 @@ public class DictionaryRepositoryImpl implements DictionaryRepository {
     }
 
     @Override
-    public Dictionary productInfo(Dictionary dictionaryEntity) {
+    public Dictionary selectDictionary(Dictionary dictionaryEntity) {
         return jpaQueryFactory.selectFrom(dictionary).where(dictionary.dicNo.eq(dictionaryEntity.getDicNo()))
                 .fetchOne();
     }
@@ -74,16 +74,16 @@ public class DictionaryRepositoryImpl implements DictionaryRepository {
 
     @Modifying
     @Override
-    public void updateDictionaryPopularity() {
-        String sql = "update dictionary inner join(select *, NTILE(10) OVER (ORDER BY hit) as star from dictionary) dic on dic_no=dic.dic_no set popularity=dic.star";
-        jdbcTemplate.update(sql);
+    public boolean updateDictionaryPopularity() {
+        String sql = "UPDATE dictionary JOIN (SELECT dic_no, NTILE(10) OVER (ORDER BY hit) AS star FROM dictionary) AS d2 SET popularity = d2.star WHERE dic_no = d2.dic_no";
+        return jdbcTemplate.update(sql) > 0;
     }
 
     @Modifying
     @Override
-    public void updateDictionaryHit(Dictionary dictionaryEntity) {
-        jpaQueryFactory.update(dictionary).set(dictionary.hit, dictionary.hit.add(1))
-                .where(dictionary.dicNo.eq(dictionaryEntity.getDicNo())).execute();
+    public boolean updateDictionaryHit(Dictionary dictionaryEntity) {
+        return jpaQueryFactory.update(dictionary).set(dictionary.hit, dictionary.hit.add(1))
+                .where(dictionary.dicNo.eq(dictionaryEntity.getDicNo())).execute() > 0;
     }
 
     @Override

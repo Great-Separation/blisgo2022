@@ -18,7 +18,7 @@ import java.util.List;
 @DynamicUpdate
 public class Board extends BaseTimeEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Comment("글 번호(PK)")
     @Column(name = "bd_no")
     private Integer bdNo;

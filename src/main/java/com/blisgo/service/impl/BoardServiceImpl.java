@@ -6,8 +6,8 @@ import com.blisgo.domain.mapper.BoardMapper;
 import com.blisgo.domain.repository.BoardRepository;
 import com.blisgo.service.BoardService;
 import com.blisgo.util.HtmlContentParse;
-import com.blisgo.web.dto.BoardDTO;
 import com.blisgo.web.dto.AccountDTO;
+import com.blisgo.web.dto.BoardDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,13 +28,13 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public void addBoard(BoardDTO boardDTO, AccountDTO accountDTO) {
+    public boolean addBoard(BoardDTO boardDTO, AccountDTO accountDTO) {
         var board = BoardMapper.INSTANCE.toEntity(boardDTO);
         var account = AccountMapper.INSTANCE.toEntity(accountDTO);
 
         String boardThumbnail = HtmlContentParse.parseThumbnail(board.getBdContent());
         board = Board.createBoardWithThumbnail(account, board, boardThumbnail);
-        boardRepository.insertBoard(board);
+        return boardRepository.insertBoard(board);
     }
 
     @Override
@@ -87,26 +87,26 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public void removeBoard(BoardDTO boardDTO) {
+    public boolean removeBoard(BoardDTO boardDTO) {
         var board = BoardMapper.INSTANCE.toEntity(boardDTO);
-        boardRepository.deleteBoard(board);
+        return boardRepository.deleteBoard(board);
     }
 
     @Override
-    public void countBoardViews(BoardDTO boardDTO) {
+    public boolean countBoardViews(BoardDTO boardDTO) {
         var board = BoardMapper.INSTANCE.toEntity(boardDTO);
-        boardRepository.updateBoardViews(board);
+        return boardRepository.updateBoardViews(board);
     }
 
     @Override
-    public void modifyBoard(BoardDTO boardDTO) {
+    public boolean modifyBoard(BoardDTO boardDTO) {
         var board = BoardMapper.INSTANCE.toEntity(boardDTO);
-        boardRepository.updateBoard(board);
+        return boardRepository.updateBoard(board);
     }
 
     @Override
-    public void countBoardFavorite(BoardDTO boardDTO) {
+    public boolean countBoardFavorite(BoardDTO boardDTO) {
         var board = BoardMapper.INSTANCE.toEntity(boardDTO);
-        boardRepository.updateBoardFavorite(board);
+        return boardRepository.updateBoardFavorite(board);
     }
 }

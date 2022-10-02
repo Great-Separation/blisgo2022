@@ -18,11 +18,11 @@ public interface ReplyService {
     /**
      * 댓글 추가하는 메서드
      *
-     * @param replyDTO 댓글
-     * @param boardDTO 게시글
-     * @param accountDTO  사용자 TODO [addReply] 실행 결과 반드시 반환
+     * @param replyDTO   댓글
+     * @param boardDTO   게시글
+     * @param accountDTO 사용자 TODO [addReply] 실행 결과 반드시 반환
      */
-    void addReply(ReplyDTO replyDTO, BoardDTO boardDTO, AccountDTO accountDTO);
+    boolean addReply(ReplyDTO replyDTO, BoardDTO boardDTO, AccountDTO accountDTO);
 
     /**
      * 댓글 삭제 메서드
@@ -30,5 +30,5 @@ public interface ReplyService {
      * @param replyDTO 댓글
      * @param boardDTO 게시글 TODO [removeReply] 실행 결과 반드시 반환
      */
-    void removeReply(ReplyDTO replyDTO, BoardDTO boardDTO);
+    boolean removeReply(ReplyDTO replyDTO, BoardDTO boardDTO);
 }

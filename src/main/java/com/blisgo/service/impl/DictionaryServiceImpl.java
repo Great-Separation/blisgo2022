@@ -2,14 +2,14 @@ package com.blisgo.service.impl;
 
 import com.blisgo.domain.entity.Dogam;
 import com.blisgo.domain.entity.cmmn.Wastes;
+import com.blisgo.domain.mapper.AccountMapper;
 import com.blisgo.domain.mapper.DictionaryMapper;
 import com.blisgo.domain.mapper.HashtagMapper;
-import com.blisgo.domain.mapper.AccountMapper;
 import com.blisgo.domain.repository.DictionaryRepository;
 import com.blisgo.service.DictionaryService;
+import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.DictionaryDTO;
 import com.blisgo.web.dto.HashtagDTO;
-import com.blisgo.web.dto.AccountDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +39,7 @@ public class DictionaryServiceImpl implements DictionaryService {
     @Override
     public DictionaryDTO findDictionary(DictionaryDTO dictionaryDTO) {
         var dictionary = DictionaryMapper.INSTANCE.toEntity(dictionaryDTO);
-        var rs = dictionaryRepository.productInfo(dictionary);
+        var rs = dictionaryRepository.selectDictionary(dictionary);
         return DictionaryMapper.INSTANCE.toDTO(rs);
     }
 
@@ -76,14 +76,14 @@ public class DictionaryServiceImpl implements DictionaryService {
     }
 
     @Override
-    public void modifyDictionaryPopularity() {
-        dictionaryRepository.updateDictionaryPopularity();
+    public boolean modifyDictionaryPopularity() {
+        return dictionaryRepository.updateDictionaryPopularity();
     }
 
     @Override
-    public void countDictionaryHit(DictionaryDTO dictionaryDTO) {
+    public boolean countDictionaryHit(DictionaryDTO dictionaryDTO) {
         var dictionary = DictionaryMapper.INSTANCE.toEntity(dictionaryDTO);
-        dictionaryRepository.updateDictionaryHit(dictionary);
+        return dictionaryRepository.updateDictionaryHit(dictionary);
     }
 
     @Override

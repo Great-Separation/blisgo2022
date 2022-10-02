@@ -51,20 +51,20 @@ public interface DictionaryService {
      * 별점 매기는 메서드
      * TODO [modifyDictionaryPopularity] 실행 결과 반드시 반환
      */
-    void modifyDictionaryPopularity();
+    boolean modifyDictionaryPopularity();
 
     /**
      * 조회수 추가 메서드
      *
      * @param dictionary 폐기물 TODO [countDictionaryHit] 실행 결과 반드시 반환
      */
-    void countDictionaryHit(DictionaryDTO dictionary);
+    boolean countDictionaryHit(DictionaryDTO dictionary);
 
     /**
      * 북마크 기능 메서드
      *
      * @param dictionaryDTO 폐기물
-     * @param accountDTO       사용자
+     * @param accountDTO    사용자
      * @return 북마크 추가
      */
     boolean addDogam(DictionaryDTO dictionaryDTO, AccountDTO accountDTO);

@@ -1,17 +1,15 @@
 package com.blisgo.web.dto;
 
-import java.time.LocalDateTime;
-
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
-
-import com.blisgo.domain.entity.Board;
 import com.blisgo.domain.entity.Account;
+import com.blisgo.domain.entity.Board;
 import com.blisgo.util.TimeManager;
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
+import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor

@@ -7,18 +7,18 @@ import org.springframework.data.repository.Repository;
 import java.util.List;
 
 public interface BoardRepository extends Repository<Board, Integer> {
-    void insertBoard(Board boardEntity);
+    boolean insertBoard(Board boardEntity);
 
     List<BoardDTO> selectBoardList(int index, int limit);
 
     Board selectBoard(Board boardEntity);
 
-    void deleteBoard(Board boardEntity);
+    boolean deleteBoard(Board boardEntity);
 
-    void updateBoardViews(Board boardEntity);
+    boolean updateBoardViews(Board boardEntity);
 
-    void updateBoard(Board boardEntity);
+    boolean updateBoard(Board boardEntity);
 
-    void updateBoardFavorite(Board boardEntity);
+    boolean updateBoardFavorite(Board boardEntity);
 
 }

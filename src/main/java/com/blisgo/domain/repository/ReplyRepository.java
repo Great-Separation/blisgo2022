@@ -9,9 +9,9 @@ import java.util.List;
 public interface ReplyRepository extends Repository<Reply, Integer> {
     List<Reply> selectReplyInnerJoinAccount(Board boardEntity);
 
-    void updateReplyCount(Board boardEntity, boolean flag);
+    boolean updateReplyCount(Board boardEntity, boolean isReplied);
 
-    void insertReply(Reply replyEntity);
+    boolean insertReply(Reply replyEntity);
 
-    void deleteReply(Reply replyEntity);
+    boolean deleteReply(Reply replyEntity);
 }

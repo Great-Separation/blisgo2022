@@ -32,8 +32,9 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Modifying
     @Override
-    public void insertAccount(Account accountEntity) {
+    public boolean insertAccount(Account accountEntity) {
         entityManager.persist(accountEntity);
+        return true;
     }
 
     @Override
@@ -48,23 +49,22 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Modifying
     @Override
-    public long updateNickname(Account accountEntity) {
+    public boolean updateNickname(Account accountEntity) {
         return jpaQueryFactory.update(account).where(account.email.eq(accountEntity.getEmail()))
-                .set(account.nickname, accountEntity.getNickname()).execute();
+                .set(account.nickname, accountEntity.getNickname()).execute() > 0;
     }
 
     @Modifying
     @Override
-    public void deleteAccount(Account accountEntity) {
-        jpaQueryFactory.delete(account).where(account.memNo.eq(accountEntity.getMemNo())).execute();
-
+    public boolean deleteAccount(Account accountEntity) {
+        return jpaQueryFactory.delete(account).where(account.memNo.eq(accountEntity.getMemNo())).execute() > 0;
     }
 
     @Modifying
     @Override
-    public long updatePassword(Account accountEntity, String newPass) {
+    public boolean updatePassword(Account accountEntity, String newPass) {
         return jpaQueryFactory.update(account).set(account.pass, newPass).where(account.email.eq(accountEntity.getEmail()))
-                .execute();
+                .execute() > 0;
     }
 
     @Override
@@ -88,9 +88,9 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Modifying
     @Override
-    public void updateProfileImg(Account accountEntity, String profile_img_url) {
-        jpaQueryFactory.update(account).set(account.profileImage, profile_img_url).where(account.email.eq(accountEntity.getEmail()))
-                .execute();
+    public boolean updateProfileImg(Account accountEntity, String profile_img_url) {
+        return jpaQueryFactory.update(account).set(account.profileImage, profile_img_url).where(account.email.eq(accountEntity.getEmail()))
+                .execute() > 0;
     }
 
 }

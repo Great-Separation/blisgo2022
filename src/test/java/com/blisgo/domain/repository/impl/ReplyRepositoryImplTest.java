@@ -3,8 +3,8 @@ package com.blisgo.domain.repository.impl;
 import com.blisgo.config.TestQueryDslConfig;
 import com.blisgo.domain.entity.Account;
 import com.blisgo.domain.entity.Board;
-import com.blisgo.domain.repository.BoardRepository;
-import com.blisgo.web.dto.BoardDTO;
+import com.blisgo.domain.entity.Reply;
+import com.blisgo.domain.repository.ReplyRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.javers.core.Javers;
 import org.javers.core.JaversBuilder;
@@ -22,7 +22,7 @@ import java.util.List;
 @Slf4j
 @DataJpaTest
 @Import(TestQueryDslConfig.class)
-class BoardRepositoryImplTest {
+class ReplyRepositoryImplTest {
     enum entityAssistOpt {
         PERSIST, AUTOINCREMEMT
     }
@@ -30,11 +30,13 @@ class BoardRepositoryImplTest {
     @Autowired
     EntityManager entityManager;
     @Autowired
-    BoardRepository boardRepository;
+    ReplyRepository replyRepository;
     Javers javers;
     Diff diff;
+
     Account sampleAccount;
     Board sampleBoard;
+    Reply sampleReply;
 
     private void entityAssistant(@NotNull entityAssistOpt opt, Object... entities) {
         switch (opt) {
@@ -56,13 +58,13 @@ class BoardRepositoryImplTest {
     private void initData() {
         sampleAccount = Account.builder().nickname("nickname").email("email").pass("pass").memPoint(0).profileImage("profileImage").build();
         sampleBoard = Board.builder().account(sampleAccount).bdTitle("bdTitle").bdCategory("bdCategory").bdContent("bdContent").bdViews(0).bdFavorite(0).bdReplyCount(0).bdThumbnail("bdThumbnail").build();
+        sampleReply = Reply.builder().board(sampleBoard).account(sampleAccount).content("content").build();
     }
-
 
     @BeforeEach
     void monitorEntity() {
         initData();
-        entityAssistant(entityAssistOpt.PERSIST, sampleAccount, sampleBoard);
+        entityAssistant(entityAssistOpt.PERSIST, sampleAccount, sampleBoard, sampleReply);
         javers = JaversBuilder.javers().withListCompareAlgorithm(ListCompareAlgorithm.LEVENSHTEIN_DISTANCE).build();
     }
 
@@ -75,65 +77,38 @@ class BoardRepositoryImplTest {
             log.info("해당 테스트에서는 엔티티 감사 안했음");
         }
         entityManager.clear();
-        entityAssistant(entityAssistOpt.AUTOINCREMEMT, sampleAccount, sampleBoard);
-    }
-
-    @Nested
-    @DisplayName("board.html")
-    class BoardPage {
-        @Test
-        @DisplayName("게시글 다건 조회되는가?")
-        void testSelectBoardList() {
-            List<BoardDTO> result = boardRepository.selectBoardList(0, 24);
-            Assertions.assertNotNull(result);
-        }
+        entityAssistant(entityAssistOpt.AUTOINCREMEMT, sampleAccount, sampleBoard, sampleReply);
     }
 
     @Nested
     @DisplayName("content.html")
     class ContentPage {
         @Test
-        @DisplayName("게시글이 추가되었는가?")
-        void testInsertBoard() {
-            boolean result = boardRepository.insertBoard(sampleBoard);
-            Assertions.assertTrue(result);
-        }
-
-        @Test
-        @DisplayName("게시글 단건 조회되는가?")
-        void testSelectBoard() {
-            Board result = boardRepository.selectBoard(sampleBoard);
+        @DisplayName("댓글 작성 시 작성자의 정보가 기재되어 있는가?")
+        void testSelectReplyInnerJoinAccount() {
+            List<Reply> result = replyRepository.selectReplyInnerJoinAccount(sampleBoard);
             Assertions.assertNotNull(result);
         }
 
         @Test
-        @DisplayName("게시글이 삭제되었는가?")
-        void testDeleteBoard() {
-            boolean result = boardRepository.deleteBoard(sampleBoard);
+        @DisplayName("댓글 작성, 삭제시 해당 게시글의 댓글 수가 갱신되었는가?")
+        void testUpdateReplyCount() {
+            boolean result = replyRepository.updateReplyCount(sampleBoard, true);
             Assertions.assertTrue(result);
         }
 
         @Test
-        @DisplayName("게시글 조회수가 올랐는가?")
-        void testUpdateBoardViews() {
-            boolean result = boardRepository.updateBoardViews(sampleBoard);
+        @DisplayName("댓글이 추가되었는가?")
+        void testInsertReply() {
+            boolean result = replyRepository.insertReply(sampleReply);
             Assertions.assertTrue(result);
         }
 
         @Test
-        @DisplayName("게시글이 수정되었는가?")
-        void testUpdateBoard() {
-            boolean result = boardRepository.updateBoard(sampleBoard);
-            Assertions.assertTrue(result);
-        }
-
-        @Test
-        @DisplayName("게시글 좋아요가 올랐는가?")
-        void testUpdateBoardFavorite() {
-            boolean result = boardRepository.updateBoardFavorite(sampleBoard);
+        @DisplayName("댓글이 삭제되었는가?")
+        void testDeleteReply() {
+            boolean result = replyRepository.deleteReply(sampleReply);
             Assertions.assertTrue(result);
         }
     }
-
-
 }

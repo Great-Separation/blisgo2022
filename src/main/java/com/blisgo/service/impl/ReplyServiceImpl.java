@@ -31,22 +31,19 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
-    public void addReply(ReplyDTO replyDTO, BoardDTO boardDTO, AccountDTO accountDTO) {
+    public boolean addReply(ReplyDTO replyDTO, BoardDTO boardDTO, AccountDTO accountDTO) {
         var board = BoardMapper.INSTANCE.toEntity(boardDTO);
         var account = AccountMapper.INSTANCE.toEntity(accountDTO);
         var reply = ReplyMapper.INSTANCE.toEntity(replyDTO);
 
         reply = Reply.createReply(reply.getReplyNo(), board, account, reply.getContent());
-
-        replyRepository.insertReply(reply);
-        replyRepository.updateReplyCount(board, true);
+        return replyRepository.insertReply(reply) & replyRepository.updateReplyCount(board, true);
     }
 
     @Override
-    public void removeReply(ReplyDTO replyDTO, BoardDTO boardDTO) {
+    public boolean removeReply(ReplyDTO replyDTO, BoardDTO boardDTO) {
         var board = BoardMapper.INSTANCE.toEntity(boardDTO);
         var reply = ReplyMapper.INSTANCE.toEntity(replyDTO);
-        replyRepository.deleteReply(reply);
-        replyRepository.updateReplyCount(board, false);
+        return replyRepository.deleteReply(reply) & replyRepository.updateReplyCount(board, false);
     }
 }

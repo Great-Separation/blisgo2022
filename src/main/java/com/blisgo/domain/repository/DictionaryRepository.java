@@ -13,13 +13,13 @@ public interface DictionaryRepository extends Repository<Dictionary, Integer> {
 
     List<Dictionary> selectDictionaryList(int index, int limit);
 
-    Dictionary productInfo(Dictionary dictionaryEntity);
+    Dictionary selectDictionary(Dictionary dictionaryEntity);
 
     List<Dictionary> selectRelatedDictionaryList(Wastes guideCode);
 
-    void updateDictionaryPopularity();
+    boolean updateDictionaryPopularity();
 
-    void updateDictionaryHit(Dictionary dictionaryEntity);
+    boolean updateDictionaryHit(Dictionary dictionaryEntity);
 
     List<Hashtag> selectHashtagInnerJoinGuide(Dictionary dictionaryEntity);
 

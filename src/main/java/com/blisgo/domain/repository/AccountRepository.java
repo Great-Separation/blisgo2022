@@ -7,19 +7,19 @@ import org.springframework.data.repository.Repository;
 import java.util.List;
 
 public interface AccountRepository extends Repository<Account, Integer> {
-    void insertAccount(Account accountEntity);
+    boolean insertAccount(Account accountEntity);
 
     Account selectAccount(Account accountEntity);
 
     //public int emailCheck(Account accountEntity);
 
-    long updateNickname(Account accountEntity);
+    boolean updateNickname(Account accountEntity);
 
-    void deleteAccount(Account accountEntity);
+    boolean deleteAccount(Account accountEntity);
 
-    long updatePassword(Account accountEntity, String newPass);
+    boolean updatePassword(Account accountEntity, String newPass);
 
     List<Dogam> selectDogamList(Account accountEntity, int index, int limit);
 
-    void updateProfileImg(Account accountEntity, String profile_img_url);
+    boolean updateProfileImg(Account accountEntity, String profile_img_url);
 }

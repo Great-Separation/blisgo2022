@@ -31,11 +31,11 @@ public class BoardRepositoryImpl implements BoardRepository {
 
     @Modifying
     @Override
-    public void insertBoard(Board boardEntity) {
+    public boolean insertBoard(Board boardEntity) {
         entityManager.persist(boardEntity);
+        return true;
     }
 
-    @Override
     public List<BoardDTO> selectBoardList(int index, int limit) {
 
         var tuple = jpaQueryFactory
@@ -76,29 +76,29 @@ public class BoardRepositoryImpl implements BoardRepository {
 
     @Modifying
     @Override
-    public void deleteBoard(Board boardEntity) {
-        jpaQueryFactory.delete(board).where(board.bdNo.eq(boardEntity.getBdNo())).execute();
+    public boolean deleteBoard(Board boardEntity) {
+        return jpaQueryFactory.delete(board).where(board.bdNo.eq(boardEntity.getBdNo())).execute() > 0;
     }
 
     @Modifying
     @Override
-    public void updateBoardViews(Board boardEntity) {
-        jpaQueryFactory.update(board).set(board.bdViews, board.bdViews.add(1))
-                .where(board.bdNo.eq(boardEntity.getBdNo())).execute();
+    public boolean updateBoardViews(Board boardEntity) {
+        return jpaQueryFactory.update(board).set(board.bdViews, board.bdViews.add(1))
+                .where(board.bdNo.eq(boardEntity.getBdNo())).execute() > 0;
     }
 
     @Modifying
     @Override
-    public void updateBoard(Board boardEntity) {
-        jpaQueryFactory.update(board).set(board.bdTitle, boardEntity.getBdTitle())
-                .set(board.bdContent, boardEntity.getBdContent()).where(board.bdNo.eq(boardEntity.getBdNo())).execute();
+    public boolean updateBoard(Board boardEntity) {
+        return jpaQueryFactory.update(board).set(board.bdTitle, boardEntity.getBdTitle())
+                .set(board.bdContent, boardEntity.getBdContent()).where(board.bdNo.eq(boardEntity.getBdNo())).execute() > 0;
     }
 
     @Modifying
     @Override
-    public void updateBoardFavorite(Board boardEntity) {
-        jpaQueryFactory.update(board).set(board.bdFavorite, board.bdFavorite.add(1))
-                .where(board.bdNo.eq(boardEntity.getBdNo())).execute();
+    public boolean updateBoardFavorite(Board boardEntity) {
+        return jpaQueryFactory.update(board).set(board.bdFavorite, board.bdFavorite.add(1))
+                .where(board.bdNo.eq(boardEntity.getBdNo())).execute() > 0;
     }
 
 }

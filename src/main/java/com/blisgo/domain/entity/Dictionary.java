@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 public class Dictionary {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Comment("폐기물 번호(PK)")
     private Integer dicNo;
 

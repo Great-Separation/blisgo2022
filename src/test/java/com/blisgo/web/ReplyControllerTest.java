@@ -1,8 +1,5 @@
 package com.blisgo.web;
 
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.when;
-
 import com.blisgo.service.ReplyService;
 import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.BoardDTO;
@@ -18,6 +15,9 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.when;
 
 @ContextConfiguration(classes = {ReplyController.class})
 @ExtendWith(SpringExtension.class)

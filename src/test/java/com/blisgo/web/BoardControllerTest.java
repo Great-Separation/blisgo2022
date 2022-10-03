@@ -1,9 +1,5 @@
 package com.blisgo.web;
 
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
 import com.blisgo.domain.repository.BoardRepository;
 import com.blisgo.domain.repository.ReplyRepository;
 import com.blisgo.service.BoardService;
@@ -12,15 +8,7 @@ import com.blisgo.service.impl.BoardServiceImpl;
 import com.blisgo.service.impl.ReplyServiceImpl;
 import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.BoardDTO;
-
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-
-import java.util.ArrayList;
-import javax.servlet.http.HttpSession;
-
 import org.junit.jupiter.api.Disabled;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +22,13 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpSession;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import static org.mockito.Mockito.*;
 
 @ContextConfiguration(classes = {BoardController.class})
 @ExtendWith(SpringExtension.class)

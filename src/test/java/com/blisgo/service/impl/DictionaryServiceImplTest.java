@@ -1,13 +1,5 @@
 package com.blisgo.service.impl;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.anyInt;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import com.blisgo.domain.entity.Dictionary;
 import com.blisgo.domain.entity.Dogam;
 import com.blisgo.domain.entity.Guide;
@@ -16,18 +8,19 @@ import com.blisgo.domain.repository.DictionaryRepository;
 import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.DictionaryDTO;
 import com.blisgo.web.dto.HashtagDTO;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.jupiter.api.Disabled;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @ContextConfiguration(classes = {DictionaryServiceImpl.class})
 @ExtendWith(SpringExtension.class)

@@ -1,11 +1,6 @@
 package com.blisgo.web;
 
-import static org.mockito.Mockito.when;
-
 import com.blisgo.service.HomeService;
-
-import java.util.ArrayList;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +12,10 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+
+import static org.mockito.Mockito.when;
 
 @ContextConfiguration(classes = {HomeController.class})
 @ExtendWith(SpringExtension.class)

@@ -6,14 +6,11 @@ import com.blisgo.domain.entity.Dogam;
 import com.blisgo.domain.repository.AccountRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
-import java.util.function.BooleanSupplier;
 
 @Slf4j
 @DataJpaTest

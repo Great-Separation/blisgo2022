@@ -33,7 +33,7 @@ public class Reply extends BaseTimeEntity {
 	@Comment("회원 번호(FK)")
 	private Account account;
 
-	@Column(nullable = false, length = 300)
+	@Column(nullable = false, length = 1000)
 	@Comment("댓글 내용")
 	private String content;
 

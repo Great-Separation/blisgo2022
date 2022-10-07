@@ -4,8 +4,8 @@ spring:
       on-profile: prod
 
   flyway:
-    enabled: true
-    baseline-on-migrate: true
+    enabled: false
+    baseline-on-migrate: false
     encoding: UTF-8
     url: jdbc:mysql://ble5mmo2o5v9oouq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/y3x4bvgs6r1un7cq?&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8
     user: b7y3nvk6ini8s9pa
@@ -28,6 +28,7 @@ spring:
       maxRequestSize: 10MB
       maxFileSize: 10MB
   jpa:
+    defer-datasource-initialization: false
     hibernate:
       ddl-auto: validate
       use-new-id-generator-mappings: false
@@ -63,8 +64,6 @@ server:
     enabled: true
     mime-types: text/html, text/xml, text/plain, text/css, text/javascript, application/javascript,
       application/json
-  tomcat:
-    use-relative-redirects: true
 logging:
   level:
     root: info

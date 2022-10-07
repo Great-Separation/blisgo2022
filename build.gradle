@@ -105,9 +105,11 @@ compileJava {
 }
 
 flyway {
-    url = 'jdbc:mysql://m7az7525jg6ygibs.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/dgqpy0sm968c8va4?&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8'
-    user = 'lrsnvwzil9dfof0n'
-    password = 'qoljsbmqrnr694h9'
+    //prod
+    url = 'jdbc:mysql://ble5mmo2o5v9oouq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/y3x4bvgs6r1un7cq?&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8'
+    user = 'b7y3nvk6ini8s9pa'
+    password = 'ute85ortnqmipr4o'
+
     cleanDisabled = false
     // driver = 'com.mysql.jdbc.Driver'  기본으로 등록되어있다.
 }

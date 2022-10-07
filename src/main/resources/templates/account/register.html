@@ -49,7 +49,7 @@
                             <h4>회원 가입</h4>
                         </div>
                         <div class="card-body"><input class="form-control" type="text" required="" minlength="1" placeholder="사용자 이름" name="nickname"><input class="form-control mt-2 mb-2" type="email" data-bs-toggle="tooltip" data-bss-tooltip="" required="" placeholder="이메일" minlength="6" name="email" title="사용 가능한 이메일입니다. 이메일이 이미 존재합니다."><input class="form-control mb-2" type="password" required="" placeholder="비밀번호" minlength="6" name="pass">
-                            <div class="form-check py-2"><input class="form-check-input" type="checkbox" for="remember" name="register-check-agree" required=""><label class="form-check-label" for="formCheck"><small class="form-text"><span style="color: rgb(33, 37, 41);">약관을 확인했으며&nbsp;</span><a href="#" data-bs-target="#modal-agreement" data-bs-toggle="modal">개인정보 수집 및 이용</a><span style="color: rgb(33, 37, 41);">&nbsp;에 동의합니다</span><br></small></label></div><button class="btn btn-primary d-block box-shadow w-100 mt-2" id="submit-account-2" type="submit">가입하기</button>
+                            <div class="form-check py-2"><input class="form-check-input" type="checkbox" for="remember" name="register-check-agree" required=""><label class="form-check-label" for="formCheck"><small class="form-text"><span style="color: rgb(33, 37, 41);">약관에 기재된&nbsp;</span><a href="#" data-bs-target="#modal-agreement" data-bs-toggle="modal">개인정보 수집 및 이용</a><span style="color: rgb(33, 37, 41);">&nbsp;에 동의합니다</span><br></small></label></div><button class="btn btn-primary d-block box-shadow w-100 mt-2" id="submit-account-2" type="submit">가입하기</button>
                         </div>
                         <div class="card-footer bg-white text-center"><small class="form-text">이미 계정이 있으신가요?&nbsp;<a id="login-link" class="text-decoration-none ps-2" th:href="@{~/account/login}">로그인</a></small></div>
                     </div>
@@ -61,7 +61,7 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header"><small class="form-text"><span style="color: rgb(33, 37, 41);">개인정보 수집 및 이용</span><br></small><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                <div class="modal-body"><small th:text="${termsOfAgreement}">약관 내용</small></div>
+                <div class="modal-body"><label class="form-label" disabled=""><small th:text="${termsOfAgreement}">약관 내용</small></label></div>
             </div>
         </div>
     </div><!-- Start: Thymeleaf Navbar -->

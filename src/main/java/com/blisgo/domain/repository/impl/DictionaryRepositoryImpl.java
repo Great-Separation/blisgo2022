@@ -75,7 +75,7 @@ public class DictionaryRepositoryImpl implements DictionaryRepository {
     @Modifying
     @Override
     public boolean updateDictionaryPopularity() {
-        String sql = "UPDATE dictionary JOIN (SELECT dic_no, NTILE(10) OVER (ORDER BY hit) AS star FROM dictionary) AS d2 SET popularity = d2.star WHERE dic_no = d2.dic_no";
+        String sql = "UPDATE dictionary JOIN (SELECT dic_no, NTILE(10) OVER (ORDER BY hit) AS star FROM dictionary) AS d2 SET popularity = d2.star WHERE dictionary.dic_no = d2.dic_no";
         return jdbcTemplate.update(sql) > 0;
     }
 

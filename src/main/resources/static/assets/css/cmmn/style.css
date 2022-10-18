@@ -14,3 +14,8 @@
   padding-top: 56px;
 }
 
+#bdContent > p {
+  padding: 0px;
+  margin: 0px;
+}
+

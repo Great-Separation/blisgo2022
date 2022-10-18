@@ -49,7 +49,7 @@ public class BoardServiceImpl implements BoardService {
         List<BoardDTO> boardDTOArray = rs;
 
         for (BoardDTO b : boardDTOArray) {
-            bdContentImgRemoved = HtmlContentParse.removeImg(b.getBdContent());
+            bdContentImgRemoved = HtmlContentParse.parseContentPreview(b.getBdContent());
             b = BoardDTO.selectBoardFilterContentImage(b, bdContentImgRemoved);
             board.add(b);
         }
@@ -71,7 +71,7 @@ public class BoardServiceImpl implements BoardService {
         List<BoardDTO> boardDTOArray = rs;
 
         for (BoardDTO b : boardDTOArray) {
-            bdContentImgRemoved = HtmlContentParse.removeImg(b.getBdContent());
+            bdContentImgRemoved = HtmlContentParse.parseContentPreview(b.getBdContent());
             b = BoardDTO.selectBoardFilterContentImage(b, bdContentImgRemoved);
             board.add(b);
         }

@@ -46,7 +46,9 @@ spring:
     password: qoljsbmqrnr694h9
   devtools:
     livereload:
-      enabled: 'false'
+      enabled: true
+    restart:
+      enabled: false
 server:
   servlet:
     encoding:

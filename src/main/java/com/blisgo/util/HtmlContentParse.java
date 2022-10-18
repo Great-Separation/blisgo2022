@@ -24,15 +24,43 @@ public class HtmlContentParse {
 
             sb.insert(appendIndex, "c_fill,f_webp,h_400,w_400/");
         } catch (Exception e) {
-            e.printStackTrace();
+            return null;
         }
         return sb.toString();
     }
 
-    public static String removeImg(String str) {
+//    public static String parseContentPreview(String str) {
+//        Matcher mat;
+//        Pattern pattern;
+//        String[] filterList = {"<img[^>]*>", "<p data-f-id=\"pbf\"[^>]*>.*</p>"};
+//
+//        for (String filter : filterList) {
+//            pattern = Pattern.compile(filter, Pattern.DOTALL);
+//            mat = pattern.matcher(str);
+//            str = mat.replaceAll("");
+//        }
+//        pattern = Pattern.compile("<p.*>.*?</p>");
+//        mat = pattern.matcher(str);
+//        if (mat.find()) {
+//            str = mat.group(0);
+//        }
+//        str = str.substring(0, str.indexOf("</p>"));
+//
+//        return str;
+//    }
+
+    public static String parseContentPreview(String str) {
         Matcher mat;
         Pattern pattern;
-        String[] filterList = {"<img[^>]*>", "<p>", "</p>", "<br>", "<p data-f-id=\"pbf\"[^>]*>.*</p>"};
+
+        pattern = Pattern.compile("<p.*>.*?</p>");
+        mat = pattern.matcher(str);
+        if (mat.find()) {
+            str = mat.group(0);
+            str = str.substring(0, str.indexOf("</p>"));
+        }
+
+        String[] filterList = {"<img[^>]*>", "<p.*>", "</p>", "<br>", "<p data-f-id=\"pbf\"[^>]*>.*</p>"};
 
         for (String filter : filterList) {
             pattern = Pattern.compile(filter, Pattern.DOTALL);
@@ -42,6 +70,7 @@ public class HtmlContentParse {
 
         return str;
     }
+
 
 
     private static List<String> getImgSrc(String str) {

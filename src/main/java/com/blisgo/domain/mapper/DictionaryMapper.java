@@ -10,5 +10,4 @@ import org.mapstruct.factory.Mappers;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface DictionaryMapper extends GenericMapper<DictionaryDTO, Dictionary> {
 	DictionaryMapper INSTANCE = Mappers.getMapper(DictionaryMapper.class);
-
 }

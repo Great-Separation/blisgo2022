@@ -4,6 +4,8 @@ import com.blisgo.service.AccountService;
 import com.blisgo.util.CloudinaryUtil;
 import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.DogamDTO;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("account")
 public class AccountController {
@@ -42,11 +45,32 @@ public class AccountController {
      * 회원 로그인 전송
      *
      * @param accountDTO 사용자
-     * @param session 세션
+     * @param session    세션
      * @return mv
      */
+//    @PostMapping("login")
+//    public ModelAndView login(AccountDTO accountDTO, HttpSession session) {
+//        AccountDTO registeredAccount = accountService.findAccount(accountDTO);
+//
+//        if (registeredAccount == null) {
+//            // alertMsg = new AlertMsg(res, "없는 회원입니다. 회원가입 후 로그인 진행하시길 바랍니다.",
+//            // "insertBoarder");
+//            url = RouteUrlHelper.combine(folder.account, page.register);
+//        } else {
+//            if (accountDTO.getPass().equals(registeredAccount.getPass())) {
+//                session.setAttribute("mem", registeredAccount);
+//                // alertMsg = new AlertMsg(res, "/");
+//                url = RouteUrlHelper.combine("");
+//            } else {
+//                // alertMsg = new AlertMsg(res, "비밀번호가 틀렸습니다. 다시 확인해주세요", "login");
+//                url = RouteUrlHelper.combine(folder.account, page.login);
+//            }
+//        }
+//        mv.setView(new RedirectView(url, false));
+//        return mv;
+//    }
     @PostMapping("login")
-    public ModelAndView login(AccountDTO accountDTO, HttpSession session) {
+    public ModelAndView login(@AuthenticationPrincipal AccountDTO accountDTO, HttpSession session) {
         AccountDTO registeredAccount = accountService.findAccount(accountDTO);
 
         if (registeredAccount == null) {
@@ -90,7 +114,7 @@ public class AccountController {
      * @return mv
      */
     @PostMapping("register")
-    public ModelAndView registerPOST(@Valid AccountDTO accountDTO) {
+    public ModelAndView registerPOST(@AuthenticationPrincipal @Valid AccountDTO accountDTO) {
         if (accountService.addAccount(accountDTO)) {
             // alertMsg = new AlertMsg(res, "회원가입 성공", "login");
             url = RouteUrlHelper.combine(folder.account, page.login);
@@ -188,12 +212,12 @@ public class AccountController {
     /**
      * 마이페이지
      *
-     * @param session 세션
+     * @param session    세션
      * @param accountDTO 사용자
      * @return mv
      */
     @GetMapping("mypage")
-    public ModelAndView mypage(HttpSession session, AccountDTO accountDTO) {
+    public ModelAndView mypage(HttpSession session, @AuthenticationPrincipal AccountDTO accountDTO) {
         accountDTO = (AccountDTO) session.getAttribute("mem");
         List<DogamDTO> dogamList = accountService.findDogam(accountDTO);
         mv.addObject("dogamList", dogamList);
@@ -207,13 +231,13 @@ public class AccountController {
      *
      * @param session     세션
      * @param profile_img 업로드된 프로필 이미지
-     * @param accountDTO     사용자
+     * @param accountDTO  사용자
      * @return mv
      */
     // FIXME [마이페이지 프로필 업데이트] 회원 정보 변경 즉시 반영되지 않음
     @PutMapping("mypage/update-profile-img")
     public ModelAndView mypageUpdateProfileImg(HttpSession session,
-                                               @RequestParam("upload-img") MultipartFile profile_img, AccountDTO accountDTO) {
+                                               @RequestParam("upload-img") MultipartFile profile_img, @AuthenticationPrincipal AccountDTO accountDTO) {
         accountDTO = (AccountDTO) session.getAttribute("mem");
         cloudinaryUtil = new CloudinaryUtil();
         String profile_img_url = cloudinaryUtil.uploadImage(profile_img);
@@ -229,12 +253,12 @@ public class AccountController {
     /**
      * 마이페이지 닉네임 변경
      *
-     * @param session 세션
+     * @param session    세션
      * @param accountDTO 사용자
      * @return mv
      */
     @PutMapping("mypage/update-nickname")
-    public ModelAndView mypageUpdateNickname(HttpSession session, AccountDTO accountDTO) {
+    public ModelAndView mypageUpdateNickname(HttpSession session, @AuthenticationPrincipal AccountDTO accountDTO) {
 
         if (accountService.modifyAccountNickname(accountDTO)) {
             accountDTO = accountService.findAccount(accountDTO);
@@ -255,13 +279,13 @@ public class AccountController {
     /**
      * 회원 비밀번호 변경
      *
-     * @param session 세션
+     * @param session    세션
      * @param accountDTO 사용자
-     * @param newPass 신규 비밀번호
+     * @param newPass    신규 비밀번호
      * @return mv
      */
     @PutMapping("mypage/update-password")
-    public ModelAndView mypageUpdatePassword(HttpSession session, AccountDTO accountDTO,
+    public ModelAndView mypageUpdatePassword(HttpSession session, @AuthenticationPrincipal AccountDTO accountDTO,
                                              @RequestParam("newPass") String newPass) {
         AccountDTO accountBefore = (AccountDTO) session.getAttribute("mem");
 
@@ -305,12 +329,12 @@ public class AccountController {
     /**
      * 마이페이지 도감 더보기
      *
-     * @param session 세션
+     * @param session    세션
      * @param accountDTO 사용자
      * @return json
      */
     @PostMapping("dogam/more")
-    public @ResponseBody List<DogamDTO> dictionaryLoadMore(HttpSession session, AccountDTO accountDTO) {
+    public @ResponseBody List<DogamDTO> dictionaryLoadMore(HttpSession session, @AuthenticationPrincipal AccountDTO accountDTO) {
         accountDTO = (AccountDTO) session.getAttribute("mem");
         return accountService.findDogamMore(accountDTO);
     }

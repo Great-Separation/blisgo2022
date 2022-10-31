@@ -3,6 +3,7 @@ package com.blisgo.web.dto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -28,13 +29,15 @@ public class AccountDTO {
 	@Null(message = "Controller단에서 계산되는 값입니다.")
 	private LocalDateTime modifiedDate;
 
+	BCryptPasswordEncoder bCryptPasswordEncoder= new BCryptPasswordEncoder();
+
 	@Builder
 	public AccountDTO(Integer memNo, String nickname, String email, String pass, Integer memPoint, String profileImage,
 					  LocalDateTime createdDate) {
 		this.memNo = memNo;
 		this.nickname = nickname;
 		this.email = email;
-		this.pass = pass;
+		this.pass = bCryptPasswordEncoder.encode(pass);
 		this.memPoint = memPoint;
 		this.profileImage = profileImage;
 		this.createdDate = createdDate;

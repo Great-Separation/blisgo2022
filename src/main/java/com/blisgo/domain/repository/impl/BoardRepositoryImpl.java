@@ -6,6 +6,7 @@ import com.blisgo.domain.repository.BoardRepository;
 import com.blisgo.web.dto.BoardDTO;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,16 +19,12 @@ import static com.blisgo.domain.entity.QBoard.board;
 
 @Repository
 @Transactional
+@RequiredArgsConstructor
 public class BoardRepositoryImpl implements BoardRepository {
 
     private final JPAQueryFactory jpaQueryFactory;
 
     private final EntityManager entityManager;
-
-    public BoardRepositoryImpl(JPAQueryFactory jpaQueryFactory, EntityManager entityManager) {
-        this.jpaQueryFactory = jpaQueryFactory;
-        this.entityManager = entityManager;
-    }
 
     @Modifying
     @Override

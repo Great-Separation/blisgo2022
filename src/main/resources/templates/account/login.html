@@ -35,14 +35,35 @@
         <div class="row g-0 justify-content-center align-items-center vh-100">
             <div class="col-md-6 col-xl-4">
                 <form th:action="@{~/account/login}" th:method="post">
-                    <div class="card border-0">
-                        <div class="card-header text-center bg-white">
-                            <h4>로그인</h4>
+                    <div class="card bg-light border-0">
+                        <div class="card-body text-center pb-2">
+                            <div class="vstack gap-2">
+                                <div><img src="/assets/img/favicon/192x192.png" height="128dp"></div>
+                                <h1>환영합니다!</h1><a class="btn fw-semibold border rounded-0 border-1 border-light shadow-sm text-black-50" role="button" id="login-with-google" href="/oauth2/authorization/google"><img class="float-start" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=">구글 계정으로 로그인</a>
+                                <div class="row gx-2">
+                                    <div class="col">
+                                        <hr>
+                                    </div>
+                                    <div class="col-auto d-flex align-items-center"><small class="text-muted">또는</small></div>
+                                    <div class="col">
+                                        <hr>
+                                    </div>
+                                </div>
+                                <div class="accordion" role="tablist" id="accordion-login">
+                                    <div class="accordion-item border-0">
+                                        <h2 class="accordion-header" role="tab"><button class="accordion-button collapsed text-center text-muted bg-light shadow-sm d-block p-2" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-login .item-1" aria-expanded="false" aria-controls="accordion-login .item-1">로그인</button></h2>
+                                        <div class="accordion-collapse collapse item-1 bg-light" role="tabpanel" data-bs-parent="#accordion-login">
+                                            <div class="accordion-body">
+                                                <div class="vstack gap-2"><input class="form-control email-imput form-control" type="email" required="" placeholder="이메일" minlength="6" name="email"><input class="form-control" type="password" required="" placeholder="비밀번호" minlength="6" name="pass" inputmode="latin"><small class="text-end"><a class="text-decoration-none ps-2" th:href="@{~/account/verify}">비밀번호 변경</a></small>
+                                                    <div class="btn-group-vertical gap-3" role="group"><button class="btn btn-primary w-100" type="submit">로그인</button></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <div class="vstack gap-2"><input class="form-control email-imput form-control" type="email" required="" placeholder="이메일" minlength="6" name="email"><input class="form-control" type="password" required="" placeholder="비밀번호" minlength="6" name="pass" inputmode="latin"><small class="text-end"><a class="text-decoration-none ps-2" th:href="@{~/account/verify}">비밀번호 변경</a></small><button class="btn btn-primary w-100" type="submit">로그인</button></div>
-                        </div>
-                        <div class="card-footer text-center"><small>계정이 없으신가요?<a id="register-link" class="text-decoration-none ps-2" th:href="@{~/account/register}">회원가입</a></small></div>
+                        <div class="card-footer text-center bg-light"><small>계정이 없으신가요?<a id="register-link" class="text-decoration-none ps-2" th:href="@{~/account/register}">회원가입</a></small></div>
                     </div>
                 </form>
             </div>

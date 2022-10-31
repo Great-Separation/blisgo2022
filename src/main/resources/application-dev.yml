@@ -2,70 +2,15 @@ spring:
   config:
     activate:
       on-profile: dev
-
   flyway:
-    enabled: false
-    baseline-on-migrate: false
-    encoding: UTF-8
-    url: jdbc:mysql://m7az7525jg6ygibs.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/dgqpy0sm968c8va4?&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://m7az7525jg6ygibs.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/dgqpy0sm968c8va4?&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8&useLegacyDatetimeCode=false
     user: lrsnvwzil9dfof0n
     password: qoljsbmqrnr694h9
-    outOfOrder: true
-    locations: classpath:db/migration
-
-  mvc:
-    hiddenmethod:
-      filter:
-        enabled: true
-  thymeleaf:
-    cache: false
-    prefix: classpath:/templates
-    check-template-location: true
-    suffix: .html
-    mode: HTML
-  servlet:
-    multipart:
-      maxRequestSize: 10MB
-      maxFileSize: 10MB
   jpa:
-    defer-datasource-initialization: false
     hibernate:
       ddl-auto: update
-      use-new-id-generator-mappings: false
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
-        physical_naming_strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
-    database: mysql
   datasource:
-    hikari:
-      maximum-pool-size: 5
-      driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://m7az7525jg6ygibs.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/dgqpy0sm968c8va4?&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://m7az7525jg6ygibs.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/dgqpy0sm968c8va4?&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8&useLegacyDatetimeCode=false
     username: lrsnvwzil9dfof0n
     password: qoljsbmqrnr694h9
-  devtools:
-    livereload:
-      enabled: true
-    restart:
-      enabled: false
-server:
-  servlet:
-    encoding:
-      enabled: 'true'
-      force: 'true'
-      charset: UTF-8
-    session:
-      tracking-modes: cookie
-  error:
-    include-stacktrace: ALWAYS
-    include-exception: true
-  port: 8080
-  compression:
-    min-response-size: 4096
-    enabled: true
-    mime-types: text/html, text/xml, text/plain, text/css, text/javascript, application/javascript,
-      application/json, application/x-javascript, image/svg+xml, image/x-icon
-logging:
-  level:
-    root: info
+    maximum-pool-size: 5

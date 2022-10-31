@@ -7,7 +7,7 @@ import com.blisgo.domain.repository.AccountRepository;
 import com.blisgo.service.AccountService;
 import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.DogamDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -19,16 +19,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
+@RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
 
     private static int index = 0;
     private static final int limit = 24;
-
-    @Autowired
-    public AccountServiceImpl(AccountRepository accountRepository) {
-        this.accountRepository = accountRepository;
-    }
 
     @Override
     public boolean addAccount(AccountDTO accountDTO) {

@@ -8,6 +8,7 @@ import com.blisgo.domain.repository.DictionaryRepository;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -23,6 +24,7 @@ import static com.blisgo.domain.entity.QHashtag.hashtag;
 
 @Repository
 @Transactional
+@RequiredArgsConstructor
 public class DictionaryRepositoryImpl implements DictionaryRepository {
 
     private final JPAQueryFactory jpaQueryFactory;
@@ -30,12 +32,6 @@ public class DictionaryRepositoryImpl implements DictionaryRepository {
     private final EntityManager entityManager;
 
     private final JdbcTemplate jdbcTemplate;
-
-    public DictionaryRepositoryImpl(JPAQueryFactory jpaQueryFactory, EntityManager entityManager, JdbcTemplate jdbcTemplate) {
-        this.jpaQueryFactory = jpaQueryFactory;
-        this.entityManager = entityManager;
-        this.jdbcTemplate = jdbcTemplate;
-    }
 
 
     @Override

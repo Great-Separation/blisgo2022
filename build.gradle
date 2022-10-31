@@ -45,8 +45,7 @@ dependencies {
     implementation 'org.flywaydb:flyway-core'
     implementation 'org.flywaydb:flyway-mysql'
     implementation 'org.springframework.session:spring-session-core'
-    implementation 'org.jetbrains:annotations:23.0.0'
-    implementation 'org.jetbrains:annotations:20.1.0'
+    implementation 'org.jetbrains:annotations:latest.release'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
@@ -58,15 +57,16 @@ dependencies {
     testImplementation 'org.springframework.batch:spring-batch-test'
 
     //Cloudinary 클라우드 스토리지
-    implementation 'com.cloudinary:cloudinary-core:1.33.0'
-    implementation 'com.cloudinary:cloudinary-http44:1.33.0'
-    implementation 'com.cloudinary:cloudinary-taglib:1.33.0'
+    //noinspection GradlePackageVersionRange
+    implementation 'com.cloudinary:cloudinary-core:latest.release'
+    implementation 'com.cloudinary:cloudinary-http44:latest.release'
+    implementation 'com.cloudinary:cloudinary-taglib:latest.release'
 
     //Algolia 검색엔진
-    implementation 'com.algolia:algoliasearch-core:3.16.6'
-    implementation 'com.algolia:algoliasearch-apache:3.16.6'
-    implementation 'com.algolia:algoliasearch-java-net:3.16.6'
-    implementation 'com.algolia:algoliasearch-apache-uber:3.16.6'
+    implementation 'com.algolia:algoliasearch-core:latest.release'
+    implementation 'com.algolia:algoliasearch-apache:latest.release'
+    implementation 'com.algolia:algoliasearch-java-net:latest.release'
+    implementation 'com.algolia:algoliasearch-apache-uber:latest.release'
 
     //Hibernate
     implementation 'org.hibernate:hibernate-core'
@@ -81,19 +81,26 @@ dependencies {
             "com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
 
     //MapStuct(DTO->Entity 변환. type-safe bean)
-    implementation "org.mapstruct:mapstruct:1.5.2.Final"
-    annotationProcessor "org.mapstruct:mapstruct-processor:1.5.2.Final"
-    annotationProcessor "org.projectlombok:lombok-mapstruct-binding:0.2.0"
+    implementation "org.mapstruct:mapstruct:latest.release"
+    annotationProcessor "org.mapstruct:mapstruct-processor:latest.release"
+    annotationProcessor "org.projectlombok:lombok-mapstruct-binding:latest.release"
 
     //aop
     implementation 'org.springframework.boot:spring-boot-starter-aop'
     implementation 'org.springframework.boot:spring-boot-configuration-processor'
 
     // 테스트 서버 h2
-    testImplementation 'com.h2database:h2:2.1.214'
+    testImplementation 'com.h2database:h2'
 
     // 객체 모니터링
-    implementation 'org.javers:javers-core:6.7.0'
+    implementation 'org.javers:javers-core:latest.release'
+
+    // spring security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test'
+    compileOnly 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
 }
 
 clean {

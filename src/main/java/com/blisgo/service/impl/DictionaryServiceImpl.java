@@ -10,7 +10,7 @@ import com.blisgo.service.DictionaryService;
 import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.DictionaryDTO;
 import com.blisgo.web.dto.HashtagDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,16 +18,12 @@ import java.util.List;
 import java.util.Random;
 
 @Service
+@RequiredArgsConstructor
 public class DictionaryServiceImpl implements DictionaryService {
     private final DictionaryRepository dictionaryRepository;
 
     private static int index = 0;
     private static final int limit = 24;
-
-    @Autowired
-    public DictionaryServiceImpl(DictionaryRepository dictionaryRepository) {
-        this.dictionaryRepository = dictionaryRepository;
-    }
 
     @Override
     public List<DictionaryDTO> findDictionaries() {

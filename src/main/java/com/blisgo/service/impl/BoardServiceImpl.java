@@ -8,24 +8,20 @@ import com.blisgo.service.BoardService;
 import com.blisgo.util.HtmlContentParse;
 import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.BoardDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
 
     private final BoardRepository boardRepository;
 
     private static int index = 0;
     private static final int limit = 12;
-
-    @Autowired
-    public BoardServiceImpl(BoardRepository boardRepository) {
-        this.boardRepository = boardRepository;
-    }
 
     @Override
     public boolean addBoard(BoardDTO boardDTO, AccountDTO accountDTO) {

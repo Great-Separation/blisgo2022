@@ -52,14 +52,22 @@ public class Account extends BaseTimeEntity {
     @OneToMany(mappedBy = "account", orphanRemoval = true)
     private final List<Dogam> dogam = new ArrayList<>();
 
+    // oauth
+    @Comment("OAuth2 제공자")
+    private String provider;
+    @Comment("OAuth2 제공 ID")
+    private String providerId;
+
     @Builder
-    public Account(Integer memNo, String nickname, String email, String pass, Integer memPoint, String profileImage) {
+    public Account(Integer memNo, String nickname, String email, String pass, Integer memPoint, String profileImage, String provider, String providerId) {
         this.memNo = memNo;
         this.nickname = nickname;
         this.email = email;
         this.pass = pass;
         this.memPoint = memPoint;
         this.profileImage = profileImage;
+        this.provider = provider;
+        this.providerId = providerId;
     }
 
     public static Account createAccount(Account account, String default_profile_img) {

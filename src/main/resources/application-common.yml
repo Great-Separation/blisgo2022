@@ -1,0 +1,58 @@
+spring:
+  flyway:
+    enabled: false
+    baseline-on-migrate: false
+    encoding: UTF-8
+    outOfOrder: true
+    locations: classpath:db/migration
+
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates
+    check-template-location: true
+    suffix: .html
+    mode: HTML
+  servlet:
+    multipart:
+      maxRequestSize: 10MB
+      maxFileSize: 10MB
+  jpa:
+    defer-datasource-initialization: false
+    hibernate:
+      use-new-id-generator-mappings: false
+
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        physical_naming_strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+    database: mysql
+  datasource:
+    hikari:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  devtools:
+    livereload:
+      enabled: true
+server:
+  servlet:
+    encoding:
+      enabled: true
+      force: true
+      charset: UTF-8
+    session:
+      tracking-modes: cookie
+  error:
+    include-stacktrace: ALWAYS
+    include-exception: true
+  port: 8080
+  compression:
+    min-response-size: 4096
+    enabled: true
+    mime-types: text/html, text/xml, text/plain, text/css, text/javascript, application/javascript,
+      application/json
+logging:
+  level:
+    root: info

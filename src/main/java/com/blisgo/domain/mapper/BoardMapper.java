@@ -10,5 +10,4 @@ import org.mapstruct.factory.Mappers;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface BoardMapper extends GenericMapper<BoardDTO, Board>{
 	BoardMapper INSTANCE = Mappers.getMapper(BoardMapper.class);
-	
 }

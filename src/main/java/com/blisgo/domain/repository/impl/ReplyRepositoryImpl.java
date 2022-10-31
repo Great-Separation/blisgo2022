@@ -5,6 +5,7 @@ import com.blisgo.domain.entity.Reply;
 import com.blisgo.domain.repository.ReplyRepository;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,16 +19,12 @@ import static com.blisgo.domain.entity.QReply.reply;
 
 @Repository
 @Transactional
+@RequiredArgsConstructor
 public class ReplyRepositoryImpl implements ReplyRepository {
 
     private final JPAQueryFactory jpaQueryFactory;
 
     private final EntityManager entityManager;
-
-    public ReplyRepositoryImpl(JPAQueryFactory jpaQueryFactory, EntityManager entityManager) {
-        this.jpaQueryFactory = jpaQueryFactory;
-        this.entityManager = entityManager;
-    }
 
     @Override
     public List<Reply> selectReplyInnerJoinAccount(Board boardEntity) {

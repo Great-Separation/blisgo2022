@@ -11,7 +11,6 @@ spring:
       filter:
         enabled: true
   thymeleaf:
-    cache: false
     prefix: classpath:/templates
     check-template-location: true
     suffix: .html
@@ -33,9 +32,7 @@ spring:
   datasource:
     hikari:
       driver-class-name: com.mysql.cj.jdbc.Driver
-  devtools:
-    livereload:
-      enabled: true
+
 server:
   servlet:
     encoding:

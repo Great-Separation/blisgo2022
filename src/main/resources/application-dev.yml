@@ -2,6 +2,8 @@ spring:
   config:
     activate:
       on-profile: dev
+  thymeleaf:
+    cache: false
   flyway:
     url: jdbc:mysql://m7az7525jg6ygibs.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/dgqpy0sm968c8va4?&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8&useLegacyDatetimeCode=false
     user: lrsnvwzil9dfof0n
@@ -13,4 +15,8 @@ spring:
     url: jdbc:mysql://m7az7525jg6ygibs.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/dgqpy0sm968c8va4?&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8&useLegacyDatetimeCode=false
     username: lrsnvwzil9dfof0n
     password: qoljsbmqrnr694h9
-    maximum-pool-size: 5
+    hikari:
+      maximum-pool-size: 5
+  devtools:
+    livereload:
+      enabled: true

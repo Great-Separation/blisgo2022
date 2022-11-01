@@ -2,15 +2,17 @@ spring:
   config:
     activate:
       on-profile: prod
+  thymeleaf:
+    cache: true
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
   flyway:
-    url: jdbc:mysql://ble5mmo2o5v9oouq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/y3x4bvgs6r1un7cq?&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8&useLegacyDatetimeCode=false
-    user: b7y3nvk6ini8s9pa
-    password: ute85ortnqmipr4o
+    url: jdbc:mysql://root:TzwYbkt9qnN6fKQdZCvs@containers-us-west-80.railway.app:7646/railway?&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8&useLegacyDatetimeCode=false
+    user: root
+    password: TzwYbkt9qnN6fKQdZCvs
 
   datasource:
-    url: jdbc:mysql://ble5mmo2o5v9oouq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/y3x4bvgs6r1un7cq?&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8&useLegacyDatetimeCode=false
-    username: b7y3nvk6ini8s9pa
-    password: ute85ortnqmipr4o
+    url: jdbc:mysql://root:TzwYbkt9qnN6fKQdZCvs@containers-us-west-80.railway.app:7646/railway?&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8&useLegacyDatetimeCode=false
+    username: root
+    password: TzwYbkt9qnN6fKQdZCvs

@@ -104,12 +104,12 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 }
 
-clean {
-    delete file('src/main/generated') // Annotation processor 생성물 생성 위치
-}
-
 compileJava {
     options.compilerArgs << '-Aquerydsl.generatedAnnotationClass=com.querydsl.core.annotations.Generated'
+}
+
+clean {
+    delete file('src/main/generated') // Annotation processor 생성물 생성 위치
 }
 
 flyway {

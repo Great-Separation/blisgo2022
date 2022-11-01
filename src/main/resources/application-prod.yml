@@ -6,7 +6,7 @@ spring:
     cache: true
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
   flyway:
     url: jdbc:mysql://root:TzwYbkt9qnN6fKQdZCvs@containers-us-west-80.railway.app:7646/railway?&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8&useLegacyDatetimeCode=false
     user: root

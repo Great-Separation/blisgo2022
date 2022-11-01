@@ -1,8 +1,8 @@
 const algoliasearch = window['algoliasearch'];
 const { autocomplete, getAlgoliaResults } = window["@algolia/autocomplete-js"];
 
-const appId = 'M0ODJV4NDP';
-const apiKey = '07142905f980cf33014a9c159e4a54c9';
+const appId = 'DZSY6U0S0J';
+const apiKey = '6558cbc4f72828fe1cdad3d2a87264cb';
 const searchClient = algoliasearch(appId, apiKey);
 
 function debouncePromise(fn, time) {

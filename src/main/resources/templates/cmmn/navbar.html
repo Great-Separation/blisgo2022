@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=0, user-scalable=0">
     <title>분리ㅅㄱ</title>
     <meta name="theme-color" content="#ffffff">
     <meta name="twitter:image" content="/assets/img/favicon/512x512.png">
@@ -12,25 +12,35 @@
     <meta http-equiv="Author" content="옥재욱">
     <meta name="twitter:title" content="분리ㅅㄱ">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="description" content="분리배출 도우미">
     <meta property="og:type" content="website">
     <meta name="twitter:description" content="분리배출 도우미">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta property="og:image" content="/assets/img/favicon/512x512.png">
+    <meta name="description" content="분리배출 도우미">
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/assets/img/favicon/180x180.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon/16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon/32x32.png">
     <link rel="icon" type="image/png" sizes="180x180" href="/assets/img/favicon/180x180.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicon/192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/img/favicon/512x512.png">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/cmmn/style.css">
 <link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
 </head>
 
 <body>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white shadow-sm justify-content-between" id="transmenu" th:fragment="navbar">
-        <div class="container"><a class="navbar-brand logo" id="navbar-brand" th:href="@{~/}">분리ㅅㄱ</a><button data-bs-toggle="collapse" class="navbar-toggler collapsed mr-auto p-0" data-bs-target="#navbar-collapse" id="navbar-toggle"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand d-flex d-lg-none align-items-center logo" id="navbar-mobile-back" rel="prev" href="javascript:history.back();"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-96 0 512 512" width="1em" height="1em" fill="currentColor" id="navbar-mobile-arrow" class="me-2">
+                    <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                    <path d="M224 480c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25l192-192c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l169.4 169.4c12.5 12.5 12.5 32.75 0 45.25C240.4 476.9 232.2 480 224 480z"></path>
+                </svg><span id="page-title">페이지</span><script>
+    var title = document.title;
+    title = title.split('-', 1);
+    document.getElementById('page-title').innerText = title;
+    if(title == "분리ㅅㄱ"){
+        document.getElementById('navbar-mobile-arrow').style.display = "none";
+    }
+</script></a><a class="navbar-brand d-none d-lg-inline logo" id="navbar-brand" th:href="@{~/}" rel="prev">분리ㅅㄱ</a><button data-bs-toggle="collapse" class="navbar-toggler collapsed mr-auto p-0" data-bs-target="#navbar-collapse" id="navbar-toggle"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <div class="dropdown d-lg-none navbar-left" id="accounticon-mobile"><a aria-expanded="false" data-bs-toggle="dropdown" class="text-decoration-none text-reset">
                         <div class="container my-2 p-0" th:if="${session.mem != null}">
@@ -61,8 +71,8 @@
             </div>
         </div>
     </nav>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="/assets/js/bs-init.js"></script>
 </body>
 

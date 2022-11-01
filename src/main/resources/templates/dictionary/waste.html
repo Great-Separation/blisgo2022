@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=0, user-scalable=0">
     <title>상세정보 - 분리ㅅㄱ</title>
     <meta name="theme-color" content="#ffffff">
     <meta name="twitter:image" content="/assets/img/favicon/512x512.png">
@@ -12,18 +12,18 @@
     <meta http-equiv="Author" content="옥재욱">
     <meta name="twitter:title" content="분리ㅅㄱ">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="description" content="분리배출 도우미">
     <meta property="og:type" content="website">
     <meta name="twitter:description" content="분리배출 도우미">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta property="og:image" content="/assets/img/favicon/512x512.png">
+    <meta name="description" content="분리배출 도우미">
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/assets/img/favicon/180x180.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon/16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon/32x32.png">
     <link rel="icon" type="image/png" sizes="180x180" href="/assets/img/favicon/180x180.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicon/192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/img/favicon/512x512.png">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/cmmn/style.css">
 <link rel="manifest" href="/manifest.json" crossorigin="use-credentials"><script th:inline="javascript">
 var sdictionary= [[${dictionary}]];
@@ -39,22 +39,22 @@ var sdictionary= [[${dictionary}]];
                         <div class="col-md-6 text-center p-1"><img class="img-fluid shadow-sm" src="https://via.placeholder.com/640" alt="사전 이미지" width="639" height="639" th:src="${dictionary.thumbnail}"></div>
                         <div class="col-md-6 align-self-center p-1">
                             <div class="row g-0">
-                                <div class="col-9 py-1">
+                                <div class="col py-1">
                                     <ol class="breadcrumb d-inline-flex mt-1 mb-1">
                                         <li class="breadcrumb-item"><a><span th:text="${dictionary.category}">대분류</span></a></li>
                                         <li class="breadcrumb-item"><a><span th:text="${dictionary.dicNo}">도감 번호</span></a></li>
                                     </ol>
                                 </div>
-                                <div class="col-3 align-self-center">
-                                    <div class="btn-group btn-group-sm float-end" role="group" id="product-icon"><button class="btn btn-link d-xxl-flex align-items-center" data-bs-toggle="toast" data-bss-tooltip="" id="btn-toast" type="button" value="${dogamCheck}" th:onclick="@{~/dogamBookmark(dicNo=${dictionary.dicNo})}" title="도감에 추가하기" th:if="${session.mem != null}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-64 0 512 512" width="1em" height="1em" fill="currentColor">
+                                <div class="col-auto align-self-center">
+                                    <div class="btn-group float-end" role="group" id="product-icon"><button class="btn btn-link d-xxl-flex align-items-center" data-bs-toggle="toast" data-bss-tooltip="" id="btn-toast" type="button" value="${dogamCheck}" th:onclick="@{~/dogamBookmark(dicNo=${dictionary.dicNo})}" title="도감에 추가하기" th:if="${session.mem != null}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-64 0 512 512" width="1em" height="1em" fill="currentColor">
                                                 <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
                                                 <path d="M384 48V512l-192-112L0 512V48C0 21.5 21.5 0 48 0h288C362.5 0 384 21.5 384 48z"></path>
-                                            </svg></button><button class="btn btn-link d-flex align-items-center" data-bs-toggle="tooltip" data-bss-tooltip="" id="btn-report" type="button" title="신고하기"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -32 576 576" width="1em" height="1em" fill="currentColor" class="text-danger">
-                                                <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
-                                                <path d="M312 168C312 181.3 301.3 192 288 192C274.7 192 264 181.3 264 168V24C264 10.75 274.7 0 288 0C301.3 0 312 10.75 312 24V168zM160 320C160 302.3 174.3 288 192 288H384C401.7 288 416 302.3 416 320V352H160V320zM82.74 410.5C90.87 394.3 107.5 384 125.7 384H450.3C468.5 384 485.1 394.3 493.3 410.5L520.8 465.7C531.5 486.1 516 512 492.2 512H83.78C59.99 512 44.52 486.1 55.16 465.7L82.74 410.5zM4.269 138.3C11.81 127.4 26.77 124.7 37.66 132.3L141.7 204.3C152.6 211.8 155.3 226.8 147.7 237.7C140.2 248.6 125.2 251.3 114.3 243.7L10.34 171.7C-.5568 164.2-3.275 149.2 4.269 138.3V138.3zM538.3 132.3C549.2 124.7 564.2 127.4 571.7 138.3C579.3 149.2 576.6 164.2 565.7 171.7L461.7 243.7C450.8 251.3 435.8 248.6 428.3 237.7C420.7 226.8 423.4 211.8 434.3 204.3L538.3 132.3z"></path>
                                             </svg></button><button class="btn btn-link d-flex align-items-center" data-bs-toggle="modal" data-bss-tooltip="" id="btn-share" type="button" data-bs-target="#modal-share" title="공유하기"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor">
                                                 <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
                                                 <path d="M448 127.1C448 181 405 223.1 352 223.1C326.1 223.1 302.6 213.8 285.4 197.1L191.3 244.1C191.8 248 191.1 251.1 191.1 256C191.1 260 191.8 263.1 191.3 267.9L285.4 314.9C302.6 298.2 326.1 288 352 288C405 288 448 330.1 448 384C448 437 405 480 352 480C298.1 480 256 437 256 384C256 379.1 256.2 376 256.7 372.1L162.6 325.1C145.4 341.8 121.9 352 96 352C42.98 352 0 309 0 256C0 202.1 42.98 160 96 160C121.9 160 145.4 170.2 162.6 186.9L256.7 139.9C256.2 135.1 256 132 256 128C256 74.98 298.1 32 352 32C405 32 448 74.98 448 128L448 127.1zM95.1 287.1C113.7 287.1 127.1 273.7 127.1 255.1C127.1 238.3 113.7 223.1 95.1 223.1C78.33 223.1 63.1 238.3 63.1 255.1C63.1 273.7 78.33 287.1 95.1 287.1zM352 95.1C334.3 95.1 320 110.3 320 127.1C320 145.7 334.3 159.1 352 159.1C369.7 159.1 384 145.7 384 127.1C384 110.3 369.7 95.1 352 95.1zM352 416C369.7 416 384 401.7 384 384C384 366.3 369.7 352 352 352C334.3 352 320 366.3 320 384C320 401.7 334.3 416 352 416z"></path>
+                                            </svg></button><button class="btn btn-link d-flex align-items-center" data-bs-toggle="tooltip" data-bss-tooltip="" id="btn-report" type="button" title="신고하기"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -32 576 576" width="1em" height="1em" fill="currentColor" class="text-danger">
+                                                <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                                                <path d="M312 168C312 181.3 301.3 192 288 192C274.7 192 264 181.3 264 168V24C264 10.75 274.7 0 288 0C301.3 0 312 10.75 312 24V168zM160 320C160 302.3 174.3 288 192 288H384C401.7 288 416 302.3 416 320V352H160V320zM82.74 410.5C90.87 394.3 107.5 384 125.7 384H450.3C468.5 384 485.1 394.3 493.3 410.5L520.8 465.7C531.5 486.1 516 512 492.2 512H83.78C59.99 512 44.52 486.1 55.16 465.7L82.74 410.5zM4.269 138.3C11.81 127.4 26.77 124.7 37.66 132.3L141.7 204.3C152.6 211.8 155.3 226.8 147.7 237.7C140.2 248.6 125.2 251.3 114.3 243.7L10.34 171.7C-.5568 164.2-3.275 149.2 4.269 138.3V138.3zM538.3 132.3C549.2 124.7 564.2 127.4 571.7 138.3C579.3 149.2 576.6 164.2 565.7 171.7L461.7 243.7C450.8 251.3 435.8 248.6 428.3 237.7C420.7 226.8 423.4 211.8 434.3 204.3L538.3 132.3z"></path>
                                             </svg></button></div>
                                 </div>
                             </div>
@@ -77,10 +77,10 @@ var sdictionary= [[${dictionary}]];
                                 <div class="col-12">
                                     <hr class="mt-1 mb-1">
                                 </div>
-                                <div class="col-12 text-muted py-1">
+                                <div class="col-12 py-1">
                                     <div class="vstack"><span th:each="guides: ${hashtagAndGuide}" th:utext="${guides.guide.guideContent}">태그에 해당되는 폐기물 공통 처리 안내&nbsp;</span></div>
                                 </div>
-                                <div class="col-12 text-muted py-1">
+                                <div class="col-12 py-1">
                                     <div class="vstack gap-1">
                                         <h6 class="py-2" th:utext="${dictionary.treatment}">해당 폐기물 만의 취급 내용</h6>
                                     </div>
@@ -93,8 +93,8 @@ var sdictionary= [[${dictionary}]];
                     <hr>
                     <div>
                         <ul class="nav nav-tabs mb-2" role="tablist" id="myTab">
-                            <li class="nav-item" role="presentation" th:if="${i.index==0}" th:each="guides, i : ${hashtagAndGuide}"><a class="nav-link active" role="tab" data-bs-toggle="tab" th:href="@{'#'+${guides.guide.guideName}}" th:text="${guides.guide.guideName}">태그1</a></li>
-                            <li class="nav-item" role="presentation" th:unless="${i.index==0}" th:each="guides, i : ${hashtagAndGuide}"><a class="nav-link" role="tab" data-bs-toggle="tab" th:href="@{'#'+${guides.guide.guideName}}" th:text="${guides.guide.guideName}">태그2</a></li>
+                            <li class="nav-item" role="presentation" th:if="${i.index==0}" th:each="guides, i : ${hashtagAndGuide}"><a class="nav-link active fw-semibold" role="tab" data-bs-toggle="tab" th:href="@{'#'+${guides.guide.guideName}}" th:text="${guides.guide.guideName}">태그1</a></li>
+                            <li class="nav-item" role="presentation" th:unless="${i.index==0}" th:each="guides, i : ${hashtagAndGuide}"><a class="nav-link fw-semibold" role="tab" data-bs-toggle="tab" th:href="@{'#'+${guides.guide.guideName}}" th:text="${guides.guide.guideName}">태그2</a></li>
                         </ul>
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane description active show" role="tabpanel" th:if="${i.index==0}" th:attr="id=${guides.guide.guideName}" th:each="guides, i : ${hashtagAndGuide}"><img class="img-fluid copyright" src="https://via.placeholder.com/1280x720" width="100%" height="100%" alt="설명서" th:src="${guides.guide.imagePath}"></div>
@@ -162,8 +162,8 @@ var sdictionary= [[${dictionary}]];
             <div class="toast-header"><img class="me-2" th:src="${dictionary.thumbnail}" width="50px"><strong class="me-auto">이미 추가되었습니다</strong><small>방금</small><button class="btn-close close" data-bs-dismiss="toast"></button></div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="/assets/js/bs-init.js"></script>
     <script src="/assets/js/dictionary/toast.js"></script>
 </body>

@@ -29,7 +29,7 @@ $(document).ready(function () {
 							clone.find("figcaption").text(data.name);
 							clone.appendTo("#dictionaries");
 						});
-						if (dictionaries.length == 0) {
+						if (dictionaries.length < 24) {
 							console.log("더이상 없습니다.");
 							flag = false;
 						}

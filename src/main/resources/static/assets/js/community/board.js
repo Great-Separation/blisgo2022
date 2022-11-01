@@ -31,7 +31,7 @@ $(document).ready(function () {
 							clone.find("#bdThumbnail").attr("src", data.bdThumbnail);
 							clone.appendTo("#boards");
 						});
-						if (boards.length == 0) {
+						if (boards.length < 12) {
 							console.log("더이상 없습니다.");
 							flag = false;
 						}

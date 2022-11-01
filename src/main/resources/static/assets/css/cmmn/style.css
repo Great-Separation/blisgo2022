@@ -14,8 +14,12 @@
   padding-top: 56px;
 }
 
-#bdContent > p {
-  padding: 0px;
-  margin: 0px;
+#post-title {
+  font-weight: bold;
+}
+
+#comment-table {
+  overflow-y: auto;
+  height: 50vh;
 }
 

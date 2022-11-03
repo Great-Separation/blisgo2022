@@ -60,7 +60,7 @@ server:
     enabled: true
     mime-types: text/html, text/xml, text/plain, text/css, text/javascript, application/javascript,
       application/json
-  port: 8080
+  port: 8443
 logging:
   level:
     root: info

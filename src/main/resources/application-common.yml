@@ -55,4 +55,4 @@ server:
       application/json
 logging:
   level:
-    root: debug
+    root: info

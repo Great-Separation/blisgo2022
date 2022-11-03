@@ -88,7 +88,6 @@ public class SecurityConfig {
         configuration.setAllowedOriginPatterns(Arrays.asList("*"));
         configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "PUT"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
-        configuration.addAllowedMethod("*");
         configuration.setMaxAge(MAX_AGE_SECS);
         configuration.setAllowCredentials(true);
 

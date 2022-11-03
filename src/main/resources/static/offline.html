@@ -3,6 +3,8 @@
 
 <head>
     <meta charset="utf-8">
+<meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
     <meta name="viewport" content="width=device-width, shrink-to-fit=0, user-scalable=0">
     <title>분리ㅅㄱ</title>
     <meta name="theme-color" content="#ffffff">
@@ -78,6 +80,7 @@
     <script src="/assets/js/lottie-player.min.js"></script>
     <script src="/assets/js/bs-init.js"></script>
     <script src="/assets/js/account/oauth-google.js"></script>
+    <script src="/assets/js/cmmn/csrf-token-generator.js"></script>
 </body>
 
 </html>

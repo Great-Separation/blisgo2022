@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko" oncontextmenu="return false" ondragstart="return false" onselectstart="return false" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="ko" oncontextmenu="return false" ondragstart="return false" onselectstart="return false" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
+<meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
     <meta name="viewport" content="width=device-width, shrink-to-fit=0, user-scalable=0">
     <title>사전 - 분리ㅅㄱ</title>
     <meta name="theme-color" content="#ffffff">
@@ -60,6 +62,7 @@
     <script src="/assets/js/bs-init.js"></script>
     <script src="/assets/js/cmmn/algolia.mjs" type="module"></script>
     <script src="/assets/js/cmmn/aos.mjs" type="module"></script>
+    <script src="/assets/js/cmmn/csrf-token-generator.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
     <script src="https://cdn.jsdelivr.net/npm/algoliasearch"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos/dist/aos.js"></script>

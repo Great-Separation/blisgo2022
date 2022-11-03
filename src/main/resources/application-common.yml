@@ -45,8 +45,6 @@ server:
     key-store-type: PKCS12
     key-store-password: blisgo
     enabled: true
-    
-
   servlet:
     encoding:
       enabled: true
@@ -57,12 +55,12 @@ server:
   error:
     include-stacktrace: ALWAYS
     include-exception: true
-  port: 443
   compression:
     min-response-size: 4096
     enabled: true
     mime-types: text/html, text/xml, text/plain, text/css, text/javascript, application/javascript,
       application/json
+  port: 8080
 logging:
   level:
     root: info

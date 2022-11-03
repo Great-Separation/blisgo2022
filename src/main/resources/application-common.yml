@@ -37,13 +37,13 @@ spring:
 server:
   http2:
     enabled: true
-#  ssl:
-#    protocol: TLS
-#    enabled-protocols: TLSv1.3
-#    key-alias: tomcat
-#    key-store: classpath:ssl/keystore.p12
-#    key-store-type: PKCS12
-#    key-store-password: blisgo
+  ssl:
+    protocol: TLS
+    enabled-protocols: TLSv1.3
+    key-alias: blisgo.duckdns.org
+    key-store: classpath:ssl/blisgo.duckdns.org.p12
+    key-store-type: PKCS12
+    key-store-password: blisgo
 
   servlet:
     encoding:

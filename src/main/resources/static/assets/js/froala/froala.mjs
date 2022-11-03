@@ -1,3 +1,6 @@
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+
 //navbar
 var navbar = document.querySelector("#transmenu");
 // main, section 위치
@@ -7,14 +10,10 @@ var navSpaceSize = Math.floor(Number(window.getComputedStyle(navbar).height.repl
 var sectionSize = mainSize - navSpaceSize;
 
 let cardHeader = document.querySelector(".card-header");
-//let cardFooter = document.querySelector(".card-footer");
 
 let cardH = Number(window.getComputedStyle(cardHeader).height.replace('px', ''));
 console.log("cardH", cardH);
-//let cardF = Number(window.getComputedStyle(cardFooter).height.replace('px', ''));
-//console.log("cardF", cardF);
 console.log("sectionSize in quill", sectionSize);
-//let cardSize = cardH + cardF;
 let cardSize = cardH;
 console.log("cardSize", cardSize)
 let wysiwygSize = Math.floor(sectionSize - cardSize - 48);
@@ -46,5 +45,11 @@ new FroalaEditor('#froala', {
 	imageAllowedTypes: ['jpeg', 'jpg', 'png', 'webp', 'gif'],
 
 	// Sets the default image alignment when it is inserted in the rich text editor.
-	imageDefaultAlign: 'left'
+	imageDefaultAlign: 'left',
+
+	requestWithCORS: true,
+
+	requestHeaders: {
+		'X-CSRF-TOKEN': token
+	  }
 });

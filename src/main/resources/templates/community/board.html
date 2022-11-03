@@ -39,7 +39,7 @@
                         <div class="card-body p-1" id="boards">
                             <div class="shadow-sm mb-1 bg-white" id="board" th:each="board:${boards}">
                                 <div class="row g-0">
-                                    <div class="col text-truncate text-start btn p-0 rounded-0 border-0"><a class="text-decoration-none text-reset" th:href="@{~/board/{bdNo}(bdNo=${board.bdNo})}">
+                                    <div class="col text-truncate text-start btn p-0 rounded-0 border-0"><a id="bdNo" class="text-decoration-none text-reset" th:href="@{~/board/{bdNo}(bdNo=${board.bdNo})}">
                                             <div class="hstack">
                                                 <div class="vstack text-truncate p-1">
                                                     <h6 class="text-truncate" id="bdTitle" th:text="${board.bdTitle}">글제목</h6><small class="text-truncate text-muted p-0 m-0" id="bdContent" th:utext="${not #strings.isEmpty(board.bdContent)} ? ${board.bdContent} : '미리보기가 없습니다.'">글내용<br></small>

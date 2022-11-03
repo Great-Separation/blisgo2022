@@ -48,27 +48,6 @@ public class AccountController {
      * @param session    세션
      * @return mv
      */
-//    @PostMapping("login")
-//    public ModelAndView login(AccountDTO accountDTO, HttpSession session) {
-//        AccountDTO registeredAccount = accountService.findAccount(accountDTO);
-//
-//        if (registeredAccount == null) {
-//            // alertMsg = new AlertMsg(res, "없는 회원입니다. 회원가입 후 로그인 진행하시길 바랍니다.",
-//            // "insertBoarder");
-//            url = RouteUrlHelper.combine(folder.account, page.register);
-//        } else {
-//            if (accountDTO.getPass().equals(registeredAccount.getPass())) {
-//                session.setAttribute("mem", registeredAccount);
-//                // alertMsg = new AlertMsg(res, "/");
-//                url = RouteUrlHelper.combine("");
-//            } else {
-//                // alertMsg = new AlertMsg(res, "비밀번호가 틀렸습니다. 다시 확인해주세요", "login");
-//                url = RouteUrlHelper.combine(folder.account, page.login);
-//            }
-//        }
-//        mv.setView(new RedirectView(url, false));
-//        return mv;
-//    }
     @PostMapping("login")
     public ModelAndView login(@AuthenticationPrincipal AccountDTO accountDTO, HttpSession session) {
         AccountDTO registeredAccount = accountService.findAccount(accountDTO);

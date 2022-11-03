@@ -22,6 +22,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import java.util.Arrays;
+
 @Slf4j
 @RequiredArgsConstructor
 @ConditionalOnDefaultWebSecurity
@@ -62,7 +64,7 @@ public class SecurityConfig {
                 .invalidateHttpSession(true).deleteCookies("JSESSIONID")
                 .logoutSuccessUrl("/")
                 .and()
-                .oauth2Login().loginPage("/account/login")
+                .oauth2Login()
                 .userInfoEndpoint().userService(principalOauth2UserService);
         return http.build();
     }
@@ -81,10 +83,13 @@ public class SecurityConfig {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
+        long MAX_AGE_SECS = 3600;
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.getAllowedOriginPatterns();
-        configuration.addAllowedHeader("*");
+        configuration.setAllowedOriginPatterns(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "PUT"));
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
         configuration.addAllowedMethod("*");
+        configuration.setMaxAge(MAX_AGE_SECS);
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

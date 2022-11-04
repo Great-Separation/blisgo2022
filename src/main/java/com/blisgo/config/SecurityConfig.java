@@ -68,6 +68,12 @@ public class SecurityConfig {
                 .and()
                 .oauth2Login()
                 .userInfoEndpoint().userService(principalOauth2UserService);
+        http
+                .headers()
+                .httpStrictTransportSecurity()
+                .maxAgeInSeconds(31536000)
+                .includeSubDomains(true)
+                .preload(true);
         return http.build();
     }
 

@@ -35,16 +35,20 @@ spring:
       driver-class-name: com.mysql.cj.jdbc.Driver
 
 server:
+  tomcat:
+    remoteip:
+      remote-ip-header: protocol_header=x-forwarded-proto
+      protocol-header: x-forwarded-for
   http2:
     enabled: true
   ssl:
-    protocol: TLS
-    enabled-protocols: TLSv1.3
-    key-alias: blisgo.duckdns.org
-    key-store: classpath:ssl/blisgo.duckdns.org.p12
-    key-store-type: PKCS12
-    key-store-password: blisgo
     enabled: true
+    certificate: classpath:ssl/certificate.crt
+    certificate-private-key: classpath:ssl/private.key
+    trust-certificate: classpath:ssl/ca_bundle.crt
+    key-store-password: blisgo
+    enabled-protocols: TLSv1.3
+    protocol: TLS
   servlet:
     encoding:
       enabled: true
@@ -60,7 +64,8 @@ server:
     enabled: true
     mime-types: text/html, text/xml, text/plain, text/css, text/javascript, application/javascript,
       application/json
-  port: 8443
+  port: 443
+  forward-headers-strategy: NATIVE
 logging:
   level:
-    root: info
+    root: debug

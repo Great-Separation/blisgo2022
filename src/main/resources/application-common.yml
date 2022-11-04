@@ -37,8 +37,8 @@ spring:
 server:
   tomcat:
     remoteip:
-      remote-ip-header: protocol_header=x-forwarded-proto
-      protocol-header: x-forwarded-for
+      remote-ip-header: x-forwarded-for
+      protocol-header: x-forwarded-proto
   http2:
     enabled: true
   ssl:

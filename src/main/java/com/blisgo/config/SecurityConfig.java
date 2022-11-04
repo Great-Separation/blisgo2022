@@ -41,8 +41,7 @@ public class SecurityConfig {
     @Order(SecurityProperties.BASIC_AUTH_ORDER)
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .requiresChannel().anyRequest().requiresSecure()
-                .and()
+                .requiresChannel((channel) -> channel.anyRequest().requiresSecure())
                 .cors().configurationSource(corsConfigurationSource())
                 .and()
                 .sessionManagement()

@@ -41,7 +41,7 @@ public class SecurityConfig {
     @Order(SecurityProperties.BASIC_AUTH_ORDER)
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .requiresChannel((channel) -> channel.anyRequest().requiresSecure())
+                .requiresChannel((channel) -> channel.requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null).requiresSecure())
                 .cors().configurationSource(corsConfigurationSource())
                 .and()
                 .sessionManagement()

@@ -37,8 +37,9 @@ spring:
 server:
   tomcat:
     remoteip:
-      remote-ip-header: x-forwarded-for
-      protocol-header: x-forwarded-proto
+      remote-ip-header: "x-forwarded-for"
+      protocol-header: "x-forwarded-proto"
+      internal-proxies: .*
   http2:
     enabled: true
   ssl:
@@ -65,7 +66,7 @@ server:
     mime-types: text/html, text/xml, text/plain, text/css, text/javascript, application/javascript,
       application/json
   port: 443
-  forward-headers-strategy: NATIVE
+  forward-headers-strategy: native
 logging:
   level:
     root: debug

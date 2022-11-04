@@ -50,6 +50,7 @@ server:
     key-store-password: blisgo
     enabled-protocols: TLSv1.3
     protocol: TLS
+    client-auth: need
   servlet:
     encoding:
       enabled: true

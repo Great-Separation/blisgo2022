@@ -24,7 +24,7 @@ const debounced = debouncePromise((items) => Promise.resolve(items), 250);
 
 $(autocomplete({
   container: '#autocomplete',
-  placeholder: '그릇, 가방..',
+  placeholder: '',
   openOnFocus: false,
   getSources({ query }) {
     return debounced([

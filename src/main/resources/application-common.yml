@@ -48,11 +48,15 @@ server:
       charset: UTF-8
     session:
       tracking-modes: cookie
+      cookie:
+        http-only: true
+        secure: true
+
   error:
     include-stacktrace: ALWAYS
     include-exception: true
   compression:
-    min-response-size: 1024
+    min-response-size: 512
     mime-types: text/html,text/plain,text/xml,text/css,application/javascript,application/json
     enabled: true
   port: 8080

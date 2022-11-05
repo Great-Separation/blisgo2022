@@ -4,6 +4,7 @@ import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
 import org.apache.tomcat.util.descriptor.web.SecurityCollection;
 import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +12,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ConnectorConfig {
+
+    @Value("${server.port}") int port;
 
     @Bean
     public ServletWebServerFactory servletContainer() {
@@ -26,16 +29,16 @@ public class ConnectorConfig {
                 context.addConstraint(securityConstraint);
             }
         };
-        tomcat.addAdditionalTomcatConnectors(createSslConnector());
+        tomcat.addAdditionalTomcatConnectors(httpToHttpsRedirectConnector());
         return tomcat;
     }
 
-    private Connector createSslConnector() {
-        Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
+    private Connector httpToHttpsRedirectConnector() {
+        Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
         connector.setScheme("http");
-        connector.setSecure(false);
         connector.setPort(80);
-        connector.setRedirectPort(8443);
+        connector.setSecure(false);
+        connector.setRedirectPort(443);
         return connector;
     }
 

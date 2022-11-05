@@ -19,5 +19,4 @@ public class BlisgoApplication {
     public static void main(String[] args) {
         SpringApplication.run(BlisgoApplication.class, args);
     }
-
 }

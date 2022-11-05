@@ -35,10 +35,16 @@ spring:
       driver-class-name: com.mysql.cj.jdbc.Driver
 
 server:
+
   tomcat:
     remoteip:
       remote-ip-header: 'X-FORWARDED-FOR'
       protocol-header: "X-Forwarded-Proto"
+      host-header: "X-Forwarded-Host"
+      port-header: "X-Forwarded-Port"
+      protocol-header-https-value: "https"
+    use-relative-redirects: true
+
   http2:
     enabled: true
   ssl:
@@ -63,10 +69,8 @@ server:
   compression:
     min-response-size: 4096
     enabled: true
-    mime-types: text/html, text/xml, text/plain, text/css, text/javascript, application/javascript,
-      application/json
-  port: 8443
+  port: 443
   forward-headers-strategy: native
 logging:
   level:
-    root: info
+    root: debug

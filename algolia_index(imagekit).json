@@ -1,0 +1,1724 @@
+[
+  {
+    "dicNo": 1001,
+    "name": "가격표",
+    "engName": "price tag",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1001.webp"
+  },
+  {
+    "dicNo": 1002,
+    "name": "가구류",
+    "engName": "upholstery",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1002.webp"
+  },
+  {
+    "dicNo": 1003,
+    "name": "가발",
+    "engName": "wig",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1003.webp"
+  },
+  {
+    "dicNo": 1004,
+    "name": "가습기",
+    "engName": "humidifier",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1004.webp"
+  },
+  {
+    "dicNo": 1005,
+    "name": "가위",
+    "engName": "Scissors",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1005.webp"
+  },
+  {
+    "dicNo": 1006,
+    "name": "개수대",
+    "engName": "sink",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1006.webp"
+  },
+  {
+    "dicNo": 1007,
+    "name": "거울",
+    "engName": "mirror",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1007.webp"
+  },
+  {
+    "dicNo": 1008,
+    "name": "걸레",
+    "engName": "Mop",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1008.webp"
+  },
+  {
+    "dicNo": 1009,
+    "name": "계란껍질",
+    "engName": "eggshell",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1009.webp"
+  },
+  {
+    "dicNo": 1010,
+    "name": "고무장갑",
+    "engName": "Rubber glove",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1010.webp"
+  },
+  {
+    "dicNo": 1011,
+    "name": "골판지",
+    "engName": "cardboard",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1011.webp"
+  },
+  {
+    "dicNo": 1012,
+    "name": "골프 클럽 백",
+    "engName": "golf club bag",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1012.webp"
+  },
+  {
+    "dicNo": 1013,
+    "name": "골프공",
+    "engName": "golf ball",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1013.webp"
+  },
+  {
+    "dicNo": 1014,
+    "name": "공구류(철)",
+    "engName": "Tools (iron)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1014.webp"
+  },
+  {
+    "dicNo": 1015,
+    "name": "공기청정기",
+    "engName": "air cleaner",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1015.webp"
+  },
+  {
+    "dicNo": 1016,
+    "name": "광고전단지",
+    "engName": "advertisement flyer",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1016.webp"
+  },
+  {
+    "dicNo": 1017,
+    "name": "구두, 샌들, 슬리퍼",
+    "engName": "shoes, sandals, slippers",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1017.webp"
+  },
+  {
+    "dicNo": 1018,
+    "name": "국자",
+    "engName": "ladle",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1018.webp"
+  },
+  {
+    "dicNo": 1019,
+    "name": "그릇",
+    "engName": "Bowl",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1019.webp"
+  },
+  {
+    "dicNo": 1020,
+    "name": "기름(기계)",
+    "engName": "oil (machine)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1020.webp"
+  },
+  {
+    "dicNo": 1021,
+    "name": "기름(식용)",
+    "engName": "oil (edible)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1021.webp"
+  },
+  {
+    "dicNo": 1022,
+    "name": "기타(악기)",
+    "engName": "Guitar (instrument)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1022.webp"
+  },
+  {
+    "dicNo": 1023,
+    "name": "깨진유리",
+    "engName": "broken glass",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1023.webp"
+  },
+  {
+    "dicNo": 1024,
+    "name": "나무젓가락",
+    "engName": "wooden chopsticks",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1024.webp"
+  },
+  {
+    "dicNo": 1025,
+    "name": "나무조각, 나뭇가지, 나무줄기",
+    "engName": "wood chips, twigs, tree trunks",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1025.webp"
+  },
+  {
+    "dicNo": 1026,
+    "name": "나사(못)",
+    "engName": "screw",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1026.webp"
+  },
+  {
+    "dicNo": 1027,
+    "name": "나침반",
+    "engName": "Compass",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1027.webp"
+  },
+  {
+    "dicNo": 1028,
+    "name": "낙엽",
+    "engName": "fallen leaves",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1028.webp"
+  },
+  {
+    "dicNo": 1029,
+    "name": "낚싯대",
+    "engName": "fishing rod",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1029.webp"
+  },
+  {
+    "dicNo": 1030,
+    "name": "난로(전기난로)",
+    "engName": "hearth (electric stove)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1030.webp"
+  },
+  {
+    "dicNo": 1031,
+    "name": "낫",
+    "engName": "sickle",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1031.webp"
+  },
+  {
+    "dicNo": 1032,
+    "name": "내열식기류",
+    "engName": "heat-resistant food",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1032.webp"
+  },
+  {
+    "dicNo": 1033,
+    "name": "냄비뚜껑(강화유리)",
+    "engName": "Pot lid (tempered glass)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1033.webp"
+  },
+  {
+    "dicNo": 1034,
+    "name": "냉장고(냉동고)",
+    "engName": "Refrigerator (freezer)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1034.webp"
+  },
+  {
+    "dicNo": 1035,
+    "name": "노트북",
+    "engName": "laptop",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1035.webp"
+  },
+  {
+    "dicNo": 1036,
+    "name": "농약용기",
+    "engName": "pesticide container",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1036.webp"
+  },
+  {
+    "dicNo": 1037,
+    "name": "다리미",
+    "engName": "iron",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1037.webp"
+  },
+  {
+    "dicNo": 1038,
+    "name": "도끼",
+    "engName": "ax",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1038.webp"
+  },
+  {
+    "dicNo": 1039,
+    "name": "도마",
+    "engName": "cutting board",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1039.webp"
+  },
+  {
+    "dicNo": 1040,
+    "name": "도자기류",
+    "engName": "pottery",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1040.webp"
+  },
+  {
+    "dicNo": 1041,
+    "name": "돋보기",
+    "engName": "reading glasses",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1041.webp"
+  },
+  {
+    "dicNo": 1042,
+    "name": "디지털카메라",
+    "engName": "digital camera",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1042.webp"
+  },
+  {
+    "dicNo": 1043,
+    "name": "뚝배기",
+    "engName": "ttukbaegi",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1043.webp"
+  },
+  {
+    "dicNo": 1044,
+    "name": "라디오",
+    "engName": "radio",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1044.webp"
+  },
+  {
+    "dicNo": 1045,
+    "name": "라이터(일회용)",
+    "engName": "Lighter (disposable)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1045.webp"
+  },
+  {
+    "dicNo": 1046,
+    "name": "라켓(배드민턴, 테니스 등)",
+    "engName": "Racket (badminton, tennis, etc.)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1046.webp"
+  },
+  {
+    "dicNo": 1047,
+    "name": "랩(사용 후)",
+    "engName": "Wrap (after use)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1047.webp"
+  },
+  {
+    "dicNo": 1048,
+    "name": "랩의 심",
+    "engName": "heart of rap",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1048.webp"
+  },
+  {
+    "dicNo": 1049,
+    "name": "런닝머신",
+    "engName": "Running Machine",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1049.webp"
+  },
+  {
+    "dicNo": 1050,
+    "name": "리코더(플라스틱)",
+    "engName": "recorder (plastic)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1050.webp"
+  },
+  {
+    "dicNo": 1051,
+    "name": "마스크",
+    "engName": "mask",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1051.webp"
+  },
+  {
+    "dicNo": 1052,
+    "name": "마우스패드",
+    "engName": "mouse pad",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1052.webp"
+  },
+  {
+    "dicNo": 1053,
+    "name": "마커펜, 만년필",
+    "engName": "marker pens, fountain pens",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1053.webp"
+  },
+  {
+    "dicNo": 1054,
+    "name": "매트, 매트리스",
+    "engName": "mat, mattress",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1054.webp"
+  },
+  {
+    "dicNo": 1055,
+    "name": "맥주병뚜껑(철, 알루미늄)",
+    "engName": "Beer bottle caps (iron, aluminum)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1055.webp"
+  },
+  {
+    "dicNo": 1056,
+    "name": "머그컵(도자기류)",
+    "engName": "Mug (porcelain)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1056.webp"
+  },
+  {
+    "dicNo": 1057,
+    "name": "머플러(목도리)",
+    "engName": "scarf (shawl)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1057.webp"
+  },
+  {
+    "dicNo": 1058,
+    "name": "메가폰(플라스틱)",
+    "engName": "Megaphone (Plastic)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1058.webp"
+  },
+  {
+    "dicNo": 1059,
+    "name": "면도기(일회용)",
+    "engName": "Razor (disposable)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1059.webp"
+  },
+  {
+    "dicNo": 1060,
+    "name": "면도칼",
+    "engName": "razor",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1060.webp"
+  },
+  {
+    "dicNo": 1061,
+    "name": "면봉",
+    "engName": "cotton swab",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1061.webp"
+  },
+  {
+    "dicNo": 1062,
+    "name": "명함",
+    "engName": "Business card",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1062.webp"
+  },
+  {
+    "dicNo": 1063,
+    "name": "명함지갑",
+    "engName": "business card holder",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1063.webp"
+  },
+  {
+    "dicNo": 1064,
+    "name": "모니터(컴퓨터 TV)",
+    "engName": "Monitor (Computer TV)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1064.webp"
+  },
+  {
+    "dicNo": 1065,
+    "name": "모자(의류)",
+    "engName": "hat (clothing)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1065.webp"
+  },
+  {
+    "dicNo": 1066,
+    "name": "목발",
+    "engName": "crutches",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1066.webp"
+  },
+  {
+    "dicNo": 1067,
+    "name": "목재",
+    "engName": "wood",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1067.webp"
+  },
+  {
+    "dicNo": 1068,
+    "name": "문갑, 문짝",
+    "engName": "doorknob, doorknob",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1068.webp"
+  },
+  {
+    "dicNo": 1069,
+    "name": "물티슈",
+    "engName": "wet tissue",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1069.webp"
+  },
+  {
+    "dicNo": 1070,
+    "name": "밀짚모자",
+    "engName": "straw hat",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1070.webp"
+  },
+  {
+    "dicNo": 1071,
+    "name": "바나나껍질",
+    "engName": "banana peel",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1071.webp"
+  },
+  {
+    "dicNo": 1072,
+    "name": "바둑판",
+    "engName": "checkerboard",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1072.webp"
+  },
+  {
+    "dicNo": 1073,
+    "name": "바베큐그릴",
+    "engName": "BBQ Grill",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1073.webp"
+  },
+  {
+    "dicNo": 1074,
+    "name": "밥상",
+    "engName": "dining table",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1074.webp"
+  },
+  {
+    "dicNo": 1075,
+    "name": "방석",
+    "engName": "A cushion",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1075.webp"
+  },
+  {
+    "dicNo": 1076,
+    "name": "백과사전, 사전",
+    "engName": "Encyclopedia",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1076.webp"
+  },
+  {
+    "dicNo": 1077,
+    "name": "백열전구",
+    "engName": "incandescent light bulb",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1077.webp"
+  },
+  {
+    "dicNo": 1078,
+    "name": "벼루",
+    "engName": "ink stone",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1078.webp"
+  },
+  {
+    "dicNo": 1079,
+    "name": "벽돌",
+    "engName": "brick",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1079.webp"
+  },
+  {
+    "dicNo": 1080,
+    "name": "벽시계",
+    "engName": "Wall clock",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1080.webp"
+  },
+  {
+    "dicNo": 1081,
+    "name": "보온병",
+    "engName": "Thermos",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1081.webp"
+  },
+  {
+    "dicNo": 1082,
+    "name": "복사기",
+    "engName": "copy machine",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1082.webp"
+  },
+  {
+    "dicNo": 1083,
+    "name": "볼펜",
+    "engName": "pen",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1083.webp"
+  },
+  {
+    "dicNo": 1084,
+    "name": "볼풀공",
+    "engName": "ball pool",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1084.webp"
+  },
+  {
+    "dicNo": 1085,
+    "name": "분무기(플라스틱)",
+    "engName": "atomizer (plastic)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1085.webp"
+  },
+  {
+    "dicNo": 1086,
+    "name": "분유 깡통",
+    "engName": "milk powder can",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1086.webp"
+  },
+  {
+    "dicNo": 1087,
+    "name": "붓",
+    "engName": "brush",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1087.webp"
+  },
+  {
+    "dicNo": 1088,
+    "name": "블라인드",
+    "engName": "blind",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1088.webp"
+  },
+  {
+    "dicNo": 1089,
+    "name": "비닐봉지(일회용)",
+    "engName": "plastic bag (disposable)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1089.webp"
+  },
+  {
+    "dicNo": 1090,
+    "name": "비닐장판",
+    "engName": "vinyl sheet",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1090.webp"
+  },
+  {
+    "dicNo": 1091,
+    "name": "비닐코팅종이",
+    "engName": "vinyl coated paper",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1091.webp"
+  },
+  {
+    "dicNo": 1092,
+    "name": "비디오카메라(캠코더)",
+    "engName": "video camera",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1092.webp"
+  },
+  {
+    "dicNo": 1093,
+    "name": "비디오테이프",
+    "engName": "video tape",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1093.webp"
+  },
+  {
+    "dicNo": 1094,
+    "name": "빗, 헤어브러시",
+    "engName": "comb, hair brush",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1094.webp"
+  },
+  {
+    "dicNo": 1095,
+    "name": "빨대",
+    "engName": "straw",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1095.webp"
+  },
+  {
+    "dicNo": 1096,
+    "name": "사다리",
+    "engName": "ladder",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1096.webp"
+  },
+  {
+    "dicNo": 1097,
+    "name": "사인펜",
+    "engName": "sign pen",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1097.webp"
+  },
+  {
+    "dicNo": 1098,
+    "name": "사진",
+    "engName": "picture",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1098.webp"
+  },
+  {
+    "dicNo": 1099,
+    "name": "사진인화지",
+    "engName": "photo paper",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1099.webp"
+  },
+  {
+    "dicNo": 1100,
+    "name": "삽",
+    "engName": "shovel",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1100.webp"
+  },
+  {
+    "dicNo": 1101,
+    "name": "상한 음식",
+    "engName": "Rotten food",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1101.webp"
+  },
+  {
+    "dicNo": 1102,
+    "name": "생선(먹고 남은)",
+    "engName": "fish (leftovers)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1102.webp"
+  },
+  {
+    "dicNo": 1103,
+    "name": "샤프펜슬",
+    "engName": "mechanical pencil",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1103.webp"
+  },
+  {
+    "dicNo": 1104,
+    "name": "샴푸용기",
+    "engName": "shampoo container",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1104.webp"
+  },
+  {
+    "dicNo": 1105,
+    "name": "서랍장",
+    "engName": "chiffonier",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1105.webp"
+  },
+  {
+    "dicNo": 1106,
+    "name": "서류봉투(갈색 종이)",
+    "engName": "Briefcase (brown paper)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1106.webp"
+  },
+  {
+    "dicNo": 1107,
+    "name": "선풍기",
+    "engName": "fan",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1107.webp"
+  },
+  {
+    "dicNo": 1108,
+    "name": "성냥",
+    "engName": "matches",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1108.webp"
+  },
+  {
+    "dicNo": 1109,
+    "name": "세면대",
+    "engName": "washstand",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1109.webp"
+  },
+  {
+    "dicNo": 1110,
+    "name": "세탁기",
+    "engName": "washing machine",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1110.webp"
+  },
+  {
+    "dicNo": 1111,
+    "name": "셔틀콕(배드민턴공, 깃털공)",
+    "engName": "Shuttlecock (Badminton Ball, Feather Ball)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1111.webp"
+  },
+  {
+    "dicNo": 1112,
+    "name": "소스용기",
+    "engName": "mayonnaise jar",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1112.webp"
+  },
+  {
+    "dicNo": 1113,
+    "name": "손목 시계",
+    "engName": "watch",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1113.webp"
+  },
+  {
+    "dicNo": 1114,
+    "name": "솜",
+    "engName": "cotton",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1114.webp"
+  },
+  {
+    "dicNo": 1115,
+    "name": "솜이불",
+    "engName": "cotton quilt",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1115.webp"
+  },
+  {
+    "dicNo": 1116,
+    "name": "송곳",
+    "engName": "awl",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1116.webp"
+  },
+  {
+    "dicNo": 1117,
+    "name": "수세미",
+    "engName": "Scrubbers",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1117.webp"
+  },
+  {
+    "dicNo": 1118,
+    "name": "수조, 수족관",
+    "engName": "fish tank, aquarium",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1118.webp"
+  },
+  {
+    "dicNo": 1119,
+    "name": "수첩",
+    "engName": "note",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1119.webp"
+  },
+  {
+    "dicNo": 1120,
+    "name": "숯",
+    "engName": "charcoal",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1120.webp"
+  },
+  {
+    "dicNo": 1121,
+    "name": "스노우보드",
+    "engName": "snowboard",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1121.webp"
+  },
+  {
+    "dicNo": 1122,
+    "name": "스캐너",
+    "engName": "scanner",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1122.webp"
+  },
+  {
+    "dicNo": 1123,
+    "name": "스케이트보드",
+    "engName": "skateboard",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1123.webp"
+  },
+  {
+    "dicNo": 1124,
+    "name": "스키용구류",
+    "engName": "ski equipment",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1124.webp"
+  },
+  {
+    "dicNo": 1125,
+    "name": "스탠드",
+    "engName": "stand",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1125.webp"
+  },
+  {
+    "dicNo": 1126,
+    "name": "스폰지",
+    "engName": "sponge",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1126.webp"
+  },
+  {
+    "dicNo": 1127,
+    "name": "스프레이, 부탄가스",
+    "engName": "spray, butane gas",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1127.webp"
+  },
+  {
+    "dicNo": 1128,
+    "name": "스피커",
+    "engName": "speaker",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1128.webp"
+  },
+  {
+    "dicNo": 1129,
+    "name": "식기세척기(식기건조기)",
+    "engName": "Dishwasher (dish dryer)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1129.webp"
+  },
+  {
+    "dicNo": 1130,
+    "name": "식물, 나무",
+    "engName": "plant, tree",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1130.webp"
+  },
+  {
+    "dicNo": 1131,
+    "name": "식용유용기(플라스틱)",
+    "engName": "Cooking oil container (plastic)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1131.webp"
+  },
+  {
+    "dicNo": 1132,
+    "name": "신문지",
+    "engName": "newspaper",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1132.webp"
+  },
+  {
+    "dicNo": 1133,
+    "name": "신발",
+    "engName": "shoes",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1133.webp"
+  },
+  {
+    "dicNo": 1134,
+    "name": "신발장",
+    "engName": "shoe closet",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1134.webp"
+  },
+  {
+    "dicNo": 1135,
+    "name": "싱크대",
+    "engName": "sink",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1135.webp"
+  },
+  {
+    "dicNo": 1136,
+    "name": "쌀통",
+    "engName": "rice barrel",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1136.webp"
+  },
+  {
+    "dicNo": 1137,
+    "name": "쌀포대",
+    "engName": "rice sack",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1137.webp"
+  },
+  {
+    "dicNo": 1138,
+    "name": "쓰레받기",
+    "engName": "dustpan",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1138.webp"
+  },
+  {
+    "dicNo": 1139,
+    "name": "아기욕조, 아기침대",
+    "engName": "Baby bath, baby cot",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1139.webp"
+  },
+  {
+    "dicNo": 1140,
+    "name": "아령",
+    "engName": "dumbbell",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1140.webp"
+  },
+  {
+    "dicNo": 1141,
+    "name": "아이스팩",
+    "engName": "ice pack",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1141.webp"
+  },
+  {
+    "dicNo": 1142,
+    "name": "악기",
+    "engName": "instrument",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1142.webp"
+  },
+  {
+    "dicNo": 1143,
+    "name": "압력솓",
+    "engName": "pressure",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1143.webp"
+  },
+  {
+    "dicNo": 1144,
+    "name": "애완동물 용변 시트",
+    "engName": "pet toilet seat",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1144.webp"
+  },
+  {
+    "dicNo": 1145,
+    "name": "애완동물 음식캔",
+    "engName": "pet food cans",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1145.webp"
+  },
+  {
+    "dicNo": 1146,
+    "name": "애완동물집, 운반케이스",
+    "engName": "Pet House, Carrying Case",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1146.webp"
+  },
+  {
+    "dicNo": 1147,
+    "name": "액자",
+    "engName": "Photo Frame",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1147.webp"
+  },
+  {
+    "dicNo": 1148,
+    "name": "앨범",
+    "engName": "album",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1148.webp"
+  },
+  {
+    "dicNo": 1149,
+    "name": "야구공",
+    "engName": "baseball",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1149.webp"
+  },
+  {
+    "dicNo": 1150,
+    "name": "야구글러브",
+    "engName": "baseball glove",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1150.webp"
+  },
+  {
+    "dicNo": 1151,
+    "name": "야구배트",
+    "engName": "baseball bat",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1151.webp"
+  },
+  {
+    "dicNo": 1152,
+    "name": "약 종류",
+    "engName": "drug type",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1152.webp"
+  },
+  {
+    "dicNo": 1153,
+    "name": "양초",
+    "engName": "candle",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1153.webp"
+  },
+  {
+    "dicNo": 1154,
+    "name": "에어매트",
+    "engName": "air mat",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1154.webp"
+  },
+  {
+    "dicNo": 1155,
+    "name": "에어컨",
+    "engName": "air conditioner",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1155.webp"
+  },
+  {
+    "dicNo": 1156,
+    "name": "엔진오일",
+    "engName": "engine oil",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1156.webp"
+  },
+  {
+    "dicNo": 1157,
+    "name": "여행가방(트렁크)",
+    "engName": "suitcase (trunk)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1157.webp"
+  },
+  {
+    "dicNo": 1158,
+    "name": "역기",
+    "engName": "weightlifting",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1158.webp"
+  },
+  {
+    "dicNo": 1159,
+    "name": "연필, 색연필",
+    "engName": "pencil, colored pencil",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1159.webp"
+  },
+  {
+    "dicNo": 1160,
+    "name": "연필깎이",
+    "engName": "pencil sharpener",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1160.webp"
+  },
+  {
+    "dicNo": 1161,
+    "name": "오디오세트",
+    "engName": "audio set",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1161.webp"
+  },
+  {
+    "dicNo": 1162,
+    "name": "오렌지껍질",
+    "engName": "orange peel",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1162.webp"
+  },
+  {
+    "dicNo": 1163,
+    "name": "온풍기",
+    "engName": "hot air blower",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1163.webp"
+  },
+  {
+    "dicNo": 1164,
+    "name": "옷걸이(세탁소 흰색 철사)",
+    "engName": "Hanger (Laundry White Wire)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1164.webp"
+  },
+  {
+    "dicNo": 1165,
+    "name": "와이퍼",
+    "engName": "wiper",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1165.webp"
+  },
+  {
+    "dicNo": 1166,
+    "name": "와인셀러",
+    "engName": "wine cellar",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1166.webp"
+  },
+  {
+    "dicNo": 1167,
+    "name": "완충재(뽁뽁이)",
+    "engName": "cushioning material (bubble)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1167.webp"
+  },
+  {
+    "dicNo": 1168,
+    "name": "요가매트",
+    "engName": "yoga mat",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1168.webp"
+  },
+  {
+    "dicNo": 1169,
+    "name": "우산",
+    "engName": "umbrella",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1169.webp"
+  },
+  {
+    "dicNo": 1170,
+    "name": "유리병",
+    "engName": "glass bottle",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1170.webp"
+  },
+  {
+    "dicNo": 1171,
+    "name": "유리병뚜껑(철, 알루미늄)",
+    "engName": "Glass bottle caps (iron, aluminum)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1171.webp"
+  },
+  {
+    "dicNo": 1172,
+    "name": "유리판, 유리제품",
+    "engName": "glass plate, glassware",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1172.webp"
+  },
+  {
+    "dicNo": 1173,
+    "name": "유모차",
+    "engName": "stroller",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1173.webp"
+  },
+  {
+    "dicNo": 1174,
+    "name": "윤활유",
+    "engName": "lubricant",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1174.webp"
+  },
+  {
+    "dicNo": 1175,
+    "name": "응접세트",
+    "engName": "reception set",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1175.webp"
+  },
+  {
+    "dicNo": 1176,
+    "name": "의류",
+    "engName": "clothing",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1176.webp"
+  },
+  {
+    "dicNo": 1177,
+    "name": "의류건조대",
+    "engName": "clothes drying rack",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1177.webp"
+  },
+  {
+    "dicNo": 1178,
+    "name": "의자",
+    "engName": "chair",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1178.webp"
+  },
+  {
+    "dicNo": 1179,
+    "name": "이불",
+    "engName": "bedding",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1179.webp"
+  },
+  {
+    "dicNo": 1180,
+    "name": "인형류",
+    "engName": "puppets",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1180.webp"
+  },
+  {
+    "dicNo": 1181,
+    "name": "자동차 부품",
+    "engName": "Automotive Parts",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1181.webp"
+  },
+  {
+    "dicNo": 1182,
+    "name": "자루걸레",
+    "engName": "mop",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1182.webp"
+  },
+  {
+    "dicNo": 1183,
+    "name": "자석",
+    "engName": "magnet",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1183.webp"
+  },
+  {
+    "dicNo": 1184,
+    "name": "자전거",
+    "engName": "bicycle",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1184.webp"
+  },
+  {
+    "dicNo": 1185,
+    "name": "잡지",
+    "engName": "magazine",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1185.webp"
+  },
+  {
+    "dicNo": 1186,
+    "name": "장난감류",
+    "engName": "toys",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1186.webp"
+  },
+  {
+    "dicNo": 1187,
+    "name": "장롱",
+    "engName": "wardrobe",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1187.webp"
+  },
+  {
+    "dicNo": 1188,
+    "name": "장식장",
+    "engName": "cabinet",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1188.webp"
+  },
+  {
+    "dicNo": 1189,
+    "name": "장판",
+    "engName": "veneer",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1189.webp"
+  },
+  {
+    "dicNo": 1190,
+    "name": "재떨이",
+    "engName": "ashtray",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1190.webp"
+  },
+  {
+    "dicNo": 1191,
+    "name": "전기밥솔",
+    "engName": "electric rice brush",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1191.webp"
+  },
+  {
+    "dicNo": 1192,
+    "name": "전기비데",
+    "engName": "electric bidet",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1192.webp"
+  },
+  {
+    "dicNo": 1193,
+    "name": "전기오븐레인지",
+    "engName": "electric oven",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1193.webp"
+  },
+  {
+    "dicNo": 1194,
+    "name": "전기코드류",
+    "engName": "electrical cords",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1194.webp"
+  },
+  {
+    "dicNo": 1195,
+    "name": "전기포트",
+    "engName": "electric pot",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1195.webp"
+  },
+  {
+    "dicNo": 1196,
+    "name": "전단지",
+    "engName": "leaflet",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1196.webp"
+  },
+  {
+    "dicNo": 1197,
+    "name": "전동칫솔",
+    "engName": "electric toothbrush",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1197.webp"
+  },
+  {
+    "dicNo": 1198,
+    "name": "전자레인지",
+    "engName": "Microwave",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1198.webp"
+  },
+  {
+    "dicNo": 1199,
+    "name": "전자사전(전자수첩)",
+    "engName": "Electronic Dictionary (Electronic Notebook)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1199.webp"
+  },
+  {
+    "dicNo": 1200,
+    "name": "전자피아노",
+    "engName": "electronic piano",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1200.webp"
+  },
+  {
+    "dicNo": 1201,
+    "name": "전지",
+    "engName": "battery",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1201.webp"
+  },
+  {
+    "dicNo": 1202,
+    "name": "전축",
+    "engName": "fully immersed",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1202.webp"
+  },
+  {
+    "dicNo": 1203,
+    "name": "전화기(팩스포함)",
+    "engName": "Telephone (including fax)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1203.webp"
+  },
+  {
+    "dicNo": 1204,
+    "name": "전화번호부",
+    "engName": "phone book",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1204.webp"
+  },
+  {
+    "dicNo": 1205,
+    "name": "접착제(본드 등)",
+    "engName": "Adhesives (bonds, etc.)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1205.webp"
+  },
+  {
+    "dicNo": 1206,
+    "name": "정기장판",
+    "engName": "regular edition",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1206.webp"
+  },
+  {
+    "dicNo": 1207,
+    "name": "정수기",
+    "engName": "water fountain",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1207.webp"
+  },
+  {
+    "dicNo": 1208,
+    "name": "젖꼭지(아기용품)",
+    "engName": "Nipples (baby products)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1208.webp"
+  },
+  {
+    "dicNo": 1209,
+    "name": "젖병(아기용품)",
+    "engName": "Baby bottles (baby products)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1209.webp"
+  },
+  {
+    "dicNo": 1210,
+    "name": "조각칼",
+    "engName": "carving knife",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1210.webp"
+  },
+  {
+    "dicNo": 1211,
+    "name": "종이기저귀",
+    "engName": "paper diapers",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1211.webp"
+  },
+  {
+    "dicNo": 1212,
+    "name": "종이상자",
+    "engName": "paper box",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1212.webp"
+  },
+  {
+    "dicNo": 1213,
+    "name": "종이심",
+    "engName": "paper lead",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1213.webp"
+  },
+  {
+    "dicNo": 1214,
+    "name": "종이조각",
+    "engName": "piece of paper",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1214.webp"
+  },
+  {
+    "dicNo": 1215,
+    "name": "종이팩(우유팩 등)",
+    "engName": "Paper cartons (milk cartons, etc.)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1215.webp"
+  },
+  {
+    "dicNo": 1216,
+    "name": "주전자(철, 알루미늄)",
+    "engName": "Kettle (iron, aluminum)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1216.webp"
+  },
+  {
+    "dicNo": 1217,
+    "name": "줄자",
+    "engName": "tape measure",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1217.webp"
+  },
+  {
+    "dicNo": 1218,
+    "name": "지우개",
+    "engName": "Eraser",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1218.webp"
+  },
+  {
+    "dicNo": 1219,
+    "name": "진열대",
+    "engName": "display stand",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1219.webp"
+  },
+  {
+    "dicNo": 1220,
+    "name": "차 찌꺼기",
+    "engName": "tea grounds",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1220.webp"
+  },
+  {
+    "dicNo": 1221,
+    "name": "찬장",
+    "engName": "cupboard",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1221.webp"
+  },
+  {
+    "dicNo": 1222,
+    "name": "찻잔(도자기류)",
+    "engName": "Teacup (porcelain)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1222.webp"
+  },
+  {
+    "dicNo": 1223,
+    "name": "책",
+    "engName": "book",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1223.webp"
+  },
+  {
+    "dicNo": 1224,
+    "name": "책상, 책장",
+    "engName": "desk, bookshelf",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1224.webp"
+  },
+  {
+    "dicNo": 1225,
+    "name": "천체망원경",
+    "engName": "astronomical telescope",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1225.webp"
+  },
+  {
+    "dicNo": 1226,
+    "name": "철사",
+    "engName": "wire",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1226.webp"
+  },
+  {
+    "dicNo": 1227,
+    "name": "철판(가정요리용)",
+    "engName": "Teppanyaki (for home cooking)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1227.webp"
+  },
+  {
+    "dicNo": 1228,
+    "name": "청소기",
+    "engName": "vacuum cleaner",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1228.webp"
+  },
+  {
+    "dicNo": 1229,
+    "name": "체온계(건전지, 디지털)",
+    "engName": "Thermometer (battery, digital)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1229.webp"
+  },
+  {
+    "dicNo": 1230,
+    "name": "체중계",
+    "engName": "the scale",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1230.webp"
+  },
+  {
+    "dicNo": 1231,
+    "name": "축구공",
+    "engName": "soccer ball",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1231.webp"
+  },
+  {
+    "dicNo": 1232,
+    "name": "충전식전지",
+    "engName": "rechargeable battery",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1232.webp"
+  },
+  {
+    "dicNo": 1233,
+    "name": "치약용기",
+    "engName": "toothpaste container",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1233.webp"
+  },
+  {
+    "dicNo": 1234,
+    "name": "치킨박스",
+    "engName": "chicken box",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1234.webp"
+  },
+  {
+    "dicNo": 1235,
+    "name": "침구류(이불, 베개 등)",
+    "engName": "Bedding (duvets, pillows, etc.)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1235.webp"
+  },
+  {
+    "dicNo": 1236,
+    "name": "침대",
+    "engName": "bed",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1236.webp"
+  },
+  {
+    "dicNo": 1237,
+    "name": "칫솔",
+    "engName": "toothbrush",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1237.webp"
+  },
+  {
+    "dicNo": 1238,
+    "name": "카펫, 융단",
+    "engName": "carpet, carpet",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1238.webp"
+  },
+  {
+    "dicNo": 1239,
+    "name": "캐비넷",
+    "engName": "cabinet",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1239.webp"
+  },
+  {
+    "dicNo": 1240,
+    "name": "캔 따개",
+    "engName": "can opener",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1240.webp"
+  },
+  {
+    "dicNo": 1241,
+    "name": "캡(플라스틱 뚜껑)",
+    "engName": "Cap (plastic lid)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1241.webp"
+  },
+  {
+    "dicNo": 1242,
+    "name": "커튼, 커튼 레일",
+    "engName": "curtains, curtain rails",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1242.webp"
+  },
+  {
+    "dicNo": 1243,
+    "name": "커피메이커",
+    "engName": "coffee maker",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1243.webp"
+  },
+  {
+    "dicNo": 1244,
+    "name": "커피원두, 찌꺼기",
+    "engName": "coffee beans, ground",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1244.webp"
+  },
+  {
+    "dicNo": 1245,
+    "name": "컴퓨터",
+    "engName": "computer",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1245.webp"
+  },
+  {
+    "dicNo": 1246,
+    "name": "컵",
+    "engName": "cup",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1246.webp"
+  },
+  {
+    "dicNo": 1247,
+    "name": "코르크따개(와인따개)",
+    "engName": "Cork opener (wine opener)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1247.webp"
+  },
+  {
+    "dicNo": 1248,
+    "name": "코르크마개",
+    "engName": "cork",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1248.webp"
+  },
+  {
+    "dicNo": 1249,
+    "name": "코팅된 종이",
+    "engName": "coated paper",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1249.webp"
+  },
+  {
+    "dicNo": 1250,
+    "name": "콘센트",
+    "engName": "Power socket",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1250.webp"
+  },
+  {
+    "dicNo": 1251,
+    "name": "콘텍트렌즈",
+    "engName": "contact lenses",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1251.webp"
+  },
+  {
+    "dicNo": 1252,
+    "name": "쿠션",
+    "engName": "cushion",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1252.webp"
+  },
+  {
+    "dicNo": 1253,
+    "name": "크레용",
+    "engName": "crayon",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1253.webp"
+  },
+  {
+    "dicNo": 1254,
+    "name": "키보드(컴퓨터용)",
+    "engName": "Keyboard (for computer)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1254.webp"
+  },
+  {
+    "dicNo": 1255,
+    "name": "타이어",
+    "engName": "tire",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1255.webp"
+  },
+  {
+    "dicNo": 1256,
+    "name": "탁상달력",
+    "engName": "desk calendar",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1256.webp"
+  },
+  {
+    "dicNo": 1257,
+    "name": "탈수기",
+    "engName": "moon season",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1257.webp"
+  },
+  {
+    "dicNo": 1258,
+    "name": "텐트",
+    "engName": "tent",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1258.webp"
+  },
+  {
+    "dicNo": 1259,
+    "name": "텔레비전(TV)",
+    "engName": "Television (TV)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1259.webp"
+  },
+  {
+    "dicNo": 1260,
+    "name": "토스터기",
+    "engName": "toaster",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1260.webp"
+  },
+  {
+    "dicNo": 1261,
+    "name": "톱",
+    "engName": "top",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1261.webp"
+  },
+  {
+    "dicNo": 1262,
+    "name": "튀김기름",
+    "engName": "frying oil",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1262.webp"
+  },
+  {
+    "dicNo": 1263,
+    "name": "틀니",
+    "engName": "denture",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1263.webp"
+  },
+  {
+    "dicNo": 1264,
+    "name": "티백(녹차)",
+    "engName": "Tea Bag (Green Tea)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1264.webp"
+  },
+  {
+    "dicNo": 1265,
+    "name": "파인애플껍질",
+    "engName": "pineapple peel",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1265.webp"
+  },
+  {
+    "dicNo": 1266,
+    "name": "팩스(복합기)",
+    "engName": "Facsimile (fax machine)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1266.webp"
+  },
+  {
+    "dicNo": 1267,
+    "name": "페트병",
+    "engName": "plastic bottle",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1267.webp"
+  },
+  {
+    "dicNo": 1268,
+    "name": "포스터, 포장지",
+    "engName": "poster, wrapping paper",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1268.webp"
+  },
+  {
+    "dicNo": 1269,
+    "name": "프린터",
+    "engName": "printer",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1269.webp"
+  },
+  {
+    "dicNo": 1270,
+    "name": "피아노",
+    "engName": "piano",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1270.webp"
+  },
+  {
+    "dicNo": 1271,
+    "name": "피자 세이버(피자 삼발이)",
+    "engName": "pizza saver",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1271.webp"
+  },
+  {
+    "dicNo": 1272,
+    "name": "피자박스",
+    "engName": "pizza box",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1272.webp"
+  },
+  {
+    "dicNo": 1273,
+    "name": "필름(사진용)",
+    "engName": "Film (for photography)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1273.webp"
+  },
+  {
+    "dicNo": 1274,
+    "name": "핫팩",
+    "engName": "hot pack",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1274.webp"
+  },
+  {
+    "dicNo": 1275,
+    "name": "항아리",
+    "engName": "jar",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1275.webp"
+  },
+  {
+    "dicNo": 1276,
+    "name": "헝겁류",
+    "engName": "Hungarian",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1276.webp"
+  },
+  {
+    "dicNo": 1277,
+    "name": "헤드폰(헤드셋)",
+    "engName": "headphone",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1277.webp"
+  },
+  {
+    "dicNo": 1278,
+    "name": "헬멧",
+    "engName": "helmet",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1278.webp"
+  },
+  {
+    "dicNo": 1279,
+    "name": "형광등",
+    "engName": "Fluorescent lamp",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1279.webp"
+  },
+  {
+    "dicNo": 1280,
+    "name": "호일(사용 후)",
+    "engName": "Foil (after use)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1280.webp"
+  },
+  {
+    "dicNo": 1281,
+    "name": "화로",
+    "engName": "brazier",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1281.webp"
+  },
+  {
+    "dicNo": 1282,
+    "name": "화분, 화병",
+    "engName": "flower pots, vases",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1282.webp"
+  },
+  {
+    "dicNo": 1283,
+    "name": "화장대",
+    "engName": "Dressing table",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1283.webp"
+  },
+  {
+    "dicNo": 1284,
+    "name": "화장품냉장고",
+    "engName": "cosmetic refrigerator",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1284.webp"
+  },
+  {
+    "dicNo": 1285,
+    "name": "후라이팬",
+    "engName": "frying pan",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1285.webp"
+  },
+  {
+    "dicNo": 1286,
+    "name": "휴대용 플레이어(MP3등)",
+    "engName": "Portable player (MP3, etc.)",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1286.webp"
+  },
+  {
+    "dicNo": 1287,
+    "name": "휴대전화",
+    "engName": "Cell Phone",
+    "thumbnail": "https://ik.imagekit.io/blisgo/dictionary/tr:w-100,h-100/1287.webp"
+  }
+]

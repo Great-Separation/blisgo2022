@@ -12,4 +12,10 @@ public interface HomeService {
      * @return 다건
      */
     List<DictionaryDTO> findRecentDictionaries();
+
+    /**
+     * index 페이지 배경 화면을 매일 변경하는 베서드
+     *
+     */
+    boolean changeIndexWallpaperDaily();
 }

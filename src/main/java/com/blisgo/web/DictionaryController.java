@@ -4,6 +4,7 @@ import com.blisgo.service.DictionaryService;
 import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.DictionaryDTO;
 import com.blisgo.web.dto.HashtagDTO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -11,16 +12,13 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("dictionary")
 public class DictionaryController {
 
     private final DictionaryService dictionaryService;
     private final ModelAndView mv = new ModelAndView();
     String url;
-
-    public DictionaryController(DictionaryService dictionaryService) {
-        this.dictionaryService = dictionaryService;
-    }
 
     /**
      * 분리배출 사전

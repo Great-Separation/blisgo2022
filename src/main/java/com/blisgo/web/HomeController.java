@@ -2,6 +2,7 @@ package com.blisgo.web;
 
 import com.blisgo.service.HomeService;
 import com.blisgo.web.dto.DictionaryDTO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/")
 public class HomeController {
 
@@ -18,10 +20,6 @@ public class HomeController {
     private final HomeService homeService;
     private final ModelAndView mv = new ModelAndView();
     String url;
-
-    public HomeController(HomeService homeService) {
-        this.homeService = homeService;
-    }
 
     /**
      * 첫 화면

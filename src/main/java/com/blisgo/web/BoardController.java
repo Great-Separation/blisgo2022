@@ -6,6 +6,7 @@ import com.blisgo.util.CloudinaryUtil;
 import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.BoardDTO;
 import com.blisgo.web.dto.ReplyDTO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,6 +21,7 @@ import java.util.List;
  * @author okjae
  */
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("board")
 public class BoardController {
 
@@ -29,11 +31,6 @@ public class BoardController {
 
     CloudinaryUtil cloudinaryUtil;
     String url;
-
-    public BoardController(BoardService boardService, ReplyService replyService) {
-        this.boardService = boardService;
-        this.replyService = replyService;
-    }
 
     /**
      * 커뮤니티 게시판

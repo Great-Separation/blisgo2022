@@ -4,6 +4,7 @@ import com.blisgo.service.AccountService;
 import com.blisgo.util.CloudinaryUtil;
 import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.DogamDTO;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("account")
 public class AccountController {
     private final AccountService accountService;
@@ -24,10 +26,6 @@ public class AccountController {
     private final ModelAndView mv = new ModelAndView();
     CloudinaryUtil cloudinaryUtil;
     String url;
-
-    public AccountController(AccountService accountService) {
-        this.accountService = accountService;
-    }
 
     /**
      * 회원 로그인

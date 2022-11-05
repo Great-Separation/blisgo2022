@@ -4,6 +4,7 @@ import com.blisgo.service.ReplyService;
 import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.BoardDTO;
 import com.blisgo.web.dto.ReplyDTO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,15 +15,12 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.validation.Valid;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("reply")
 public class ReplyController {
     private final ReplyService replyService;
     private final ModelAndView mv = new ModelAndView();
     String url;
-
-    public ReplyController(ReplyService replyService) {
-        this.replyService = replyService;
-    }
 
     /**
      * 댓글 작성

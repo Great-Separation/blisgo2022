@@ -35,27 +35,6 @@ spring:
       driver-class-name: com.mysql.cj.jdbc.Driver
 
 server:
-
-  tomcat:
-    remoteip:
-      remote-ip-header: 'X-FORWARDED-FOR'
-      protocol-header: "X-Forwarded-Proto"
-      host-header: "X-Forwarded-Host"
-      port-header: "X-Forwarded-Port"
-      protocol-header-https-value: "https"
-    use-relative-redirects: true
-
-  http2:
-    enabled: true
-  ssl:
-    enabled: true
-    certificate: classpath:ssl/certificate.crt
-    certificate-private-key: classpath:ssl/private.key
-    trust-certificate: classpath:ssl/ca_bundle.crt
-    key-store-password: blisgo
-    enabled-protocols: TLSv1.3
-    protocol: TLS
-    client-auth: need
   servlet:
     encoding:
       enabled: true
@@ -69,8 +48,8 @@ server:
   compression:
     min-response-size: 4096
     enabled: true
-  port: 443
-  forward-headers-strategy: native
+  port: 8080
+
 logging:
   level:
     root: debug

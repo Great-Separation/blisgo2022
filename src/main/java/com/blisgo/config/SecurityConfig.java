@@ -41,7 +41,6 @@ public class SecurityConfig {
     @Order(SecurityProperties.BASIC_AUTH_ORDER)
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .requiresChannel((channel) -> channel.requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null).requiresSecure())
                 .cors().configurationSource(corsConfigurationSource())
                 .and()
                 .sessionManagement()
@@ -68,12 +67,6 @@ public class SecurityConfig {
                 .and()
                 .oauth2Login()
                 .userInfoEndpoint().userService(principalOauth2UserService);
-        http
-                .headers()
-                .httpStrictTransportSecurity()
-                .maxAgeInSeconds(31536000)
-                .includeSubDomains(true)
-                .preload(true);
         return http.build();
     }
 

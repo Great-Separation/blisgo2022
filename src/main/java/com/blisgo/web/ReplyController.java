@@ -1,10 +1,13 @@
 package com.blisgo.web;
 
+import com.blisgo.domain.mapper.AccountMapper;
+import com.blisgo.security.auth.PrincipalDetails;
 import com.blisgo.service.ReplyService;
 import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.BoardDTO;
 import com.blisgo.web.dto.ReplyDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,13 +28,14 @@ public class ReplyController {
     /**
      * 댓글 작성
      *
-     * @param accountDTO  사용자
-     * @param boardDTO 게시글
-     * @param replyDTO 댓글
+     * @param principal 인증된 사용자
+     * @param boardDTO  게시글
+     * @param replyDTO  댓글
      * @return mv
      */
     @PostMapping("{bdNo}")
-    public ModelAndView replyPOST(AccountDTO accountDTO, BoardDTO boardDTO, @Valid ReplyDTO replyDTO) {
+    public ModelAndView replyPOST(@AuthenticationPrincipal PrincipalDetails principal, BoardDTO boardDTO, @Valid ReplyDTO replyDTO) {
+        AccountDTO accountDTO = AccountMapper.INSTANCE.toDTO(principal.getAccount());
         replyService.addReply(replyDTO, boardDTO, accountDTO);
         url = RouteUrlHelper.combine(page.board, boardDTO.getBdNo());
         mv.setView(new RedirectView(url, false));

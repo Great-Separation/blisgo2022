@@ -16,7 +16,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.savedrequest.CookieRequestCache;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -44,19 +43,18 @@ public class SecurityConfig {
                 .cors().configurationSource(corsConfigurationSource())
                 .and()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 .and()
                 .authorizeRequests()
                 .mvcMatchers("/account/mypage", "/account/mypage/**").authenticated()
                 .mvcMatchers("/board/edit/**", "/board/write").authenticated()
                 .mvcMatchers("/", "/faq", "/account/login", "/account/register", "/account/verify").permitAll()
                 .and()
-                .formLogin().loginPage("/account/login").usernameParameter("email").passwordParameter("pass").defaultSuccessUrl("/", true)
+                .formLogin().loginPage("/account/login").usernameParameter("email").passwordParameter("pass").defaultSuccessUrl("/")
                 .failureUrl("/account/login")
-                .loginProcessingUrl("/account/login").defaultSuccessUrl("/", true)
+                .loginProcessingUrl("/account/login").defaultSuccessUrl("/")
                 .successHandler(authenticationSuccessHandler)
                 .permitAll()
-                .and().requestCache().requestCache(new CookieRequestCache())
                 .and()
                 .httpBasic()
                 .and()
@@ -87,7 +85,7 @@ public class SecurityConfig {
         long MAX_AGE_SECS = 3600;
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOriginPatterns(List.of("*"));
-        configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "PUT", "DELETE"));
+        configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
         configuration.setMaxAge(MAX_AGE_SECS);
         configuration.setAllowCredentials(true);

@@ -69,7 +69,7 @@ public class AccountRepositoryImpl implements AccountRepository {
         var tuple = jpaQueryFactory
                 .select(dogam.account.memNo, dogam.dictionary.dicNo, dogam.dictionary.name,
                         dogam.dictionary.thumbnail)
-                .from(dogam).innerJoin(dogam.dictionary).where(dogam.account.memNo.eq(accountEntity.getMemNo())).offset(index).limit(limit).fetch();
+                .from(dogam).innerJoin(dogam.dictionary).where(dogam.account.memNo.eq(accountEntity.getMemNo())).orderBy(dogam.createdDate.desc()).offset(index).limit(limit).fetch();
 
         List<Dogam> rs = new ArrayList<>();
         for (var row : tuple) {

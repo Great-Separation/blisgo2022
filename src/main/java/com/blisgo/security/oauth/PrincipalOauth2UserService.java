@@ -1,7 +1,6 @@
 package com.blisgo.security.oauth;
 
 import com.blisgo.domain.entity.Account;
-import com.blisgo.domain.mapper.AccountMapper;
 import com.blisgo.domain.repository.AccountRepository;
 import com.blisgo.security.auth.PrincipalDetails;
 import com.blisgo.security.oauth.provider.GithubUserInfo;
@@ -16,7 +15,6 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpSession;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -25,7 +23,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
     private final AccountRepository accountRepository;
-    private final HttpSession httpSession;
 
 
     @Override
@@ -65,7 +62,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
                     .build();
             accountRepository.insertAccount(account);
         }
-        httpSession.setAttribute("mem", AccountMapper.INSTANCE.toDTO(account));
+
         return new PrincipalDetails(account, oAuth2User.getAttributes());
     }
 }

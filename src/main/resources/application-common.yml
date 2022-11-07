@@ -37,8 +37,10 @@ spring:
     resources:
       cache:
         cachecontrol:
-          max-age: 120
           must-revalidate: true
+      chain:
+        compressed: true
+        enabled: true
 
 server:
   servlet:
@@ -63,4 +65,4 @@ server:
 
 logging:
   level:
-    root: info
+    root: debug

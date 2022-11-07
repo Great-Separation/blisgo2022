@@ -1,5 +1,7 @@
 package com.blisgo.web;
 
+import com.blisgo.domain.mapper.AccountMapper;
+import com.blisgo.security.auth.PrincipalDetails;
 import com.blisgo.service.AccountService;
 import com.blisgo.util.CloudinaryUtil;
 import com.blisgo.web.dto.AccountDTO;
@@ -12,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -43,11 +44,10 @@ public class AccountController {
      * 회원 로그인 전송
      *
      * @param accountDTO 사용자
-     * @param session    세션
      * @return mv
      */
     @PostMapping("login")
-    public ModelAndView login(@AuthenticationPrincipal AccountDTO accountDTO, HttpSession session) {
+    public ModelAndView login(AccountDTO accountDTO) {
         AccountDTO registeredAccount = accountService.findAccount(accountDTO);
 
         if (registeredAccount == null) {
@@ -56,7 +56,6 @@ public class AccountController {
             url = RouteUrlHelper.combine(folder.account, page.register);
         } else {
             if (accountDTO.getPass().equals(registeredAccount.getPass())) {
-                session.setAttribute("mem", registeredAccount);
                 // alertMsg = new AlertMsg(res, "/");
                 url = RouteUrlHelper.combine("");
             } else {
@@ -91,7 +90,7 @@ public class AccountController {
      * @return mv
      */
     @PostMapping("register")
-    public ModelAndView registerPOST(@AuthenticationPrincipal @Valid AccountDTO accountDTO) {
+    public ModelAndView registerPOST(@Valid AccountDTO accountDTO) {
         if (accountService.addAccount(accountDTO)) {
             // alertMsg = new AlertMsg(res, "회원가입 성공", "login");
             url = RouteUrlHelper.combine(folder.account, page.login);
@@ -189,13 +188,11 @@ public class AccountController {
     /**
      * 마이페이지
      *
-     * @param session    세션
-     * @param accountDTO 사용자
      * @return mv
      */
     @GetMapping("mypage")
-    public ModelAndView mypage(HttpSession session, @AuthenticationPrincipal AccountDTO accountDTO) {
-        accountDTO = (AccountDTO) session.getAttribute("mem");
+    public ModelAndView mypage(@AuthenticationPrincipal PrincipalDetails principal) {
+        AccountDTO accountDTO = AccountMapper.INSTANCE.toDTO(principal.getAccount());
         List<DogamDTO> dogamList = accountService.findDogam(accountDTO);
         mv.addObject("dogamList", dogamList);
         url = RouteUrlHelper.combine(folder.account, page.mypage);
@@ -206,22 +203,19 @@ public class AccountController {
     /**
      * 마이페이지 프로필 업데이트
      *
-     * @param session     세션
      * @param profile_img 업로드된 프로필 이미지
-     * @param accountDTO  사용자
+     * @param principal   인증된 사용자
      * @return mv
      */
     // FIXME [마이페이지 프로필 업데이트] 회원 정보 변경 즉시 반영되지 않음
     @PutMapping("mypage/update-profile-img")
-    public ModelAndView mypageUpdateProfileImg(HttpSession session,
-                                               @RequestParam("upload-img") MultipartFile profile_img, @AuthenticationPrincipal AccountDTO accountDTO) {
-        accountDTO = (AccountDTO) session.getAttribute("mem");
+    public ModelAndView mypageUpdateProfileImg(
+            @RequestParam("upload-img") MultipartFile profile_img, @AuthenticationPrincipal PrincipalDetails principal) {
+        AccountDTO accountDTO = AccountMapper.INSTANCE.toDTO(principal.getAccount());
         cloudinaryUtil = new CloudinaryUtil();
-        String profile_img_url = cloudinaryUtil.uploadImage(profile_img);
+        String profile_img_url = cloudinaryUtil.uploadFile(profile_img, folder.account.toString());
 
         accountService.modifyAccountProfileImg(accountDTO, profile_img_url);
-        session.removeAttribute("mem");
-        session.setAttribute("mem", accountDTO);
         url = RouteUrlHelper.combine(folder.account, page.mypage);
         mv.setView(new RedirectView(url, false));
         return mv;
@@ -230,17 +224,15 @@ public class AccountController {
     /**
      * 마이페이지 닉네임 변경
      *
-     * @param session    세션
-     * @param accountDTO 사용자
+     * @param principal 인증된 사용자
      * @return mv
      */
     @PutMapping("mypage/update-nickname")
-    public ModelAndView mypageUpdateNickname(HttpSession session, @AuthenticationPrincipal AccountDTO accountDTO) {
+    public ModelAndView mypageUpdateNickname(@AuthenticationPrincipal PrincipalDetails principal) {
+        AccountDTO accountDTO = AccountMapper.INSTANCE.toDTO(principal.getAccount());
 
         if (accountService.modifyAccountNickname(accountDTO)) {
             accountDTO = accountService.findAccount(accountDTO);
-            session.removeAttribute("mem");
-            session.setAttribute("mem", accountDTO);
             // alertMsg = new AlertMsg(res, "회원 정보가 변경되었습니다.", "mypage");
             url = RouteUrlHelper.combine(folder.account, page.mypage);
             mv.setView(new RedirectView(url, false));
@@ -256,19 +248,17 @@ public class AccountController {
     /**
      * 회원 비밀번호 변경
      *
-     * @param session    세션
-     * @param accountDTO 사용자
-     * @param newPass    신규 비밀번호
+     * @param principal 인증된 사용자
+     * @param newPass   신규 비밀번호
      * @return mv
      */
     @PutMapping("mypage/update-password")
-    public ModelAndView mypageUpdatePassword(HttpSession session, @AuthenticationPrincipal AccountDTO accountDTO,
+    public ModelAndView mypageUpdatePassword(@AuthenticationPrincipal PrincipalDetails principal,
                                              @RequestParam("newPass") String newPass) {
-        AccountDTO accountBefore = (AccountDTO) session.getAttribute("mem");
+        AccountDTO accountDTO = AccountMapper.INSTANCE.toDTO(principal.getAccount());
 
-        if (accountDTO.getPass().equals(accountService.findAccount(accountBefore).getPass())) {
-            accountService.modifyAccountPass(accountBefore, newPass);
-            session.invalidate();
+        if (accountDTO.getPass().equals(accountService.findAccount(accountDTO).getPass())) {
+            accountService.modifyAccountPass(accountDTO, newPass);
             // alertMsg = new AlertMsg(res, "변경된 비밀번호로 다시 로그인바랍니다.", "login");
             url = RouteUrlHelper.combine(folder.account, page.login);
             mv.setView(new RedirectView(url, false));
@@ -283,16 +273,13 @@ public class AccountController {
     /**
      * 마이페이지 계정 삭제
      *
-     * @param session 세션
      * @return mv
      */
     @DeleteMapping("mypage")
-    public ModelAndView mypageDeleteAccount(HttpSession session) {
-        AccountDTO accountInfo = (AccountDTO) session.getAttribute("mem");
-
-        if (accountService.removeAccount(accountInfo)) {
+    public ModelAndView mypageDeleteAccount(@AuthenticationPrincipal PrincipalDetails principal) {
+        AccountDTO accountDTO = AccountMapper.INSTANCE.toDTO(principal.getAccount());
+        if (accountService.removeAccount(accountDTO)) {
             // alertMsg = new AlertMsg(res, "회원 탈퇴되었습니다.", "/logout");
-            session.invalidate();
             url = RouteUrlHelper.combine("");
             mv.setView(new RedirectView(url, false));
         } else {
@@ -306,25 +293,22 @@ public class AccountController {
     /**
      * 마이페이지 도감 더보기
      *
-     * @param session    세션
-     * @param accountDTO 사용자
+     * @param principal 인증된 사용자
      * @return json
      */
     @PostMapping("dogam/more")
-    public @ResponseBody List<DogamDTO> dictionaryLoadMore(HttpSession session, @AuthenticationPrincipal AccountDTO accountDTO) {
-        accountDTO = (AccountDTO) session.getAttribute("mem");
+    public @ResponseBody List<DogamDTO> dictionaryLoadMore(@AuthenticationPrincipal PrincipalDetails principal) {
+        AccountDTO accountDTO = AccountMapper.INSTANCE.toDTO(principal.getAccount());
         return accountService.findDogamMore(accountDTO);
     }
 
     /**
      * 회원 로그아웃
      *
-     * @param session 세션
      * @return mv
      */
     @GetMapping("logout")
-    public ModelAndView logout(HttpSession session) {
-        session.invalidate();
+    public ModelAndView logout() {
         url = RouteUrlHelper.combine("");
         mv.setView(new RedirectView(url));
         return mv;

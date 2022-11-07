@@ -8,6 +8,7 @@
   "theme_color": "#212529",
   "description": "분리배출을 더욱 편리하게! \n분리배출 도우미 사전입니다. \n폐기물을 조회하세요. \n커뮤니티를 통해 소통하고 정보를 공유하세요.",
   "version": "1.0.0",
+  "author": "옥재욱",
   "orientation": "portrait",
   "background_color": "#212529",
   "prefer_related_applications": false,

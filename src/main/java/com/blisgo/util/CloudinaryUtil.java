@@ -6,8 +6,10 @@ import com.cloudinary.utils.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
@@ -23,79 +25,58 @@ public class CloudinaryUtil {
 
     // FIXME [Cloudinary 생성자] 하드코딩된 API 연결 정보
     public CloudinaryUtil() {
-        cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name", "hos3yyb97", "api_key", "275985644681352",
-                "api_secret", "AGGX9la_4o2pUT0Hr1nwVLjG_oY"));
-    }
-
-    /**
-     * 최적의 프로필 이미지를 위해 이미지 변환(Webp) 후 업로드
-     *
-     * @param profile_img 프로필 이미지
-     * @return 업로드된 이미지 URl
-     */
-    // TODO [Cloudinary 업로드] uploadImage 와 uploadFile 메서드 합치기. 너뮤 유사한 코드. switch문으로
-    // 교체
-    public String uploadImage(MultipartFile profile_img) {
-        Map result = null;
-        File uuidFile = null;
-        //TODO 오래된 방식(try-catch)
-        try {
-            uuidFile = convert(profile_img);
-            result = cloudinary.uploader().upload(uuidFile,
-                    ObjectUtils.asMap("folder", "userprofile", "transformation", new Transformation()
-                            .gravity("auto:classic").width(1000).height(1000).crop("thumb").fetchFormat("webp")));
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (Objects.requireNonNull(uuidFile).exists()) {
-                uuidFile.delete();
-            }
-        }
-        return (String) Objects.requireNonNull(result).get("secure_url");
+        cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name", "blisgo", "api_key", "428898964121829",
+                "api_secret", "pRBsjO-mi6-OFLEp4eTUxKplTyQ"));
     }
 
     /**
      * 게시판에서 업로드한 리소스를 클라우드에 저장
      *
-     * @param file 파일
+     * @param mfile 파일
      * @return 업로드된 파일 URl
      */
-    public String uploadFile(MultipartFile file) {
-        Map result = null;
-        File uuidFile = null;
-        //TODO 오래된 방식(try-catch)
+    public String uploadFile(MultipartFile mfile, String forWhat) {
+        Map map = null;
+        UUID uuid = UUID.randomUUID();
+        String fileName = mfile.getOriginalFilename();
+        String uuidFilename = uuid + "-" + fileName;
+        Path savePath = Paths.get(uuidFilename);
+        File uploadFile = new File(savePath.toUri());
+        String url;
+        String opt = "";
+
         try {
-            uuidFile = convert(file);
-            result = cloudinary.uploader().upload(uuidFile, ObjectUtils.asMap("folder", "board"));
+            mfile.transferTo(uploadFile);
         } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (uuidFile.exists()) {
-                uuidFile.delete();
-            }
+            throw new RuntimeException(e);
         }
-        return (String) Objects.requireNonNull(result).get("secure_url");
+
+        switch (forWhat) {
+            case "account" -> map = ObjectUtils.asMap("folder", "userprofile", "transformation", new Transformation()
+                    .gravity("auto:classic").width(1000).height(1000).crop("thumb").fetchFormat("webp"));
+            case "community" -> map = ObjectUtils.asMap("folder", "board");
+        }
+        try {
+            map = cloudinary.uploader().upload(uploadFile, map);
+            Files.deleteIfExists(savePath);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        switch (forWhat) {
+            case "account" -> {}
+            case "community" -> opt = "f_jpg,fl_progressive/";
+        }
+        url = addOpt((String) Objects.requireNonNull(map).get("secure_url"), opt);
+        return url;
     }
 
-    /**
-     * 파일 이름 변경하여 저장
-     *
-     * @param file 파일
-     * @return 파일 저장
-     */
-    private File convert(MultipartFile file) {
-        UUID uuid = UUID.randomUUID();
-        String uuidFilename = uuid + "";
-        File convFile = new File(uuidFilename);
-        //TODO 오래된 방식(try-catch)
-        try {
-            convFile.createNewFile();
-            FileOutputStream fos = new FileOutputStream(convFile);
-            fos.write(file.getBytes());
-            fos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return convFile;
+    private String addOpt(String str, String opt) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(str);
+        int appendIndex = sb.indexOf("/v") + 1;
+        sb.insert(appendIndex, opt);
+        return sb.toString();
     }
 }

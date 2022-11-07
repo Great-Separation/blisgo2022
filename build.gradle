@@ -104,12 +104,35 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 }
 
-compileJava {
-    options.compilerArgs << '-Aquerydsl.generatedAnnotationClass=com.querydsl.core.annotations.Generated'
+def queryDslDir = "./out/production/classes/generated"
+def queryDslOutput = file("${queryDslDir}")
+sourceSets {
+    main {
+        java {
+            srcDir queryDslDir
+        }
+    }
 }
 
+compileJava.doFirst {
+    delete file("${queryDslDir}/com")
+    ant.echo(message: "compileJava... we successully deleted files")
+}
+
+def gradleGeneratedDir = "./build/generated/source/apt"
+def gradleQueryDslOutput = file("${gradleGeneratedDir}")
+task cleanUpQueryDsl(type: Copy) {
+    from "${gradleGeneratedDir}/main"
+    into "${queryDslDir}"
+    doLast {
+        delete gradleQueryDslOutput
+    }
+}
+compileJava.finalizedBy(cleanUpQueryDsl)
+
 clean {
-    delete file('src/main/generated') // Annotation processor 생성물 생성 위치
+    delete gradleQueryDslOutput
+    delete queryDslOutput
 }
 
 flyway {

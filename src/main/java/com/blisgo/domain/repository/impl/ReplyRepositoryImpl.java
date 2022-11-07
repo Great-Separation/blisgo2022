@@ -29,7 +29,7 @@ public class ReplyRepositoryImpl implements ReplyRepository {
     @Override
     public List<Reply> selectReplyInnerJoinAccount(Board boardEntity) {
         return jpaQueryFactory
-                .select(Projections.fields(Reply.class, reply.account,
+                .select(Projections.fields(Reply.class, reply.replyNo, reply.account,
                         reply.createdDate, reply.content))
                 .from(reply).innerJoin(account).on(reply.account.memNo.eq(account.memNo))
                 .where(reply.board.bdNo.eq(boardEntity.getBdNo())).fetch();

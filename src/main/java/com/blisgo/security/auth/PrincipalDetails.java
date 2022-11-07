@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 
 public class PrincipalDetails implements UserDetails, OAuth2User {
@@ -23,8 +24,12 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
         this.attributes = attributes;
     }
 
-    public Account getUser() {
+    public Account getAccount() {
         return account;
+    }
+
+    public Integer getMemNo() {
+        return account.getMemNo();
     }
 
     @Override
@@ -37,7 +42,6 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
         return account.getNickname();
     }
 
-    public String getProfileImage(){return account.getProfileImage();}
 
     @Override
     public boolean isAccountNonExpired() {
@@ -61,10 +65,7 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-//        Collection<GrantedAuthority> collet = new ArrayList<GrantedAuthority>();
-//        collet.add(()->{ return account.getRole();});
-//        return collet;
-        return null;
+        return Collections.emptyList();
     }
 
     // 리소스 서버로 부터 받는 회원정보
@@ -73,9 +74,8 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
         return attributes;
     }
 
-    // User의 PrimaryKey
     @Override
     public String getName() {
-        return account.getMemNo() + "";
+        return account.getNickname();
     }
 }

@@ -24,7 +24,7 @@ const debounced = debouncePromise((items) => Promise.resolve(items), 250);
 
 $(autocomplete({
   container: '#autocomplete',
-  placeholder: '',
+  placeholder: '그릇, 가방...',
   openOnFocus: false,
   getSources({ query }) {
     return debounced([
@@ -47,6 +47,7 @@ $(autocomplete({
           return "dictionary/" + item.dicNo;
         },
         templates: {
+          detachedCancelButtonText: "asd",
           item({ item, components, html }) {
             return html`
             <a href="dictionary/${item.dicNo}" class="text-decoration-none text-body">

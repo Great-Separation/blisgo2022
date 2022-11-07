@@ -1,14 +1,16 @@
 package com.blisgo.web;
 
+import com.blisgo.domain.mapper.AccountMapper;
+import com.blisgo.security.auth.PrincipalDetails;
 import com.blisgo.service.DictionaryService;
 import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.DictionaryDTO;
 import com.blisgo.web.dto.HashtagDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -76,15 +78,13 @@ public class DictionaryController {
     /**
      * 북마크 추가 기능
      *
-     * @param session       세션
      * @param dictionaryDTO 폐기물
-     * @param accountDTO       사용자
+     * @param principal     인증된 사용자
      * @return 북마크 추가
      */
     @PutMapping("dogam/{dicNo}")
-    public @ResponseBody boolean addBookmark(HttpSession session, DictionaryDTO dictionaryDTO, AccountDTO accountDTO) {
-        accountDTO = (AccountDTO) session.getAttribute("mem");
-
+    public @ResponseBody boolean addBookmark(DictionaryDTO dictionaryDTO, @AuthenticationPrincipal PrincipalDetails principal) {
+        AccountDTO accountDTO = AccountMapper.INSTANCE.toDTO(principal.getAccount());
         return dictionaryService.addDogam(dictionaryDTO, accountDTO);
     }
 

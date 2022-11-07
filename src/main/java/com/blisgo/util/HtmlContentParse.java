@@ -29,26 +29,6 @@ public class HtmlContentParse {
         return sb.toString();
     }
 
-//    public static String parseContentPreview(String str) {
-//        Matcher mat;
-//        Pattern pattern;
-//        String[] filterList = {"<img[^>]*>", "<p data-f-id=\"pbf\"[^>]*>.*</p>"};
-//
-//        for (String filter : filterList) {
-//            pattern = Pattern.compile(filter, Pattern.DOTALL);
-//            mat = pattern.matcher(str);
-//            str = mat.replaceAll("");
-//        }
-//        pattern = Pattern.compile("<p.*>.*?</p>");
-//        mat = pattern.matcher(str);
-//        if (mat.find()) {
-//            str = mat.group(0);
-//        }
-//        str = str.substring(0, str.indexOf("</p>"));
-//
-//        return str;
-//    }
-
     public static String parseContentPreview(String str) {
         Matcher mat;
         Pattern pattern;

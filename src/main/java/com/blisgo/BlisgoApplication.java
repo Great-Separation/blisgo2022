@@ -1,6 +1,5 @@
 package com.blisgo;
 
-import com.blisgo.util.Unsplash;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -19,7 +18,5 @@ public class BlisgoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(BlisgoApplication.class, args);
-        // 서버 실행 시 index 배경 화면 변경. 1 client -> 1 서버 스레드 실행. 시간 당 50최대
-        Unsplash.changeWallpaper();
     }
 }

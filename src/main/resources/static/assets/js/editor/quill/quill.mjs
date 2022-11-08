@@ -13,6 +13,10 @@ quill.on('text-change', function () {
   document.getElementById("quill_html").value = quill.root.innerHTML;
 });
 
+var Image = Quill.import('formats/image');
+Image.className = 'img-fluid';
+Quill.register(Image, true);
+
 quill.on("selection-change", (range) => {
   if (range) {
       quill.theme.tooltip.show();

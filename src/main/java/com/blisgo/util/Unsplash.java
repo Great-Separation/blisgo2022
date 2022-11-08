@@ -37,7 +37,7 @@ public class Unsplash {
     }
 
     @SneakyThrows
-    private static String getImageUrl() {
+    public static String getImageUrl() {
         String link = String.format(host + "?query=" + query + "&client_id=" + clientId);
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(link)).method("GET", HttpRequest.BodyPublishers.noBody()).build();
         HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
@@ -52,13 +52,8 @@ public class Unsplash {
     private static void replaceImage(String editedImageLink) {
         URL url = new URL(editedImageLink);
         ReadableByteChannel rbc = Channels.newChannel(url.openStream());
-
         Resource resource = new ClassPathResource("static/assets/img/index_wallpaper.webp");
         Path wallpaperDir = Paths.get(resource.getURI());
-        //ResourceLoader resourceLoader = new DefaultResourceLoader();
-//        Resource resource = resourceLoader.getResource(
-//                CLASSPATH_URL_PREFIX + "static/assets/img/index_wallpaper.webp");
-        //String wallpaperDir = resource.getURI().getPath();
         log.info("파일 위치>" + wallpaperDir);
         try (FileOutputStream fos = new FileOutputStream(wallpaperDir.toFile())) {
             fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);

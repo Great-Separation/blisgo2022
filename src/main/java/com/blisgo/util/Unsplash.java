@@ -1,6 +1,7 @@
 package com.blisgo.util;
 
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
@@ -16,6 +17,9 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.util.Optional;
 
+import static org.springframework.core.io.ResourceLoader.CLASSPATH_URL_PREFIX;
+
+@Slf4j
 public class Unsplash {
     final static String host = "https://api.unsplash.com/photos/random";
     final static String query = "waste,garbage,trash,recycling";
@@ -41,7 +45,7 @@ public class Unsplash {
         JSONObject jsonObj = new JSONObject(response.body());
         jsonObj = jsonObj.getJSONObject("urls");
         String editedImageLink = jsonObj.getString("raw").concat(options);
-        System.out.println("이미지 경로>" + editedImageLink);
+        log.info("이미지 경로>" + editedImageLink);
         return editedImageLink;
     }
 
@@ -51,9 +55,10 @@ public class Unsplash {
         ReadableByteChannel rbc = Channels.newChannel(url.openStream());
         ResourceLoader resourceLoader = new DefaultResourceLoader();
 
-        Resource resource = resourceLoader.getResource("classpath:" + "static/assets/img/index_wallpaper.webp");
+        Resource resource = resourceLoader.getResource(
+                CLASSPATH_URL_PREFIX + "static/assets/img/index_wallpaper.webp");
         String wallpaperDir = resource.getURI().getPath();
-
+        log.info("파일 위치>" + wallpaperDir);
         try (FileOutputStream fos = new FileOutputStream(wallpaperDir)) {
             fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
         }

@@ -3,9 +3,8 @@ package com.blisgo.util;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
-import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
 
 import java.io.FileOutputStream;
 import java.net.URI;
@@ -15,9 +14,9 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
-
-import static org.springframework.core.io.ResourceLoader.CLASSPATH_URL_PREFIX;
 
 @Slf4j
 public class Unsplash {
@@ -53,13 +52,15 @@ public class Unsplash {
     private static void replaceImage(String editedImageLink) {
         URL url = new URL(editedImageLink);
         ReadableByteChannel rbc = Channels.newChannel(url.openStream());
-        ResourceLoader resourceLoader = new DefaultResourceLoader();
 
-        Resource resource = resourceLoader.getResource(
-                CLASSPATH_URL_PREFIX + "static/assets/img/index_wallpaper.webp");
-        String wallpaperDir = resource.getURI().getPath();
+        Resource resource = new ClassPathResource("static/assets/img/index_wallpaper.webp");
+        Path wallpaperDir = Paths.get(resource.getURI());
+        //ResourceLoader resourceLoader = new DefaultResourceLoader();
+//        Resource resource = resourceLoader.getResource(
+//                CLASSPATH_URL_PREFIX + "static/assets/img/index_wallpaper.webp");
+        //String wallpaperDir = resource.getURI().getPath();
         log.info("파일 위치>" + wallpaperDir);
-        try (FileOutputStream fos = new FileOutputStream(wallpaperDir)) {
+        try (FileOutputStream fos = new FileOutputStream(wallpaperDir.toFile())) {
             fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
         }
     }

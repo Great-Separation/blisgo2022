@@ -6,7 +6,7 @@
 <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
 <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
     <meta name="viewport" content="width=device-width, shrink-to-fit=0, user-scalable=0">
-    <title>글작성</title>
+    <title>글작성 - 분리ㅅㄱ</title>
     <meta name="theme-color" content="#ffffff">
     <meta name="twitter:image" content="/assets/img/favicon/512x512.png">
     <meta name="twitter:title" content="분리ㅅㄱ">
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div class="card-body p-1">
-                            <div id="quill"><span><br></span></div><!-- Start: quill 폼. 없으면 bdContent 전달 안됨! --><input class="form-control" type="hidden" id="quill_html" name="bdContent"><!-- End: quill 폼. 없으면 bdContent 전달 안됨! -->
+                            <div id="quill"></div><!-- Start: quill 폼. 없으면 bdContent 전달 안됨! --><input class="form-control" type="hidden" id="quill_html" name="bdContent"><!-- End: quill 폼. 없으면 bdContent 전달 안됨! -->
                         </div>
                     </div><!-- Start: Absolute Btn --><button class="btn btn-success border rounded-circle shadow d-flex justify-content-center align-items-center position-fixed bottom-0 end-0 translate-middle p-3 m-2 border-0" data-bs-toggle="tooltip" data-bss-tooltip="" type="submit" title="글을 게시판에 올립니다"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" class="fs-3" id="float-btn-icon">
                             <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->

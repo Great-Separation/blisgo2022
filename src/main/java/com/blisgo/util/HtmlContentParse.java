@@ -40,7 +40,7 @@ public class HtmlContentParse {
             str = str.substring(0, str.indexOf("</p>"));
         }
 
-        String[] filterList = {"<img[^>]*>", "<p.*>", "</p>", "<br>", "<p data-f-id=\"pbf\"[^>]*>.*</p>"};
+        String[] filterList = {"<p></p>","<img[^>]*>", "<p.*>", "</p>", "<br>", "<p data-f-id=\"pbf\"[^>]*>.*</p>"};
 
         for (String filter : filterList) {
             pattern = Pattern.compile(filter, Pattern.DOTALL);
@@ -48,7 +48,7 @@ public class HtmlContentParse {
             str = mat.replaceAll("");
         }
 
-        return str;
+        return str.equals("") ? null: str;
     }
 
 

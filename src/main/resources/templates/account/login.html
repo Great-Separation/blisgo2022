@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" oncontextmenu="return false" ondragstart="return false" onselectstart="return false" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
@@ -27,7 +27,7 @@
 <link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
 </head>
 
-<body class="bg-light" oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+<body class="bg-light" oncontextmenu="return false" ondragstart="return false">
     <main class="vh-100">
         <div class="row g-0 justify-content-center align-items-center vh-100">
             <div class="col-md-6 col-xl-4">
@@ -48,8 +48,8 @@
                                 </div>
                                 <div class="accordion" role="tablist" id="accordion-login">
                                     <div class="accordion-item border-0">
-                                        <h2 class="accordion-header" role="tab"><button class="accordion-button collapsed text-center text-muted bg-light shadow-sm d-block p-2" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-login .item-1" aria-expanded="false" aria-controls="accordion-login .item-1">로그인</button></h2>
-                                        <div class="accordion-collapse collapse item-1 bg-light" role="tabpanel" data-bs-parent="#accordion-login">
+                                        <h2 class="accordion-header" role="tab"><button class="accordion-button text-center text-muted bg-light shadow-sm d-block p-2" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-login .item-1" aria-expanded="true" aria-controls="accordion-login .item-1">로그인</button></h2>
+                                        <div class="accordion-collapse collapse show item-1 bg-light" role="tabpanel" data-bs-parent="#accordion-login">
                                             <div class="accordion-body">
                                                 <div class="vstack gap-2"><input class="form-control email-imput form-control" type="email" required="" placeholder="이메일" minlength="6" name="email"><input class="form-control" type="password" required="" placeholder="비밀번호" minlength="6" name="pass" inputmode="latin"><small class="text-end"><a class="text-decoration-none ps-2" th:href="@{~/account/verify}">비밀번호 변경</a></small>
                                                     <div class="btn-group-vertical gap-3" role="group"><button class="btn btn-primary w-100" type="submit">로그인</button></div>

@@ -9,6 +9,8 @@ import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.BoardDTO;
 import com.blisgo.web.dto.ReplyDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -157,12 +158,21 @@ public class BoardController {
      * @return mv
      */
     @PostMapping("write/upload")
-    public @ResponseBody HashMap<String, String> uploadToStorage(MultipartFile file) {
+    public @ResponseBody String uploadToStorage(MultipartFile file) throws JSONException {
         cloudinaryUtil = new CloudinaryUtil();
         String url = cloudinaryUtil.uploadFile(file, folder.community.toString());
-        HashMap<String, String> m = new HashMap<>();
-        m.put("link", url);
-        return m;
+        //HashMap<String, String> m = new HashMap<>();
+        //m.put("link", url);
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("success", 1);
+
+        JSONObject jfile = new JSONObject();
+        jfile.put("url", url);
+
+        jsonObject.put("file", jfile);
+
+        return jsonObject.toString();
     }
 
     /**

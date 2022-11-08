@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -35,7 +36,7 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public List<BoardDTO> findBoards() {
-        String bdContentImgRemoved;
+        Optional<String> bdContentImgRemoved;
         index = 0;
         List<BoardDTO> board = new ArrayList<>();
         @SuppressWarnings("lint")
@@ -45,8 +46,12 @@ public class BoardServiceImpl implements BoardService {
         List<BoardDTO> boardDTOArray = rs;
 
         for (BoardDTO b : boardDTOArray) {
-            bdContentImgRemoved = HtmlContentParse.parseContentPreview(b.getBdContent());
-            b = BoardDTO.selectBoardFilterContentImage(b, bdContentImgRemoved);
+            bdContentImgRemoved = Optional.ofNullable(HtmlContentParse.parseContentPreview(b.getBdContent()));
+            if(bdContentImgRemoved.isPresent()){
+                b = BoardDTO.selectBoardFilterContentImage(b, bdContentImgRemoved.get());
+            }else{
+                b = BoardDTO.selectBoardFilterContentImage(b, null);
+            }
             board.add(b);
         }
 

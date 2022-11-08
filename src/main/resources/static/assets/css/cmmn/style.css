@@ -23,3 +23,7 @@
   height: 50vh;
 }
 
+#highlight {
+  background: url("/assets/img/index_wallpaper.webp") center / cover no-repeat;
+}
+

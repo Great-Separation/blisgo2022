@@ -23,12 +23,6 @@
   height: 50vh;
 }
 
-#highlight {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .ql-editor {
   font-size: 16px;
 }

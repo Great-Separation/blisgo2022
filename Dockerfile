@@ -1,4 +1,4 @@
-FROM adoptopenjdk:17-jdk-hotspot AS builder
+FROM openjdk:17 AS builder
 COPY gradlew .
 COPY gradle gradle
 COPY build.gradle .
@@ -7,7 +7,7 @@ COPY src src
 RUN chmod +x ./gradlew
 RUN ./gradlew bootJar
 
-FROM adoptopenjdk:17-jdk-hotspot
+FROM openjdk:17
 COPY --from=builder build/libs/*.jar app.jar
 
 ARG ENVIRYNMENT

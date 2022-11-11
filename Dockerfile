@@ -5,7 +5,7 @@ COPY build.gradle .
 COPY settings.gradle .
 COPY src src
 RUN chmod +x ./gradlew
-RUN ./gradlew bootJar
+RUN ./gradlew build && java -jar build/libs/blisgo.jar
 
 FROM openjdk:17
 COPY --from=builder build/libs/*.jar app.jar

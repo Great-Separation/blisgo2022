@@ -11,15 +11,21 @@ RUN gradle build -x test --parallel
 
 # APP
 FROM openjdk:17.0-slim
-WORKDIR /app
+WORKDIR /
 
 # 빌더 이미지에서 jar 파일만 복사
 COPY --from=builder /build/build/libs/blisgo.jar .
 
-EXPOSE 8080
+EXPOSE 8080 8080
 
 # root 대신 nobody 권한으로 실행
-USER nobody
-ENTRYPOINT ["java","-jar","blisgo.jar"]
+USER root
+ENTRYPOINT [                                                \
+    "java",                                                 \
+    "-jar",                                                 \
+    "-Djava.security.egd=file:/dev/./urandom",              \
+    "-Dsun.net.inetaddr.ttl=0",                             \
+    "blisgo.jar"              \
+]
 
 # 참조>https://findstar.pe.kr/2022/05/13/gradle-docker-cache/

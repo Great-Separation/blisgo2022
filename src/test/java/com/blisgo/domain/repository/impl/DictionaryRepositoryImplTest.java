@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -85,7 +86,8 @@ class DictionaryRepositoryImplTest extends TestRepositoryTemplate {
         @Test
         @DisplayName("열람한 정보와 연관된 폐기물 목록이 조회되는가?")
         void testSelectRelatedDictionaryList() {
-            List<Dictionary> result = dictionaryRepository.selectRelatedDictionaryList(Wastes.Ir);
+            List<Wastes> tags = Arrays.asList(Wastes.Ir, Wastes.NF);
+            List<Dictionary> result = dictionaryRepository.selectRelatedDictionaryList(tags);
             diff = javers.compare(sampleDictionary, result.get(0));
             Assertions.assertNotNull(result);
         }

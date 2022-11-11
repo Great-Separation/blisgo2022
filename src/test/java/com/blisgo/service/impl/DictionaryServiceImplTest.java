@@ -1,9 +1,7 @@
 package com.blisgo.service.impl;
 
 import com.blisgo.domain.entity.Dictionary;
-import com.blisgo.domain.entity.Dogam;
 import com.blisgo.domain.entity.Guide;
-import com.blisgo.domain.entity.cmmn.Wastes;
 import com.blisgo.domain.repository.DictionaryRepository;
 import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.DictionaryDTO;
@@ -17,6 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -46,7 +45,7 @@ class DictionaryServiceImplTest {
      */
     @Test
     void testFindDictionary() {
-        when(dictionaryRepository.selectDictionary((Dictionary) any())).thenReturn(new Dictionary());
+        when(dictionaryRepository.selectDictionary(any())).thenReturn(new Dictionary());
         DictionaryDTO actualFindDictionaryResult = dictionaryServiceImpl.findDictionary(new DictionaryDTO());
         assertNull(actualFindDictionaryResult.getCategory());
         assertNull(actualFindDictionaryResult.getTreatment());
@@ -56,7 +55,7 @@ class DictionaryServiceImplTest {
         assertNull(actualFindDictionaryResult.getHit());
         assertNull(actualFindDictionaryResult.getEngName());
         assertNull(actualFindDictionaryResult.getDicNo());
-        verify(dictionaryRepository).selectDictionary((Dictionary) any());
+        verify(dictionaryRepository).selectDictionary(any());
     }
 
     /**
@@ -64,9 +63,9 @@ class DictionaryServiceImplTest {
      */
     @Test
     void testFindHashtag() {
-        when(dictionaryRepository.selectHashtagInnerJoinGuide((Dictionary) any())).thenReturn(new ArrayList<>());
+        when(dictionaryRepository.selectHashtagInnerJoinGuide(any())).thenReturn(new ArrayList<>());
         assertTrue(dictionaryServiceImpl.findHashtag(new DictionaryDTO()).isEmpty());
-        verify(dictionaryRepository).selectHashtagInnerJoinGuide((Dictionary) any());
+        verify(dictionaryRepository).selectHashtagInnerJoinGuide(any());
     }
 
     /**
@@ -119,13 +118,13 @@ class DictionaryServiceImplTest {
      */
     @Test
     void testFindRelatedDictionaries3() {
-        when(dictionaryRepository.selectRelatedDictionaryList((Wastes) any())).thenReturn(new ArrayList<>());
+        when(dictionaryRepository.selectRelatedDictionaryList(Collections.singletonList(any()))).thenReturn(new ArrayList<>());
 
         ArrayList<HashtagDTO> hashtagDTOList = new ArrayList<>();
         Dictionary dictionary = new Dictionary();
         hashtagDTOList.add(new HashtagDTO(dictionary, new Guide()));
         assertTrue(dictionaryServiceImpl.findRelatedDictionaries(hashtagDTOList).isEmpty());
-        verify(dictionaryRepository).selectRelatedDictionaryList((Wastes) any());
+        verify(dictionaryRepository).selectRelatedDictionaryList(Collections.singletonList(any()));
     }
 
     /**
@@ -146,7 +145,7 @@ class DictionaryServiceImplTest {
         //   findRelatedDictionaries(List).
         //   See https://diff.blue/R013 to resolve this issue.
 
-        when(dictionaryRepository.selectRelatedDictionaryList((Wastes) any())).thenReturn(new ArrayList<>());
+        when(dictionaryRepository.selectRelatedDictionaryList(Collections.singletonList(any()))).thenReturn(new ArrayList<>());
 
         ArrayList<HashtagDTO> hashtagDTOList = new ArrayList<>();
         hashtagDTOList.add(null);
@@ -188,9 +187,9 @@ class DictionaryServiceImplTest {
      */
     @Test
     void testCountDictionaryHit() {
-        when(dictionaryRepository.updateDictionaryHit((Dictionary) any())).thenReturn(true);
+        when(dictionaryRepository.updateDictionaryHit(any())).thenReturn(true);
         assertTrue(dictionaryServiceImpl.countDictionaryHit(new DictionaryDTO()));
-        verify(dictionaryRepository).updateDictionaryHit((Dictionary) any());
+        verify(dictionaryRepository).updateDictionaryHit(any());
     }
 
     /**
@@ -198,9 +197,9 @@ class DictionaryServiceImplTest {
      */
     @Test
     void testCountDictionaryHit2() {
-        when(dictionaryRepository.updateDictionaryHit((Dictionary) any())).thenReturn(false);
+        when(dictionaryRepository.updateDictionaryHit(any())).thenReturn(false);
         assertFalse(dictionaryServiceImpl.countDictionaryHit(new DictionaryDTO()));
-        verify(dictionaryRepository).updateDictionaryHit((Dictionary) any());
+        verify(dictionaryRepository).updateDictionaryHit(any());
     }
 
     /**
@@ -208,10 +207,10 @@ class DictionaryServiceImplTest {
      */
     @Test
     void testAddDogam() {
-        when(dictionaryRepository.insertDogam((Dogam) any())).thenReturn(true);
+        when(dictionaryRepository.insertDogam(any())).thenReturn(true);
         DictionaryDTO dictionaryDTO = new DictionaryDTO();
         assertTrue(dictionaryServiceImpl.addDogam(dictionaryDTO, new AccountDTO()));
-        verify(dictionaryRepository).insertDogam((Dogam) any());
+        verify(dictionaryRepository).insertDogam(any());
     }
 
     /**
@@ -219,10 +218,10 @@ class DictionaryServiceImplTest {
      */
     @Test
     void testAddDogam2() {
-        when(dictionaryRepository.insertDogam((Dogam) any())).thenReturn(false);
+        when(dictionaryRepository.insertDogam(any())).thenReturn(false);
         DictionaryDTO dictionaryDTO = new DictionaryDTO();
         assertFalse(dictionaryServiceImpl.addDogam(dictionaryDTO, new AccountDTO()));
-        verify(dictionaryRepository).insertDogam((Dogam) any());
+        verify(dictionaryRepository).insertDogam(any());
     }
 }
 

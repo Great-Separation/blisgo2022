@@ -61,14 +61,14 @@ class BoardServiceImplTest {
      */
     @Test
     void testAddBoard2() {
-        when(boardRepository.insertBoard((Board) any())).thenReturn(true);
+        when(boardRepository.insertBoard(any())).thenReturn(true);
         Account account = new Account();
         LocalDateTime createdDate = LocalDateTime.of(1, 1, 1, 1, 1);
         BoardDTO boardDTO = new BoardDTO(1, account, "Dr", "<imgUsrc=UU>", "Not all who wander are lost", 1, 1, 3,
                 "<imgUsrc=UU>", createdDate, LocalDateTime.of(1, 1, 1, 1, 1));
 
         assertTrue(boardServiceImpl.addBoard(boardDTO, new AccountDTO()));
-        verify(boardRepository).insertBoard((Board) any());
+        verify(boardRepository).insertBoard(any());
     }
 
     /**
@@ -76,14 +76,14 @@ class BoardServiceImplTest {
      */
     @Test
     void testAddBoard3() {
-        when(boardRepository.insertBoard((Board) any())).thenReturn(false);
+        when(boardRepository.insertBoard(any())).thenReturn(false);
         Account account = new Account();
         LocalDateTime createdDate = LocalDateTime.of(1, 1, 1, 1, 1);
         BoardDTO boardDTO = new BoardDTO(1, account, "Dr", "<imgUsrc=UU>", "Not all who wander are lost", 1, 1, 3,
                 "<imgUsrc=UU>", createdDate, LocalDateTime.of(1, 1, 1, 1, 1));
 
         assertFalse(boardServiceImpl.addBoard(boardDTO, new AccountDTO()));
-        verify(boardRepository).insertBoard((Board) any());
+        verify(boardRepository).insertBoard(any());
     }
 
     /**
@@ -91,14 +91,14 @@ class BoardServiceImplTest {
      */
     @Test
     void testAddBoard4() {
-        when(boardRepository.insertBoard((Board) any())).thenReturn(true);
+        when(boardRepository.insertBoard(any())).thenReturn(true);
         Account account = new Account();
         LocalDateTime createdDate = LocalDateTime.of(1, 1, 1, 1, 1);
         BoardDTO boardDTO = new BoardDTO(1, account, "Dr", "<imgUsrc=UU>", "<imgUsrc=UU>", 1, 1, 3, "<imgUsrc=UU>",
                 createdDate, LocalDateTime.of(1, 1, 1, 1, 1));
 
         assertTrue(boardServiceImpl.addBoard(boardDTO, new AccountDTO()));
-        verify(boardRepository).insertBoard((Board) any());
+        verify(boardRepository).insertBoard(any());
     }
 
     /**
@@ -119,7 +119,7 @@ class BoardServiceImplTest {
         //   addBoard(BoardDTO, AccountDTO).
         //   See https://diff.blue/R013 to resolve this issue.
 
-        when(boardRepository.insertBoard((Board) any())).thenReturn(true);
+        when(boardRepository.insertBoard(any())).thenReturn(true);
         boardServiceImpl.addBoard(null, new AccountDTO());
     }
 
@@ -436,7 +436,7 @@ class BoardServiceImplTest {
     void testFindBoard() {
         Board board = new Board();
         board.preUpdate();
-        when(boardRepository.selectBoard((Board) any())).thenReturn(board);
+        when(boardRepository.selectBoard(any())).thenReturn(board);
         BoardDTO actualFindBoardResult = boardServiceImpl.findBoard(new BoardDTO());
         assertNull(actualFindBoardResult.getAccount());
         assertEquals("0초 전", actualFindBoardResult.getTimeDiff());
@@ -449,7 +449,7 @@ class BoardServiceImplTest {
         assertNull(actualFindBoardResult.getBdFavorite());
         assertNull(actualFindBoardResult.getBdContent());
         assertNull(actualFindBoardResult.getBdCategory());
-        verify(boardRepository).selectBoard((Board) any());
+        verify(boardRepository).selectBoard(any());
     }
 
     /**
@@ -473,7 +473,7 @@ class BoardServiceImplTest {
         when(board.getModifiedDate()).thenReturn(LocalDateTime.of(1, 1, 1, 1, 1));
         doNothing().when(board).preUpdate();
         board.preUpdate();
-        when(boardRepository.selectBoard((Board) any())).thenReturn(board);
+        when(boardRepository.selectBoard(any())).thenReturn(board);
         BoardDTO actualFindBoardResult = boardServiceImpl.findBoard(new BoardDTO());
         assertSame(account, actualFindBoardResult.getAccount());
         assertEquals("Bd Category", actualFindBoardResult.getBdCategory());
@@ -486,7 +486,7 @@ class BoardServiceImplTest {
         assertEquals("Not all who wander are lost", actualFindBoardResult.getBdContent());
         assertEquals(3, actualFindBoardResult.getBdReplyCount().intValue());
         assertEquals("Bd Thumbnail", actualFindBoardResult.getBdThumbnail());
-        verify(boardRepository).selectBoard((Board) any());
+        verify(boardRepository).selectBoard(any());
         verify(board).getAccount();
         verify(board).getBdFavorite();
         verify(board).getBdNo();
@@ -540,7 +540,7 @@ class BoardServiceImplTest {
         when(board.getModifiedDate()).thenReturn(null);
         doNothing().when(board).preUpdate();
         board.preUpdate();
-        when(boardRepository.selectBoard((Board) any())).thenReturn(board);
+        when(boardRepository.selectBoard(any())).thenReturn(board);
         boardServiceImpl.findBoard(new BoardDTO());
     }
 
@@ -565,7 +565,7 @@ class BoardServiceImplTest {
         when(board.getModifiedDate()).thenReturn(LocalDateTime.of(1, 1, 1, 1, 1));
         doNothing().when(board).preUpdate();
         board.preUpdate();
-        when(boardRepository.selectBoard((Board) any())).thenReturn(board);
+        when(boardRepository.selectBoard(any())).thenReturn(board);
         BoardDTO actualFindBoardResult = boardServiceImpl.findBoard(null);
         assertSame(account, actualFindBoardResult.getAccount());
         assertEquals("Bd Category", actualFindBoardResult.getBdCategory());
@@ -578,7 +578,7 @@ class BoardServiceImplTest {
         assertEquals("Not all who wander are lost", actualFindBoardResult.getBdContent());
         assertEquals(3, actualFindBoardResult.getBdReplyCount().intValue());
         assertEquals("Bd Thumbnail", actualFindBoardResult.getBdThumbnail());
-        verify(boardRepository).selectBoard((Board) any());
+        verify(boardRepository).selectBoard(any());
         verify(board).getAccount();
         verify(board).getBdFavorite();
         verify(board).getBdNo();
@@ -598,9 +598,9 @@ class BoardServiceImplTest {
      */
     @Test
     void testRemoveBoard() {
-        when(boardRepository.deleteBoard((Board) any())).thenReturn(true);
+        when(boardRepository.deleteBoard(any())).thenReturn(true);
         assertTrue(boardServiceImpl.removeBoard(new BoardDTO()));
-        verify(boardRepository).deleteBoard((Board) any());
+        verify(boardRepository).deleteBoard(any());
     }
 
     /**
@@ -608,9 +608,9 @@ class BoardServiceImplTest {
      */
     @Test
     void testRemoveBoard2() {
-        when(boardRepository.deleteBoard((Board) any())).thenReturn(false);
+        when(boardRepository.deleteBoard(any())).thenReturn(false);
         assertFalse(boardServiceImpl.removeBoard(new BoardDTO()));
-        verify(boardRepository).deleteBoard((Board) any());
+        verify(boardRepository).deleteBoard(any());
     }
 
     /**
@@ -618,9 +618,9 @@ class BoardServiceImplTest {
      */
     @Test
     void testRemoveBoard3() {
-        when(boardRepository.deleteBoard((Board) any())).thenReturn(true);
+        when(boardRepository.deleteBoard(any())).thenReturn(true);
         assertTrue(boardServiceImpl.removeBoard(null));
-        verify(boardRepository).deleteBoard((Board) any());
+        verify(boardRepository).deleteBoard(any());
     }
 
     /**
@@ -628,9 +628,9 @@ class BoardServiceImplTest {
      */
     @Test
     void testCountBoardViews() {
-        when(boardRepository.updateBoardViews((Board) any())).thenReturn(true);
+        when(boardRepository.updateBoardViews(any())).thenReturn(true);
         assertTrue(boardServiceImpl.countBoardViews(new BoardDTO()));
-        verify(boardRepository).updateBoardViews((Board) any());
+        verify(boardRepository).updateBoardViews(any());
     }
 
     /**
@@ -638,9 +638,9 @@ class BoardServiceImplTest {
      */
     @Test
     void testCountBoardViews2() {
-        when(boardRepository.updateBoardViews((Board) any())).thenReturn(false);
+        when(boardRepository.updateBoardViews(any())).thenReturn(false);
         assertFalse(boardServiceImpl.countBoardViews(new BoardDTO()));
-        verify(boardRepository).updateBoardViews((Board) any());
+        verify(boardRepository).updateBoardViews(any());
     }
 
     /**
@@ -648,9 +648,9 @@ class BoardServiceImplTest {
      */
     @Test
     void testCountBoardViews3() {
-        when(boardRepository.updateBoardViews((Board) any())).thenReturn(true);
+        when(boardRepository.updateBoardViews(any())).thenReturn(true);
         assertTrue(boardServiceImpl.countBoardViews(null));
-        verify(boardRepository).updateBoardViews((Board) any());
+        verify(boardRepository).updateBoardViews(any());
     }
 
     /**
@@ -658,9 +658,9 @@ class BoardServiceImplTest {
      */
     @Test
     void testModifyBoard() {
-        when(boardRepository.updateBoard((Board) any())).thenReturn(true);
+        when(boardRepository.updateBoard(any())).thenReturn(true);
         assertTrue(boardServiceImpl.modifyBoard(new BoardDTO()));
-        verify(boardRepository).updateBoard((Board) any());
+        verify(boardRepository).updateBoard(any());
     }
 
     /**
@@ -668,9 +668,9 @@ class BoardServiceImplTest {
      */
     @Test
     void testModifyBoard2() {
-        when(boardRepository.updateBoard((Board) any())).thenReturn(false);
+        when(boardRepository.updateBoard(any())).thenReturn(false);
         assertFalse(boardServiceImpl.modifyBoard(new BoardDTO()));
-        verify(boardRepository).updateBoard((Board) any());
+        verify(boardRepository).updateBoard(any());
     }
 
     /**
@@ -678,9 +678,9 @@ class BoardServiceImplTest {
      */
     @Test
     void testModifyBoard3() {
-        when(boardRepository.updateBoard((Board) any())).thenReturn(true);
+        when(boardRepository.updateBoard(any())).thenReturn(true);
         assertTrue(boardServiceImpl.modifyBoard(null));
-        verify(boardRepository).updateBoard((Board) any());
+        verify(boardRepository).updateBoard(any());
     }
 
     /**
@@ -688,9 +688,9 @@ class BoardServiceImplTest {
      */
     @Test
     void testCountBoardFavorite() {
-        when(boardRepository.updateBoardFavorite((Board) any())).thenReturn(true);
+        when(boardRepository.updateBoardFavorite(any())).thenReturn(true);
         assertTrue(boardServiceImpl.countBoardFavorite(new BoardDTO()));
-        verify(boardRepository).updateBoardFavorite((Board) any());
+        verify(boardRepository).updateBoardFavorite(any());
     }
 
     /**
@@ -698,9 +698,9 @@ class BoardServiceImplTest {
      */
     @Test
     void testCountBoardFavorite2() {
-        when(boardRepository.updateBoardFavorite((Board) any())).thenReturn(false);
+        when(boardRepository.updateBoardFavorite(any())).thenReturn(false);
         assertFalse(boardServiceImpl.countBoardFavorite(new BoardDTO()));
-        verify(boardRepository).updateBoardFavorite((Board) any());
+        verify(boardRepository).updateBoardFavorite(any());
     }
 
     /**
@@ -708,9 +708,9 @@ class BoardServiceImplTest {
      */
     @Test
     void testCountBoardFavorite3() {
-        when(boardRepository.updateBoardFavorite((Board) any())).thenReturn(true);
+        when(boardRepository.updateBoardFavorite(any())).thenReturn(true);
         assertTrue(boardServiceImpl.countBoardFavorite(null));
-        verify(boardRepository).updateBoardFavorite((Board) any());
+        verify(boardRepository).updateBoardFavorite(any());
     }
 }
 

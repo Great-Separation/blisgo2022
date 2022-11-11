@@ -31,11 +31,11 @@ class AccountServiceImplTest {
      */
     @Test
     void testAddAccount() {
-        when(accountRepository.insertAccount((Account) any())).thenReturn(true);
-        when(accountRepository.updateProfileImg((Account) any(), (String) any())).thenReturn(true);
+        when(accountRepository.insertAccount(any())).thenReturn(true);
+        when(accountRepository.updateProfileImg(any(), any())).thenReturn(true);
         assertTrue(accountServiceImpl.addAccount(new AccountDTO()));
-        verify(accountRepository).insertAccount((Account) any());
-        verify(accountRepository).updateProfileImg((Account) any(), (String) any());
+        verify(accountRepository).insertAccount(any());
+        verify(accountRepository).updateProfileImg(any(), any());
     }
 
     /**
@@ -56,8 +56,8 @@ class AccountServiceImplTest {
         //   addAccount(AccountDTO).
         //   See https://diff.blue/R013 to resolve this issue.
 
-        when(accountRepository.insertAccount((Account) any())).thenReturn(true);
-        when(accountRepository.updateProfileImg((Account) any(), (String) any())).thenReturn(true);
+        when(accountRepository.insertAccount(any())).thenReturn(true);
+        when(accountRepository.updateProfileImg(any(), any())).thenReturn(true);
         accountServiceImpl.addAccount(null);
     }
 
@@ -68,7 +68,7 @@ class AccountServiceImplTest {
     void testFindAccount() {
         Account account = new Account();
         account.preUpdate();
-        when(accountRepository.selectAccount((Account) any())).thenReturn(account);
+        when(accountRepository.selectAccount(any())).thenReturn(account);
         AccountDTO actualFindAccountResult = accountServiceImpl.findAccount(new AccountDTO());
         assertNull(actualFindAccountResult.getCreatedDate());
         assertNull(actualFindAccountResult.getProfileImage());
@@ -77,7 +77,7 @@ class AccountServiceImplTest {
         assertNull(actualFindAccountResult.getMemPoint());
         assertNull(actualFindAccountResult.getMemNo());
         assertNull(actualFindAccountResult.getEmail());
-        verify(accountRepository).selectAccount((Account) any());
+        verify(accountRepository).selectAccount(any());
     }
 
     /**
@@ -95,7 +95,7 @@ class AccountServiceImplTest {
         when(account.getCreatedDate()).thenReturn(LocalDateTime.of(1, 1, 1, 1, 1));
         doNothing().when(account).preUpdate();
         account.preUpdate();
-        when(accountRepository.selectAccount((Account) any())).thenReturn(account);
+        when(accountRepository.selectAccount(any())).thenReturn(account);
         AccountDTO actualFindAccountResult = accountServiceImpl.findAccount(new AccountDTO());
         assertEquals("Profile Image", actualFindAccountResult.getProfileImage());
         assertEquals("01:01", actualFindAccountResult.getCreatedDate().toLocalTime().toString());
@@ -104,7 +104,7 @@ class AccountServiceImplTest {
         assertEquals(1, actualFindAccountResult.getMemPoint().intValue());
         assertEquals(1, actualFindAccountResult.getMemNo().intValue());
         assertEquals("jane.doe@example.org", actualFindAccountResult.getEmail());
-        verify(accountRepository).selectAccount((Account) any());
+        verify(accountRepository).selectAccount(any());
         verify(account).getMemNo();
         verify(account).getMemPoint();
         verify(account).getEmail();
@@ -130,7 +130,7 @@ class AccountServiceImplTest {
         when(account.getCreatedDate()).thenReturn(LocalDateTime.of(1, 1, 1, 1, 1));
         doNothing().when(account).preUpdate();
         account.preUpdate();
-        when(accountRepository.selectAccount((Account) any())).thenReturn(account);
+        when(accountRepository.selectAccount(any())).thenReturn(account);
         AccountDTO actualFindAccountResult = accountServiceImpl.findAccount(null);
         assertEquals("Profile Image", actualFindAccountResult.getProfileImage());
         assertEquals("01:01", actualFindAccountResult.getCreatedDate().toLocalTime().toString());
@@ -139,7 +139,7 @@ class AccountServiceImplTest {
         assertEquals(1, actualFindAccountResult.getMemPoint().intValue());
         assertEquals(1, actualFindAccountResult.getMemNo().intValue());
         assertEquals("jane.doe@example.org", actualFindAccountResult.getEmail());
-        verify(accountRepository).selectAccount((Account) any());
+        verify(accountRepository).selectAccount(any());
         verify(account).getMemNo();
         verify(account).getMemPoint();
         verify(account).getEmail();
@@ -151,43 +151,13 @@ class AccountServiceImplTest {
     }
 
     /**
-     * Method under test: {@link AccountServiceImpl#modifyAccountNickname(AccountDTO)}
-     */
-    @Test
-    void testModifyAccountNickname() {
-        when(accountRepository.updateNickname((Account) any())).thenReturn(true);
-        assertTrue(accountServiceImpl.modifyAccountNickname(new AccountDTO()));
-        verify(accountRepository).updateNickname((Account) any());
-    }
-
-    /**
-     * Method under test: {@link AccountServiceImpl#modifyAccountNickname(AccountDTO)}
-     */
-    @Test
-    void testModifyAccountNickname2() {
-        when(accountRepository.updateNickname((Account) any())).thenReturn(false);
-        assertFalse(accountServiceImpl.modifyAccountNickname(new AccountDTO()));
-        verify(accountRepository).updateNickname((Account) any());
-    }
-
-    /**
-     * Method under test: {@link AccountServiceImpl#modifyAccountNickname(AccountDTO)}
-     */
-    @Test
-    void testModifyAccountNickname3() {
-        when(accountRepository.updateNickname((Account) any())).thenReturn(true);
-        assertTrue(accountServiceImpl.modifyAccountNickname(null));
-        verify(accountRepository).updateNickname((Account) any());
-    }
-
-    /**
      * Method under test: {@link AccountServiceImpl#removeAccount(AccountDTO)}
      */
     @Test
     void testRemoveAccount() {
-        when(accountRepository.deleteAccount((Account) any())).thenReturn(true);
+        when(accountRepository.deleteAccount(any())).thenReturn(true);
         assertTrue(accountServiceImpl.removeAccount(new AccountDTO()));
-        verify(accountRepository).deleteAccount((Account) any());
+        verify(accountRepository).deleteAccount(any());
     }
 
     /**
@@ -195,9 +165,9 @@ class AccountServiceImplTest {
      */
     @Test
     void testRemoveAccount2() {
-        when(accountRepository.deleteAccount((Account) any())).thenReturn(true);
+        when(accountRepository.deleteAccount(any())).thenReturn(true);
         assertTrue(accountServiceImpl.removeAccount(null));
-        verify(accountRepository).deleteAccount((Account) any());
+        verify(accountRepository).deleteAccount(any());
     }
 
     /**
@@ -205,9 +175,9 @@ class AccountServiceImplTest {
      */
     @Test
     void testModifyAccountPass() {
-        when(accountRepository.updatePassword((Account) any(), (String) any())).thenReturn(true);
+        when(accountRepository.updatePassword(any(), any())).thenReturn(true);
         assertTrue(accountServiceImpl.modifyAccountPass(new AccountDTO(), "New Pass"));
-        verify(accountRepository).updatePassword((Account) any(), (String) any());
+        verify(accountRepository).updatePassword(any(), any());
     }
 
     /**
@@ -215,9 +185,9 @@ class AccountServiceImplTest {
      */
     @Test
     void testModifyAccountPass2() {
-        when(accountRepository.updatePassword((Account) any(), (String) any())).thenReturn(false);
+        when(accountRepository.updatePassword(any(), any())).thenReturn(false);
         assertFalse(accountServiceImpl.modifyAccountPass(new AccountDTO(), "New Pass"));
-        verify(accountRepository).updatePassword((Account) any(), (String) any());
+        verify(accountRepository).updatePassword(any(), any());
     }
 
     /**
@@ -225,9 +195,9 @@ class AccountServiceImplTest {
      */
     @Test
     void testModifyAccountPass3() {
-        when(accountRepository.updatePassword((Account) any(), (String) any())).thenReturn(true);
+        when(accountRepository.updatePassword(any(), any())).thenReturn(true);
         assertTrue(accountServiceImpl.modifyAccountPass(null, "New Pass"));
-        verify(accountRepository).updatePassword((Account) any(), (String) any());
+        verify(accountRepository).updatePassword(any(), any());
     }
 
     /**
@@ -235,9 +205,9 @@ class AccountServiceImplTest {
      */
     @Test
     void testFindDogam() {
-        when(accountRepository.selectDogamList((Account) any(), anyInt(), anyInt())).thenReturn(new ArrayList<>());
+        when(accountRepository.selectDogamList(any(), anyInt(), anyInt())).thenReturn(new ArrayList<>());
         assertTrue(accountServiceImpl.findDogam(new AccountDTO()).isEmpty());
-        verify(accountRepository).selectDogamList((Account) any(), anyInt(), anyInt());
+        verify(accountRepository).selectDogamList(any(), anyInt(), anyInt());
     }
 
     /**
@@ -245,9 +215,9 @@ class AccountServiceImplTest {
      */
     @Test
     void testFindDogam2() {
-        when(accountRepository.selectDogamList((Account) any(), anyInt(), anyInt())).thenReturn(new ArrayList<>());
+        when(accountRepository.selectDogamList(any(), anyInt(), anyInt())).thenReturn(new ArrayList<>());
         assertTrue(accountServiceImpl.findDogam(null).isEmpty());
-        verify(accountRepository).selectDogamList((Account) any(), anyInt(), anyInt());
+        verify(accountRepository).selectDogamList(any(), anyInt(), anyInt());
     }
 
     /**
@@ -255,9 +225,9 @@ class AccountServiceImplTest {
      */
     @Test
     void testFindDogamMore() {
-        when(accountRepository.selectDogamList((Account) any(), anyInt(), anyInt())).thenReturn(new ArrayList<>());
+        when(accountRepository.selectDogamList(any(), anyInt(), anyInt())).thenReturn(new ArrayList<>());
         assertTrue(accountServiceImpl.findDogamMore(new AccountDTO()).isEmpty());
-        verify(accountRepository).selectDogamList((Account) any(), anyInt(), anyInt());
+        verify(accountRepository).selectDogamList(any(), anyInt(), anyInt());
     }
 
     /**
@@ -265,9 +235,9 @@ class AccountServiceImplTest {
      */
     @Test
     void testFindDogamMore2() {
-        when(accountRepository.selectDogamList((Account) any(), anyInt(), anyInt())).thenReturn(new ArrayList<>());
+        when(accountRepository.selectDogamList(any(), anyInt(), anyInt())).thenReturn(new ArrayList<>());
         assertTrue(accountServiceImpl.findDogamMore(null).isEmpty());
-        verify(accountRepository).selectDogamList((Account) any(), anyInt(), anyInt());
+        verify(accountRepository).selectDogamList(any(), anyInt(), anyInt());
     }
 
     /**
@@ -275,9 +245,9 @@ class AccountServiceImplTest {
      */
     @Test
     void testModifyAccountProfileImg() {
-        when(accountRepository.updateProfileImg((Account) any(), (String) any())).thenReturn(true);
+        when(accountRepository.updateProfileImg(any(), any())).thenReturn(true);
         assertTrue(accountServiceImpl.modifyAccountProfileImg(new AccountDTO(), "https://example.org/example"));
-        verify(accountRepository).updateProfileImg((Account) any(), (String) any());
+        verify(accountRepository).updateProfileImg(any(), any());
     }
 
     /**
@@ -285,9 +255,9 @@ class AccountServiceImplTest {
      */
     @Test
     void testModifyAccountProfileImg2() {
-        when(accountRepository.updateProfileImg((Account) any(), (String) any())).thenReturn(false);
+        when(accountRepository.updateProfileImg(any(), any())).thenReturn(false);
         assertFalse(accountServiceImpl.modifyAccountProfileImg(new AccountDTO(), "https://example.org/example"));
-        verify(accountRepository).updateProfileImg((Account) any(), (String) any());
+        verify(accountRepository).updateProfileImg(any(), any());
     }
 
     /**
@@ -295,9 +265,9 @@ class AccountServiceImplTest {
      */
     @Test
     void testModifyAccountProfileImg3() {
-        when(accountRepository.updateProfileImg((Account) any(), (String) any())).thenReturn(true);
+        when(accountRepository.updateProfileImg(any(), any())).thenReturn(true);
         assertTrue(accountServiceImpl.modifyAccountProfileImg(null, "https://example.org/example"));
-        verify(accountRepository).updateProfileImg((Account) any(), (String) any());
+        verify(accountRepository).updateProfileImg(any(), any());
     }
 
     /**

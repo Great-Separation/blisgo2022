@@ -59,12 +59,6 @@ class AccountRepositoryImplTest extends TestRepositoryTemplate {
     @Nested
     @DisplayName("mypage.html")
     class mypagePage {
-        @Test
-        @DisplayName("계정 닉네임이 수정되었는가?")
-        void testUpdateNickname() {
-            boolean result = accountRepository.updateNickname(sampleAccount);
-            Assertions.assertTrue(result);
-        }
 
         @Test
         @DisplayName("계정이 삭제되었는가?")

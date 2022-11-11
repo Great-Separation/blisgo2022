@@ -30,8 +30,12 @@ public class AccountRepositoryImpl implements AccountRepository {
     @Modifying
     @Override
     public boolean insertAccount(Account accountEntity) {
-        entityManager.persist(accountEntity);
-        return true;
+        try {
+            entityManager.persist(accountEntity);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override

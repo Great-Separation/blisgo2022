@@ -8,6 +8,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class PrincipalDetailsService implements UserDetailsService {
@@ -16,13 +18,12 @@ public class PrincipalDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Account account = accountRepository.selectAccount(Account.builder().email(email).build());
-        if (account == null) {
-            return (UserDetails) new UsernameNotFoundException("사용자 정보가 없습니다.");
+        Optional<Account> account = Optional.ofNullable(accountRepository.selectAccount(Account.builder().email(email).build()));
+        if (account.isPresent()) {
+            return new PrincipalDetails(account.get());
         } else {
-            return new PrincipalDetails(account);
+            throw new UsernameNotFoundException("사용자 정보가 없습니다.");
         }
-
     }
 
 }

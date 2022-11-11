@@ -69,10 +69,4 @@ public class Account extends BaseTimeEntity {
         this.provider = provider;
         this.providerId = providerId;
     }
-
-    public static Account createAccount(Account account, String default_profile_img) {
-        return Account.builder().memNo(account.getMemNo()).nickname(account.getNickname()).email(account.getEmail())
-                .pass(account.getPass()).memPoint(account.getMemPoint()).profileImage(default_profile_img).build();
-    }
-
 }

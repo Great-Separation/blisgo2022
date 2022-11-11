@@ -2,8 +2,10 @@ package com.blisgo.service;
 
 import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.DogamDTO;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AccountService {
 
@@ -21,7 +23,7 @@ public interface AccountService {
      * @param accountDTO 사용자
      * @return 단건
      */
-    AccountDTO findAccount(AccountDTO accountDTO);
+    Optional<AccountDTO> findAccount(AccountDTO accountDTO);
 
     /**
      * 회원 탈퇴 메서드
@@ -60,9 +62,9 @@ public interface AccountService {
      * 회원 프로필 이미지 변경 메서드
      *
      * @param accountDTO      사용자
-     * @param profile_img_url 신규 프로필 이미지
+     * @param profile_img 신규 프로필 이미지
      */
-    boolean modifyAccountProfileImg(AccountDTO accountDTO, String profile_img_url);
+    boolean modifyAccountProfileImg(AccountDTO accountDTO, MultipartFile profile_img);
 
     /**
      * 회원가입시 약관 동의서 불러오는 메서드

@@ -4,7 +4,6 @@ import com.blisgo.domain.mapper.AccountMapper;
 import com.blisgo.security.auth.PrincipalDetails;
 import com.blisgo.service.AccountService;
 import com.blisgo.util.AlertMsg;
-import com.blisgo.util.CloudinaryUtil;
 import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.DogamDTO;
 import com.sun.xml.messaging.saaj.util.Base64;
@@ -30,8 +29,7 @@ public class AccountController {
     private final AccountService accountService;
 
     private final ModelAndView mv = new ModelAndView();
-    CloudinaryUtil cloudinaryUtil;
-    String url;
+    private static String url;
 
     public static AlertMsg alertMsg;
 
@@ -56,18 +54,18 @@ public class AccountController {
     @Deprecated
     @PostMapping("login")
     public ModelAndView login(AccountDTO accountDTO, RedirectAttributes rtt) {
-        AccountDTO registeredAccount = accountService.findAccount(accountDTO);
+        Optional<AccountDTO> registeredAccount = accountService.findAccount(accountDTO);
 
-        if (registeredAccount == null) {
-            alertMsg = new AlertMsg(AlertMsg.Icons.warning.name(), "로그인 실패", "존재하지 않는 계정입니다. 회원가입 후 로그인 해주세요.");
-            url = RouteUrlHelper.combine(folder.account, page.register);
-        } else {
-            if (accountDTO.getPass().equals(registeredAccount.getPass())) {
+        if (registeredAccount.isPresent()) {
+            if (accountDTO.getPass().equals(registeredAccount.get().getPass())) {
                 url = RouteUrlHelper.combine();
             } else {
                 alertMsg = new AlertMsg(AlertMsg.Icons.warning.name(), "로그인 실패", "비밀번호가 틀렸습니다. 다시 확인해주세요.");
                 url = RouteUrlHelper.combine(folder.account, page.login);
             }
+        } else {
+            alertMsg = new AlertMsg(AlertMsg.Icons.warning.name(), "로그인 실패", "존재하지 않는 계정입니다. 회원가입 후 로그인 해주세요.");
+            url = RouteUrlHelper.combine(folder.account, page.register);
         }
         mv.setView(new RedirectView(url, false));
         rtt.addFlashAttribute(alertMsg);
@@ -119,7 +117,7 @@ public class AccountController {
      */
     @PostMapping("check")
     public @ResponseBody boolean registerCheck(AccountDTO accountDTO) {
-        return accountService.findAccount(accountDTO) == null;
+        return accountService.findAccount(accountDTO).isEmpty();
     }
 
     /**
@@ -136,7 +134,7 @@ public class AccountController {
 
     @GetMapping("verify/{token}")
     public ModelAndView authentication(HttpSession session, @PathVariable String token, RedirectAttributes rtt) {
-        if (accountService.findAccount(AccountDTO.builder().email(Base64.base64Decode(token)).pass(token).build()) != null) {
+        if (accountService.findAccount(AccountDTO.builder().email(Base64.base64Decode(token)).pass(token).build()).isPresent()) {
             alertMsg = new AlertMsg(AlertMsg.Icons.success.name(), "인증 성공", "이제 비밀번호를 변경할 수 있습니다");
             session.setAttribute("email", Base64.base64Decode(token));
             url = RouteUrlHelper.combine(folder.account, page.chgpw);
@@ -150,11 +148,11 @@ public class AccountController {
     }
 
     @GetMapping("chgpw")
-    public ModelAndView pwchange(HttpSession session) {
+    public ModelAndView pwchange(HttpSession session, RedirectAttributes rtt) {
         Optional<String> email = Optional.ofNullable((String) session.getAttribute("email"));
 
         if (email.isPresent()) {
-            if (accountService.findAccount(AccountDTO.builder().email(email.get()).pass(email.get()).build()) != null) {
+            if (accountService.findAccount(AccountDTO.builder().email(email.get()).pass(email.get()).build()).isPresent()) {
                 url = RouteUrlHelper.combine(folder.account, page.chgpw);
                 mv.setViewName(url);
             } else {
@@ -162,8 +160,11 @@ public class AccountController {
             }
         } else {
             url = RouteUrlHelper.combine();
+            alertMsg = new AlertMsg(AlertMsg.Icons.error.name(), "시스템 오류", "잘못된 접근입니다.");
+
             mv.setView(new RedirectView(url, false));
         }
+        rtt.addFlashAttribute(alertMsg);
         return mv;
     }
 
@@ -208,12 +209,12 @@ public class AccountController {
     // FIXME [마이페이지 프로필 업데이트] 회원 정보 변경 즉시 반영되지 않음
     @PutMapping("mypage/update-profile-img")
     public ModelAndView mypageUpdateProfileImg(
-            @RequestParam("upload-img") MultipartFile profile_img, @AuthenticationPrincipal PrincipalDetails principal) {
+            @RequestParam("upload-img") MultipartFile profile_img, @AuthenticationPrincipal PrincipalDetails principal, RedirectAttributes rtt) {
         AccountDTO accountDTO = AccountMapper.INSTANCE.toDTO(principal.getAccount());
-        cloudinaryUtil = new CloudinaryUtil();
-        String profile_img_url = cloudinaryUtil.uploadFile(profile_img, folder.account.toString());
-
-        accountService.modifyAccountProfileImg(accountDTO, profile_img_url);
+        if (!accountService.modifyAccountProfileImg(accountDTO, profile_img)) {
+            alertMsg = new AlertMsg(AlertMsg.Icons.warning.name(), "변경 실패", "프로필이 변경되지 않았습니다.");
+            rtt.addFlashAttribute(alertMsg);
+        }
         url = RouteUrlHelper.combine(folder.account, page.mypage);
         mv.setView(new RedirectView(url, false));
         return mv;
@@ -230,15 +231,22 @@ public class AccountController {
     public ModelAndView mypageUpdatePassword(@AuthenticationPrincipal PrincipalDetails principal,
                                              @RequestParam("newPass") String newPass, RedirectAttributes rtt) {
         AccountDTO accountDTO = AccountMapper.INSTANCE.toDTO(principal.getAccount());
-
-        if (accountDTO.getPass().equals(accountService.findAccount(accountDTO).getPass())) {
-            accountService.modifyAccountPass(accountDTO, newPass);
-            alertMsg = new AlertMsg(AlertMsg.Icons.success.name(), "변경 완료", "변경된 비밀번호로 다시 로그인 해주세요.");
-            url = RouteUrlHelper.combine(folder.account, page.login);
+        var rs = accountService.findAccount(accountDTO);
+        if (rs.isPresent()) {
+            if (accountDTO.getPass().equals(rs.get().getPass())) {
+                accountService.modifyAccountPass(accountDTO, newPass);
+                alertMsg = new AlertMsg(AlertMsg.Icons.success.name(), "변경 완료", "변경된 비밀번호로 다시 로그인 해주세요.");
+                url = RouteUrlHelper.combine(folder.account, page.login);
+            } else {
+                alertMsg = new AlertMsg(AlertMsg.Icons.error.name(), "변경 실패", "이전 비밀번호가 틀렸습니다. 다시 확인바랍니다.");
+                url = RouteUrlHelper.combine(folder.account, page.mypage);
+            }
         } else {
-            alertMsg = new AlertMsg(AlertMsg.Icons.error.name(), "변경 실패", "이전 비밀번호가 틀렸습니다. 다시 확인바랍니다.");
-            url = RouteUrlHelper.combine(folder.account, page.mypage);
+            alertMsg = new AlertMsg(AlertMsg.Icons.error.name(), "시스템 오류", "잘못된 접근입니다.");
+            url = RouteUrlHelper.combine(folder.account, page.login);
         }
+
+
         mv.setView(new RedirectView(url, false));
         rtt.addFlashAttribute(alertMsg);
         return mv;
@@ -283,7 +291,7 @@ public class AccountController {
      */
     @GetMapping("logout")
     public ModelAndView logout() {
-        url = RouteUrlHelper.combine("");
+        url = RouteUrlHelper.combine();
         mv.setView(new RedirectView(url));
         return mv;
     }

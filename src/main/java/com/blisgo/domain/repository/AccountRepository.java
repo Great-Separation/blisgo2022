@@ -11,10 +11,6 @@ public interface AccountRepository extends Repository<Account, Integer> {
 
     Account selectAccount(Account accountEntity);
 
-    //public int emailCheck(Account accountEntity);
-
-    boolean updateNickname(Account accountEntity);
-
     boolean deleteAccount(Account accountEntity);
 
     boolean updatePassword(Account accountEntity, String newPass);

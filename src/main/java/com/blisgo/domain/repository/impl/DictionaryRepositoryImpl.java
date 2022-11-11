@@ -7,6 +7,7 @@ import com.blisgo.domain.entity.cmmn.Wastes;
 import com.blisgo.domain.repository.DictionaryRepository;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.Expressions;
+import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -15,7 +16,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.blisgo.domain.entity.QDictionary.dictionary;
@@ -54,18 +54,13 @@ public class DictionaryRepositoryImpl implements DictionaryRepository {
                 .fetchOne();
     }
 
-    // TODO [연관 폐기물 조회] 두 쿼리를 하나로 합쳐 수행하기
     @Override
-    public List<Dictionary> selectRelatedDictionaryList(Wastes guideCode) {
-        List<Integer> relatedWastes = jpaQueryFactory.select(hashtag.dictionary.dicNo).from(hashtag)
-                .where(hashtag.guide.guideCode.eq(guideCode))
-                .orderBy(Expressions.numberTemplate(Integer.class, "function('rand')").asc()).limit(4).fetch();
-
-        List<Integer> dicNos = new ArrayList<>(relatedWastes);
-
+    public List<Dictionary> selectRelatedDictionaryList(List<Wastes> tags) {
         return jpaQueryFactory
                 .select(Projections.fields(Dictionary.class, dictionary.dicNo, dictionary.name, dictionary.thumbnail))
-                .from(dictionary).where(dictionary.dicNo.in(dicNos)).fetch();
+                .from(dictionary).where(dictionary.dicNo.in(JPAExpressions.select(hashtag.dictionary.dicNo).from(hashtag)
+                        .where(hashtag.guide.guideCode.in(tags))
+                )).orderBy(Expressions.numberTemplate(Integer.class, "function('rand')").asc()).limit(4).fetch();
     }
 
     @Modifying

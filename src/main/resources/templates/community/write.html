@@ -5,7 +5,7 @@
     <meta charset="utf-8">
 <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
 <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
-    <meta name="viewport" content="width=device-width, shrink-to-fit=0, user-scalable=0">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=0, user-scalable=0, initial-scale=1">
     <title>글작성 - 분리ㅅㄱ</title>
     <meta name="theme-color" content="#ffffff">
     <meta name="twitter:image" content="/assets/img/favicon/512x512.png">
@@ -25,7 +25,10 @@
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/cmmn/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill@latest/dist/quill.bubble.css">
-<link rel="manifest" href="/manifest.json" crossorigin="use-credentials"><script src="https://cdn.jsdelivr.net/npm/codex.editor.header@2.0.4/dist/bundle.js"></script>
+<link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
+<script th:inline="javascript">
+var alertMsg = [[${alertMsg}]];
+</script>
 </head>
 
 <body class="bg-light">
@@ -53,12 +56,14 @@
             </div>
         </section>
     </main><!-- Start: Thymeleaf Navbar -->
-    <div th:replace="~{/cmmn/navbar::navbar}" th:if=""></div><!-- End: Thymeleaf Navbar -->
+    <div th:replace="~{/cmmn/navbar::navbar}"></div><!-- End: Thymeleaf Navbar -->
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="/assets/js/bs-init.js"></script>
     <script src="/assets/js/cmmn/csrf-init.mjs" type="module"></script>
-    <script src="https://cdn.jsdelivr.net/npm/quill"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" crossorigin="anonymous"></script>
+    <script src="/assets/js/cmmn/sweetalert.mjs" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill" crossorigin="anonymous"></script>
     <script src="/assets/js/editor/quill/quill.mjs" type="module"></script>
 </body>
 

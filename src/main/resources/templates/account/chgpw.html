@@ -5,7 +5,7 @@
     <meta charset="utf-8">
 <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
 <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
-    <meta name="viewport" content="width=device-width, shrink-to-fit=0, user-scalable=0">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=0, user-scalable=0, initial-scale=1">
     <title>분리ㅅㄱ</title>
     <meta name="theme-color" content="#ffffff">
     <meta name="twitter:image" content="/assets/img/favicon/512x512.png">
@@ -25,6 +25,9 @@
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/cmmn/style.css">
 <link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
+<script th:inline="javascript">
+var alertMsg = [[${alertMsg}]];
+</script>
 </head>
 
 <body class="bg-light" oncontextmenu="return false" ondragstart="return false">
@@ -32,25 +35,30 @@
         <div class="row g-0 justify-content-center align-items-center vh-100">
             <div class="col-md-6 col-xl-4">
                 <div class="card border-0">
-                    <div class="card-body text-center">
+                    <div class="card-body text-center bg-light">
                         <h4>비밀번호 변경</h4>
                     </div>
-                    <div class="card-body">
-                        <form th:action="/chgpw" th:method="put"><input class="form-control" type="hidden" name="email" value="${email}"><input class="form-control mb-2" type="password" placeholder="새 비밀번호" name="pw-new"><input class="form-control mb-2" type="password" placeholder="새 비밀번호 확인" name="pw-confirm">
-                            <div class="btn-group box-shadow w-100" role="group"><button class="btn btn-primary" type="submit">확인</button><button class="btn btn-secondary" type="button" onclick="location.href=&#39;/&#39;">취소</button></div>
+                    <div class="card-body bg-light">
+                        <form th:action="@{~/account/chgpw}" th:method="put">
+                            <div class="vstack gap-2"><input class="form-control" type="hidden" name="email" th:value="${session.email}"><input class="form-control" type="password" id="pass-new" placeholder="새 비밀번호" name="pass-new" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&amp;*_=+-]).{8,15}$" required="" title="8~15자 대문자,소문자,특수문자를 모두 포함해야 합니다"><input class="form-control" type="password" id="pass" placeholder="새 비밀번호 확인" name="pass" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&amp;*_=+-]).{8,15}$" required="">
+                                <p id="invalid" class="invalid-feedback my-0"></p><button class="btn btn-primary" id="submit" type="submit">확인</button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </main><!-- Start: Thymeleaf Navbar -->
-    <div th:replace="~{/cmmn/navbar::navbar}" th:if=""></div><!-- End: Thymeleaf Navbar -->
+    <div th:replace="~{/cmmn/navbar::navbar}"></div><!-- End: Thymeleaf Navbar -->
     <!-- Start: Thymeleaf footer -->
     <div th:replace="~{/cmmn/footer::footer}"></div><!-- End: Thymeleaf footer -->
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="/assets/js/bs-init.js"></script>
+    <script src="/assets/js/account/pass-check.js"></script>
     <script src="/assets/js/cmmn/csrf-init.mjs" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" crossorigin="anonymous"></script>
+    <script src="/assets/js/cmmn/sweetalert.mjs" type="module"></script>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 package com.blisgo.service.impl;
 
 import com.blisgo.domain.entity.Dogam;
+import com.blisgo.domain.entity.Guide;
 import com.blisgo.domain.entity.cmmn.Wastes;
 import com.blisgo.domain.mapper.AccountMapper;
 import com.blisgo.domain.mapper.DictionaryMapper;
@@ -13,9 +14,8 @@ import com.blisgo.web.dto.HashtagDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -48,17 +48,9 @@ public class DictionaryServiceImpl implements DictionaryService {
 
     @Override
     public List<DictionaryDTO> findRelatedDictionaries(List<HashtagDTO> hashtagDTO) {
-        // 선택한 product의 중분류를 토큰으로 나누어 출력해야할 내용을 저장하여 tabs 출력
-        // 선택된 태그중 임의 태그 하나와 관련된 물품들 무작위 4개 조회
-        List<Wastes> tags = new ArrayList<>();
+        List<Wastes> tags = hashtagDTO.stream().map(HashtagDTO::getGuide).map(Guide::getGuideCode).collect(Collectors.toList());
 
-        for (HashtagDTO tag : hashtagDTO) {
-            tags.add(tag.getGuide().getGuideCode());
-        }
-
-        int size = tags.size();
-        Random rd = new Random();
-        var rs = dictionaryRepository.selectRelatedDictionaryList(tags.get(rd.nextInt(size)));
+        var rs = dictionaryRepository.selectRelatedDictionaryList(tags);
         return DictionaryMapper.INSTANCE.toDTOList(rs);
     }
 

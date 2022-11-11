@@ -5,7 +5,7 @@
     <meta charset="utf-8">
 <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
 <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
-    <meta name="viewport" content="width=device-width, shrink-to-fit=0, user-scalable=0">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=0, user-scalable=0, initial-scale=1">
     <title>사전 - 분리ㅅㄱ</title>
     <meta name="theme-color" content="#ffffff">
     <meta name="twitter:image" content="/assets/img/favicon/512x512.png">
@@ -27,6 +27,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos/dist/aos.css">
     <link rel="stylesheet" href="/assets/css/cmmn/style.css">
 <link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
+<script th:inline="javascript">
+var alertMsg = [[${alertMsg}]];
+</script>
 </head>
 
 <body class="bg-light" oncontextmenu="return false" ondragstart="return false">
@@ -53,17 +56,19 @@
             </div>
         </section>
     </main><!-- Start: Thymeleaf Navbar -->
-    <div th:replace="~{/cmmn/navbar::navbar}" th:if=""></div><!-- End: Thymeleaf Navbar -->
+    <div th:replace="~{/cmmn/navbar::navbar}"></div><!-- End: Thymeleaf Navbar -->
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="/assets/js/bs-init.js"></script>
     <script src="/assets/js/cmmn/algolia.mjs" type="module"></script>
     <script src="/assets/js/cmmn/aos.mjs" type="module"></script>
     <script src="/assets/js/cmmn/csrf-init.mjs" type="module"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/algoliasearch"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aos/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-throttle-debounce"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/algoliasearch" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos/dist/aos.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-throttle-debounce" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" crossorigin="anonymous"></script>
+    <script src="/assets/js/cmmn/sweetalert.mjs" type="module"></script>
     <script src="/assets/js/dictionary/load-more.mjs" type="module"></script>
 </body>
 

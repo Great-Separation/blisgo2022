@@ -44,19 +44,6 @@ public class AccountServiceImpl implements AccountService {
 
     }
 
-//	@Override
-//	public int emailCheck(AccountDTO accountDTO) {
-//		var account = AccountMapper.INSTANCE.toEntity(accountDTO);
-//		var rs = accountRepository.emailCheck(account);
-//		return rs;
-//	}
-
-    @Override
-    public boolean modifyAccountNickname(AccountDTO accountDTO) {
-        var account = AccountMapper.INSTANCE.toEntity(accountDTO);
-        return accountRepository.updateNickname(account);
-    }
-
     @Override
     public boolean removeAccount(AccountDTO accountDTO) {
         var account = AccountMapper.INSTANCE.toEntity(accountDTO);

@@ -1,21 +1,12 @@
-$('#input-pass-Check').on("propertychange change keyup paste", function() {
-	console.log("js 실행");
-	var newPass = $('#input-new-pass').val();
-	var passCheck = $('#input-pass-Check').val();
-	var data = { newPass: newPass, passCheck: passCheck }
-
-	$.ajax({
-		type: "post",
-		url: "newPassCheck",
-		data: data,
-		success: function(result) {
-			if (result != 'fail') {
-				$('.pass_input_re_1').css("display", "inline-block");
-				$('.pass_input_re_2').css("display", "none");
-			} else {
-				$('.pass_input_re_2').css("display", "inline-block");
-				$('.pass_input_re_1').css("display", "none");
-			}
-		}
-	}); // ajax 종료		
+$('#pass').change(function () {
+    if ($('#pass').val() === $('#pass-new').val()) {
+        $('#pass').addClass("is-valid");
+        $('#pass').removeClass("is-invalid");
+        $('#submit').removeAttr("disabled");
+    } else {
+        $('#invalid').text("비밀번호가 일치하지 않습니다.");
+        $('#pass').removeClass("is-valid");
+        $('#pass').addClass("is-invalid");
+        $('#submit').attr("disabled", "");
+    }
 });

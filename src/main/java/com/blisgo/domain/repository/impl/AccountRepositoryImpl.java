@@ -39,18 +39,6 @@ public class AccountRepositoryImpl implements AccountRepository {
         return jpaQueryFactory.selectFrom(account).where(account.email.eq(accountEntity.getEmail())).fetchOne();
     }
 
-//	@Override
-//	public int emailCheck(Account accountEntity) {
-//		return jpaQueryFactory.selectFrom(account).where(account.email.eq(accountEntity.getEmail())).fetch().size();
-//	}
-
-    @Modifying
-    @Override
-    public boolean updateNickname(Account accountEntity) {
-        return jpaQueryFactory.update(account).where(account.email.eq(accountEntity.getEmail()))
-                .set(account.nickname, accountEntity.getNickname()).execute() > 0;
-    }
-
     @Modifying
     @Override
     public boolean deleteAccount(Account accountEntity) {

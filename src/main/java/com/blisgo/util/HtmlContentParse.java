@@ -16,7 +16,7 @@ public class HtmlContentParse {
         list = getImgSrc(str);
 
         StringBuilder sb = new StringBuilder();
-        //TODO 오래된 방식(try-catch)
+
         try {
             sb.append(list.get(0));
             // 49+1

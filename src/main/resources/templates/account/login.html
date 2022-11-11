@@ -5,7 +5,7 @@
     <meta charset="utf-8">
 <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
 <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
-    <meta name="viewport" content="width=device-width, shrink-to-fit=0, user-scalable=0">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=0, user-scalable=0, initial-scale=1">
     <title>로그인 - 분리ㅅㄱ</title>
     <meta name="theme-color" content="#ffffff">
     <meta name="twitter:image" content="/assets/img/favicon/512x512.png">
@@ -25,6 +25,9 @@
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/cmmn/style.css">
 <link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
+<script th:inline="javascript">
+var alertMsg = [[${alertMsg}]];
+</script>
 </head>
 
 <body class="bg-light" oncontextmenu="return false" ondragstart="return false">
@@ -48,10 +51,10 @@
                                 </div>
                                 <div class="accordion" role="tablist" id="accordion-login">
                                     <div class="accordion-item border-0">
-                                        <h2 class="accordion-header" role="tab"><button class="accordion-button text-center text-muted bg-light shadow-sm d-block p-2" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-login .item-1" aria-expanded="true" aria-controls="accordion-login .item-1">로그인</button></h2>
-                                        <div class="accordion-collapse collapse show item-1 bg-light" role="tabpanel" data-bs-parent="#accordion-login">
+                                        <h2 class="accordion-header" role="tab"><button class="accordion-button collapsed text-center text-muted bg-light shadow-sm d-block p-2" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-login .item-1" aria-expanded="false" aria-controls="accordion-login .item-1">로그인</button></h2>
+                                        <div class="accordion-collapse collapse item-1 bg-light" role="tabpanel" data-bs-parent="#accordion-login">
                                             <div class="accordion-body">
-                                                <div class="vstack gap-2"><input class="form-control email-imput form-control" type="email" required="" placeholder="이메일" minlength="6" name="email"><input class="form-control" type="password" required="" placeholder="비밀번호" minlength="6" name="pass" inputmode="latin"><small class="text-end"><a class="text-decoration-none ps-2" th:href="@{~/account/verify}">비밀번호 변경</a></small>
+                                                <div class="vstack gap-2"><input class="form-control email-imput form-control" type="email" required="" placeholder="이메일" minlength="6" name="email"><input class="form-control" type="password" placeholder="비밀번호" name="pass" inputmode="latin"><small class="text-end"><a class="text-decoration-none ps-2" th:href="@{~/account/verify}">비밀번호 찾기</a></small>
                                                     <div class="btn-group-vertical gap-3" role="group"><button class="btn btn-primary w-100" type="submit">로그인</button></div>
                                                 </div>
                                             </div>
@@ -66,13 +69,15 @@
             </div>
         </div>
     </main><!-- Start: Thymeleaf Navbar -->
-    <div th:replace="~{/cmmn/navbar::navbar}" th:if=""></div><!-- End: Thymeleaf Navbar -->
+    <div th:replace="~{/cmmn/navbar::navbar}"></div><!-- End: Thymeleaf Navbar -->
     <!-- Start: Thymeleaf footer -->
     <div th:replace="~{/cmmn/footer::footer}"></div><!-- End: Thymeleaf footer -->
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="/assets/js/bs-init.js"></script>
     <script src="/assets/js/cmmn/csrf-init.mjs" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" crossorigin="anonymous"></script>
+    <script src="/assets/js/cmmn/sweetalert.mjs" type="module"></script>
 </body>
 
 </html>

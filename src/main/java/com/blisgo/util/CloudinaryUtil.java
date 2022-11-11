@@ -23,7 +23,6 @@ import java.util.UUID;
 public class CloudinaryUtil {
     Cloudinary cloudinary;
 
-    // FIXME [Cloudinary 생성자] 하드코딩된 API 연결 정보
     public CloudinaryUtil() {
         cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name", "blisgo", "api_key", "428898964121829",
                 "api_secret", "pRBsjO-mi6-OFLEp4eTUxKplTyQ"));

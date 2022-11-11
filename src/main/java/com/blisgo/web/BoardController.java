@@ -161,8 +161,6 @@ public class BoardController {
     public @ResponseBody String uploadToStorage(MultipartFile file) throws JSONException {
         cloudinaryUtil = new CloudinaryUtil();
         String url = cloudinaryUtil.uploadFile(file, folder.community.toString());
-        //HashMap<String, String> m = new HashMap<>();
-        //m.put("link", url);
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("success", 1);

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
 <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
 <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
-    <meta name="viewport" content="width=device-width, shrink-to-fit=0, user-scalable=0">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=0, user-scalable=0, initial-scale=1">
     <title>회원가입 - 분리ㅅㄱ</title>
     <meta name="theme-color" content="#ffffff">
     <meta name="twitter:image" content="/assets/img/favicon/512x512.png">
@@ -25,6 +25,9 @@
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/cmmn/style.css">
 <link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
+<script th:inline="javascript">
+var alertMsg = [[${alertMsg}]];
+</script>
 </head>
 
 <body class="bg-light" oncontextmenu="return false" ondragstart="return false">
@@ -39,8 +42,12 @@
                                 <h1>환영합니다!</h1>
                             </div>
                         </div>
-                        <div class="card-body"><input class="form-control" type="text" required="" minlength="1" placeholder="사용자 이름" name="nickname"><input class="form-control mt-2 mb-2" type="email" data-bs-toggle="tooltip" data-bss-tooltip="" required="" placeholder="이메일" minlength="6" name="email" title="사용 가능한 이메일입니다. 이메일이 이미 존재합니다."><input class="form-control mb-2" type="password" required="" placeholder="비밀번호" minlength="6" name="pass" inputmode="latin">
-                            <div class="form-check py-2"><input class="form-check-input" type="checkbox" for="remember" name="register-check-agree" required=""><label class="form-check-label" for="formCheck"><small class="form-text"><span style="color: rgb(33, 37, 41);">약관에 기재된&nbsp;</span><a href="#" data-bs-target="#modal-agreement" data-bs-toggle="modal">개인정보 수집 및 이용</a><span style="color: rgb(33, 37, 41);">&nbsp;에 동의합니다</span><br></small></label></div><button class="btn btn-primary d-block box-shadow w-100 mt-2" id="submit-account-2" type="submit">가입하기</button>
+                        <div class="card-body">
+                            <div class="vstack gap-2"><input class="form-control" type="text" required="" placeholder="사용자 이름" name="nickname" pattern="^[a-zA-Z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣_.-]{2,}$" title="2~10자, 대소문자, 숫자, 허용된 특수문자(마침표, 하이픈)로만 조합해야 합니다"><input class="form-control" type="email" data-bs-toggle="tooltip" data-bss-tooltip="" id="email" required="" placeholder="이메일" minlength="6" name="email">
+                                <p id="valid" class="valid-feedback my-0"></p>
+                                <p id="invalid" class="invalid-feedback my-0"></p><input class="form-control" type="password" required="" placeholder="비밀번호" name="pass" inputmode="latin" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&amp;*_=+-]).{8,15}$" title="8~15자 대문자,소문자,특수문자를 모두 포함해야 합니다">
+                                <div class="form-check"><input class="form-check-input" type="checkbox" for="remember" name="register-check-agree" required=""><label class="form-check-label" for="formCheck"><small class="form-text"><span style="color: rgb(33, 37, 41);">약관에 기재된&nbsp;</span><a href="#" data-bs-target="#modal-agreement" data-bs-toggle="modal">개인정보 수집 및 이용</a><span style="color: rgb(33, 37, 41);">&nbsp;에 동의합니다</span><br></small></label></div><button class="btn btn-primary" id="submit" type="submit">가입하기</button>
+                            </div>
                         </div>
                         <div class="card-footer text-center bg-light"><small class="form-text">이미 계정이 있으신가요?&nbsp;<a id="login-link" class="text-decoration-none ps-2" th:href="@{~/account/login}">로그인</a></small></div>
                     </div>
@@ -56,14 +63,16 @@
             </div>
         </div>
     </div><!-- Start: Thymeleaf Navbar -->
-    <div th:replace="~{/cmmn/navbar::navbar}" th:if=""></div><!-- End: Thymeleaf Navbar -->
+    <div th:replace="~{/cmmn/navbar::navbar}"></div><!-- End: Thymeleaf Navbar -->
     <!-- Start: Thymeleaf footer -->
     <div th:replace="~{/cmmn/footer::footer}"></div><!-- End: Thymeleaf footer -->
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="/assets/js/bs-init.js"></script>
-    <script src="/assets/js/account/register-check.js"></script>
+    <script src="/assets/js/account/email-check.js"></script>
     <script src="/assets/js/cmmn/csrf-init.mjs" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" crossorigin="anonymous"></script>
+    <script src="/assets/js/cmmn/sweetalert.mjs" type="module"></script>
 </body>
 
 </html>

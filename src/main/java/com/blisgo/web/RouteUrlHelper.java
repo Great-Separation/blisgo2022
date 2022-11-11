@@ -25,7 +25,8 @@ public class RouteUrlHelper {
 			stringBuilder.append("/");
 		}
 		// REST 조건에 따른 마지막 슬래시 제거
-		stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+		if(strings.length>0)
+			stringBuilder.deleteCharAt(stringBuilder.length() - 1);
 		return stringBuilder.toString();
 	}
 }

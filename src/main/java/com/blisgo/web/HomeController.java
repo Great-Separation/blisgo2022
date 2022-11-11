@@ -24,7 +24,6 @@ public class HomeController {
     // 서버 실행 시 index 배경 화면 변경. 1 client -> 1 서버 스레드 실행. 시간 당 50최대
     public static String wallpaperUrl = null;
 
-
     /**
      * 첫 화면
      *
@@ -49,7 +48,7 @@ public class HomeController {
      * @return mv
      */
     @GetMapping("faq")
-    public ModelAndView faq(ModelAndView mv) {
+    public ModelAndView faq() {
         url = RouteUrlHelper.combine(folder.cmmn, page.faq);
         mv.setViewName(url);
         return mv;

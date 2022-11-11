@@ -51,7 +51,7 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .mvcMatchers("/account/mypage", "/account/mypage/**").authenticated()
                 .mvcMatchers("/board/edit/**", "/board/write").authenticated()
-                .mvcMatchers("/", "/faq", "/account/login", "/account/register", "/account/verify").permitAll()
+                .mvcMatchers("/", "/faq", "/account/login", "/account/register", "/account/verify", "/account/chgpw").permitAll()
                 .and()
                 .formLogin().loginPage("/account/login").usernameParameter("email").passwordParameter("pass").defaultSuccessUrl("/")
                 .failureUrl("/account/login")

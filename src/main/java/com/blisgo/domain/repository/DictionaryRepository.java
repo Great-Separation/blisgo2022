@@ -15,7 +15,7 @@ public interface DictionaryRepository extends Repository<Dictionary, Integer> {
 
     Dictionary selectDictionary(Dictionary dictionaryEntity);
 
-    List<Dictionary> selectRelatedDictionaryList(Wastes guideCode);
+    List<Dictionary> selectRelatedDictionaryList(List<Wastes> tags);
 
     boolean updateDictionaryPopularity();
 

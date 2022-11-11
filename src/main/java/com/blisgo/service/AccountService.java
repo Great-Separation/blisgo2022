@@ -24,27 +24,12 @@ public interface AccountService {
     AccountDTO findAccount(AccountDTO accountDTO);
 
     /**
-     * 이메일 중복 확인 메서드
-     * @param userDTO 사용자
-     * @return 중복 여부
-     */
-    // public int emailCheck(AccountDTO userDTO);
-
-    /**
      * 회원 탈퇴 메서드
      *
      * @param accountDTO 사용자
      * @return 회원 탈퇴
      */
     boolean removeAccount(AccountDTO accountDTO);
-
-    /**
-     * 회원 닉네임 변경 메서드
-     *
-     * @param accountDTO 사용자
-     * @return 회원정보 수정
-     */
-    boolean modifyAccountNickname(AccountDTO accountDTO);
 
     /**
      * 회원 비밀번호 변경 메서드
@@ -75,7 +60,7 @@ public interface AccountService {
      * 회원 프로필 이미지 변경 메서드
      *
      * @param accountDTO      사용자
-     * @param profile_img_url 신규 프로필 이미지 TODO [modifyAccountProfileImg] 실행 결과 반드시 반환
+     * @param profile_img_url 신규 프로필 이미지
      */
     boolean modifyAccountProfileImg(AccountDTO accountDTO, String profile_img_url);
 

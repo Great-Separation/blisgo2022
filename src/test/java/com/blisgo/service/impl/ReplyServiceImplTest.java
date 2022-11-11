@@ -1,6 +1,5 @@
 package com.blisgo.service.impl;
 
-import com.blisgo.domain.entity.Board;
 import com.blisgo.domain.entity.Reply;
 import com.blisgo.domain.repository.ReplyRepository;
 import com.blisgo.web.dto.AccountDTO;
@@ -34,9 +33,9 @@ class ReplyServiceImplTest {
      */
     @Test
     void testFindReply() {
-        when(replyRepository.selectReplyInnerJoinAccount((Board) any())).thenReturn(new ArrayList<>());
+        when(replyRepository.selectReplyInnerJoinAccount(any())).thenReturn(new ArrayList<>());
         assertTrue(replyServiceImpl.findReply(new BoardDTO()).isEmpty());
-        verify(replyRepository).selectReplyInnerJoinAccount((Board) any());
+        verify(replyRepository).selectReplyInnerJoinAccount(any());
     }
 
     /**
@@ -67,7 +66,7 @@ class ReplyServiceImplTest {
 
         ArrayList<Reply> replyList = new ArrayList<>();
         replyList.add(reply);
-        when(replyRepository.selectReplyInnerJoinAccount((Board) any())).thenReturn(replyList);
+        when(replyRepository.selectReplyInnerJoinAccount(any())).thenReturn(replyList);
         replyServiceImpl.findReply(new BoardDTO());
     }
 
@@ -76,13 +75,13 @@ class ReplyServiceImplTest {
      */
     @Test
     void testAddReply() {
-        when(replyRepository.insertReply((Reply) any())).thenReturn(true);
-        when(replyRepository.updateReplyCount((Board) any(), anyBoolean())).thenReturn(true);
+        when(replyRepository.insertReply(any())).thenReturn(true);
+        when(replyRepository.updateReplyCount(any(), anyBoolean())).thenReturn(true);
         ReplyDTO replyDTO = new ReplyDTO();
         BoardDTO boardDTO = new BoardDTO();
         assertTrue(replyServiceImpl.addReply(replyDTO, boardDTO, new AccountDTO()));
-        verify(replyRepository).insertReply((Reply) any());
-        verify(replyRepository).updateReplyCount((Board) any(), anyBoolean());
+        verify(replyRepository).insertReply(any());
+        verify(replyRepository).updateReplyCount(any(), anyBoolean());
     }
 
     /**
@@ -90,13 +89,13 @@ class ReplyServiceImplTest {
      */
     @Test
     void testAddReply2() {
-        when(replyRepository.insertReply((Reply) any())).thenReturn(false);
-        when(replyRepository.updateReplyCount((Board) any(), anyBoolean())).thenReturn(true);
+        when(replyRepository.insertReply(any())).thenReturn(false);
+        when(replyRepository.updateReplyCount(any(), anyBoolean())).thenReturn(true);
         ReplyDTO replyDTO = new ReplyDTO();
         BoardDTO boardDTO = new BoardDTO();
         assertFalse(replyServiceImpl.addReply(replyDTO, boardDTO, new AccountDTO()));
-        verify(replyRepository).insertReply((Reply) any());
-        verify(replyRepository).updateReplyCount((Board) any(), anyBoolean());
+        verify(replyRepository).insertReply(any());
+        verify(replyRepository).updateReplyCount(any(), anyBoolean());
     }
 
     /**
@@ -117,8 +116,8 @@ class ReplyServiceImplTest {
         //   addReply(ReplyDTO, BoardDTO, AccountDTO).
         //   See https://diff.blue/R013 to resolve this issue.
 
-        when(replyRepository.insertReply((Reply) any())).thenReturn(true);
-        when(replyRepository.updateReplyCount((Board) any(), anyBoolean())).thenReturn(true);
+        when(replyRepository.insertReply(any())).thenReturn(true);
+        when(replyRepository.updateReplyCount(any(), anyBoolean())).thenReturn(true);
         BoardDTO boardDTO = new BoardDTO();
         replyServiceImpl.addReply(null, boardDTO, new AccountDTO());
     }
@@ -128,12 +127,12 @@ class ReplyServiceImplTest {
      */
     @Test
     void testRemoveReply() {
-        when(replyRepository.deleteReply((Reply) any())).thenReturn(true);
-        when(replyRepository.updateReplyCount((Board) any(), anyBoolean())).thenReturn(true);
+        when(replyRepository.deleteReply(any())).thenReturn(true);
+        when(replyRepository.updateReplyCount(any(), anyBoolean())).thenReturn(true);
         ReplyDTO replyDTO = new ReplyDTO();
         assertTrue(replyServiceImpl.removeReply(replyDTO, new BoardDTO()));
-        verify(replyRepository).deleteReply((Reply) any());
-        verify(replyRepository).updateReplyCount((Board) any(), anyBoolean());
+        verify(replyRepository).deleteReply(any());
+        verify(replyRepository).updateReplyCount(any(), anyBoolean());
     }
 
     /**
@@ -141,12 +140,12 @@ class ReplyServiceImplTest {
      */
     @Test
     void testRemoveReply2() {
-        when(replyRepository.deleteReply((Reply) any())).thenReturn(false);
-        when(replyRepository.updateReplyCount((Board) any(), anyBoolean())).thenReturn(true);
+        when(replyRepository.deleteReply(any())).thenReturn(false);
+        when(replyRepository.updateReplyCount(any(), anyBoolean())).thenReturn(true);
         ReplyDTO replyDTO = new ReplyDTO();
         assertFalse(replyServiceImpl.removeReply(replyDTO, new BoardDTO()));
-        verify(replyRepository).deleteReply((Reply) any());
-        verify(replyRepository).updateReplyCount((Board) any(), anyBoolean());
+        verify(replyRepository).deleteReply(any());
+        verify(replyRepository).updateReplyCount(any(), anyBoolean());
     }
 
     /**
@@ -154,11 +153,11 @@ class ReplyServiceImplTest {
      */
     @Test
     void testRemoveReply3() {
-        when(replyRepository.deleteReply((Reply) any())).thenReturn(true);
-        when(replyRepository.updateReplyCount((Board) any(), anyBoolean())).thenReturn(true);
+        when(replyRepository.deleteReply(any())).thenReturn(true);
+        when(replyRepository.updateReplyCount(any(), anyBoolean())).thenReturn(true);
         assertTrue(replyServiceImpl.removeReply(null, new BoardDTO()));
-        verify(replyRepository).deleteReply((Reply) any());
-        verify(replyRepository).updateReplyCount((Board) any(), anyBoolean());
+        verify(replyRepository).deleteReply(any());
+        verify(replyRepository).updateReplyCount(any(), anyBoolean());
     }
 }
 

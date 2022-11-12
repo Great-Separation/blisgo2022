@@ -19,7 +19,7 @@ COPY --from=builder /build/build/libs/blisgo.jar .
 EXPOSE 8080
 
 # root 대신 nobody 권한으로 실행
-USER nobody
+USER root
 ENTRYPOINT [                                                \
     "java",                                                 \
     "-jar",                                                 \

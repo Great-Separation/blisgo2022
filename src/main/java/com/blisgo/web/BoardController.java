@@ -4,13 +4,11 @@ import com.blisgo.domain.mapper.AccountMapper;
 import com.blisgo.security.auth.PrincipalDetails;
 import com.blisgo.service.BoardService;
 import com.blisgo.service.ReplyService;
-import com.blisgo.util.CloudinaryUtil;
 import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.BoardDTO;
 import com.blisgo.web.dto.ReplyDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.configurationprocessor.json.JSONException;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,6 +21,7 @@ import java.util.List;
 /**
  * @author okjae
  */
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("board")
@@ -31,9 +30,7 @@ public class BoardController {
     private final BoardService boardService;
     private final ReplyService replyService;
     private final ModelAndView mv = new ModelAndView();
-
-    CloudinaryUtil cloudinaryUtil;
-    String url;
+    private static String url;
 
     /**
      * 커뮤니티 게시판
@@ -56,7 +53,6 @@ public class BoardController {
      */
     @PostMapping("more")
     public @ResponseBody List<BoardDTO> boardLoadMore() {
-
         return boardService.findBoardMore();
     }
 
@@ -68,10 +64,16 @@ public class BoardController {
      */
     @GetMapping("{bdNo}")
     public ModelAndView content(BoardDTO boardDTO) {
-        boardDTO = boardService.findBoard(boardDTO);
+        var rs = boardService.findBoard(boardDTO);
+        if (rs.isPresent()) {
+            boardDTO = rs.get();
+        } else {
+            log.error("게시글이 조회되지 않았습니다.");
+        }
         List<ReplyDTO> replys = replyService.findReply(boardDTO);
-        boardService.countBoardViews(boardDTO);
-
+        if (!boardService.countBoardViews(boardDTO)) {
+            log.warn("게시글 조회수가 올라가지 않음");
+        }
         mv.addObject("board", boardDTO);
         mv.addObject("replys", replys);
         url = RouteUrlHelper.combine(folder.community, page.content);
@@ -87,9 +89,13 @@ public class BoardController {
      */
     @DeleteMapping("{bdNo}")
     public ModelAndView contentDelete(BoardDTO boardDTO) {
-        boardService.removeBoard(boardDTO);
-
+        if (boardService.removeBoard(boardDTO)) {
+            log.info("삭제 완료, 게시글이 삭제되었습니다.");
+        } else {
+            log.info("삭제 실패, 게시글이 삭제되지 않았습니다.");
+        }
         url = RouteUrlHelper.combine(page.board);
+
         mv.setView(new RedirectView(url, false));
         return mv;
     }
@@ -102,7 +108,12 @@ public class BoardController {
      */
     @GetMapping("edit/{bdNo}")
     public ModelAndView contentEdit(BoardDTO boardDTO) {
-        boardDTO = boardService.findBoard(boardDTO);
+        var rs = boardService.findBoard(boardDTO);
+        if (rs.isPresent()) {
+            boardDTO = rs.get();
+        } else {
+            log.error("편집 글 내용이 조회되지 않았음");
+        }
 
         mv.addObject("board", boardDTO);
         url = RouteUrlHelper.combine(folder.community, page.edit);
@@ -118,8 +129,13 @@ public class BoardController {
      */
     @PutMapping("edit/{bdNo}")
     public ModelAndView contentEditPut(@Valid BoardDTO boardDTO) {
-        boardService.modifyBoard(boardDTO);
+        if (boardService.modifyBoard(boardDTO)) {
+            log.info("수정 완료, 게시글 내용이 변경되었습니다.");
+        } else {
+            log.error("수정 실패, 게시글 내용이 변경되지 않았습니다.");
+        }
         url = RouteUrlHelper.combine(page.board, boardDTO.getBdNo());
+
         mv.setView(new RedirectView(url, false));
         return mv;
     }
@@ -132,8 +148,9 @@ public class BoardController {
      */
     @PutMapping("{bdNo}/like")
     public ModelAndView likeBoard(BoardDTO boardDTO) {
-        boardService.countBoardFavorite(boardDTO); // 좋아요 1증가
-
+        if (!boardService.countBoardFavorite(boardDTO)) {
+            log.error("게시글 좋아요가 수행되지 않음");
+        }
         url = RouteUrlHelper.combine(page.board, boardDTO.getBdNo());
         mv.setView(new RedirectView(url, false));
         return mv;
@@ -158,19 +175,14 @@ public class BoardController {
      * @return mv
      */
     @PostMapping("write/upload")
-    public @ResponseBody String uploadToStorage(MultipartFile file) throws JSONException {
-        cloudinaryUtil = new CloudinaryUtil();
-        String url = cloudinaryUtil.uploadFile(file, folder.community.toString());
-
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("success", 1);
-
-        JSONObject jfile = new JSONObject();
-        jfile.put("url", url);
-
-        jsonObject.put("file", jfile);
-
-        return jsonObject.toString();
+    public @ResponseBody String uploadToStorage(MultipartFile file) {
+        var rs = boardService.uploadImageToStorage(file);
+        if (rs.isPresent()) {
+            return rs.get();
+        } else {
+            log.error("게시글 파일을 업로드하지 못했습니다.");
+            return "";
+        }
     }
 
     /**
@@ -183,8 +195,14 @@ public class BoardController {
     @PostMapping("write")
     public ModelAndView writePOST(@Valid BoardDTO boardDTO, @AuthenticationPrincipal PrincipalDetails principal) {
         AccountDTO accountDTO = AccountMapper.INSTANCE.toDTO(principal.getAccount());
-        boardService.addBoard(boardDTO, accountDTO);
+        if (boardService.addBoard(boardDTO, accountDTO)) {
+            log.info("작성 완료, 글이 작성되었습니다.");
+        } else {
+            log.error("작성 실패, 글이 작성되지 않았습니다.");
+        }
+
         url = RouteUrlHelper.combine(page.board);
+
         mv.setView(new RedirectView(url, false));
         return mv;
     }

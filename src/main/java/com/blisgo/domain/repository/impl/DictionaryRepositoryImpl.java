@@ -92,7 +92,6 @@ public class DictionaryRepositoryImpl implements DictionaryRepository {
             entityManager.merge(dogamEntity);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
             return false;
         }
     }

@@ -5,6 +5,7 @@ import com.blisgo.web.dto.DictionaryDTO;
 import com.blisgo.web.dto.HashtagDTO;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface DictionaryService {
 
@@ -21,7 +22,7 @@ public interface DictionaryService {
      * @param dictionaryDTO 폐기물
      * @return 단건
      */
-    DictionaryDTO findDictionary(DictionaryDTO dictionaryDTO);
+    Optional<DictionaryDTO> findDictionary(DictionaryDTO dictionaryDTO);
 
     /**
      * 분리배출 가이드 출력 메서드
@@ -49,14 +50,14 @@ public interface DictionaryService {
 
     /**
      * 별점 매기는 메서드
-     * TODO [modifyDictionaryPopularity] 실행 결과 반드시 반환
+     *
      */
     boolean modifyDictionaryPopularity();
 
     /**
      * 조회수 추가 메서드
      *
-     * @param dictionary 폐기물 TODO [countDictionaryHit] 실행 결과 반드시 반환
+     * @param dictionary 폐기물
      */
     boolean countDictionaryHit(DictionaryDTO dictionary);
 

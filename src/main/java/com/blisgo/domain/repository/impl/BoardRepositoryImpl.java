@@ -1,8 +1,8 @@
 package com.blisgo.domain.repository.impl;
 
-import com.blisgo.domain.entity.Account;
 import com.blisgo.domain.entity.Board;
 import com.blisgo.domain.repository.BoardRepository;
+import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.BoardDTO;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -29,10 +29,15 @@ public class BoardRepositoryImpl implements BoardRepository {
     @Modifying
     @Override
     public boolean insertBoard(Board boardEntity) {
-        entityManager.persist(boardEntity);
-        return true;
+        try {
+            entityManager.persist(boardEntity);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
+    // TODO 코드 줄이기
     public List<BoardDTO> selectBoardList(int index, int limit) {
 
         var tuple = jpaQueryFactory
@@ -42,7 +47,7 @@ public class BoardRepositoryImpl implements BoardRepository {
 
         List<BoardDTO> rs = new ArrayList<>();
         for (var row : tuple) {
-            Account u = Account.builder().nickname(row.get(board.account.nickname)).build();
+            AccountDTO u = AccountDTO.builder().nickname(row.get(board.account.nickname)).build();
             BoardDTO b = BoardDTO.builder().account(u).bdNo(row.get(board.bdNo))
                     .bdTitle(row.get(board.bdTitle)).bdContent(row.get(board.bdContent))
                     .bdReplyCount(row.get(board.bdReplyCount)).bdFavorite(row.get(board.bdFavorite))
@@ -53,15 +58,6 @@ public class BoardRepositoryImpl implements BoardRepository {
 
         return rs;
     }
-
-//	@Override
-//	public List<Board> selectBoardList(int index, int limit) {
-//		return jpaQueryFactory
-//				.select(Projections.fields(Board.class, board.account(), board.bdNo, board.bdTitle, board.bdContent,
-//						board.bdReplyCount, board.bdFavorite, board.bdThumbnail, board.createdDate, board.modifiedDate))
-//				.from(board).orderBy(board.bdNo.desc()).offset(index).limit(limit).fetch();
-//
-//	}
 
     @Override
     public Board selectBoard(Board boardEntity) {

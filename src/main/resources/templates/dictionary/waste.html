@@ -24,10 +24,7 @@
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/img/favicon/512x512.png">
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/cmmn/style.css">
-<link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
-<script th:inline="javascript">
-var alertMsg = [[${alertMsg}]];
-</script><script th:inline="javascript">
+<link rel="manifest" href="/manifest.json" crossorigin="use-credentials"><script th:inline="javascript">
 var sdictionary= [[${dictionary}]];
 </script>
 </head>
@@ -150,4 +147,4 @@ var sdictionary= [[${dictionary}]];
                                 <option value="14">분류 태그가 잘못되었습니다</option>
                                 <option value="">가이드라인 문서가 올바르지 않습니다</option>
                                 <option value="">기타</option>
-                            </select><input class="form-control" type="hidden" name="주소" th:value="${#request.requestURI}"><input class="form-control" type="email" id="email" name="이메일" placeholder="수신 이메일"><textarea class="form-control" id="message" name="내용" rows="6" placeholder="문제를 설명해 주세요."></textarea><input class="form-control" type="file" name="첨부파일"></div></div><div class="modal-footer"><button class="btn btn-primary d-block w-100" type="submit">전송</button></div></form></div></div></div><script src="/assets/js/jquery.min.js"></script><script src="/assets/bootstrap/js/bootstrap.min.js"></script><script src="/assets/js/smart-forms.min.js"></script><script src="/assets/js/bs-init.js"></script><script src="/assets/js/cmmn/csrf-init.mjs" type="module"></script><script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" crossorigin="anonymous"></script><script src="/assets/js/cmmn/sweetalert.mjs" type="module"></script><script src="/assets/js/dictionary/toast.js"></script></body></html>
+                            </select><input class="form-control" type="hidden" name="주소" th:value="${#request.requestURI}"><input class="form-control" type="email" id="email" name="이메일" placeholder="수신 이메일"><textarea class="form-control" id="message" name="내용" rows="6" placeholder="문제를 설명해 주세요."></textarea><input class="form-control" type="file" name="첨부파일"></div></div><div class="modal-footer"><button class="btn btn-primary d-block w-100" type="submit">전송</button></div></form></div></div></div><script src="/assets/js/jquery.min.js"></script><script src="/assets/bootstrap/js/bootstrap.min.js"></script><script src="/assets/js/smart-forms.min.js"></script><script src="/assets/js/bs-init.js"></script><script src="/assets/js/cmmn/csrf-init.mjs" type="module"></script><script src="/assets/js/dictionary/toast.js"></script></body></html>

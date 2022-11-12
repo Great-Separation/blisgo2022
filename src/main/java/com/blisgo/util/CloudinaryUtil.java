@@ -65,13 +65,13 @@ public class CloudinaryUtil {
 
         switch (forWhat) {
             case "account" -> {}
-            case "community" -> opt = "f_jpg,fl_progressive/";
+            case "community" -> opt = "q_auto,f_jpg/";
         }
         url = addOpt((String) Objects.requireNonNull(map).get("secure_url"), opt);
         return url;
     }
 
-    private String addOpt(String str, String opt) {
+    public String addOpt(String str, String opt) {
         StringBuilder sb = new StringBuilder();
         sb.append(str);
         int appendIndex = sb.indexOf("/v") + 1;

@@ -13,7 +13,7 @@ public interface AccountRepository extends Repository<Account, Integer> {
 
     boolean deleteAccount(Account accountEntity);
 
-    boolean updatePassword(Account accountEntity, String newPass);
+    boolean updatePassword(Account accountEntity, String passNew);
 
     List<Dogam> selectDogamList(Account accountEntity, int index, int limit);
 

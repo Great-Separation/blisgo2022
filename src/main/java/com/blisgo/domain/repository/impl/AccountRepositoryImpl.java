@@ -51,8 +51,8 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Modifying
     @Override
-    public boolean updatePassword(Account accountEntity, String newPass) {
-        return jpaQueryFactory.update(account).set(account.pass, newPass).where(account.email.eq(accountEntity.getEmail()))
+    public boolean updatePassword(Account accountEntity, String passNew) {
+        return jpaQueryFactory.update(account).set(account.pass, passNew).where(account.email.eq(accountEntity.getEmail()))
                 .execute() > 0;
     }
 

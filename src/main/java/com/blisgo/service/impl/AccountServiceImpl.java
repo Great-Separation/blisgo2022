@@ -8,6 +8,7 @@ import com.blisgo.util.CloudinaryUtil;
 import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.DogamDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,6 +26,7 @@ import java.util.stream.Stream;
 public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
     CloudinaryUtil cloudinaryUtil;
+    BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
     private static int index = 0;
     private static final int limit = 24;
 
@@ -49,9 +51,9 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public boolean modifyAccountPass(AccountDTO accountDTO, String newPass) {
+    public boolean modifyAccountPass(AccountDTO accountDTO, String passNew) {
         var account = AccountMapper.INSTANCE.toEntity(accountDTO);
-        return accountRepository.updatePassword(account, newPass);
+        return accountRepository.updatePassword(account, bCryptPasswordEncoder.encode(passNew));
     }
 
     @Override

@@ -2,8 +2,10 @@ package com.blisgo.service;
 
 import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.BoardDTO;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface BoardService {
 
@@ -11,7 +13,7 @@ public interface BoardService {
      * 글 등록 메서드
      *
      * @param boardDTO   게시글
-     * @param accountDTO 사용자 TODO [addBoard] 실행 결과 반드시 반환
+     * @param accountDTO 사용자
      */
     boolean addBoard(BoardDTO boardDTO, AccountDTO accountDTO);
 
@@ -35,33 +37,35 @@ public interface BoardService {
      * @param boardDTO 게시글
      * @return 단건
      */
-    BoardDTO findBoard(BoardDTO boardDTO);
+    Optional<BoardDTO> findBoard(BoardDTO boardDTO);
 
     /**
      * 글 삭제 요청을 처리할 메서드
      *
-     * @param boardDTO 게시글 TODO [removeBoard] 실행 결과 반드시 반환
+     * @param boardDTO 게시글
      */
     boolean removeBoard(BoardDTO boardDTO);
 
     /**
      * DB에 있는 view의 값을 증가 시켜주는 메서드
      *
-     * @param boardDTO 게시글 TODO [countBoardViews] 실행 결과 반드시 반환
+     * @param boardDTO 게시글
      */
     boolean countBoardViews(BoardDTO boardDTO);
 
     /**
      * 글 수정 메서드
      *
-     * @param boardDTO 게시글 TODO [modifyBoard] 실행 결과 반드시 반환
+     * @param boardDTO 게시글
      */
     boolean modifyBoard(BoardDTO boardDTO);
 
     /**
      * 좋아요 +1
      *
-     * @param boardDTO 게시글 TODO [countBoardFavorite] 실행 결과 반드시 반환
+     * @param boardDTO 게시글
      */
     boolean countBoardFavorite(BoardDTO boardDTO);
+
+    Optional<String> uploadImageToStorage(MultipartFile file);
 }

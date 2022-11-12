@@ -22,7 +22,7 @@ public class HtmlContentParse {
             // 49+1
             int appendIndex = sb.indexOf("/v") + 1;
 
-            sb.insert(appendIndex, "c_fill,f_webp,h_400,w_400/");
+            sb.insert(appendIndex, "c_fill,q_auto,f_jpg,h_auto,w_auto/");
         } catch (Exception e) {
             return null;
         }

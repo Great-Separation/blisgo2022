@@ -7,12 +7,14 @@ import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.DictionaryDTO;
 import com.blisgo.web.dto.HashtagDTO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("dictionary")
@@ -43,7 +45,6 @@ public class DictionaryController {
      */
     @PostMapping("more")
     public @ResponseBody List<DictionaryDTO> dictionaryLoadMore() {
-
         return dictionaryService.findDictionaryMore();
     }
 
@@ -55,21 +56,18 @@ public class DictionaryController {
      */
     @GetMapping("{dicNo}")
     public ModelAndView product(DictionaryDTO dictionaryDTO) {
-
-        dictionaryDTO = dictionaryService.findDictionary(dictionaryDTO);
-
-        dictionaryService.countDictionaryHit(dictionaryDTO);
-
+        var rs=dictionaryService.findDictionary(dictionaryDTO);
+        if(rs.isPresent()){
+            dictionaryDTO =rs.get();
+        }
+        if(!dictionaryService.countDictionaryHit(dictionaryDTO)){
+            log.error("사전 조회수 증가 실패");
+        }
         mv.addObject("dictionary", dictionaryDTO);
-
         List<HashtagDTO> hashtagAndGuide = dictionaryService.findHashtag(dictionaryDTO);
-
-
         List<DictionaryDTO> relatedDictionaries = dictionaryService.findRelatedDictionaries(hashtagAndGuide);
-
         mv.addObject("hashtagAndGuide", hashtagAndGuide);
         mv.addObject("relatedDictionaries", relatedDictionaries);
-
         url = RouteUrlHelper.combine(folder.dictionary, page.waste);
         mv.setViewName(url);
         return mv;

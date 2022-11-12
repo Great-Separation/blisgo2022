@@ -1,7 +1,6 @@
 package com.blisgo.service.impl;
 
 import com.blisgo.domain.entity.Dogam;
-import com.blisgo.domain.entity.Guide;
 import com.blisgo.domain.entity.cmmn.Wastes;
 import com.blisgo.domain.mapper.AccountMapper;
 import com.blisgo.domain.mapper.DictionaryMapper;
@@ -10,11 +9,13 @@ import com.blisgo.domain.repository.DictionaryRepository;
 import com.blisgo.service.DictionaryService;
 import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.DictionaryDTO;
+import com.blisgo.web.dto.GuideDTO;
 import com.blisgo.web.dto.HashtagDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,10 +34,10 @@ public class DictionaryServiceImpl implements DictionaryService {
     }
 
     @Override
-    public DictionaryDTO findDictionary(DictionaryDTO dictionaryDTO) {
+    public Optional<DictionaryDTO> findDictionary(DictionaryDTO dictionaryDTO) {
         var dictionary = DictionaryMapper.INSTANCE.toEntity(dictionaryDTO);
         var rs = dictionaryRepository.selectDictionary(dictionary);
-        return DictionaryMapper.INSTANCE.toDTO(rs);
+        return Optional.ofNullable(DictionaryMapper.INSTANCE.toDTO(rs));
     }
 
     @Override
@@ -48,8 +49,7 @@ public class DictionaryServiceImpl implements DictionaryService {
 
     @Override
     public List<DictionaryDTO> findRelatedDictionaries(List<HashtagDTO> hashtagDTO) {
-        List<Wastes> tags = hashtagDTO.stream().map(HashtagDTO::getGuide).map(Guide::getGuideCode).collect(Collectors.toList());
-
+        List<Wastes> tags = hashtagDTO.stream().map(HashtagDTO::getGuide).map(GuideDTO::getGuideCode).collect(Collectors.toList());
         var rs = dictionaryRepository.selectRelatedDictionaryList(tags);
         return DictionaryMapper.INSTANCE.toDTOList(rs);
     }

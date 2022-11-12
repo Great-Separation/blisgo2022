@@ -25,9 +25,6 @@
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/cmmn/style.css">
 <link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
-<script th:inline="javascript">
-var alertMsg = [[${alertMsg}]];
-</script>
 </head>
 
 <body class="bg-light" oncontextmenu="return false" ondragstart="return false">
@@ -59,7 +56,7 @@ var alertMsg = [[${alertMsg}]];
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header"><small class="form-text"><span style="color: rgb(33, 37, 41);">개인정보 수집 및 이용</span><br></small><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                <div class="modal-body"><label class="form-label" disabled=""><small th:text="${termsOfAgreement}">약관 내용</small></label></div>
+                <div class="modal-body"><small th:text="${termsOfAgreement}">약관 내용</small></div>
             </div>
         </div>
     </div><!-- Start: Thymeleaf Navbar -->
@@ -71,8 +68,6 @@ var alertMsg = [[${alertMsg}]];
     <script src="/assets/js/bs-init.js"></script>
     <script src="/assets/js/account/email-check.js"></script>
     <script src="/assets/js/cmmn/csrf-init.mjs" type="module"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" crossorigin="anonymous"></script>
-    <script src="/assets/js/cmmn/sweetalert.mjs" type="module"></script>
 </body>
 
 </html>

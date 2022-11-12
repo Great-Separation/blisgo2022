@@ -17,7 +17,7 @@ public interface BoardRepository extends Repository<Board, Integer> {
 
     boolean updateBoardViews(Board boardEntity);
 
-    boolean updateBoard(Board boardEntity);
+    boolean updateBoard(Board boardEntity, String boardThumbnail);
 
     boolean updateBoardFavorite(Board boardEntity);
 

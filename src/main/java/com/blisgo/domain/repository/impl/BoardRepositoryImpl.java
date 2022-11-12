@@ -82,9 +82,9 @@ public class BoardRepositoryImpl implements BoardRepository {
 
     @Modifying
     @Override
-    public boolean updateBoard(Board boardEntity) {
+    public boolean updateBoard(Board boardEntity, String boardThumbnail) {
         return jpaQueryFactory.update(board).set(board.bdTitle, boardEntity.getBdTitle())
-                .set(board.bdContent, boardEntity.getBdContent()).where(board.bdNo.eq(boardEntity.getBdNo())).execute() > 0;
+                .set(board.bdContent, boardEntity.getBdContent()).set(board.bdThumbnail, boardThumbnail).where(board.bdNo.eq(boardEntity.getBdNo())).execute() > 0;
     }
 
     @Modifying

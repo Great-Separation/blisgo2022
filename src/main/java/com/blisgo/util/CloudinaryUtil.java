@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -35,14 +34,13 @@ public class CloudinaryUtil {
      * @return 업로드된 파일 URl
      */
     public String uploadFile(MultipartFile mfile, String forWhat) {
-        Map map = null;
+
         UUID uuid = UUID.randomUUID();
         String fileName = mfile.getOriginalFilename();
         String uuidFilename = uuid + "-" + fileName;
         Path savePath = Paths.get(uuidFilename);
         File uploadFile = new File(savePath.toUri());
         String url;
-        String opt = "";
 
         try {
             mfile.transferTo(uploadFile);
@@ -50,11 +48,14 @@ public class CloudinaryUtil {
             throw new RuntimeException(e);
         }
 
-        switch (forWhat) {
-            case "account" -> map = ObjectUtils.asMap("folder", "userprofile", "transformation", new Transformation()
+        var map = switch (forWhat) {
+            case "account" -> ObjectUtils.asMap("folder", "userprofile", "transformation", new Transformation()
                     .gravity("auto:classic").width(1000).height(1000).crop("thumb").fetchFormat("webp"));
-            case "community" -> map = ObjectUtils.asMap("folder", "board");
-        }
+
+            case "community" -> ObjectUtils.asMap("folder", "board");
+
+            default -> ObjectUtils.asMap("", "");
+        };
         try {
             map = cloudinary.uploader().upload(uploadFile, map);
             Files.deleteIfExists(savePath);
@@ -63,10 +64,11 @@ public class CloudinaryUtil {
         }
 
 
-        switch (forWhat) {
-            case "account" -> {}
-            case "community" -> opt = "q_auto,f_jpg/";
-        }
+        var opt = switch (forWhat) {
+            case "community" -> "q_auto,f_jpg/";
+            default -> "";
+        };
+
         url = addOpt((String) Objects.requireNonNull(map).get("secure_url"), opt);
         return url;
     }

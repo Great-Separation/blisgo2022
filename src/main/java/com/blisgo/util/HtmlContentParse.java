@@ -1,7 +1,6 @@
 package com.blisgo.util;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,19 +11,14 @@ import java.util.regex.Pattern;
  */
 public class HtmlContentParse {
     public static String parseThumbnail(String str) {
-        List<String> list;
-        list = getImgSrc(str);
-
+        Optional<String> src = Optional.ofNullable(getImgSrc(str));
         StringBuilder sb = new StringBuilder();
 
-        try {
-            sb.append(list.get(0));
+        if (src.isPresent()) {
+            sb.append(src.get());
             // 49+1
             int appendIndex = sb.indexOf("/v") + 1;
-
-            sb.insert(appendIndex, "c_fill,q_auto,f_jpg,h_auto,w_auto/");
-        } catch (Exception e) {
-            return null;
+            sb.insert(appendIndex, "c_fill,h_200,w_200/");
         }
         return sb.toString();
     }
@@ -40,7 +34,7 @@ public class HtmlContentParse {
             str = str.substring(0, str.indexOf("</p>"));
         }
 
-        String[] filterList = {"<p></p>","<img[^>]*>", "<p.*>", "</p>", "<br>", "<p data-f-id=\"pbf\"[^>]*>.*</p>"};
+        String[] filterList = {"<p></p>", "<img[^>]*>", "<p.*>", "</p>", "<br>", "<p data-f-id=\"pbf\"[^>]*>.*</p>"};
 
         for (String filter : filterList) {
             pattern = Pattern.compile(filter, Pattern.DOTALL);
@@ -48,18 +42,17 @@ public class HtmlContentParse {
             str = mat.replaceAll("");
         }
 
-        return str.equals("") ? null: str;
+        return str.equals("") ? null : str;
     }
 
 
-
-    private static List<String> getImgSrc(String str) {
+    private static String getImgSrc(String str) {
         Pattern nonValidPattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>");
-        List<String> result = new ArrayList<>();
         Matcher matcher = nonValidPattern.matcher(str);
-        while (matcher.find()) {
-            result.add(matcher.group(1));
+        if (matcher.find()) {
+            return matcher.group(1);
+        } else {
+            return null;
         }
-        return result;
     }
 }

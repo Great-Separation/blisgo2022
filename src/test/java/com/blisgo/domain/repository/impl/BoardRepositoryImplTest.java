@@ -82,7 +82,8 @@ class BoardRepositoryImplTest extends TestRepositoryTemplate {
         @Test
         @DisplayName("게시글이 수정되었는가?")
         void testUpdateBoard() {
-            boolean result = boardRepository.updateBoard(sampleBoard);
+            String thumbnail = "";
+            boolean result = boardRepository.updateBoard(sampleBoard, thumbnail);
             Assertions.assertTrue(result);
         }
 

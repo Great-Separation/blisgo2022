@@ -99,7 +99,8 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public boolean modifyBoard(BoardDTO boardDTO) {
         var board = BoardMapper.INSTANCE.toEntity(boardDTO);
-        return boardRepository.updateBoard(board);
+        String boardThumbnail = HtmlContentParse.parseThumbnail(board.getBdContent());
+        return boardRepository.updateBoard(board, boardThumbnail);
     }
 
     @Override
@@ -111,8 +112,7 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public Optional<String> uploadImageToStorage(MultipartFile file) {
         cloudinaryUtil = new CloudinaryUtil();
-        String url = cloudinaryUtil.uploadFile(file, "board");
-        url = cloudinaryUtil.addOpt(url, "q_auto,f_jpg/");
+        String url = cloudinaryUtil.uploadFile(file, "community");
         JSONObject jfile = new JSONObject();
         JSONObject jsonObject = new JSONObject();
         try {

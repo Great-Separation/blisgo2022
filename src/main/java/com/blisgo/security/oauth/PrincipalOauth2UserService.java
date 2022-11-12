@@ -35,14 +35,13 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
         return processOAuth2User(userRequest, oAuth2User);
     }
 
-    private OAuth2User processOAuth2User(OAuth2UserRequest userRequest, OAuth2User oAuth2User) {
+    private OAuth2User processOAuth2User(OAuth2UserRequest userRequest, OAuth2User oAuth2User) throws OAuth2AuthenticationException {
 
-        OAuth2UserInfo oAuth2UserInfo = null;
-        switch (userRequest.getClientRegistration().getRegistrationId()) {
-            case "google" -> oAuth2UserInfo = new GoogleUserInfo(oAuth2User.getAttributes());
-            case "github" -> oAuth2UserInfo = new GithubUserInfo(oAuth2User.getAttributes());
-            default -> log.error("미지원 제공자");
-        }
+        OAuth2UserInfo oAuth2UserInfo = switch (userRequest.getClientRegistration().getRegistrationId()) {
+            case "google" -> new GoogleUserInfo(oAuth2User.getAttributes());
+            case "github" -> new GithubUserInfo(oAuth2User.getAttributes());
+            default -> throw new OAuth2AuthenticationException("미지원 제공자");
+        };
 
         Optional<Account> userOptional = Optional.ofNullable(accountRepository.selectAccount(Account.builder().email(Objects.requireNonNull(oAuth2UserInfo).getEmail()).build()));
         Account account;

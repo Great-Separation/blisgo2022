@@ -2,8 +2,8 @@ var quill = new Quill('#quill', {
   modules: {
     toolbar: [
       // ['bold', 'italic'],
-      ['link', 'image', 'video'],
-      [{ list: 'ordered' }, { list: 'bullet' }]
+      //[{ list: 'ordered' }, { list: 'bullet' }],
+      ['link', 'image', 'video']
     ]
   },
   placeholder: '글을 작성하세요.',

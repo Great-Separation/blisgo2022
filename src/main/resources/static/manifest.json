@@ -14,32 +14,32 @@
   "prefer_related_applications": false,
   "screenshots": [
     {
-      "src": "/assets/img/screenshots/mobile_1.webp",
+      "src": "https://res.cloudinary.com/blisgo/manifest/mobile_1.webp",
       "type": "image/webp",
       "sizes": "750x1334"
     },
     {
-      "src": "/assets/img/screenshots/mobile_2.webp",
+      "src": "https://res.cloudinary.com/blisgo/manifest/mobile_2.webp",
       "type": "image/webp",
       "sizes": "750x1334"
     },
     {
-      "src": "/assets/img/screenshots/mobile_3.webp",
+      "src": "https://res.cloudinary.com/blisgo/manifest/mobile_3.webp",
       "type": "image/webp",
       "sizes": "750x1334"
     },
     {
-      "src": "/assets/img/screenshots/pc_1.webp",
+      "src": "https://res.cloudinary.com/blisgo/manifest/pc_1.webp",
       "type": "image/webp",
       "sizes": "1280x800"
     },
     {
-      "src": "/assets/img/screenshots/pc_2.webp",
+      "src": "https://res.cloudinary.com/blisgo/manifest/pc_2.webp",
       "type": "image/webp",
       "sizes": "1280x800"
     },
     {
-      "src": "/assets/img/screenshots/pc_3.webp",
+      "src": "https://res.cloudinary.com/blisgo/manifest/pc_3.webp",
       "type": "image/webp",
       "sizes": "1280x800"
     }

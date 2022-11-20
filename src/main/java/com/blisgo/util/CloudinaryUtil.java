@@ -65,7 +65,7 @@ public class CloudinaryUtil {
 
 
         var opt = switch (forWhat) {
-            case "community" -> "q_auto,f_jpg/";
+            case "community" -> "q_auto,f_webp/";
             default -> "";
         };
 

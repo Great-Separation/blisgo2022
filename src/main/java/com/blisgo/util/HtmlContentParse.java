@@ -18,7 +18,7 @@ public class HtmlContentParse {
             sb.append(src.get());
             // 49+1
             int appendIndex = sb.indexOf("/v") + 1;
-            sb.insert(appendIndex, "c_fill,h_200,w_200/");
+            sb.insert(appendIndex, "c_fill,h_240,w_240/");
         }
         return sb.toString();
     }

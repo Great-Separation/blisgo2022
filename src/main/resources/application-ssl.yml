@@ -10,7 +10,7 @@ server:
   http2:
     enabled: true
   ssl:
-    enabled: false
+    enabled: true
     certificate: classpath:ssl/certificate.crt
     certificate-private-key: classpath:ssl/private.key
     trust-certificate: classpath:ssl/ca_bundle.crt

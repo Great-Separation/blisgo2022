@@ -1,6 +1,6 @@
 spring:
   profiles:
     include:
-      common, oauth
+      common, oauth, ssl
     active:
       - prod

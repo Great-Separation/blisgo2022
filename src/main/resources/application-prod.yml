@@ -3,7 +3,7 @@ spring:
     activate:
       on-profile: prod
   thymeleaf:
-    cache: true
+    cache: false
   jpa:
     hibernate:
       ddl-auto: validate

@@ -33,14 +33,17 @@ spring:
   datasource:
     hikari:
       driver-class-name: com.mysql.cj.jdbc.Driver
-  web:
-    resources:
-      cache:
-        cachecontrol:
-          must-revalidate: true
-      chain:
-        compressed: true
-        enabled: true
+#  web:
+#    resources:
+#      cache:
+#        cachecontrol:
+#          no-cache: true
+#          no-store: true
+#          must-revalidate: true
+#
+#      chain:
+#        compressed: true
+#        enabled: true
 
 server:
   servlet:
@@ -51,7 +54,7 @@ server:
     session:
       tracking-modes: cookie
       cookie:
-        http-only: true
+        http-only: false
         secure: true
 
   error:
@@ -61,7 +64,7 @@ server:
     min-response-size: 512
     mime-types: text/html,text/plain,text/xml,text/css,application/javascript,application/json
     enabled: true
-  port: 8080
+  port: 443
 
 logging:
   level:

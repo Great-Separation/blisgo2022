@@ -16,7 +16,7 @@ WORKDIR /app
 # 빌더 이미지에서 jar 파일만 복사
 COPY --from=builder /build/build/libs/blisgo.jar .
 
-EXPOSE 8080
+EXPOSE 443
 
 # root 대신 nobody 권한으로 실행
 USER root

@@ -5,16 +5,16 @@ spring:
   thymeleaf:
     cache: false
   flyway:
-    url: jdbc:mysql://m7az7525jg6ygibs.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/dgqpy0sm968c8va4?&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8&useLegacyDatetimeCode=false
-    user: lrsnvwzil9dfof0n
-    password: qoljsbmqrnr694h9
+    url: jdbc:${MYSQL_URL}
+    user: ${MYSQLUSER}
+    password: ${MYSQLPASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:mysql://m7az7525jg6ygibs.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/dgqpy0sm968c8va4?&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8&useLegacyDatetimeCode=false
-    username: lrsnvwzil9dfof0n
-    password: qoljsbmqrnr694h9
+    url: jdbc:${MYSQL_URL}
+    username: ${MYSQLUSER}
+    password: ${MYSQLPASSWORD}
     hikari:
       maximum-pool-size: 5
   devtools:

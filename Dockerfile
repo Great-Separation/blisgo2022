@@ -5,6 +5,10 @@ WORKDIR /build
 COPY build.gradle settings.gradle /build/
 RUN gradle build -x test --parallel --continue > /dev/null 2>&1 || true
 
+ARG EnvironmentVariable
+ARG RAILWAY_ENVIRONMENT
+ENV RAILWAY_ENVIRONMENT=$RAILWAY_ENVIRONMENT
+
 # 빌더 이미지에서 애플리케이션 빌드
 COPY . /build
 RUN gradle build -x test --parallel
@@ -19,13 +23,5 @@ COPY --from=builder /build/build/libs/blisgo.jar .
 EXPOSE 8080
 
 # root 대신 nobody 권한으로 실행
-USER root
-ENTRYPOINT [                                                \
-    "java",                                                 \
-    "-jar",                                                 \
-    "-Djava.security.egd=file:/dev/./urandom",              \
-    "-Dsun.net.inetaddr.ttl=0",                             \
-    "blisgo.jar"              \
-]
-
-# 참조>https://findstar.pe.kr/2022/05/13/gradle-docker-cache/
+USER nobody
+ENTRYPOINT ["java","-jar","blisgo.jar"]

@@ -8,12 +8,12 @@ spring:
     hibernate:
       ddl-auto: validate
   flyway:
-    url: ${MYSQL_URL}
+    url: jdbc:${MYSQL_URL}
     user: ${MYSQLUSER}
     password: ${MYSQLPASSWORD}
 
   datasource:
-    url: ${MYSQL_URL}
+    url: jdbc:${MYSQL_URL}
     username: ${MYSQLUSER}
     password: ${MYSQLPASSWORD}
 

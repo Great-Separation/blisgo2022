@@ -8,14 +8,14 @@ spring:
     hibernate:
       ddl-auto: validate
   flyway:
-    url: jdbc:mysql://root:V1VVs2Kek6skaijyVvdQ@containers-us-west-80.railway.app:7646/railway?&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8&useLegacyDatetimeCode=false
-    user: root
-    password: V1VVs2Kek6skaijyVvdQ
+    url: ${MYSQL_URL}
+    user: ${MYSQLUSER}
+    password: ${MYSQLPASSWORD}
 
   datasource:
-    url: jdbc:mysql://root:V1VVs2Kek6skaijyVvdQ@containers-us-west-80.railway.app:7646/railway?&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8&useLegacyDatetimeCode=false
-    username: root
-    password: V1VVs2Kek6skaijyVvdQ
+    url: ${MYSQL_URL}
+    username: ${MYSQLUSER}
+    password: ${MYSQLPASSWORD}
 
   devtools:
     add-properties: false

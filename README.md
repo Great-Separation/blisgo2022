@@ -1,5 +1,7 @@
-# blisgo
-2021-2022 분리배출 도우미 사전  
+# 분리ㅅㄱ
+![img](https://github.com/laigasus/blisgo/blob/master/src/main/resources/static/assets/img/favicon/180x180.png?raw=true)
+
+2021-2022 분리배출 도우미 사전
 
 [분리ㅅㄱ (https://blisgo.up.railway.app/)](https://blisgo.up.railway.app/)
 

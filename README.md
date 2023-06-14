@@ -5,7 +5,7 @@
 
 [분리ㅅㄱ (https://blisgo.up.railway.app/)](https://blisgo.up.railway.app/)
 
-[![GitHub Clones](https://img.shields.io/badge/dynamic/json?color=success&label=Clone&query=count&url=https://gist.githubusercontent.com/laigasus/ed00f914d00b38c2f0c82c7397e22989/raw/clone.json&logo=github)](https://github.com/MShawon/github-clone-count-badge)
+[![GitHub Clones](https://img.shields.io/badge/dynamic/json?color=success&label=Clone&query=count&url=https://gist.githubusercontent.com/laigasus/ed00f914d00b38c2f0c82c7397e22989/raw/clone.json&logo=github)](https://github.com/laigasus/blisgo)
 
 ## Stack
 

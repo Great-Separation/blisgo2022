@@ -28,12 +28,8 @@ public class Unsplash {
     public static boolean changeWallpaper() {
         Optional<String> imageUrl = Optional.of(getImageUrl());
 
-        if (imageUrl.isPresent()) {
-            replaceImage(imageUrl.get());
-            return true;
-        } else {
-            return false;
-        }
+        replaceImage(imageUrl.get());
+        return true;
     }
 
     @SneakyThrows

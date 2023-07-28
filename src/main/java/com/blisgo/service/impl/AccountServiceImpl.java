@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
@@ -83,9 +84,14 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public String findTermsOfAgreement() {
         ClassLoader classLoader = getClass().getClassLoader();
-        InputStream in = classLoader.getResourceAsStream("static/agreement.txt");
-        InputStreamReader inputStreamReader = new InputStreamReader(Objects.requireNonNull(in));
-        Stream<String> streamOfString = new BufferedReader(inputStreamReader).lines();
-        return streamOfString.collect(Collectors.joining());
+
+        try (InputStream in = classLoader.getResourceAsStream("static/agreement.txt")) {
+            InputStreamReader inputStreamReader = new InputStreamReader(Objects.requireNonNull(in));
+            Stream<String> streamOfString = new BufferedReader(inputStreamReader).lines();
+            return streamOfString.collect(Collectors.joining());
+        } catch (IOException e) {
+            e.fillInStackTrace();
+            return null;
+        }
     }
 }

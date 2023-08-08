@@ -1,11 +1,11 @@
 package com.blisgo.domain.entity;
 
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +15,7 @@ import java.util.List;
 public class Dictionary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="dic_no", updatable = false, nullable = false)
     @Comment("폐기물 번호(PK)")
     private Integer dicNo;
 

@@ -21,8 +21,6 @@ spring:
       maxFileSize: 10MB
   jpa:
     defer-datasource-initialization: false
-    hibernate:
-      use-new-id-generator-mappings: false
 
     properties:
       hibernate:
@@ -33,17 +31,6 @@ spring:
   datasource:
     hikari:
       driver-class-name: com.mysql.cj.jdbc.Driver
-#  web:
-#    resources:
-#      cache:
-#        cachecontrol:
-#          no-cache: true
-#          no-store: true
-#          must-revalidate: true
-#
-#      chain:
-#        compressed: true
-#        enabled: true
 
 server:
   servlet:

@@ -4,18 +4,16 @@ buildscript {
     }
 
     dependencies {
-        classpath "org.flywaydb:flyway-mysql:9.3.1"
+        classpath "org.flywaydb:flyway-mysql:+"
     }
 }
 
 plugins {
-    id 'org.springframework.boot' version '2.7.4'
-    id 'io.spring.dependency-management' version '1.0.14.RELEASE'
+    id 'org.springframework.boot' version '3.1.2'
+    id 'io.spring.dependency-management' version '1.1.2'
+    id "org.flywaydb.flyway" version '9.21.1'
     id 'java'
-    id "org.flywaydb.flyway" version '9.3.1'
 }
-
-apply plugin: 'java'
 
 java {
     toolchain {
@@ -44,45 +42,52 @@ dependencies {
     implementation 'org.flywaydb:flyway-core'
     implementation 'org.flywaydb:flyway-mysql'
     implementation 'org.springframework.session:spring-session-core'
-    implementation 'org.jetbrains:annotations:latest.release'
+    implementation 'org.jetbrains:annotations:+'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'mysql:mysql-connector-java'
+    runtimeOnly 'com.mysql:mysql-connector-j'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    implementation 'org.yaml:snakeyaml:+'
+
+    implementation 'org.slf4j:slf4j-api:2.0.7'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.batch:spring-batch-test'
+
+    // 롬복은 쓰기 싫은데, Builder는 필요해서 가져옴
+    compileOnly 'io.soabase.record-builder:record-builder-core:+'//
+    annotationProcessor 'io.soabase.record-builder:record-builder-processor:+'
+
+    // 곧 다 지울 예정
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testCompileOnly 'org.projectlombok:lombok'
     testAnnotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.batch:spring-batch-test'
 
     //Cloudinary 클라우드 스토리지
-    //noinspection GradlePackageVersionRange
-    implementation 'com.cloudinary:cloudinary-core:latest.release'
-    implementation 'com.cloudinary:cloudinary-http44:latest.release'
-    implementation 'com.cloudinary:cloudinary-taglib:latest.release'
+    implementation 'com.cloudinary:cloudinary-core:+'
+    implementation 'com.cloudinary:cloudinary-http44:+'
+    implementation 'com.cloudinary:cloudinary-taglib:+'
 
     //Algolia 검색엔진
-    implementation 'com.algolia:algoliasearch-core:latest.release'
-    implementation 'com.algolia:algoliasearch-apache:latest.release'
-    implementation 'com.algolia:algoliasearch-java-net:latest.release'
-    implementation 'com.algolia:algoliasearch-apache-uber:latest.release'
+    implementation 'com.algolia:algoliasearch-core:+'
+    implementation 'com.algolia:algoliasearch-apache:+'
+    implementation 'com.algolia:algoliasearch-java-net:+'
+    implementation 'com.algolia:algoliasearch-apache-uber:+'
 
     //Hibernate
-    implementation 'org.hibernate:hibernate-core'
+    implementation 'org.hibernate:hibernate-core:+'
     implementation 'org.hibernate.validator:hibernate-validator'
 
-    //QueryDSL JPA
-    // querydsl 디펜던시 추가
-    implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
-    annotationProcessor(
-            "javax.persistence:javax.persistence-api",
-            "javax.annotation:javax.annotation-api",
-            "com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
+
+    // QueryDSL. over Springboot 3.0
+    implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
+    annotationProcessor "com.querydsl:querydsl-apt:5.0.0:jakarta"
+    annotationProcessor "jakarta.annotation:jakarta.annotation-api"
+    annotationProcessor "jakarta.persistence:jakarta.persistence-api"
 
     //MapStuct(DTO->Entity 변환. type-safe bean)
-    implementation "org.mapstruct:mapstruct:latest.release"
-    annotationProcessor "org.mapstruct:mapstruct-processor:latest.release"
-    annotationProcessor "org.projectlombok:lombok-mapstruct-binding:latest.release"
+    implementation "org.mapstruct:mapstruct:+"
+    annotationProcessor "org.mapstruct:mapstruct-processor:+"
+    annotationProcessor "org.projectlombok:lombok-mapstruct-binding:+"
 
     //aop
     implementation 'org.springframework.boot:spring-boot-starter-aop'
@@ -92,53 +97,34 @@ dependencies {
     testImplementation 'com.h2database:h2'
 
     // 객체 모니터링
-    implementation 'org.javers:javers-core:latest.release'
+    implementation 'org.javers:javers-core:+'
 
     // spring security
     implementation 'org.springframework.boot:spring-boot-starter-security'
     testImplementation 'org.springframework.security:spring-security-test'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
     implementation 'org.springframework.security:spring-security-config'
-    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 }
 
-def queryDslDir = "./out/production/classes/generated"
-def queryDslOutput = file("${queryDslDir}")
+// QueryDsl options
+def querydslDir = "$buildDir/generated/querydsl"
+
 sourceSets {
-    main {
-        java {
-            srcDir queryDslDir
-        }
-    }
+    main.java.srcDirs += [ querydslDir ]
 }
 
-compileJava.doFirst {
-    delete file("${queryDslDir}/com")
-    ant.echo(message: "compileJava... we successully deleted files")
+clean.doLast {
+    file(querydslDir).deleteDir()
 }
 
-def gradleGeneratedDir = "./build/generated/source/apt"
-def gradleQueryDslOutput = file("${gradleGeneratedDir}")
-task cleanUpQueryDsl(type: Copy) {
-    from "${gradleGeneratedDir}/main"
-    into "${queryDslDir}"
-    doLast {
-        delete gradleQueryDslOutput
-    }
-}
-compileJava.finalizedBy(cleanUpQueryDsl)
-
-clean {
-    delete gradleQueryDslOutput
-    delete queryDslOutput
-}
 
 flyway {
     //prod
-    url = 'jdbc:mysql://root:TzwYbkt9qnN6fKQdZCvs@containers-us-west-80.railway.app:7646/railway?&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8'
-    user = 'root'
-    password = 'TzwYbkt9qnN6fKQdZCvs'
+    url = 'jdbc:mysql://avnadmin:AVNS_La_DidM8gznKaCox7Ye@blisgo-blisgo.aivencloud.com:20548/defaultdb?ssl-mode=REQUIRED&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8'
+    user = 'avnadmin'
+    password = 'AVNS_La_DidM8gznKaCox7Ye'
 
     cleanDisabled = false
     // driver = 'com.mysql.jdbc.Driver'  기본으로 등록되어있다.
@@ -152,4 +138,3 @@ manifest {
 tasks.named('test') {
     useJUnitPlatform()
 }
-

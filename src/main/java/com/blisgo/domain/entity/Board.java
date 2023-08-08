@@ -1,13 +1,12 @@
 package com.blisgo.domain.entity;
 
 import com.blisgo.domain.entity.cmmn.BaseTimeEntity;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.*;
 
-import javax.persistence.Entity;
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,12 +19,12 @@ public class Board extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Comment("글 번호(PK)")
-    @Column(name = "bd_no")
+    @Column(name = "bd_no", updatable = false, nullable = false)
     private Integer bdNo;
 
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "mem_no", nullable = false)
+    @JoinColumn(name = "mem_no", nullable = false, updatable = false, referencedColumnName = "mem_no")
     @Comment("회원 번호(FK)")
     private Account account;
 

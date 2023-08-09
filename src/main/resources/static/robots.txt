@@ -13,4 +13,4 @@ Disallow: /board/
 Allow: /dictionary/
 
 # 사이트맵 지정
-Sitemap: https://blisgo.duckdns.org/sitemap.xml
+Sitemap: https://blisgo.up.railway.app/sitemap.xml

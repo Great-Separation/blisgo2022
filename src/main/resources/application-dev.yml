@@ -16,7 +16,7 @@ spring:
     username: avnadmin
     password: AVNS_La_DidM8gznKaCox7Ye
     hikari:
-      maximum-pool-size: 5
+      maximum-pool-size: 20
   devtools:
     livereload:
       enabled: true

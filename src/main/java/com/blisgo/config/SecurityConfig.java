@@ -26,8 +26,6 @@ import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
 @Slf4j
 @RequiredArgsConstructor
 @ConditionalOnDefaultWebSecurity
@@ -64,28 +62,12 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(request -> request
                 .requestMatchers(
-                        new AntPathRequestMatcher("/assets/**"),
-                        new AntPathRequestMatcher("/manifest.json"),
-                        new AntPathRequestMatcher("/pwabuilder-sw.js"),
-                        new AntPathRequestMatcher("/agreement.txt"),
-                        new AntPathRequestMatcher("/sitemap.xml")).permitAll()
-                .requestMatchers(
-                        new AntPathRequestMatcher("/"),
-                        new AntPathRequestMatcher("/faq"),
-                        new AntPathRequestMatcher("/account/login"),
-                        new AntPathRequestMatcher("/account/register"),
-                        new AntPathRequestMatcher("/account/verify"),
-                        new AntPathRequestMatcher("/account/chgpw"),
-                        new AntPathRequestMatcher("/board"),
-                        new AntPathRequestMatcher("/dictionary"),
-                        new AntPathRequestMatcher("/dictionary/**")
-                ).permitAll()
-                .requestMatchers(
                         new MvcRequestMatcher(introspector, "/account/mypage"),
                         new MvcRequestMatcher(introspector, "/account/mypage/**")).authenticated()
                 .requestMatchers(
                         new MvcRequestMatcher(introspector, "/board/edit/**"),
                         new MvcRequestMatcher(introspector, "/board/write")).authenticated()
+                .anyRequest().permitAll()
         );
 
         http.formLogin(form -> form
@@ -98,8 +80,6 @@ public class SecurityConfig {
                 .successHandler(authenticationSuccessHandler)
                 .permitAll()
         );
-
-        http.httpBasic(withDefaults());
 
         http.logout(logout -> logout
                 .logoutRequestMatcher(new AntPathRequestMatcher("/account/logout"))

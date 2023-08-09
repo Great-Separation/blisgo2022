@@ -21,29 +21,16 @@ spring:
       maxFileSize: 10MB
   jpa:
     defer-datasource-initialization: false
-    hibernate:
-      use-new-id-generator-mappings: false
 
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernate.dialect.MySQLDialect
         physical_naming_strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
     database: mysql
     open-in-view: false
   datasource:
     hikari:
       driver-class-name: com.mysql.cj.jdbc.Driver
-#  web:
-#    resources:
-#      cache:
-#        cachecontrol:
-#          no-cache: true
-#          no-store: true
-#          must-revalidate: true
-#
-#      chain:
-#        compressed: true
-#        enabled: true
 
 server:
   servlet:

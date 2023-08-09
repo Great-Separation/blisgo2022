@@ -11,17 +11,17 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.security.web.util.matcher.AnyRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,54 +33,69 @@ import java.util.List;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
-
     private final PrincipalOauth2UserService principalOauth2UserService;
-
     private final AuthenticationSuccessHandler authenticationSuccessHandler;
 
     @Bean
     @Order(SecurityProperties.BASIC_AUTH_ORDER)
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.headers()
-                .httpStrictTransportSecurity()
-                .requestMatcher(AnyRequestMatcher.INSTANCE);
+        HandlerMappingIntrospector introspector = new HandlerMappingIntrospector();
+        http.headers(headers -> headers
+                .httpStrictTransportSecurity(hsts -> hsts
+                        .includeSubDomains(true)
+                        .preload(true)
+                        .maxAgeInSeconds(31536000)
+                )
+        );
 
-        http
-                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                .and()
-                .cors().configurationSource(corsConfigurationSource())
-                .and()
-                .sessionManagement()
+        http.csrf(csrf -> csrf
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+        );
+
+        http.cors(cors -> cors
+                .configurationSource(corsConfigurationSource())
+        );
+
+        http.sessionManagement(sessionManagement -> sessionManagement
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-                .and()
-                .authorizeRequests()
-                .mvcMatchers("/account/mypage", "/account/mypage/**").authenticated()
-                .mvcMatchers("/board/edit/**", "/board/write").authenticated()
-                .mvcMatchers("/", "/faq", "/account/login", "/account/register", "/account/verify", "/account/chgpw").permitAll()
-                .and()
-                .formLogin().loginPage("/account/login").usernameParameter("email").passwordParameter("pass").defaultSuccessUrl("/")
+        );
+
+        http.authorizeHttpRequests(request -> request
+                .requestMatchers(
+                        new MvcRequestMatcher(introspector, "/account/mypage"),
+                        new MvcRequestMatcher(introspector, "/account/mypage/**")).authenticated()
+                .requestMatchers(
+                        new MvcRequestMatcher(introspector, "/board/edit/**"),
+                        new MvcRequestMatcher(introspector, "/board/write")).authenticated()
+                .anyRequest().permitAll()
+        );
+
+        http.formLogin(form -> form
+                .loginPage("/account/login")
+                .usernameParameter("email")
+                .passwordParameter("pass")
+                .defaultSuccessUrl("/")
                 .failureUrl("/account/login")
-                .loginProcessingUrl("/account/login").defaultSuccessUrl("/")
+                .loginProcessingUrl("/account/login")
                 .successHandler(authenticationSuccessHandler)
                 .permitAll()
-                .and()
-                .httpBasic()
-                .and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/account/logout"))
-                .invalidateHttpSession(true).deleteCookies("JSESSIONID")
-                .logoutSuccessUrl("/")
-                .and()
-                .oauth2Login().loginPage("/account/login")
-                .userInfoEndpoint().userService(principalOauth2UserService);
-        return http.build();
-    }
+        );
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web
-                .ignoring()
-                .antMatchers("/assets/**", "/manifest.json", "/pwabuilder-sw.js", "/agreement.txt", "/sitemap.xml");
+        http.logout(logout -> logout
+                .logoutRequestMatcher(new AntPathRequestMatcher("/account/logout"))
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
+                .logoutSuccessUrl("/")
+        );
+
+        http.oauth2Login(oauth2 -> oauth2
+                .loginPage("/account/login")
+                .userInfoEndpoint(endpoint -> endpoint
+                        .userService(principalOauth2UserService)
+                )
+        );
+
+        return http.build();
     }
 
     @Bean

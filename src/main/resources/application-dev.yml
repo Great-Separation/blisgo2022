@@ -5,16 +5,16 @@ spring:
   thymeleaf:
     cache: false
   flyway:
-    url: jdbc:${MYSQL_URL}
-    user: ${MYSQLUSER}
-    password: ${MYSQLPASSWORD}
+    url: jdbc:mysql://avnadmin:AVNS_La_DidM8gznKaCox7Ye@blisgo-blisgo.aivencloud.com:20548/defaultdb?ssl-mode=REQUIRED
+    user: avnadmin
+    password: AVNS_La_DidM8gznKaCox7Ye
   jpa:
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:${MYSQL_URL}
-    username: ${MYSQLUSER}
-    password: ${MYSQLPASSWORD}
+    url: jdbc:mysql://avnadmin:AVNS_La_DidM8gznKaCox7Ye@blisgo-blisgo.aivencloud.com:20548/defaultdb?ssl-mode=REQUIRED
+    username: avnadmin
+    password: AVNS_La_DidM8gznKaCox7Ye
     hikari:
       maximum-pool-size: 5
   devtools:

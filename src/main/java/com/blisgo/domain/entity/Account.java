@@ -1,6 +1,7 @@
 package com.blisgo.domain.entity;
 
 import com.blisgo.domain.entity.cmmn.BaseTimeEntity;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,7 +9,6 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.DynamicInsert;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +19,7 @@ import java.util.List;
 public class Account extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "mem_no", updatable = false, nullable = false)
     @Comment("회원 번호(PK)")
     private Integer memNo;
 

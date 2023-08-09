@@ -5,12 +5,12 @@ import com.blisgo.domain.entity.Dictionary;
 import com.blisgo.domain.entity.Dogam;
 import com.blisgo.domain.repository.AccountRepository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 

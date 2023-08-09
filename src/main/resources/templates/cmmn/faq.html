@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" xmlns="http://www.w3.org/1999/xhtml">
+<html data-bs-theme="auto" lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
@@ -16,6 +16,87 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta property="og:image" content="/assets/img/favicon/512x512.png">
     <meta name="description" content="분리배출 도우미">
+    <script>
+        (function() {
+
+            // JavaScript snippet handling Dark/Light mode switching
+
+            const getStoredTheme = () => localStorage.getItem('theme');
+            const setStoredTheme = theme => localStorage.setItem('theme', theme);
+            const forcedTheme = document.documentElement.getAttribute('data-bss-forced-theme');
+
+            const getPreferredTheme = () => {
+
+                if (forcedTheme) return forcedTheme;
+
+                const storedTheme = getStoredTheme();
+                if (storedTheme) {
+                    return storedTheme;
+                }
+
+                const pageTheme = document.documentElement.getAttribute('data-bs-theme');
+
+                if (pageTheme) {
+                    return pageTheme;
+                }
+
+                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+
+            const setTheme = theme => {
+                if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.documentElement.setAttribute('data-bs-theme', 'dark');
+                } else {
+                    document.documentElement.setAttribute('data-bs-theme', theme);
+                }
+            }
+
+            setTheme(getPreferredTheme());
+
+            const showActiveTheme = (theme, focus = false) => {
+                const themeSwitchers = [].slice.call(document.querySelectorAll('.theme-switcher'));
+
+                if (!themeSwitchers.length) return;
+
+                document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+                    element.classList.remove('active');
+                    element.setAttribute('aria-pressed', 'false');
+                });
+
+                for (const themeSwitcher of themeSwitchers) {
+
+                    const btnToActivate = themeSwitcher.querySelector('[data-bs-theme-value="' + theme + '"]');
+
+                    if (btnToActivate) {
+                        btnToActivate.classList.add('active');
+                        btnToActivate.setAttribute('aria-pressed', 'true');
+                    }
+                }
+            }
+
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                const storedTheme = getStoredTheme();
+                if (storedTheme !== 'light' && storedTheme !== 'dark') {
+                    setTheme(getPreferredTheme());
+                }
+            });
+
+            window.addEventListener('DOMContentLoaded', () => {
+                showActiveTheme(getPreferredTheme());
+
+                document.querySelectorAll('[data-bs-theme-value]')
+                    .forEach(toggle => {
+                        toggle.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const theme = toggle.getAttribute('data-bs-theme-value');
+                            setStoredTheme(theme);
+                            setTheme(theme);
+                            showActiveTheme(theme);
+                        })
+                    })
+            });
+        })();
+    </script>
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/assets/img/favicon/180x180.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon/16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon/32x32.png">
@@ -48,7 +129,7 @@
                             <div class="accordion" role="tablist" id="accordion-paper">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" role="tab"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-paper .item-1" aria-expanded="false" aria-controls="accordion-paper .item-1">종이조각, 고지서 영수증은 어떻게 배출하나요?<br></button></h2>
-                                    <div class="accordion-collapse collapse item-1 text-secondary" role="tabpanel" data-bs-parent="#accordion-paper">
+                                    <div class="accordion-collapse collapse item-1" role="tabpanel" data-bs-parent="#accordion-paper">
                                         <div class="accordion-body">
                                             <p class="mb-0">종이 조각 들도 모이면 재활용이 가능하므로 종이류로 배출합니다. <br> 단, 개인정보가 포함되어 있는 영수증과 고지서는 개인정보 식별이 불가능하도록 유의해서 배출합니다.<br>※ 주의 : 마트 영수증(감열지) 등은 종량제 봉투로 배출합니다<br></p>
                                         </div>
@@ -56,7 +137,7 @@
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" role="tab"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-paper .item-2" aria-expanded="false" aria-controls="accordion-paper .item-2">종이재질인 핸드 타월은 어떻게 배출하나요?<br></button></h2>
-                                    <div class="accordion-collapse collapse item-2 text-secondary" role="tabpanel" data-bs-parent="#accordion-paper">
+                                    <div class="accordion-collapse collapse item-2" role="tabpanel" data-bs-parent="#accordion-paper">
                                         <div class="accordion-body">
                                             <p class="mb-0">물기만 닦은 핸드타월은 종이류로 배출합니다.<br> 단, 이물질이 묻어 있는 경우에는 종량제봉투로 배출합니다.<br></p>
                                         </div>
@@ -64,7 +145,7 @@
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" role="tab"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-paper .item-3" aria-expanded="false" aria-controls="accordion-paper .item-3">휴지는 재활용이 가능한가요?<br></button></h2>
-                                    <div class="accordion-collapse collapse item-3 text-secondary" role="tabpanel" data-bs-parent="#accordion-paper">
+                                    <div class="accordion-collapse collapse item-3" role="tabpanel" data-bs-parent="#accordion-paper">
                                         <div class="accordion-body">
                                             <p class="mb-0">이물질이 묻은 휴지는 종량제봉투로 배출합니다.<br></p>
                                         </div>
@@ -72,7 +153,7 @@
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" role="tab"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-paper .item-4" aria-expanded="false" aria-controls="accordion-paper .item-4">코팅된 종이(광고지, 전단지, 사진 등)는 어떻게 배출하나요?<br></button></h2>
-                                    <div class="accordion-collapse collapse item-4 text-secondary" role="tabpanel" data-bs-parent="#accordion-paper">
+                                    <div class="accordion-collapse collapse item-4" role="tabpanel" data-bs-parent="#accordion-paper">
                                         <div class="accordion-body">
                                             <p class="mb-0">코팅된 종이는 재활용불가이므로 종량제봉투로 배출합니다.<br></p>
                                         </div>
@@ -80,7 +161,7 @@
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" role="tab"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-paper .item-5" aria-expanded="false" aria-controls="accordion-paper .item-5">스프링 등(철, 플라스틱)제본된 책자류는 어떻게 배출하나요?<br></button></h2>
-                                    <div class="accordion-collapse collapse item-5 text-secondary" role="tabpanel" data-bs-parent="#accordion-paper">
+                                    <div class="accordion-collapse collapse item-5" role="tabpanel" data-bs-parent="#accordion-paper">
                                         <div class="accordion-body">
                                             <p class="mb-0">스프링 및 비닐표지 등 부속품은 가급적 제거 후 종이류로 배출합니다.<br></p>
                                         </div>
@@ -88,7 +169,7 @@
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" role="tab"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-paper .item-6" aria-expanded="false" aria-controls="accordion-paper .item-6">1회용 종이컵에 이물질(커피 등)이 약간 말라있을 경우에도 재활용이 가능한가요?<br></button></h2>
-                                    <div class="accordion-collapse collapse item-6 text-secondary" role="tabpanel" data-bs-parent="#accordion-paper">
+                                    <div class="accordion-collapse collapse item-6" role="tabpanel" data-bs-parent="#accordion-paper">
                                         <div class="accordion-body">
                                             <p class="mb-0">깨끗한 종이컵은 종이류로 배출합니다.<br> 단, 다량의 이물질이 묻어 있는 경우에는 종량제봉투로 배출합니다.<br></p>
                                         </div>
@@ -96,7 +177,7 @@
                                 </div>
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" role="tab"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-paper .item-7" aria-expanded="false" aria-controls="accordion-paper .item-7">종이컵은 어떻게 배출하나요?<br></button></h2>
-                                    <div class="accordion-collapse collapse item-7 text-secondary" role="tabpanel" data-bs-parent="#accordion-paper">
+                                    <div class="accordion-collapse collapse item-7" role="tabpanel" data-bs-parent="#accordion-paper">
                                         <div class="accordion-body">
                                             <p class="mb-0">가급적 이물질(담배꽁초, 음식물)이 묻지 않은 상태에서 종이류로 배출합니다.<br> Best) 종이컵만 따로 모아 종이류에 배출하도록 합니다.<br> Good) 종이류에 배출 불가 시 종이팩에 배출 가능 합니다.<br> Bad) 종이류, 종이팩에 배출 불가 시 다른 재활용품(캔, 병류 등)과 함께 배출 가능합니다.<br></p>
                                         </div>

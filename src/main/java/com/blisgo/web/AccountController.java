@@ -5,7 +5,7 @@ import com.blisgo.security.auth.PrincipalDetails;
 import com.blisgo.service.AccountService;
 import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.DogamDTO;
-import com.sun.xml.messaging.saaj.util.Base64;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -15,7 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
+import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -130,9 +131,14 @@ public class AccountController {
 
     @GetMapping("verify/{token}")
     public ModelAndView authentication(HttpSession session, @PathVariable String token) {
-        if (accountService.findAccount(AccountDTO.builder().email(Base64.base64Decode(token)).pass(token).build()).isPresent()) {
+        String decodedToken = Arrays.toString(Base64.getDecoder().decode(token));
+        if (accountService.findAccount(
+                AccountDTO.builder()
+                        .email(decodedToken)
+                        .pass(token).build()).isPresent()
+        ) {
             log.info("인증 성공, 이제 비밀번호를 변경할 수 있습니다");
-            session.setAttribute("email", Base64.base64Decode(token));
+            session.setAttribute("email", decodedToken);
             url = RouteUrlHelper.combine(folder.account, page.chgpw);
         } else {
             log.error("인증 실패, 잘못된 토큰입니다.");

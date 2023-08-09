@@ -2,14 +2,13 @@ package com.blisgo.domain.repository.impl;
 
 import com.blisgo.domain.entity.*;
 import com.blisgo.domain.entity.cmmn.Wastes;
+import jakarta.persistence.EntityManager;
 import lombok.extern.slf4j.Slf4j;
 import org.javers.core.Javers;
 import org.javers.core.JaversBuilder;
 import org.javers.core.diff.Diff;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import javax.persistence.EntityManager;
 
 @Slf4j
 public class TestRepositoryTemplate {

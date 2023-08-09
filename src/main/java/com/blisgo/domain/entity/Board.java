@@ -2,16 +2,11 @@ package com.blisgo.domain.entity;
 
 import com.blisgo.domain.entity.cmmn.BaseTimeEntity;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@NoArgsConstructor
 @Entity
 @DynamicInsert
 @DynamicUpdate
@@ -58,7 +53,6 @@ public class Board extends BaseTimeEntity {
     @OneToMany(mappedBy = "board", orphanRemoval = true)
     private final List<Reply> reply = new ArrayList<>();
 
-    @Builder
     public Board(Integer bdNo, Account account, String bdTitle, String bdCategory, String bdContent, Integer bdViews,
                  Integer bdFavorite, Integer bdReplyCount, String bdThumbnail) {
         this.bdNo = bdNo;
@@ -72,6 +66,9 @@ public class Board extends BaseTimeEntity {
         this.bdThumbnail = bdThumbnail;
     }
 
+    public Board() {
+    }
+
     public static Board createBoardWithThumbnail(Account account, Board board, String boardThumbnail) {
         return Board.builder().bdNo(board.getBdNo()).account(account).bdTitle(board.getBdTitle())
                 .bdCategory(board.getBdCategory()).bdContent(board.getBdContent()).bdViews(board.getBdViews())
@@ -79,4 +76,115 @@ public class Board extends BaseTimeEntity {
                 .build();
     }
 
+    public static BoardBuilder builder() {
+        return new BoardBuilder();
+    }
+
+    public Integer getBdNo() {
+        return this.bdNo;
+    }
+
+    public Account getAccount() {
+        return this.account;
+    }
+
+    public String getBdTitle() {
+        return this.bdTitle;
+    }
+
+    public String getBdCategory() {
+        return this.bdCategory;
+    }
+
+    public String getBdContent() {
+        return this.bdContent;
+    }
+
+    public Integer getBdViews() {
+        return this.bdViews;
+    }
+
+    public Integer getBdFavorite() {
+        return this.bdFavorite;
+    }
+
+    public Integer getBdReplyCount() {
+        return this.bdReplyCount;
+    }
+
+    public String getBdThumbnail() {
+        return this.bdThumbnail;
+    }
+
+    public List<Reply> getReply() {
+        return this.reply;
+    }
+
+    public static class BoardBuilder {
+        private Integer bdNo;
+        private Account account;
+        private String bdTitle;
+        private String bdCategory;
+        private String bdContent;
+        private Integer bdViews;
+        private Integer bdFavorite;
+        private Integer bdReplyCount;
+        private String bdThumbnail;
+
+        BoardBuilder() {
+        }
+
+        public BoardBuilder bdNo(Integer bdNo) {
+            this.bdNo = bdNo;
+            return this;
+        }
+
+        public BoardBuilder account(Account account) {
+            this.account = account;
+            return this;
+        }
+
+        public BoardBuilder bdTitle(String bdTitle) {
+            this.bdTitle = bdTitle;
+            return this;
+        }
+
+        public BoardBuilder bdCategory(String bdCategory) {
+            this.bdCategory = bdCategory;
+            return this;
+        }
+
+        public BoardBuilder bdContent(String bdContent) {
+            this.bdContent = bdContent;
+            return this;
+        }
+
+        public BoardBuilder bdViews(Integer bdViews) {
+            this.bdViews = bdViews;
+            return this;
+        }
+
+        public BoardBuilder bdFavorite(Integer bdFavorite) {
+            this.bdFavorite = bdFavorite;
+            return this;
+        }
+
+        public BoardBuilder bdReplyCount(Integer bdReplyCount) {
+            this.bdReplyCount = bdReplyCount;
+            return this;
+        }
+
+        public BoardBuilder bdThumbnail(String bdThumbnail) {
+            this.bdThumbnail = bdThumbnail;
+            return this;
+        }
+
+        public Board build() {
+            return new Board(this.bdNo, this.account, this.bdTitle, this.bdCategory, this.bdContent, this.bdViews, this.bdFavorite, this.bdReplyCount, this.bdThumbnail);
+        }
+
+        public String toString() {
+            return "Board.BoardBuilder(bdNo=" + this.bdNo + ", account=" + this.account + ", bdTitle=" + this.bdTitle + ", bdCategory=" + this.bdCategory + ", bdContent=" + this.bdContent + ", bdViews=" + this.bdViews + ", bdFavorite=" + this.bdFavorite + ", bdReplyCount=" + this.bdReplyCount + ", bdThumbnail=" + this.bdThumbnail + ")";
+        }
+    }
 }

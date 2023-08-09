@@ -9,7 +9,6 @@ import com.blisgo.util.CloudinaryUtil;
 import com.blisgo.util.HtmlContentParse;
 import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.BoardDTO;
-import lombok.RequiredArgsConstructor;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.stereotype.Service;
@@ -20,13 +19,16 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
 
     private final BoardRepository boardRepository;
     CloudinaryUtil cloudinaryUtil;
     private static int index = 0;
     private static final int limit = 12;
+
+    public BoardServiceImpl(BoardRepository boardRepository) {
+        this.boardRepository = boardRepository;
+    }
 
     @Override
     public boolean addBoard(BoardDTO boardDTO, AccountDTO accountDTO) {
@@ -46,7 +48,7 @@ public class BoardServiceImpl implements BoardService {
         var rs = boardRepository.selectBoardList(index, limit);
 
         for (BoardDTO b : rs) {
-            bdContentImgRemoved = Optional.ofNullable(HtmlContentParse.parseContentPreview(b.getBdContent()));
+            bdContentImgRemoved = Optional.ofNullable(HtmlContentParse.parseContentPreview(b.bdContent()));
             if (bdContentImgRemoved.isPresent()) {
                 b = BoardDTO.selectBoardFilterContentImage(b, bdContentImgRemoved.get());
             } else {
@@ -69,7 +71,7 @@ public class BoardServiceImpl implements BoardService {
         var rs = boardRepository.selectBoardList(index, limit);
 
         for (BoardDTO b : rs) {
-            bdContentImgRemoved = HtmlContentParse.parseContentPreview(b.getBdContent());
+            bdContentImgRemoved = HtmlContentParse.parseContentPreview(b.bdContent());
             b = BoardDTO.selectBoardFilterContentImage(b, bdContentImgRemoved);
             board.add(b);
         }

@@ -3,11 +3,12 @@ package com.blisgo.domain.repository.impl;
 import com.blisgo.domain.entity.Board;
 import com.blisgo.domain.repository.BoardRepository;
 import com.blisgo.web.dto.AccountDTO;
+import com.blisgo.web.dto.AccountDTOBuilder;
 import com.blisgo.web.dto.BoardDTO;
+import com.blisgo.web.dto.BoardDTOBuilder;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,12 +20,16 @@ import static com.blisgo.domain.entity.QBoard.board;
 
 @Repository
 @Transactional
-@RequiredArgsConstructor
 public class BoardRepositoryImpl implements BoardRepository {
 
     private final JPAQueryFactory jpaQueryFactory;
 
     private final EntityManager entityManager;
+
+    public BoardRepositoryImpl(JPAQueryFactory jpaQueryFactory, EntityManager entityManager) {
+        this.jpaQueryFactory = jpaQueryFactory;
+        this.entityManager = entityManager;
+    }
 
     @Modifying
     @Override
@@ -47,8 +52,8 @@ public class BoardRepositoryImpl implements BoardRepository {
 
         List<BoardDTO> rs = new ArrayList<>();
         for (var row : tuple) {
-            AccountDTO u = AccountDTO.builder().nickname(row.get(board.account.nickname)).build();
-            BoardDTO b = BoardDTO.builder().account(u).bdNo(row.get(board.bdNo))
+            AccountDTO u = AccountDTOBuilder.builder().nickname(row.get(board.account.nickname)).build();
+            BoardDTO b = BoardDTOBuilder.builder().account(u).bdNo(row.get(board.bdNo))
                     .bdTitle(row.get(board.bdTitle)).bdContent(row.get(board.bdContent))
                     .bdReplyCount(row.get(board.bdReplyCount)).bdFavorite(row.get(board.bdFavorite))
                     .bdThumbnail(row.get(board.bdThumbnail)).createdDate(row.get(board.createdDate))

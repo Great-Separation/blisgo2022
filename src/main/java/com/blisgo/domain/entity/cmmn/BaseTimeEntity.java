@@ -1,6 +1,6 @@
 package com.blisgo.domain.entity.cmmn;
 
-import lombok.Getter;
+import jakarta.persistence.*;
 import org.hibernate.annotations.Comment;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -8,10 +8,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-@Getter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseTimeEntity {
@@ -37,5 +35,13 @@ public abstract class BaseTimeEntity {
     @PreUpdate
     public void preUpdate() {
         this.modifiedDate = LocalDateTime.now();
+    }
+
+    public LocalDateTime getCreatedDate() {
+        return this.createdDate;
+    }
+
+    public LocalDateTime getModifiedDate() {
+        return this.modifiedDate;
     }
 }

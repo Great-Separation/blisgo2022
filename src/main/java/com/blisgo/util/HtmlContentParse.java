@@ -42,7 +42,7 @@ public class HtmlContentParse {
             str = mat.replaceAll("");
         }
 
-        return str.equals("") ? null : str;
+        return str.isEmpty() ? null : str;
     }
 
 

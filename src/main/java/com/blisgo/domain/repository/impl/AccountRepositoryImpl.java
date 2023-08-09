@@ -6,7 +6,6 @@ import com.blisgo.domain.entity.Dogam;
 import com.blisgo.domain.repository.AccountRepository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,12 +18,16 @@ import static com.blisgo.domain.entity.QDogam.dogam;
 
 @Repository
 @Transactional
-@RequiredArgsConstructor
 public class AccountRepositoryImpl implements AccountRepository {
 
     private final JPAQueryFactory jpaQueryFactory;
 
     private final EntityManager entityManager;
+
+    public AccountRepositoryImpl(JPAQueryFactory jpaQueryFactory, EntityManager entityManager) {
+        this.jpaQueryFactory = jpaQueryFactory;
+        this.entityManager = entityManager;
+    }
 
 
     @Modifying

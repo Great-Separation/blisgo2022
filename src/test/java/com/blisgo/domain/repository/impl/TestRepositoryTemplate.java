@@ -3,17 +3,16 @@ package com.blisgo.domain.repository.impl;
 import com.blisgo.domain.entity.*;
 import com.blisgo.domain.entity.cmmn.Wastes;
 import jakarta.persistence.EntityManager;
-import lombok.extern.slf4j.Slf4j;
 import org.javers.core.Javers;
 import org.javers.core.JaversBuilder;
 import org.javers.core.diff.Diff;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
 
-@Slf4j
 public class TestRepositoryTemplate {
-    @Autowired
-    EntityManager entityManager;
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(TestRepositoryTemplate.class);
+
+    public EntityManager entityManager;
 
     enum entityAssistOpt {
         PERSIST, AUTOINCREMEMT
@@ -31,18 +30,16 @@ public class TestRepositoryTemplate {
 
     void entityAssistant(@NotNull entityAssistOpt opt, Object... entities) {
         switch (opt) {
-            case PERSIST:
+            case PERSIST -> {
                 for (var e : entities)
                     entityManager.persist(e);
-                break;
-
-            case AUTOINCREMEMT:
+            }
+            case AUTOINCREMEMT -> {
                 for (var e : entities)
                     entityManager.createNativeQuery(String.format("ALTER TABLE %s AUTO_INCREMENT = 1", e.getClass().getSimpleName())).executeUpdate();
-                break;
-
-            default:
-                break;
+            }
+            default -> {
+            }
         }
     }
 

@@ -2,13 +2,8 @@ package com.blisgo.domain.entity;
 
 import com.blisgo.domain.entity.cmmn.BaseTimeEntity;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.*;
 
-@Getter
-@NoArgsConstructor
 @Entity
 @DynamicInsert
 @DynamicUpdate
@@ -35,7 +30,6 @@ public class Reply extends BaseTimeEntity {
     @Comment("댓글 내용")
     private String content;
 
-    @Builder
     public Reply(Integer replyNo, Board board, Account account, String content) {
         this.replyNo = replyNo;
         this.board = board;
@@ -43,7 +37,68 @@ public class Reply extends BaseTimeEntity {
         this.content = content;
     }
 
+    public Reply() {
+    }
+
     public static Reply createReply(Integer replyNo, Board board, Account account, String content) {
         return Reply.builder().replyNo(replyNo).board(board).account(account).content(content).build();
+    }
+
+    public static ReplyBuilder builder() {
+        return new ReplyBuilder();
+    }
+
+    public Integer getReplyNo() {
+        return this.replyNo;
+    }
+
+    public Board getBoard() {
+        return this.board;
+    }
+
+    public Account getAccount() {
+        return this.account;
+    }
+
+    public String getContent() {
+        return this.content;
+    }
+
+    public static class ReplyBuilder {
+        private Integer replyNo;
+        private Board board;
+        private Account account;
+        private String content;
+
+        ReplyBuilder() {
+        }
+
+        public ReplyBuilder replyNo(Integer replyNo) {
+            this.replyNo = replyNo;
+            return this;
+        }
+
+        public ReplyBuilder board(Board board) {
+            this.board = board;
+            return this;
+        }
+
+        public ReplyBuilder account(Account account) {
+            this.account = account;
+            return this;
+        }
+
+        public ReplyBuilder content(String content) {
+            this.content = content;
+            return this;
+        }
+
+        public Reply build() {
+            return new Reply(this.replyNo, this.board, this.account, this.content);
+        }
+
+        public String toString() {
+            return "Reply.ReplyBuilder(replyNo=" + this.replyNo + ", board=" + this.board + ", account=" + this.account + ", content=" + this.content + ")";
+        }
     }
 }

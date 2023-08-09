@@ -1,8 +1,5 @@
 package com.blisgo.domain.entity.cmmn;
 
-import lombok.Getter;
-
-@Getter
 public enum Wastes {
     Ir("고철"),
     Me("금속캔"),
@@ -27,5 +24,9 @@ public enum Wastes {
 
     Wastes(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return this.name;
     }
 }

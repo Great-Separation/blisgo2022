@@ -1,8 +1,7 @@
 package com.blisgo.config;
 
 import com.blisgo.security.oauth.PrincipalOauth2UserService;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.autoconfigure.security.ConditionalOnDefaultWebSecurity;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
@@ -26,15 +25,19 @@ import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 import java.util.Arrays;
 import java.util.List;
 
-@Slf4j
-@RequiredArgsConstructor
 @ConditionalOnDefaultWebSecurity
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(SecurityConfig.class);
     private final PrincipalOauth2UserService principalOauth2UserService;
     private final AuthenticationSuccessHandler authenticationSuccessHandler;
+
+    public SecurityConfig(PrincipalOauth2UserService principalOauth2UserService, AuthenticationSuccessHandler authenticationSuccessHandler) {
+        this.principalOauth2UserService = principalOauth2UserService;
+        this.authenticationSuccessHandler = authenticationSuccessHandler;
+    }
 
     @Bean
     @Order(SecurityProperties.BASIC_AUTH_ORDER)

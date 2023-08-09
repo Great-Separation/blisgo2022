@@ -1,7 +1,9 @@
 package com.blisgo.service;
 
 import com.blisgo.web.dto.DictionaryDTO;
+import org.springframework.boot.configurationprocessor.json.JSONException;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface HomeService {
@@ -15,7 +17,6 @@ public interface HomeService {
 
     /**
      * index 페이지 배경 화면을 매일 변경하는 베서드
-     *
      */
-    boolean changeIndexWallpaperDaily();
+    void changeIndexWallpaperDaily() throws JSONException, IOException, InterruptedException;
 }

@@ -3,16 +3,16 @@ package com.blisgo.web;
 import com.blisgo.service.HomeService;
 import com.blisgo.util.Unsplash;
 import com.blisgo.web.dto.DictionaryDTO;
-import lombok.RequiredArgsConstructor;
+import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/")
 public class HomeController {
 
@@ -24,13 +24,17 @@ public class HomeController {
     // 서버 실행 시 index 배경 화면 변경. 1 client -> 1 서버 스레드 실행. 시간 당 50최대
     public static String wallpaperUrl = null;
 
+    public HomeController(HomeService homeService) {
+        this.homeService = homeService;
+    }
+
     /**
      * 첫 화면
      *
      * @return mv
      */
     @GetMapping
-    public ModelAndView index() {
+    public ModelAndView index() throws JSONException, IOException, InterruptedException {
         List<DictionaryDTO> recentProducts = homeService.findRecentDictionaries();
         mv.addObject("recentProducts", recentProducts);
         url = RouteUrlHelper.combine(folder.cmmn, page.index);

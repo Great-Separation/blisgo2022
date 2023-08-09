@@ -9,15 +9,17 @@ import com.blisgo.service.ReplyService;
 import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.BoardDTO;
 import com.blisgo.web.dto.ReplyDTO;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class ReplyServiceImpl implements ReplyService {
     private final ReplyRepository replyRepository;
+
+    public ReplyServiceImpl(ReplyRepository replyRepository) {
+        this.replyRepository = replyRepository;
+    }
 
     @Override
     public List<ReplyDTO> findReply(BoardDTO boardDTO) {

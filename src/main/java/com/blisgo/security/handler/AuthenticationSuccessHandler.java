@@ -2,7 +2,7 @@ package com.blisgo.security.handler;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
@@ -14,10 +14,10 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-@Slf4j
 @Component
 public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(AuthenticationSuccessHandler.class);
     private final RequestCache requestCache = new CookieRequestCache();
     private final RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 

@@ -1,21 +1,16 @@
 package com.blisgo.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@NoArgsConstructor
 @Entity
 public class Dictionary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="dic_no", updatable = false, nullable = false)
+    @Column(name = "dic_no", updatable = false, nullable = false)
     @Comment("폐기물 번호(PK)")
     private Integer dicNo;
 
@@ -53,7 +48,6 @@ public class Dictionary {
     @OneToMany(mappedBy = "dictionary", orphanRemoval = true)
     private final List<Hashtag> hashtag = new ArrayList<>();
 
-    @Builder
     public Dictionary(Integer dicNo, String name, String engName, String category, Integer popularity, Short hit,
                       String thumbnail, String treatment) {
         this.dicNo = dicNo;
@@ -64,5 +58,114 @@ public class Dictionary {
         this.hit = hit;
         this.thumbnail = thumbnail;
         this.treatment = treatment;
+    }
+
+    public Dictionary() {
+    }
+
+    public static DictionaryBuilder builder() {
+        return new DictionaryBuilder();
+    }
+
+    public Integer getDicNo() {
+        return this.dicNo;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getEngName() {
+        return this.engName;
+    }
+
+    public String getCategory() {
+        return this.category;
+    }
+
+    public Integer getPopularity() {
+        return this.popularity;
+    }
+
+    public Short getHit() {
+        return this.hit;
+    }
+
+    public String getThumbnail() {
+        return this.thumbnail;
+    }
+
+    public String getTreatment() {
+        return this.treatment;
+    }
+
+    public List<Dogam> getDogam() {
+        return this.dogam;
+    }
+
+    public List<Hashtag> getHashtag() {
+        return this.hashtag;
+    }
+
+    public static class DictionaryBuilder {
+        private Integer dicNo;
+        private String name;
+        private String engName;
+        private String category;
+        private Integer popularity;
+        private Short hit;
+        private String thumbnail;
+        private String treatment;
+
+        DictionaryBuilder() {
+        }
+
+        public DictionaryBuilder dicNo(Integer dicNo) {
+            this.dicNo = dicNo;
+            return this;
+        }
+
+        public DictionaryBuilder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public DictionaryBuilder engName(String engName) {
+            this.engName = engName;
+            return this;
+        }
+
+        public DictionaryBuilder category(String category) {
+            this.category = category;
+            return this;
+        }
+
+        public DictionaryBuilder popularity(Integer popularity) {
+            this.popularity = popularity;
+            return this;
+        }
+
+        public DictionaryBuilder hit(Short hit) {
+            this.hit = hit;
+            return this;
+        }
+
+        public DictionaryBuilder thumbnail(String thumbnail) {
+            this.thumbnail = thumbnail;
+            return this;
+        }
+
+        public DictionaryBuilder treatment(String treatment) {
+            this.treatment = treatment;
+            return this;
+        }
+
+        public Dictionary build() {
+            return new Dictionary(this.dicNo, this.name, this.engName, this.category, this.popularity, this.hit, this.thumbnail, this.treatment);
+        }
+
+        public String toString() {
+            return "Dictionary.DictionaryBuilder(dicNo=" + this.dicNo + ", name=" + this.name + ", engName=" + this.engName + ", category=" + this.category + ", popularity=" + this.popularity + ", hit=" + this.hit + ", thumbnail=" + this.thumbnail + ", treatment=" + this.treatment + ")";
+        }
     }
 }

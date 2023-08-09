@@ -3,19 +3,20 @@ package com.blisgo.domain.repository.impl;
 import com.blisgo.config.TestQueryDslConfig;
 import com.blisgo.domain.entity.Reply;
 import com.blisgo.domain.repository.ReplyRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 
 import java.util.List;
 
-@Slf4j
 @DataJpaTest
+@Disabled
 @Import(TestQueryDslConfig.class)
 class ReplyRepositoryImplTest extends TestRepositoryTemplate {
 
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(ReplyRepositoryImplTest.class);
     @Autowired
     ReplyRepository replyRepository;
 

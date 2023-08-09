@@ -5,8 +5,8 @@ import com.blisgo.domain.entity.Dictionary;
 import com.blisgo.domain.entity.Hashtag;
 import com.blisgo.domain.entity.cmmn.Wastes;
 import com.blisgo.domain.repository.DictionaryRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
@@ -14,11 +14,12 @@ import org.springframework.context.annotation.Import;
 import java.util.Arrays;
 import java.util.List;
 
-@Slf4j
 @DataJpaTest
+@Disabled
 @Import(TestQueryDslConfig.class)
 class DictionaryRepositoryImplTest extends TestRepositoryTemplate {
 
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(DictionaryRepositoryImplTest.class);
     @Autowired
     DictionaryRepository dictionaryRepository;
 

@@ -11,7 +11,6 @@ import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.DictionaryDTO;
 import com.blisgo.web.dto.GuideDTO;
 import com.blisgo.web.dto.HashtagDTO;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,12 +18,15 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class DictionaryServiceImpl implements DictionaryService {
     private final DictionaryRepository dictionaryRepository;
 
     private static int index = 0;
     private static final int limit = 24;
+
+    public DictionaryServiceImpl(DictionaryRepository dictionaryRepository) {
+        this.dictionaryRepository = dictionaryRepository;
+    }
 
     @Override
     public List<DictionaryDTO> findDictionaries() {
@@ -49,7 +51,7 @@ public class DictionaryServiceImpl implements DictionaryService {
 
     @Override
     public List<DictionaryDTO> findRelatedDictionaries(List<HashtagDTO> hashtagDTO) {
-        List<Wastes> tags = hashtagDTO.stream().map(HashtagDTO::getGuide).map(GuideDTO::getGuideCode).collect(Collectors.toList());
+        List<Wastes> tags = hashtagDTO.stream().map(HashtagDTO::guide).map(GuideDTO::guideCode).collect(Collectors.toList());
         var rs = dictionaryRepository.selectRelatedDictionaryList(tags);
         return DictionaryMapper.INSTANCE.toDTOList(rs);
     }

@@ -6,8 +6,7 @@ import com.blisgo.security.auth.PrincipalDetails;
 import com.blisgo.security.oauth.provider.GithubUserInfo;
 import com.blisgo.security.oauth.provider.GoogleUserInfo;
 import com.blisgo.security.oauth.provider.OAuth2UserInfo;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -18,11 +17,14 @@ import org.springframework.stereotype.Service;
 import java.util.Objects;
 import java.util.Optional;
 
-@Slf4j
 @Service
-@RequiredArgsConstructor
 public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(PrincipalOauth2UserService.class);
     private final AccountRepository accountRepository;
+
+    public PrincipalOauth2UserService(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
 
 
     @Override

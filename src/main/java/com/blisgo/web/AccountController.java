@@ -4,10 +4,10 @@ import com.blisgo.domain.mapper.AccountMapper;
 import com.blisgo.security.auth.PrincipalDetails;
 import com.blisgo.service.AccountService;
 import com.blisgo.web.dto.AccountDTO;
+import com.blisgo.web.dto.AccountDTOBuilder;
 import com.blisgo.web.dto.DogamDTO;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,15 +20,18 @@ import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
-@Slf4j
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("account")
 public class AccountController {
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(AccountController.class);
     private final AccountService accountService;
 
     private final ModelAndView mv = new ModelAndView();
     private static String url;
+
+    public AccountController(AccountService accountService) {
+        this.accountService = accountService;
+    }
 
     /**
      * 회원 로그인
@@ -54,7 +57,7 @@ public class AccountController {
         Optional<AccountDTO> registeredAccount = accountService.findAccount(accountDTO);
 
         if (registeredAccount.isPresent()) {
-            if (accountDTO.getPass().equals(registeredAccount.get().getPass())) {
+            if (accountDTO.pass().equals(registeredAccount.get().pass())) {
                 url = RouteUrlHelper.combine();
             } else {
                 log.warn("로그인 실패, 비밀번호가 틀렸습니다. 다시 확인해주세요.");
@@ -133,7 +136,7 @@ public class AccountController {
     public ModelAndView authentication(HttpSession session, @PathVariable String token) {
         String decodedToken = Arrays.toString(Base64.getDecoder().decode(token));
         if (accountService.findAccount(
-                AccountDTO.builder()
+                AccountDTOBuilder.builder()
                         .email(decodedToken)
                         .pass(token).build()).isPresent()
         ) {
@@ -153,7 +156,7 @@ public class AccountController {
         Optional<String> email = Optional.ofNullable((String) session.getAttribute("email"));
 
         if (email.isPresent()) {
-            if (accountService.findAccount(AccountDTO.builder().email(email.get()).pass(email.get()).build()).isPresent()) {
+            if (accountService.findAccount(AccountDTOBuilder.builder().email(email.get()).pass(email.get()).build()).isPresent()) {
                 url = RouteUrlHelper.combine(folder.account, page.chgpw);
                 mv.setViewName(url);
             } else {
@@ -170,8 +173,8 @@ public class AccountController {
 
     @PutMapping("chgpw")
     public ModelAndView pwchangeConfirm(HttpSession session, AccountDTO accountDTO) {
-        accountDTO = AccountDTO.builder().email(accountDTO.getEmail()).pass(accountDTO.getPass()).build();
-        if (accountService.modifyAccountPass(accountDTO, accountDTO.getPass())) {
+        accountDTO = AccountDTOBuilder.builder().email(accountDTO.email()).pass(accountDTO.pass()).build();
+        if (accountService.modifyAccountPass(accountDTO, accountDTO.pass())) {
             session.invalidate();
             log.info("변경 완료, 비밀번호가 변경되었습니다.");
             url = RouteUrlHelper.combine();
@@ -232,7 +235,7 @@ public class AccountController {
         AccountDTO accountDTO = AccountMapper.INSTANCE.toDTO(principal.getAccount());
         var rs = accountService.findAccount(accountDTO);
         if (rs.isPresent()) {
-            if (accountDTO.getPass().equals(rs.get().getPass())) {
+            if (accountDTO.pass().equals(rs.get().pass())) {
                 accountService.modifyAccountPass(accountDTO, passNew);
                 log.info("변경 완료, 변경된 비밀번호로 다시 로그인 해주세요.");
                 url = RouteUrlHelper.combine(folder.account, page.login);

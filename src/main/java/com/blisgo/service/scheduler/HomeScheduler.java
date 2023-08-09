@@ -1,17 +1,22 @@
 package com.blisgo.service.scheduler;
 
 import com.blisgo.service.HomeService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.stereotype.Component;
+
+import java.io.IOException;
 
 
 @Component
-@RequiredArgsConstructor
 public class HomeScheduler {
     private final HomeService homeService;
 
+    public HomeScheduler(HomeService homeService) {
+        this.homeService = homeService;
+    }
+
     @SuppressWarnings("unused")
-    public void changeIndexWallpaperDaily() {
+    public void changeIndexWallpaperDaily() throws JSONException, IOException, InterruptedException {
         homeService.changeIndexWallpaperDaily();
     }
 }

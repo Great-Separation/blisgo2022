@@ -8,8 +8,7 @@ import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.BoardDTO;
 import com.blisgo.web.dto.ReplyDTO;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,16 +20,20 @@ import java.util.List;
 /**
  * @author okjae
  */
-@Slf4j
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("board")
 public class BoardController {
 
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(BoardController.class);
     private final BoardService boardService;
     private final ReplyService replyService;
     private final ModelAndView mv = new ModelAndView();
     private static String url;
+
+    public BoardController(BoardService boardService, ReplyService replyService) {
+        this.boardService = boardService;
+        this.replyService = replyService;
+    }
 
     /**
      * 커뮤니티 게시판
@@ -134,7 +137,7 @@ public class BoardController {
         } else {
             log.error("수정 실패, 게시글 내용이 변경되지 않았습니다.");
         }
-        url = RouteUrlHelper.combine(page.board, boardDTO.getBdNo());
+        url = RouteUrlHelper.combine(page.board, boardDTO.bdNo());
 
         mv.setView(new RedirectView(url, false));
         return mv;
@@ -151,7 +154,7 @@ public class BoardController {
         if (!boardService.countBoardFavorite(boardDTO)) {
             log.error("게시글 좋아요가 수행되지 않음");
         }
-        url = RouteUrlHelper.combine(page.board, boardDTO.getBdNo());
+        url = RouteUrlHelper.combine(page.board, boardDTO.bdNo());
         mv.setView(new RedirectView(url, false));
         return mv;
     }

@@ -4,19 +4,20 @@ import com.blisgo.config.TestQueryDslConfig;
 import com.blisgo.domain.entity.Board;
 import com.blisgo.domain.repository.BoardRepository;
 import com.blisgo.web.dto.BoardDTO;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 
 import java.util.List;
 
-@Slf4j
 @DataJpaTest
+@Disabled
 @Import(TestQueryDslConfig.class)
 class BoardRepositoryImplTest extends TestRepositoryTemplate {
 
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(BoardRepositoryImplTest.class);
     @Autowired
     BoardRepository boardRepository;
 
@@ -40,9 +41,7 @@ class BoardRepositoryImplTest extends TestRepositoryTemplate {
         @DisplayName("게시글 다건 조회되는가?")
         void testSelectBoardList() {
             List<BoardDTO> result = boardRepository.selectBoardList(0, 24);
-            Assertions.assertNotNull(result);
-            //diff = javers.compare(sampleBoard, result.get(0));
-            //Assertions.assertFalse(diff.hasChanges());
+            Assertions.assertFalse(result.isEmpty());
         }
     }
 

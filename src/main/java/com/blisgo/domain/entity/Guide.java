@@ -2,16 +2,11 @@ package com.blisgo.domain.entity;
 
 import com.blisgo.domain.entity.cmmn.Wastes;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Comment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@NoArgsConstructor
 @Entity
 public class Guide {
     @Id
@@ -35,7 +30,6 @@ public class Guide {
     @OneToMany(mappedBy = "guide", orphanRemoval = true)
     private final List<Hashtag> hashtag = new ArrayList<>();
 
-    @Builder
     public Guide(Wastes guideCode, String guideName, String guideContent, String imagePath) {
         this.guideCode = guideCode;
         this.guideName = guideName;
@@ -43,4 +37,68 @@ public class Guide {
         this.imagePath = imagePath;
     }
 
+    public Guide() {
+    }
+
+    public static GuideBuilder builder() {
+        return new GuideBuilder();
+    }
+
+    public Wastes getGuideCode() {
+        return this.guideCode;
+    }
+
+    public String getGuideName() {
+        return this.guideName;
+    }
+
+    public String getGuideContent() {
+        return this.guideContent;
+    }
+
+    public String getImagePath() {
+        return this.imagePath;
+    }
+
+    public List<Hashtag> getHashtag() {
+        return this.hashtag;
+    }
+
+    public static class GuideBuilder {
+        private Wastes guideCode;
+        private String guideName;
+        private String guideContent;
+        private String imagePath;
+
+        GuideBuilder() {
+        }
+
+        public GuideBuilder guideCode(Wastes guideCode) {
+            this.guideCode = guideCode;
+            return this;
+        }
+
+        public GuideBuilder guideName(String guideName) {
+            this.guideName = guideName;
+            return this;
+        }
+
+        public GuideBuilder guideContent(String guideContent) {
+            this.guideContent = guideContent;
+            return this;
+        }
+
+        public GuideBuilder imagePath(String imagePath) {
+            this.imagePath = imagePath;
+            return this;
+        }
+
+        public Guide build() {
+            return new Guide(this.guideCode, this.guideName, this.guideContent, this.imagePath);
+        }
+
+        public String toString() {
+            return "Guide.GuideBuilder(guideCode=" + this.guideCode + ", guideName=" + this.guideName + ", guideContent=" + this.guideContent + ", imagePath=" + this.imagePath + ")";
+        }
+    }
 }

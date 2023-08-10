@@ -52,7 +52,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.batch:spring-batch-test'
 
-    // 롬복은 쓰기 싫은데, Builder는 필요해서 가져옴
+    // Record builder
     compileOnly 'io.soabase.record-builder:record-builder-core:+'
     annotationProcessor 'io.soabase.record-builder:record-builder-processor:+'
 

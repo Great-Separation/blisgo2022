@@ -1,4 +1,4 @@
-package com.blisgo.web;
+package com.blisgo.web.controller;
 
 enum folder {
     account, cmmn, dictionary, community

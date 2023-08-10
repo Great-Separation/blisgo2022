@@ -113,7 +113,7 @@
     <main id="main" class="vh-100">
         <section class="py-2">
             <div class="container g-0">
-                <form th:method="put" th:action="@{~/board/edit/{bdNo}(bdNo=${board.bdNo})}">
+                <form th:method="patch" th:action="@{~/board/edit/{bdNo}(bdNo=${board.bdNo})}">
                     <div class="card shadow-sm border-0">
                         <div class="card-header border-0">
                             <div class="row">

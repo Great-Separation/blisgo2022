@@ -5,20 +5,21 @@ import com.blisgo.web.dto.BoardDTO;
 import org.springframework.data.repository.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface BoardRepository extends Repository<Board, Integer> {
+public interface BoardRepository extends Repository<Board, Long> {
     boolean insertBoard(Board boardEntity);
 
     List<BoardDTO> selectBoardList(int index, int limit);
 
-    Board selectBoard(Board boardEntity);
+    Optional<Board> selectBoard(int bdNo);
 
-    boolean deleteBoard(Board boardEntity);
+    long deleteBoard(int bdNo);
 
-    boolean updateBoardViews(Board boardEntity);
+    long updateBoardViews(int boardEntity);
 
-    boolean updateBoard(Board boardEntity, String boardThumbnail);
+    long updateBoard(Board boardEntity, String boardThumbnail);
 
-    boolean updateBoardFavorite(Board boardEntity);
+    long updateBoardFavorite(int bdNo);
 
 }

@@ -35,14 +35,12 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-batch'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
     implementation 'org.flywaydb:flyway-core'
     implementation 'org.flywaydb:flyway-mysql'
     implementation 'org.springframework.session:spring-session-core'
-    implementation 'org.jetbrains:annotations:+'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.mysql:mysql-connector-j'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
@@ -106,7 +104,7 @@ dependencies {
 def querydslDir = "$buildDir/generated/querydsl"
 
 sourceSets {
-    main.java.srcDirs += [ querydslDir ]
+    main.java.srcDirs += [querydslDir]
 }
 
 clean.doLast {
@@ -115,13 +113,12 @@ clean.doLast {
 
 
 flyway {
-    //prod
-    url = 'jdbc:mysql://avnadmin:AVNS_La_DidM8gznKaCox7Ye@blisgo-blisgo.aivencloud.com:20548/defaultdb?ssl-mode=REQUIRED&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8'
-    user = 'avnadmin'
-    password = 'AVNS_La_DidM8gznKaCox7Ye'
+    //dev
+    url = 'jdbc:' + System.getenv('MYSQL_URL_DEV') + '&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8'
+    user = System.getenv('MYSQLUSER_DEV')
+    password = System.getenv('MYSQLPASSWORD_DEV')
 
     cleanDisabled = false
-    // driver = 'com.mysql.jdbc.Driver'  기본으로 등록되어있다.
 }
 flywayMigrate.dependsOn classes
 

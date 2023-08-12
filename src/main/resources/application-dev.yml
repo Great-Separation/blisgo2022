@@ -5,18 +5,30 @@ spring:
   thymeleaf:
     cache: false
   flyway:
-    url: jdbc:mysql://avnadmin:AVNS_La_DidM8gznKaCox7Ye@blisgo-blisgo.aivencloud.com:20548/defaultdb?ssl-mode=REQUIRED
-    user: avnadmin
-    password: AVNS_La_DidM8gznKaCox7Ye
+    url: jdbc:${MYSQL_URL_DEV}
+    user: ${MYSQLUSER_DEV}
+    password: ${MYSQLPASSWORD_DEV}
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+
   datasource:
-    url: jdbc:mysql://avnadmin:AVNS_La_DidM8gznKaCox7Ye@blisgo-blisgo.aivencloud.com:20548/defaultdb?ssl-mode=REQUIRED
-    username: avnadmin
-    password: AVNS_La_DidM8gznKaCox7Ye
+    url: "jdbc:${MYSQL_URL_DEV}"
+    username: ${MYSQLUSER_DEV}
+    password: ${MYSQLPASSWORD_DEV}
+    driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       maximum-pool-size: 20
   devtools:
     livereload:
       enabled: true
+    remote:
+      restart:
+        enabled: false
+
+logging:
+  level:
+    root: debug

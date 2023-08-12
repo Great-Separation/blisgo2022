@@ -1,6 +1,5 @@
 package com.blisgo.domain.repository.impl;
 
-import com.blisgo.domain.entity.Board;
 import com.blisgo.domain.entity.Reply;
 import com.blisgo.domain.repository.ReplyRepository;
 import com.querydsl.core.types.Projections;
@@ -30,19 +29,19 @@ public class ReplyRepositoryImpl implements ReplyRepository {
     }
 
     @Override
-    public List<Reply> selectReplyInnerJoinAccount(Board boardEntity) {
+    public List<Reply> selectReplyInnerJoinAccount(int bdNo) {
         return jpaQueryFactory
                 .select(Projections.fields(Reply.class, reply.replyNo, reply.account,
                         reply.createdDate, reply.content))
                 .from(reply).innerJoin(account).on(reply.account.memNo.eq(account.memNo))
-                .where(reply.board.bdNo.eq(boardEntity.getBdNo())).fetch();
+                .where(reply.board.bdNo.eq(bdNo)).fetch();
     }
 
     @Modifying
     @Override
-    public boolean updateReplyCount(Board boardEntity, boolean isReplied) {
+    public boolean updateReplyCount(int bdNo, boolean isReplied) {
         return jpaQueryFactory.update(board).set(board.bdReplyCount, isReplied ? board.bdReplyCount.add(1) : board.bdReplyCount.subtract(1))
-                .where(board.bdNo.eq(boardEntity.getBdNo())).execute() > 0;
+                .where(board.bdNo.eq(bdNo)).execute() > 0;
     }
 
     @Modifying
@@ -54,8 +53,8 @@ public class ReplyRepositoryImpl implements ReplyRepository {
 
     @Modifying
     @Override
-    public boolean deleteReply(Reply replyEntity) {
-        return jpaQueryFactory.delete(reply).where(reply.replyNo.eq(replyEntity.getReplyNo())).execute() > 0;
+    public boolean deleteReply(int replyNo) {
+        return jpaQueryFactory.delete(reply).where(reply.replyNo.eq(replyNo)).execute() > 0;
     }
 
 }

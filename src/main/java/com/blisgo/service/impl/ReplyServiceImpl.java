@@ -1,20 +1,18 @@
 package com.blisgo.service.impl;
 
 import com.blisgo.domain.entity.Reply;
-import com.blisgo.domain.mapper.AccountMapper;
-import com.blisgo.domain.mapper.BoardMapper;
 import com.blisgo.domain.mapper.ReplyMapper;
 import com.blisgo.domain.repository.ReplyRepository;
 import com.blisgo.service.ReplyService;
-import com.blisgo.web.dto.AccountDTO;
-import com.blisgo.web.dto.BoardDTO;
 import com.blisgo.web.dto.ReplyDTO;
+import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class ReplyServiceImpl implements ReplyService {
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(ReplyServiceImpl.class);
     private final ReplyRepository replyRepository;
 
     public ReplyServiceImpl(ReplyRepository replyRepository) {
@@ -22,26 +20,40 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
-    public List<ReplyDTO> findReply(BoardDTO boardDTO) {
-        var board = BoardMapper.INSTANCE.toEntity(boardDTO);
-        var rs = replyRepository.selectReplyInnerJoinAccount(board);
-        return ReplyMapper.INSTANCE.toDTOList(rs);
+    public List<ReplyDTO> findReply(int bdNo) {
+        return ReplyMapper.INSTANCE.toDTOList(
+                replyRepository.selectReplyInnerJoinAccount(bdNo)
+        );
     }
 
     @Override
-    public boolean addReply(ReplyDTO replyDTO, BoardDTO boardDTO, AccountDTO accountDTO) {
-        var board = BoardMapper.INSTANCE.toEntity(boardDTO);
-        var account = AccountMapper.INSTANCE.toEntity(accountDTO);
+    public boolean addReply(ReplyDTO replyDTO, int bdNo, int memNo) {
         var reply = ReplyMapper.INSTANCE.toEntity(replyDTO);
+        reply = Reply.createReply(reply.getReplyNo(), bdNo, memNo, reply.getContent());
 
-        reply = Reply.createReply(reply.getReplyNo(), board, account, reply.getContent());
-        return replyRepository.insertReply(reply) & replyRepository.updateReplyCount(board, true);
+        if (!replyRepository.insertReply(reply)) {
+            log.error("댓글이 추가되지 않았습니다");
+            return false;
+        }
+        if (!replyRepository.updateReplyCount(bdNo, true)) {
+            log.error("댓글 추가시 조회수가 반영되어야 합니다");
+            return false;
+        }
+
+        return true;
     }
 
     @Override
-    public boolean removeReply(ReplyDTO replyDTO, BoardDTO boardDTO) {
-        var board = BoardMapper.INSTANCE.toEntity(boardDTO);
-        var reply = ReplyMapper.INSTANCE.toEntity(replyDTO);
-        return replyRepository.deleteReply(reply) & replyRepository.updateReplyCount(board, false);
+    public boolean removeReply(int replyNo, int bdNo) {
+        if (!replyRepository.deleteReply(replyNo)) {
+            log.error("댓글이 삭제되지 않았습니다");
+            return false;
+        }
+        if (!replyRepository.updateReplyCount(bdNo, false)) {
+            log.error("댓글 삭제시 조회수가 반영되어야 합니다");
+            return false;
+        }
+
+        return true;
     }
 }

@@ -40,8 +40,16 @@ public class Reply extends BaseTimeEntity {
     public Reply() {
     }
 
-    public static Reply createReply(Integer replyNo, Board board, Account account, String content) {
-        return Reply.builder().replyNo(replyNo).board(board).account(account).content(content).build();
+    public static Reply createReply(Integer replyNo, int bdNo, int memNo, String content) {
+        return Reply.builder()
+                .replyNo(replyNo)
+                .board(Board.builder()
+                        .bdNo(bdNo)
+                        .build())
+                .account(Account.builder()
+                        .memNo(memNo)
+                        .build())
+                .content(content).build();
     }
 
     public static ReplyBuilder builder() {

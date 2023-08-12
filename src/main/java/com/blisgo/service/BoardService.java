@@ -14,8 +14,9 @@ public interface BoardService {
      *
      * @param boardDTO   게시글
      * @param accountDTO 사용자
+     * @return 글 등록 결과
      */
-    void addBoard(BoardDTO boardDTO, AccountDTO accountDTO);
+    boolean addBoard(BoardDTO boardDTO, AccountDTO accountDTO);
 
     /**
      * 글 목록을 가지고 오는 메서드(페이징 없을때)
@@ -43,29 +44,33 @@ public interface BoardService {
      * 글 삭제 요청을 처리할 메서드
      *
      * @param bdNo 게시글
+     * @return 글 삭제 결과
      */
-    void removeBoard(int bdNo);
+    boolean removeBoard(int bdNo);
 
     /**
      * DB에 있는 view의 값을 증가 시켜주는 메서드
      *
      * @param boardDTO 게시글
+     * @return 조회수 증가 결과
      */
-    void countBoardViews(int boardDTO);
+    boolean countBoardViews(int boardDTO);
 
     /**
      * 글 수정 메서드
      *
      * @param boardDTO 게시글
+     * @return 글 수정 결과
      */
-    void modifyBoard(BoardDTO boardDTO);
+    boolean modifyBoard(BoardDTO boardDTO);
 
     /**
      * 좋아요 +1
      *
      * @param bdNo 게시글
+     * @return 글 좋아요 결과
      */
-    void countBoardFavorite(int bdNo);
+    boolean countBoardFavorite(int bdNo);
 
     Optional<String> uploadImageToStorage(MultipartFile file);
 }

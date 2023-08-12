@@ -7,6 +7,7 @@ import org.hibernate.annotations.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 @Entity
 @DynamicInsert
 @DynamicUpdate
@@ -51,7 +52,7 @@ public class Board extends BaseTimeEntity {
     private String bdThumbnail;
 
     @OneToMany(mappedBy = "board", orphanRemoval = true)
-    private final List<Reply> reply = new ArrayList<>();
+    private List<Reply> reply = new ArrayList<>();
 
     public Board(Integer bdNo, Account account, String bdTitle, String bdCategory, String bdContent, Integer bdViews,
                  Integer bdFavorite, Integer bdReplyCount, String bdThumbnail) {

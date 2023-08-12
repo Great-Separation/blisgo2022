@@ -1,5 +1,8 @@
 package com.blisgo.web.controller;
 
+import com.blisgo.constant.Folder;
+import com.blisgo.constant.Page;
+import com.blisgo.util.RouteUrlHelper;
 import com.blisgo.domain.mapper.AccountMapper;
 import com.blisgo.exception.GeneralException;
 import com.blisgo.security.auth.PrincipalDetails;
@@ -17,10 +20,6 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.util.List;
 import java.util.Map;
 
-
-/**
- * @author okjae
- */
 @Controller
 @RequestMapping("board")
 public class BoardController {
@@ -41,10 +40,8 @@ public class BoardController {
     @GetMapping
     public ModelAndView community() {
         return new ModelAndView(
-                RouteUrlHelper.combine(folder.community, page.board),
-                Map.of(
-                        "boards", boardService.findBoards()
-                )
+                RouteUrlHelper.combine(Folder.community, Page.board),
+                Map.of("boards", boardService.findBoards())
         );
     }
 
@@ -68,11 +65,14 @@ public class BoardController {
     public ModelAndView content(@PathVariable final int bdNo) {
         boardService.countBoardViews(bdNo);
 
+        BoardDTO boardDTO = boardService.findBoard(bdNo).orElseThrow(() ->
+                new GeneralException("해당 게시글이 조회되지 않습니다")
+        );
+
         return new ModelAndView(
-                RouteUrlHelper.combine(folder.community, page.content),
+                RouteUrlHelper.combine(Folder.community, Page.content),
                 Map.of(
-                        "board", boardService.findBoard(bdNo).orElseThrow(() ->
-                                new GeneralException("해당 게시글이 조회되지 않습니다")),
+                        "board", boardDTO,
                         "replys", replyService.findReply(bdNo)
                 )
         );
@@ -89,7 +89,7 @@ public class BoardController {
         boardService.removeBoard(bdNo);
 
         return new ModelAndView(
-                new RedirectView(RouteUrlHelper.combine(page.board), false)
+                new RedirectView(RouteUrlHelper.combine(Page.board), false)
         );
     }
 
@@ -101,13 +101,13 @@ public class BoardController {
      */
     @GetMapping("edit/{bdNo}")
     public ModelAndView contentEdit(@PathVariable final int bdNo) {
+        BoardDTO boardDTO = boardService.findBoard(bdNo).orElseThrow(() ->
+                new GeneralException("편집 글 내용이 조회되지 않았음")
+        );
+
         return new ModelAndView(
-                RouteUrlHelper.combine(folder.community, page.edit),
-                Map.of(
-                        "board", boardService.findBoard(bdNo).orElseThrow(() ->
-                                new GeneralException("편집 글 내용이 조회되지 않았음")
-                        )
-                )
+                RouteUrlHelper.combine(Folder.community, Page.edit),
+                Map.of("board", boardDTO)
         );
     }
 
@@ -123,7 +123,7 @@ public class BoardController {
         boardService.modifyBoard(boardDTO);
 
         return new ModelAndView(
-                new RedirectView(RouteUrlHelper.combine(page.board, boardDTO.bdNo()))
+                new RedirectView(RouteUrlHelper.combine(Page.board, boardDTO.bdNo()))
         );
     }
 
@@ -138,7 +138,7 @@ public class BoardController {
         boardService.countBoardFavorite(bdNo);
 
         return new ModelAndView(
-                new RedirectView(RouteUrlHelper.combine(page.board, bdNo), false)
+                new RedirectView(RouteUrlHelper.combine(Page.board, bdNo), false)
         );
     }
 
@@ -150,7 +150,7 @@ public class BoardController {
     @GetMapping("write")
     public ModelAndView write() {
         return new ModelAndView(
-                RouteUrlHelper.combine(folder.community, page.write)
+                RouteUrlHelper.combine(Folder.community, Page.write)
         );
     }
 
@@ -185,7 +185,7 @@ public class BoardController {
         );
 
         return new ModelAndView(
-                new RedirectView(RouteUrlHelper.combine(page.board), false)
+                new RedirectView(RouteUrlHelper.combine(Page.board), false)
         );
     }
 }

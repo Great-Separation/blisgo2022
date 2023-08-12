@@ -1,14 +1,17 @@
 package com.blisgo.domain.entity;
 
 import com.blisgo.domain.entity.cmmn.BaseTimeEntity;
+import com.blisgo.web.dto.AccountDTO;
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.DynamicInsert;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 @DynamicInsert
 @Entity
 public class Account extends BaseTimeEntity {
@@ -40,13 +43,13 @@ public class Account extends BaseTimeEntity {
     private String profileImage;
 
     @OneToMany(mappedBy = "account", orphanRemoval = true)
-    private final List<Reply> reply = new ArrayList<>();
+    private List<Reply> reply = new ArrayList<>();
 
     @OneToMany(mappedBy = "account", orphanRemoval = true)
-    private final List<Board> board = new ArrayList<>();
+    private List<Board> board = new ArrayList<>();
 
     @OneToMany(mappedBy = "account", orphanRemoval = true)
-    private final List<Dogam> dogam = new ArrayList<>();
+    private List<Dogam> dogam = new ArrayList<>();
 
     // oauth
     @Comment("OAuth2 제공자")
@@ -114,6 +117,17 @@ public class Account extends BaseTimeEntity {
 
     public String getProviderId() {
         return this.providerId;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
+    }
+
+    public static Account addAccount(AccountDTO accountDTO) {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String default_profile_img = "https://ui-avatars.com/api/?background=random&name=" + accountDTO.email();
+        return new AccountBuilder().memNo(accountDTO.memNo()).nickname(accountDTO.nickname()).email(accountDTO.email())
+                .pass(bCryptPasswordEncoder.encode(accountDTO.pass())).memPoint(accountDTO.memPoint()).profileImage(default_profile_img).build();
     }
 
     public static class AccountBuilder {

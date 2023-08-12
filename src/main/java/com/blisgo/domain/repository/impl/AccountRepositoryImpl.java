@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static com.blisgo.domain.entity.QAccount.account;
 import static com.blisgo.domain.entity.QDogam.dogam;
@@ -42,29 +43,29 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
     @Override
-    public Account selectAccount(Account accountEntity) {
-        return jpaQueryFactory.selectFrom(account).where(account.email.eq(accountEntity.getEmail())).fetchOne();
+    public Optional<Account> selectAccount(String email) {
+        return Optional.ofNullable(jpaQueryFactory.selectFrom(account).where(account.email.eq(email)).fetchOne());
     }
 
     @Modifying
     @Override
-    public boolean deleteAccount(Account accountEntity) {
-        return jpaQueryFactory.delete(account).where(account.memNo.eq(accountEntity.getMemNo())).execute() > 0;
+    public long deleteAccount(int memNo) {
+        return jpaQueryFactory.delete(account).where(account.memNo.eq(memNo)).execute();
     }
 
     @Modifying
     @Override
-    public boolean updatePassword(Account accountEntity, String passNew) {
-        return jpaQueryFactory.update(account).set(account.pass, passNew).where(account.email.eq(accountEntity.getEmail()))
-                .execute() > 0;
+    public long updatePassword(Account accountEntity, String passNew) {
+        return jpaQueryFactory.update(account).set(account.pass, passNew).where(account.email.eq(accountEntity.getEmail()).and(account.pass.eq(accountEntity.getPass())))
+                .execute();
     }
 
     @Override
-    public List<Dogam> selectDogamList(Account accountEntity, int index, int limit) {
+    public List<Dogam> selectDogamList(int memNo, int index, int limit) {
         var tuple = jpaQueryFactory
                 .select(dogam.account.memNo, dogam.dictionary.dicNo, dogam.dictionary.name,
                         dogam.dictionary.thumbnail)
-                .from(dogam).innerJoin(dogam.dictionary).where(dogam.account.memNo.eq(accountEntity.getMemNo())).orderBy(dogam.createdDate.desc()).offset(index).limit(limit).fetch();
+                .from(dogam).innerJoin(dogam.dictionary).where(dogam.account.memNo.eq(memNo)).orderBy(dogam.createdDate.desc()).offset(index).limit(limit).fetch();
 
         List<Dogam> rs = new ArrayList<>();
         for (var row : tuple) {
@@ -80,9 +81,9 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Modifying
     @Override
-    public boolean updateProfileImg(Account accountEntity, String profile_img_url) {
-        return jpaQueryFactory.update(account).set(account.profileImage, profile_img_url).where(account.email.eq(accountEntity.getEmail()))
-                .execute() > 0;
+    public long updateProfileImg(String email, String profile_img_url) {
+        return jpaQueryFactory.update(account).set(account.profileImage, profile_img_url).where(account.email.eq(email))
+                .execute();
     }
 
 }

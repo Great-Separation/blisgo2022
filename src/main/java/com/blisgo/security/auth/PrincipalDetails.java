@@ -78,4 +78,9 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
     public String getName() {
         return account.getNickname();
     }
+
+    public void setProfileImage(String profileImage) {
+        this.account.setProfileImage(profileImage);
+    }
+
 }

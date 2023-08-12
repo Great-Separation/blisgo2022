@@ -5,7 +5,6 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Null;
 import jakarta.validation.constraints.PositiveOrZero;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
 
@@ -25,13 +24,5 @@ public record AccountDTO(
         // FIXME 실제로 적용되지 않음
         @Null(message = "Controller단에서 계산되는 값입니다.")
         LocalDateTime modifiedDate
-
-
 ) {
-    public static AccountDTO addAccount(AccountDTO accountDTO) {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        String default_profile_img = "https://ui-avatars.com/api/?background=random&name=" + accountDTO.email();
-        return AccountDTOBuilder.builder().memNo(accountDTO.memNo()).nickname(accountDTO.nickname()).email(accountDTO.email())
-                .pass(bCryptPasswordEncoder.encode(accountDTO.pass())).memPoint(accountDTO.memPoint()).profileImage(default_profile_img).build();
-    }
 }

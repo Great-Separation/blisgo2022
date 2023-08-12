@@ -5,17 +5,18 @@ import com.blisgo.domain.entity.Dogam;
 import org.springframework.data.repository.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface AccountRepository extends Repository<Account, Integer> {
+public interface AccountRepository extends Repository<Account, Long> {
     boolean insertAccount(Account accountEntity);
 
-    Account selectAccount(Account accountEntity);
+    Optional<Account> selectAccount(String email);
 
-    boolean deleteAccount(Account accountEntity);
+    long deleteAccount(int memNo);
 
-    boolean updatePassword(Account accountEntity, String passNew);
+    long updatePassword(Account accountEntity, String passNew);
 
-    List<Dogam> selectDogamList(Account accountEntity, int index, int limit);
+    List<Dogam> selectDogamList(int memNo, int index, int limit);
 
-    boolean updateProfileImg(Account accountEntity, String profile_img_url);
+    long updateProfileImg(String email, String profile_img_url);
 }

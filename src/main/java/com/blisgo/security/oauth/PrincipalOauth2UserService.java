@@ -15,17 +15,16 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
     private static final Logger log = org.slf4j.LoggerFactory.getLogger(PrincipalOauth2UserService.class);
     private final AccountRepository accountRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     public PrincipalOauth2UserService(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
-
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
@@ -45,24 +44,23 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
             default -> throw new OAuth2AuthenticationException("미지원 제공자");
         };
 
-        Optional<Account> userOptional = Optional.ofNullable(accountRepository.selectAccount(Account.builder().email(Objects.requireNonNull(oAuth2UserInfo).getEmail()).build()));
-        Account account;
-        if (userOptional.isPresent()) {
-            account = userOptional.get();
-
-            accountRepository.updateProfileImg(account, oAuth2UserInfo.getProfileImage());
-        } else {
-            BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-            account = Account.builder()
-                    .nickname(oAuth2UserInfo.getNickname())
-                    .email(oAuth2UserInfo.getEmail())
-                    .pass(bCryptPasswordEncoder.encode(oAuth2UserInfo.getProvider() + "_" + oAuth2UserInfo.getProviderId()))
-                    .profileImage(oAuth2UserInfo.getProfileImage())
-                    .provider(oAuth2UserInfo.getProvider())
-                    .providerId(oAuth2UserInfo.getProviderId())
-                    .build();
-            accountRepository.insertAccount(account);
-        }
+        Account account = accountRepository.selectAccount(Objects.requireNonNull(oAuth2UserInfo).getEmail())
+                .map(user -> {
+                    accountRepository.updateProfileImg(user.getEmail(), oAuth2UserInfo.getProfileImage());
+                    return user;
+                })
+                .orElseGet(() -> {
+                    Account newAccount = Account.builder()
+                            .nickname(oAuth2UserInfo.getNickname())
+                            .email(oAuth2UserInfo.getEmail())
+                            .pass(bCryptPasswordEncoder.encode(oAuth2UserInfo.getProvider() + "_" + oAuth2UserInfo.getProviderId()))
+                            .profileImage(oAuth2UserInfo.getProfileImage())
+                            .provider(oAuth2UserInfo.getProvider())
+                            .providerId(oAuth2UserInfo.getProviderId())
+                            .build();
+                    accountRepository.insertAccount(newAccount);
+                    return newAccount;
+                });
 
         return new PrincipalDetails(account, oAuth2User.getAttributes());
     }

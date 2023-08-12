@@ -20,7 +20,7 @@ public class HomeController {
 
     private final HomeService homeService;
 
-    public static String wallpaperUrl = null;
+    public static String wallpaperUrl;
 
     public HomeController(HomeService homeService) {
         this.homeService = homeService;
@@ -33,7 +33,7 @@ public class HomeController {
      */
     @GetMapping
     public ModelAndView index() {
-        if (wallpaperUrl.isEmpty()) {
+        if (wallpaperUrl == null) {
             homeService.changeIndexWallpaperDaily();
         }
         return new ModelAndView(

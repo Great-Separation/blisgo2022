@@ -4,6 +4,7 @@ import com.blisgo.domain.mapper.DictionaryMapper;
 import com.blisgo.domain.repository.DictionaryRepository;
 import com.blisgo.service.HomeService;
 import com.blisgo.util.Unsplash;
+import com.blisgo.web.controller.HomeController;
 import com.blisgo.web.dto.DictionaryDTO;
 import org.slf4j.Logger;
 import org.springframework.boot.configurationprocessor.json.JSONException;
@@ -24,13 +25,18 @@ public class HomeServiceImpl implements HomeService {
 
     @Override
     public List<DictionaryDTO> findRecentDictionaries() {
-        var rs = dictionaryRepository.selectRecentDictionaryList();
-        return DictionaryMapper.INSTANCE.toDTOList(rs);
+        return DictionaryMapper.INSTANCE.toDTOList(
+                dictionaryRepository.selectRecentDictionaryList()
+        );
     }
 
     @Override
-    public void changeIndexWallpaperDaily() throws JSONException, IOException, InterruptedException {
-        Unsplash.changeWallpaper();
+    public void changeIndexWallpaperDaily() {
+        try {
+            HomeController.wallpaperUrl = Unsplash.getImageUrl();
+        } catch (JSONException | IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

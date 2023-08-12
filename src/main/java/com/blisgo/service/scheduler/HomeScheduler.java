@@ -1,10 +1,8 @@
 package com.blisgo.service.scheduler;
 
 import com.blisgo.service.HomeService;
-import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
 
 
 @Component
@@ -15,8 +13,8 @@ public class HomeScheduler {
         this.homeService = homeService;
     }
 
-    @SuppressWarnings("unused")
-    public void changeIndexWallpaperDaily() throws JSONException, IOException, InterruptedException {
+    @Scheduled(zone = "Asia/Seoul", cron = "0 0 0 * * *")
+    public void changeIndexWallpaperDaily() {
         homeService.changeIndexWallpaperDaily();
     }
 }

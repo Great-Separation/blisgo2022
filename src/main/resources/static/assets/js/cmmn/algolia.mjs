@@ -5,6 +5,8 @@ const appId = 'DZSY6U0S0J';
 const apiKey = '6558cbc4f72828fe1cdad3d2a87264cb';
 const searchClient = algoliasearch(appId, apiKey);
 
+document.body.setAttribute('data-theme', document.documentElement.getAttribute('data-bs-theme'));
+
 function debouncePromise(fn, time) {
   let timerId = undefined;
 

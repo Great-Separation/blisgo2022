@@ -14,7 +14,7 @@ public interface AccountRepository extends Repository<Account, Long> {
 
     long deleteAccount(int memNo);
 
-    long updatePassword(Account accountEntity, String passNew);
+    long updatePassword(String email, String passNew);
 
     List<Dogam> selectDogamList(int memNo, int index, int limit);
 

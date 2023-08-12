@@ -168,7 +168,7 @@ public class AccountController {
             HttpSession session,
             AccountDTO accountDTO
     ) {
-        if (accountService.modifyAccountPass(accountDTO, accountDTO.pass())) {
+        if (accountService.modifyAccountPass(accountDTO.email(), accountDTO.pass())) {
             session.invalidate();
             return new ModelAndView(
                     new RedirectView(RouteUrlHelper.combine(), false)
@@ -224,7 +224,7 @@ public class AccountController {
     ) {
         accountService.findAccount(principal.getAccount().getEmail()).ifPresentOrElse(
                 accountDTO -> {
-                    accountService.modifyAccountPass(accountDTO, passNew);
+                    accountService.modifyAccountPass(accountDTO.email(), passNew);
                     log.info("해당 계정의 비밀번호가 변경되었습니다");
                 },
                 () -> log.error("시스템 오류, 잘못된 접근입니다.")

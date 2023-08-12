@@ -9,7 +9,7 @@ import com.blisgo.util.CloudinaryUtil;
 import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.DogamDTO;
 import org.slf4j.Logger;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,12 +26,13 @@ import java.util.stream.Stream;
 public class AccountServiceImpl implements AccountService {
     private static final Logger log = org.slf4j.LoggerFactory.getLogger(AccountServiceImpl.class);
     private final AccountRepository accountRepository;
-    final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    private final PasswordEncoder passwordEncoder;
     private static int index = 0;
     private static final int limit = 48;
 
-    public AccountServiceImpl(AccountRepository accountRepository) {
+    public AccountServiceImpl(AccountRepository accountRepository, PasswordEncoder passwordEncoder) {
         this.accountRepository = accountRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -64,11 +65,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public boolean modifyAccountPass(AccountDTO accountDTO, String passNew) {
-        if (accountRepository.updatePassword(
-                AccountMapper.INSTANCE.toEntity(accountDTO),
-                bCryptPasswordEncoder.encode(passNew)) == 1
-        ) {
+    public boolean modifyAccountPass(String email, String passNew) {
+        if (accountRepository.updatePassword(email, passwordEncoder.encode(passNew)) == 1) {
             log.info("변경 완료, 변경된 비밀번호로 다시 로그인 해주세요.");
             return true;
         } else {

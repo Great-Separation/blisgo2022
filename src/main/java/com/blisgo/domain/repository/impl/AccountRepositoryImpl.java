@@ -55,8 +55,8 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Modifying
     @Override
-    public long updatePassword(Account accountEntity, String passNew) {
-        return jpaQueryFactory.update(account).set(account.pass, passNew).where(account.email.eq(accountEntity.getEmail()).and(account.pass.eq(accountEntity.getPass())))
+    public long updatePassword(String email, String passNew) {
+        return jpaQueryFactory.update(account).set(account.pass, passNew).where(account.email.eq(email))
                 .execute();
     }
 

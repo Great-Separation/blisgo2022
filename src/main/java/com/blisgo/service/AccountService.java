@@ -36,11 +36,11 @@ public interface AccountService {
     /**
      * 회원 비밀번호 변경 메서드
      *
-     * @param accountDTO 사용자
-     * @param passNew    신규 비밀번호
+     * @param email   사용자
+     * @param passNew 신규 비밀번호
      * @return 회원 비밀번호 변경 결과
      */
-    boolean modifyAccountPass(AccountDTO accountDTO, String passNew);
+    boolean modifyAccountPass(String email, String passNew);
 
     /**
      * 도감 목록 조회 메서드

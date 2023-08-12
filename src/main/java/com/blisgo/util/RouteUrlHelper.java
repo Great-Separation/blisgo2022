@@ -1,13 +1,4 @@
-package com.blisgo.web.controller;
-
-enum folder {
-    account, cmmn, dictionary, community
-}
-
-enum page {
-    chgpw, login, mypage, qrlogin, register, verify, index, faq, footer, navbar, offline, wastes, waste, board, content,
-    write, edit
-}
+package com.blisgo.util;
 
 /**
  * 프론트단 템플릿을 선언하여 controller에서 페이지에서 type safe 하도록 구성

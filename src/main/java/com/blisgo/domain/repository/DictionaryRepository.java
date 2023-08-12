@@ -13,15 +13,15 @@ public interface DictionaryRepository extends Repository<Dictionary, Integer> {
 
     List<Dictionary> selectDictionaryList(int index, int limit);
 
-    Dictionary selectDictionary(Dictionary dictionaryEntity);
+    Dictionary selectDictionary(int dicNo);
 
     List<Dictionary> selectRelatedDictionaryList(List<Wastes> tags);
 
     boolean updateDictionaryPopularity();
 
-    boolean updateDictionaryHit(Dictionary dictionaryEntity);
+    boolean updateDictionaryHit(int dicNo);
 
-    List<Hashtag> selectHashtagInnerJoinGuide(Dictionary dictionaryEntity);
+    List<Hashtag> selectHashtagInnerJoinGuide(int dicNo);
 
     boolean insertDogam(Dogam dogamEntity);
 }

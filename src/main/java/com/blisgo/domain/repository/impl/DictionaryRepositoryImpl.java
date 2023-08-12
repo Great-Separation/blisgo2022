@@ -53,8 +53,8 @@ public class DictionaryRepositoryImpl implements DictionaryRepository {
     }
 
     @Override
-    public Dictionary selectDictionary(Dictionary dictionaryEntity) {
-        return jpaQueryFactory.selectFrom(dictionary).where(dictionary.dicNo.eq(dictionaryEntity.getDicNo()))
+    public Dictionary selectDictionary(int dicNo) {
+        return jpaQueryFactory.selectFrom(dictionary).where(dictionary.dicNo.eq(dicNo))
                 .fetchOne();
     }
 
@@ -76,17 +76,17 @@ public class DictionaryRepositoryImpl implements DictionaryRepository {
 
     @Modifying
     @Override
-    public boolean updateDictionaryHit(Dictionary dictionaryEntity) {
+    public boolean updateDictionaryHit(int dicNo) {
         return jpaQueryFactory.update(dictionary).set(dictionary.hit, dictionary.hit.add(1))
-                .where(dictionary.dicNo.eq(dictionaryEntity.getDicNo())).execute() > 0;
+                .where(dictionary.dicNo.eq(dicNo)).execute() > 0;
     }
 
     @Override
-    public List<Hashtag> selectHashtagInnerJoinGuide(Dictionary dictionaryEntity) {
+    public List<Hashtag> selectHashtagInnerJoinGuide(int dicNo) {
         return jpaQueryFactory
                 .select(Projections.fields(Hashtag.class, hashtag.guide))
                 .from(hashtag).innerJoin(guide).on(hashtag.guide.guideCode.eq(guide.guideCode))
-                .where(hashtag.dictionary.dicNo.eq(dictionaryEntity.getDicNo())).fetch();
+                .where(hashtag.dictionary.dicNo.eq(dicNo)).fetch();
     }
 
     @Modifying

@@ -6,6 +6,7 @@ import org.hibernate.annotations.Comment;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 @Entity
 public class Dictionary {
     @Id
@@ -43,10 +44,10 @@ public class Dictionary {
     private String treatment;
 
     @OneToMany(mappedBy = "dictionary", orphanRemoval = true)
-    private final List<Dogam> dogam = new ArrayList<>();
+    private List<Dogam> dogam = new ArrayList<>();
 
     @OneToMany(mappedBy = "dictionary", orphanRemoval = true)
-    private final List<Hashtag> hashtag = new ArrayList<>();
+    private List<Hashtag> hashtag = new ArrayList<>();
 
     public Dictionary(Integer dicNo, String name, String engName, String category, Integer popularity, Short hit,
                       String thumbnail, String treatment) {

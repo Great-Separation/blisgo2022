@@ -1,6 +1,5 @@
 package com.blisgo.service;
 
-import com.blisgo.web.dto.AccountDTO;
 import com.blisgo.web.dto.DictionaryDTO;
 import com.blisgo.web.dto.HashtagDTO;
 
@@ -19,18 +18,18 @@ public interface DictionaryService {
     /**
      * 물품 상세 내용 보는 메서드
      *
-     * @param dictionaryDTO 폐기물
+     * @param dicNo 폐기물
      * @return 단건
      */
-    Optional<DictionaryDTO> findDictionary(DictionaryDTO dictionaryDTO);
+    Optional<DictionaryDTO> findDictionary(int dicNo);
 
     /**
      * 분리배출 가이드 출력 메서드
      *
-     * @param dictionaryDTO 폐기물
+     * @param dicNo 폐기물
      * @return 다건
      */
-    List<HashtagDTO> findHashtag(DictionaryDTO dictionaryDTO);
+    List<HashtagDTO> findHashtag(int dicNo);
 
     /**
      * 연관 물품 나열 메서드
@@ -50,23 +49,22 @@ public interface DictionaryService {
 
     /**
      * 별점 매기는 메서드
-     *
      */
     boolean modifyDictionaryPopularity();
 
     /**
      * 조회수 추가 메서드
      *
-     * @param dictionary 폐기물
+     * @param dicNo 폐기물
      */
-    boolean countDictionaryHit(DictionaryDTO dictionary);
+    boolean countDictionaryHit(int dicNo);
 
     /**
      * 북마크 기능 메서드
      *
-     * @param dictionaryDTO 폐기물
-     * @param accountDTO    사용자
+     * @param dicNo 폐기물
+     * @param memNo 사용자
      * @return 북마크 추가
      */
-    boolean addDogam(DictionaryDTO dictionaryDTO, AccountDTO accountDTO);
+    boolean addDogam(int dicNo, int memNo);
 }

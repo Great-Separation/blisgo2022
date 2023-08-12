@@ -1,7 +1,6 @@
 package com.blisgo.config;
 
 import com.blisgo.security.oauth.PrincipalOauth2UserService;
-import org.slf4j.Logger;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.autoconfigure.security.ConditionalOnDefaultWebSecurity;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
@@ -12,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
@@ -30,7 +30,6 @@ import java.util.List;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
-    private static final Logger log = org.slf4j.LoggerFactory.getLogger(SecurityConfig.class);
     private final PrincipalOauth2UserService principalOauth2UserService;
     private final AuthenticationSuccessHandler authenticationSuccessHandler;
 
@@ -102,7 +101,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 

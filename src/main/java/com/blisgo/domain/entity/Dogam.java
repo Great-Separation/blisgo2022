@@ -6,11 +6,7 @@ import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import java.io.Serial;
-import java.io.Serializable;
-
 @Entity
-@IdClass(DogamPK.class)
 public class Dogam extends BaseTimeEntity {
     @Id
     @ManyToOne
@@ -70,50 +66,5 @@ public class Dogam extends BaseTimeEntity {
         public String toString() {
             return "Dogam.DogamBuilder(account=" + this.account + ", dictionary=" + this.dictionary + ")";
         }
-    }
-}
-
-class DogamPK implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 1L;
-
-    private Account account;
-    private Dictionary dictionary;
-
-    public DogamPK(Account account, Dictionary dictionary) {
-        this.account = account;
-        this.dictionary = dictionary;
-    }
-
-    public DogamPK() {
-    }
-
-    public boolean equals(final Object o) {
-        if (o == this) return true;
-        if (!(o instanceof DogamPK)) return false;
-        final DogamPK other = (DogamPK) o;
-        if (!other.canEqual(this)) return false;
-        final Object this$account = this.account;
-        final Object other$account = other.account;
-        if (this$account == null ? other$account != null : !this$account.equals(other$account)) return false;
-        final Object this$dictionary = this.dictionary;
-        final Object other$dictionary = other.dictionary;
-        if (this$dictionary == null ? other$dictionary != null : !this$dictionary.equals(other$dictionary))
-            return false;
-        return true;
-    }
-
-    protected boolean canEqual(final Object other) {
-        return other instanceof DogamPK;
-    }
-
-    public int hashCode() {
-        final int PRIME = 59;
-        int result = 1;
-        final Object $account = this.account;
-        result = result * PRIME + ($account == null ? 43 : $account.hashCode());
-        final Object $dictionary = this.dictionary;
-        result = result * PRIME + ($dictionary == null ? 43 : $dictionary.hashCode());
-        return result;
     }
 }

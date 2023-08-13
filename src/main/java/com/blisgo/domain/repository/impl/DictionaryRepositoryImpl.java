@@ -93,7 +93,7 @@ public class DictionaryRepositoryImpl implements DictionaryRepository {
     @Override
     public boolean insertDogam(Dogam dogamEntity) {
         try {
-            entityManager.merge(dogamEntity);
+            entityManager.persist(dogamEntity);
             return true;
         } catch (Exception e) {
             return false;

@@ -63,11 +63,11 @@ public class BoardController {
      */
     @GetMapping("{bdNo}")
     public ModelAndView content(@PathVariable final int bdNo) {
-        boardService.countBoardViews(bdNo);
-
         BoardDTO boardDTO = boardService.findBoard(bdNo).orElseThrow(() ->
                 new GeneralException("해당 게시글이 조회되지 않습니다")
         );
+
+        boardService.countBoardViews(bdNo);
 
         return new ModelAndView(
                 RouteUrlHelper.combine(Folder.community, Page.content),

@@ -1,5 +1,6 @@
 package com.blisgo.domain.repository.impl;
 
+import com.blisgo.domain.entity.Account;
 import com.blisgo.domain.entity.Reply;
 import com.blisgo.domain.repository.ReplyRepository;
 import com.querydsl.core.types.Projections;
@@ -31,7 +32,7 @@ public class ReplyRepositoryImpl implements ReplyRepository {
     @Override
     public List<Reply> selectReplyInnerJoinAccount(int bdNo) {
         return jpaQueryFactory
-                .select(Projections.fields(Reply.class, reply.replyNo, reply.account,
+                .select(Projections.fields(Reply.class, reply.replyNo, Projections.fields(Account.class, account.nickname, account.profileImage).as("account"),
                         reply.createdDate, reply.content))
                 .from(reply).innerJoin(account).on(reply.account.memNo.eq(account.memNo))
                 .where(reply.board.bdNo.eq(bdNo)).fetch();

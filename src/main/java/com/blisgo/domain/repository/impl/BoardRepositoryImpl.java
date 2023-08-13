@@ -1,5 +1,6 @@
 package com.blisgo.domain.repository.impl;
 
+import com.blisgo.domain.entity.Account;
 import com.blisgo.domain.entity.Board;
 import com.blisgo.domain.repository.BoardRepository;
 import com.blisgo.web.dto.AccountDTO;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static com.blisgo.domain.entity.QAccount.account;
 import static com.blisgo.domain.entity.QBoard.board;
 
 @Repository
@@ -68,7 +70,7 @@ public class BoardRepositoryImpl implements BoardRepository {
     @Override
     public Optional<Board> selectBoard(int bdNo) {
         return Optional.ofNullable(jpaQueryFactory
-                .select(Projections.fields(Board.class, board.account, board.bdNo, board.bdTitle, board.bdContent,
+                .select(Projections.fields(Board.class, Projections.fields(Account.class, account.nickname, account.profileImage).as("account"), board.bdNo, board.bdTitle, board.bdContent,
                         board.bdReplyCount, board.bdFavorite, board.bdViews, board.createdDate, board.modifiedDate))
                 .from(board).where(board.bdNo.eq(bdNo)).fetchOne());
     }

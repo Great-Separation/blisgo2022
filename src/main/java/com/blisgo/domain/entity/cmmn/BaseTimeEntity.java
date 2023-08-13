@@ -14,28 +14,19 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseTimeEntity {
 
-    @Column(updatable = false, nullable = false)
+    @Column(nullable = false, insertable = false, updatable = false,
+            columnDefinition = "datetime default CURRENT_TIMESTAMP")
     @DateTimeFormat(iso = ISO.DATE_TIME)
     @Comment("생성시간(공통)")
     @CreatedDate
     private LocalDateTime createdDate;
 
-    @Column(nullable = false)
+    @Column(nullable = false, insertable = false, updatable = false,
+            columnDefinition = "datetime default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
     @DateTimeFormat(iso = ISO.DATE_TIME)
     @Comment("수정시간(공통)")
     @LastModifiedDate
     private LocalDateTime modifiedDate;
-
-    @PrePersist
-    public void prePersist() {
-        this.createdDate = LocalDateTime.now();
-        this.modifiedDate = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        this.modifiedDate = LocalDateTime.now();
-    }
 
     public LocalDateTime getCreatedDate() {
         return this.createdDate;

@@ -5,11 +5,7 @@ import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import java.io.Serial;
-import java.io.Serializable;
-
 @Entity
-@IdClass(HashtagPK.class)
 public class Hashtag {
 
     @Id
@@ -70,50 +66,5 @@ public class Hashtag {
         public String toString() {
             return "Hashtag.HashtagBuilder(dictionary=" + this.dictionary + ", guide=" + this.guide + ")";
         }
-    }
-}
-
-class HashtagPK implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 1L;
-
-    private Dictionary dictionary;
-    private Guide guide;
-
-    public HashtagPK(Dictionary dictionary, Guide guide) {
-        this.dictionary = dictionary;
-        this.guide = guide;
-    }
-
-    public HashtagPK() {
-    }
-
-    public boolean equals(final Object o) {
-        if (o == this) return true;
-        if (!(o instanceof HashtagPK)) return false;
-        final HashtagPK other = (HashtagPK) o;
-        if (!other.canEqual(this)) return false;
-        final Object this$dictionary = this.dictionary;
-        final Object other$dictionary = other.dictionary;
-        if (this$dictionary == null ? other$dictionary != null : !this$dictionary.equals(other$dictionary))
-            return false;
-        final Object this$guide = this.guide;
-        final Object other$guide = other.guide;
-        if (this$guide == null ? other$guide != null : !this$guide.equals(other$guide)) return false;
-        return true;
-    }
-
-    protected boolean canEqual(final Object other) {
-        return other instanceof HashtagPK;
-    }
-
-    public int hashCode() {
-        final int PRIME = 59;
-        int result = 1;
-        final Object $dictionary = this.dictionary;
-        result = result * PRIME + ($dictionary == null ? 43 : $dictionary.hashCode());
-        final Object $guide = this.guide;
-        result = result * PRIME + ($guide == null ? 43 : $guide.hashCode());
-        return result;
     }
 }

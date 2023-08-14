@@ -9,7 +9,6 @@ import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
@@ -21,26 +20,20 @@ public interface BoardMapper extends GenericMapper<BoardDTO, Board> {
             return null;
         }
 
-        List<Board> list = new ArrayList<>(boards.size());
-
-        for (Board board : boards) {
-            list.add(
-                    Board.builder()
-                            .bdNo(board.getBdNo())
-                            .bdTitle(board.getBdTitle())
-                            .account(board.getAccount())
-                            .bdCategory(board.getBdCategory())
-                            .bdContent(HtmlContentParse.parseContentPreview(board.getBdContent()))
-                            .bdViews(board.getBdViews())
-                            .bdFavorite(board.getBdFavorite())
-                            .bdReplyCount(board.getBdReplyCount())
-                            .bdThumbnail(board.getBdThumbnail())
-                            .createdDate(board.getCreatedDate())
-                            .modifiedDate(board.getModifiedDate()).build()
-            );
-        }
-
-        return toDTOList(list);
+        return toDTOList(
+                boards.stream().map(board -> Board.builder()
+                        .bdNo(board.getBdNo())
+                        .bdTitle(board.getBdTitle())
+                        .account(board.getAccount())
+                        .bdCategory(board.getBdCategory())
+                        .bdContent(HtmlContentParse.parseContentPreview(board.getBdContent()))
+                        .bdViews(board.getBdViews())
+                        .bdFavorite(board.getBdFavorite())
+                        .bdReplyCount(board.getBdReplyCount())
+                        .bdThumbnail(board.getBdThumbnail())
+                        .createdDate(board.getCreatedDate())
+                        .modifiedDate(board.getModifiedDate()).build()).toList()
+        );
     }
 
     default Board toEntityProcessedThumbnail(AccountDTO accountDTO, BoardDTO boardDTO) {

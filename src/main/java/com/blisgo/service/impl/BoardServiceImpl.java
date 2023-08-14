@@ -1,7 +1,6 @@
 package com.blisgo.service.impl;
 
 import com.blisgo.domain.entity.Board;
-import com.blisgo.domain.mapper.AccountMapper;
 import com.blisgo.domain.mapper.BoardMapper;
 import com.blisgo.domain.repository.BoardRepository;
 import com.blisgo.exception.GeneralException;
@@ -34,11 +33,8 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public boolean addBoard(BoardDTO boardDTO, AccountDTO accountDTO) {
         if (boardRepository.insertBoard(
-                Board.createBoardWithThumbnail(
-                        AccountMapper.INSTANCE.toEntity(accountDTO),
-                        BoardMapper.INSTANCE.toEntity(boardDTO),
-                        HtmlContentParse.parseThumbnail(boardDTO.bdContent())))
-        ) {
+                BoardMapper.INSTANCE.toEntityProcessedThumbnail(accountDTO, boardDTO)
+        )) {
             log.info("작성 완료, 글이 작성되었습니다");
             return true;
         } else {
@@ -50,23 +46,17 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public List<BoardDTO> findBoards() {
         index = 0;
-        return boardRepository.selectBoardList(index, limit).stream().map(board ->
-                BoardDTO.selectBoardFilterContentImage(
-                        board,
-                        HtmlContentParse.parseContentPreview(board.bdContent())
-                )
-        ).toList();
+        return BoardMapper.INSTANCE.toDTOListProcessedBdContent(
+                boardRepository.selectBoardList(index, limit)
+        );
     }
 
     @Override
     public List<BoardDTO> findBoardMore() {
         index += limit;
-        return boardRepository.selectBoardList(index, limit).stream().map(board ->
-                BoardDTO.selectBoardFilterContentImage(
-                        board,
-                        HtmlContentParse.parseContentPreview(board.bdContent())
-                )
-        ).toList();
+        return BoardMapper.INSTANCE.toDTOListProcessedBdContent(
+                boardRepository.selectBoardList(index, limit)
+        );
     }
 
     @Override

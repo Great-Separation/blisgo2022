@@ -19,14 +19,14 @@ public abstract class BaseTimeEntity {
     @DateTimeFormat(iso = ISO.DATE_TIME)
     @Comment("생성시간(공통)")
     @CreatedDate
-    private LocalDateTime createdDate;
+    protected LocalDateTime createdDate;
 
     @Column(nullable = false, insertable = false, updatable = false,
             columnDefinition = "datetime default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
     @DateTimeFormat(iso = ISO.DATE_TIME)
     @Comment("수정시간(공통)")
     @LastModifiedDate
-    private LocalDateTime modifiedDate;
+    protected LocalDateTime modifiedDate;
 
     public LocalDateTime getCreatedDate() {
         return this.createdDate;

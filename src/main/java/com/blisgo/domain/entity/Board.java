@@ -4,6 +4,7 @@ import com.blisgo.domain.entity.cmmn.BaseTimeEntity;
 import jakarta.persistence.*;
 import org.hibernate.annotations.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,8 +55,7 @@ public class Board extends BaseTimeEntity {
     @OneToMany(mappedBy = "board", orphanRemoval = true)
     private List<Reply> reply = new ArrayList<>();
 
-    public Board(Integer bdNo, Account account, String bdTitle, String bdCategory, String bdContent, Integer bdViews,
-                 Integer bdFavorite, Integer bdReplyCount, String bdThumbnail) {
+    public Board(Integer bdNo, Account account, String bdTitle, String bdCategory, String bdContent, Integer bdViews, Integer bdFavorite, Integer bdReplyCount, String bdThumbnail, List<Reply> reply) {
         this.bdNo = bdNo;
         this.account = account;
         this.bdTitle = bdTitle;
@@ -65,63 +65,90 @@ public class Board extends BaseTimeEntity {
         this.bdFavorite = bdFavorite;
         this.bdReplyCount = bdReplyCount;
         this.bdThumbnail = bdThumbnail;
+        this.reply = reply;
     }
 
     public Board() {
     }
 
-    public static Board createBoardWithThumbnail(Account account, Board board, String boardThumbnail) {
-        return Board.builder().bdNo(board.getBdNo()).account(account).bdTitle(board.getBdTitle())
-                .bdCategory(board.getBdCategory()).bdContent(board.getBdContent()).bdViews(board.getBdViews())
-                .bdFavorite(board.getBdFavorite()).bdReplyCount(board.getBdReplyCount()).bdThumbnail(boardThumbnail)
-                .build();
+    private Board(Builder builder) {
+        bdNo = builder.bdNo;
+        account = builder.account;
+        bdTitle = builder.bdTitle;
+        bdCategory = builder.bdCategory;
+        bdContent = builder.bdContent;
+        bdViews = builder.bdViews;
+        bdFavorite = builder.bdFavorite;
+        bdReplyCount = builder.bdReplyCount;
+        bdThumbnail = builder.bdThumbnail;
+        reply = builder.reply;
+        createdDate = builder.createdDate;
+        modifiedDate = builder.modifiedDate;
     }
 
-    public static BoardBuilder builder() {
-        return new BoardBuilder();
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static Builder builder(Board copy) {
+        Builder builder = new Builder();
+        builder.bdNo = copy.getBdNo();
+        builder.account = copy.getAccount();
+        builder.bdTitle = copy.getBdTitle();
+        builder.bdCategory = copy.getBdCategory();
+        builder.bdContent = copy.getBdContent();
+        builder.bdViews = copy.getBdViews();
+        builder.bdFavorite = copy.getBdFavorite();
+        builder.bdReplyCount = copy.getBdReplyCount();
+        builder.bdThumbnail = copy.getBdThumbnail();
+        builder.reply = copy.getReply();
+        builder.createdDate = copy.getCreatedDate();
+        builder.modifiedDate = copy.getModifiedDate();
+        return builder;
     }
 
     public Integer getBdNo() {
-        return this.bdNo;
+        return bdNo;
     }
 
     public Account getAccount() {
-        return this.account;
+        return account;
     }
 
     public String getBdTitle() {
-        return this.bdTitle;
+        return bdTitle;
     }
 
     public String getBdCategory() {
-        return this.bdCategory;
+        return bdCategory;
     }
 
     public String getBdContent() {
-        return this.bdContent;
+        return bdContent;
     }
 
     public Integer getBdViews() {
-        return this.bdViews;
+        return bdViews;
     }
 
     public Integer getBdFavorite() {
-        return this.bdFavorite;
+        return bdFavorite;
     }
 
     public Integer getBdReplyCount() {
-        return this.bdReplyCount;
+        return bdReplyCount;
     }
 
     public String getBdThumbnail() {
-        return this.bdThumbnail;
+        return bdThumbnail;
     }
 
     public List<Reply> getReply() {
-        return this.reply;
+        return reply;
     }
 
-    public static class BoardBuilder {
+
+    public static final class Builder {
         private Integer bdNo;
         private Account account;
         private String bdTitle;
@@ -131,61 +158,75 @@ public class Board extends BaseTimeEntity {
         private Integer bdFavorite;
         private Integer bdReplyCount;
         private String bdThumbnail;
+        private List<Reply> reply;
+        private LocalDateTime createdDate;
+        private LocalDateTime modifiedDate;
 
-        BoardBuilder() {
+        private Builder() {
         }
 
-        public BoardBuilder bdNo(Integer bdNo) {
-            this.bdNo = bdNo;
+        public Builder bdNo(Integer val) {
+            bdNo = val;
             return this;
         }
 
-        public BoardBuilder account(Account account) {
-            this.account = account;
+        public Builder account(Account val) {
+            account = val;
             return this;
         }
 
-        public BoardBuilder bdTitle(String bdTitle) {
-            this.bdTitle = bdTitle;
+        public Builder bdTitle(String val) {
+            bdTitle = val;
             return this;
         }
 
-        public BoardBuilder bdCategory(String bdCategory) {
-            this.bdCategory = bdCategory;
+        public Builder bdCategory(String val) {
+            bdCategory = val;
             return this;
         }
 
-        public BoardBuilder bdContent(String bdContent) {
-            this.bdContent = bdContent;
+        public Builder bdContent(String val) {
+            bdContent = val;
             return this;
         }
 
-        public BoardBuilder bdViews(Integer bdViews) {
-            this.bdViews = bdViews;
+        public Builder bdViews(Integer val) {
+            bdViews = val;
             return this;
         }
 
-        public BoardBuilder bdFavorite(Integer bdFavorite) {
-            this.bdFavorite = bdFavorite;
+        public Builder bdFavorite(Integer val) {
+            bdFavorite = val;
             return this;
         }
 
-        public BoardBuilder bdReplyCount(Integer bdReplyCount) {
-            this.bdReplyCount = bdReplyCount;
+        public Builder bdReplyCount(Integer val) {
+            bdReplyCount = val;
             return this;
         }
 
-        public BoardBuilder bdThumbnail(String bdThumbnail) {
-            this.bdThumbnail = bdThumbnail;
+        public Builder bdThumbnail(String val) {
+            bdThumbnail = val;
+            return this;
+        }
+
+        public Builder reply(List<Reply> val) {
+            reply = val;
+            return this;
+        }
+
+        public Builder createdDate(LocalDateTime val) {
+            createdDate = val;
+            return this;
+        }
+
+        public Builder modifiedDate(LocalDateTime val) {
+            modifiedDate = val;
             return this;
         }
 
         public Board build() {
-            return new Board(this.bdNo, this.account, this.bdTitle, this.bdCategory, this.bdContent, this.bdViews, this.bdFavorite, this.bdReplyCount, this.bdThumbnail);
-        }
-
-        public String toString() {
-            return "Board.BoardBuilder(bdNo=" + this.bdNo + ", account=" + this.account + ", bdTitle=" + this.bdTitle + ", bdCategory=" + this.bdCategory + ", bdContent=" + this.bdContent + ", bdViews=" + this.bdViews + ", bdFavorite=" + this.bdFavorite + ", bdReplyCount=" + this.bdReplyCount + ", bdThumbnail=" + this.bdThumbnail + ")";
+            return new Board(this);
         }
     }
 }

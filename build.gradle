@@ -114,9 +114,9 @@ clean.doLast {
 
 flyway {
     //dev
-    url = 'jdbc:' + System.getenv('MYSQL_URL_DEV') + '&serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=utf8'
-    user = System.getenv('MYSQLUSER_DEV')
-    password = System.getenv('MYSQLPASSWORD_DEV')
+    url = 'jdbc:' + System.getenv('MYSQL_URL')
+    user = System.getenv('MYSQLUSER')
+    password = System.getenv('MYSQLPASSWORD')
 
     cleanDisabled = false
 }

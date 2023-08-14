@@ -4,6 +4,8 @@ import com.blisgo.domain.entity.cmmn.BaseTimeEntity;
 import jakarta.persistence.*;
 import org.hibernate.annotations.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @DynamicInsert
 @DynamicUpdate
@@ -40,6 +42,15 @@ public class Reply extends BaseTimeEntity {
     public Reply() {
     }
 
+    private Reply(Builder builder) {
+        replyNo = builder.replyNo;
+        board = builder.board;
+        account = builder.account;
+        content = builder.content;
+        createdDate = builder.createdDate;
+        modifiedDate = builder.modifiedDate;
+    }
+
     public static Reply createReply(Integer replyNo, int bdNo, int memNo, String content) {
         return Reply.builder()
                 .replyNo(replyNo)
@@ -52,8 +63,8 @@ public class Reply extends BaseTimeEntity {
                 .content(content).build();
     }
 
-    public static ReplyBuilder builder() {
-        return new ReplyBuilder();
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Integer getReplyNo() {
@@ -72,41 +83,49 @@ public class Reply extends BaseTimeEntity {
         return this.content;
     }
 
-    public static class ReplyBuilder {
+    public static final class Builder {
         private Integer replyNo;
         private Board board;
         private Account account;
         private String content;
+        private LocalDateTime createdDate;
+        private LocalDateTime modifiedDate;
 
-        ReplyBuilder() {
+        private Builder() {
         }
 
-        public ReplyBuilder replyNo(Integer replyNo) {
-            this.replyNo = replyNo;
+        public Builder replyNo(Integer val) {
+            replyNo = val;
             return this;
         }
 
-        public ReplyBuilder board(Board board) {
-            this.board = board;
+        public Builder board(Board val) {
+            board = val;
             return this;
         }
 
-        public ReplyBuilder account(Account account) {
-            this.account = account;
+        public Builder account(Account val) {
+            account = val;
             return this;
         }
 
-        public ReplyBuilder content(String content) {
-            this.content = content;
+        public Builder content(String val) {
+            content = val;
+            return this;
+        }
+
+        public Builder createdDate(LocalDateTime val) {
+            createdDate = val;
+            return this;
+        }
+
+        public Builder modifiedDate(LocalDateTime val) {
+            modifiedDate = val;
             return this;
         }
 
         public Reply build() {
-            return new Reply(this.replyNo, this.board, this.account, this.content);
-        }
-
-        public String toString() {
-            return "Reply.ReplyBuilder(replyNo=" + this.replyNo + ", board=" + this.board + ", account=" + this.account + ", content=" + this.content + ")";
+            return new Reply(this);
         }
     }
 }

@@ -30,8 +30,13 @@ public class Hashtag {
     public Hashtag() {
     }
 
-    public static HashtagBuilder builder() {
-        return new HashtagBuilder();
+    private Hashtag(Builder builder) {
+        dictionary = builder.dictionary;
+        guide = builder.guide;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Dictionary getDictionary() {
@@ -42,29 +47,25 @@ public class Hashtag {
         return this.guide;
     }
 
-    public static class HashtagBuilder {
+    public static final class Builder {
         private Dictionary dictionary;
         private Guide guide;
 
-        HashtagBuilder() {
+        private Builder() {
         }
 
-        public HashtagBuilder dictionary(Dictionary dictionary) {
-            this.dictionary = dictionary;
+        public Builder dictionary(Dictionary val) {
+            dictionary = val;
             return this;
         }
 
-        public HashtagBuilder guide(Guide guide) {
-            this.guide = guide;
+        public Builder guide(Guide val) {
+            guide = val;
             return this;
         }
 
         public Hashtag build() {
-            return new Hashtag(this.dictionary, this.guide);
-        }
-
-        public String toString() {
-            return "Hashtag.HashtagBuilder(dictionary=" + this.dictionary + ", guide=" + this.guide + ")";
+            return new Hashtag(this);
         }
     }
 }

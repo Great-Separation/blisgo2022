@@ -15,6 +15,7 @@ public record BoardDTO(
         String bdTitle,
         String bdCategory,
         String bdContent,
+        String bdContentPreview,
         @PositiveOrZero(message = "조회수는 0 또는 양수여야 합니다")
         Integer bdViews,
         @PositiveOrZero(message = "좋아요는 0 또는 양수여야 합니다")
@@ -27,18 +28,5 @@ public record BoardDTO(
         LocalDateTime modifiedDate,
         String timeDiff
 ) {
-    public static BoardDTO selectBoardFilterContentImage(BoardDTO boardDTO, String bdContentImgRemoved) {
-        return BoardDTOBuilder.builder()
-                .bdNo(boardDTO.bdNo())
-                .bdTitle(boardDTO.bdTitle())
-                .account(boardDTO.account())
-                .bdCategory(boardDTO.bdCategory())
-                .bdContent(bdContentImgRemoved)
-                .bdViews(boardDTO.bdViews())
-                .bdFavorite(boardDTO.bdFavorite())
-                .bdReplyCount(boardDTO.bdReplyCount())
-                .bdThumbnail(boardDTO.bdThumbnail())
-                .createdDate(boardDTO.createdDate())
-                .modifiedDate(boardDTO.modifiedDate()).build();
-    }
+
 }

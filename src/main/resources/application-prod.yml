@@ -13,7 +13,7 @@ spring:
     password: ${MYSQLPASSWORD}
 
   datasource:
-    url: jdbc:${MYSQL_URL}
+    url: "jdbc:${MYSQL_URL}"
     username: ${MYSQLUSER}
     password: ${MYSQLPASSWORD}
 

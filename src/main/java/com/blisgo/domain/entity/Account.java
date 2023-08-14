@@ -8,6 +8,7 @@ import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.DynamicInsert;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,8 +72,24 @@ public class Account extends BaseTimeEntity {
     public Account() {
     }
 
-    public static AccountBuilder builder() {
-        return new AccountBuilder();
+    private Account(Builder builder) {
+        memNo = builder.memNo;
+        nickname = builder.nickname;
+        email = builder.email;
+        pass = builder.pass;
+        memPoint = builder.memPoint;
+        setProfileImage(builder.profileImage);
+        reply = builder.reply;
+        board = builder.board;
+        dogam = builder.dogam;
+        provider = builder.provider;
+        providerId = builder.providerId;
+        createdDate = builder.createdDate;
+        modifiedDate = builder.modifiedDate;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Integer getMemNo() {
@@ -126,69 +143,95 @@ public class Account extends BaseTimeEntity {
     public static Account addAccount(AccountDTO accountDTO) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String default_profile_img = "https://ui-avatars.com/api/?background=random&name=" + accountDTO.email();
-        return new AccountBuilder().memNo(accountDTO.memNo()).nickname(accountDTO.nickname()).email(accountDTO.email())
+        return new Builder().memNo(accountDTO.memNo()).nickname(accountDTO.nickname()).email(accountDTO.email())
                 .pass(bCryptPasswordEncoder.encode(accountDTO.pass())).memPoint(accountDTO.memPoint()).profileImage(default_profile_img).build();
     }
 
-    public static class AccountBuilder {
+    public static final class Builder {
         private Integer memNo;
         private String nickname;
         private String email;
         private String pass;
         private Integer memPoint;
         private String profileImage;
+        private List<Reply> reply;
+        private List<Board> board;
+        private List<Dogam> dogam;
         private String provider;
         private String providerId;
+        private LocalDateTime createdDate;
+        private LocalDateTime modifiedDate;
 
-        AccountBuilder() {
+        private Builder() {
         }
 
-        public AccountBuilder memNo(Integer memNo) {
-            this.memNo = memNo;
+        public Builder memNo(Integer val) {
+            memNo = val;
             return this;
         }
 
-        public AccountBuilder nickname(String nickname) {
-            this.nickname = nickname;
+        public Builder nickname(String val) {
+            nickname = val;
             return this;
         }
 
-        public AccountBuilder email(String email) {
-            this.email = email;
+        public Builder email(String val) {
+            email = val;
             return this;
         }
 
-        public AccountBuilder pass(String pass) {
-            this.pass = pass;
+        public Builder pass(String val) {
+            pass = val;
             return this;
         }
 
-        public AccountBuilder memPoint(Integer memPoint) {
-            this.memPoint = memPoint;
+        public Builder memPoint(Integer val) {
+            memPoint = val;
             return this;
         }
 
-        public AccountBuilder profileImage(String profileImage) {
-            this.profileImage = profileImage;
+        public Builder profileImage(String val) {
+            profileImage = val;
             return this;
         }
 
-        public AccountBuilder provider(String provider) {
-            this.provider = provider;
+        public Builder reply(List<Reply> val) {
+            reply = val;
             return this;
         }
 
-        public AccountBuilder providerId(String providerId) {
-            this.providerId = providerId;
+        public Builder board(List<Board> val) {
+            board = val;
+            return this;
+        }
+
+        public Builder dogam(List<Dogam> val) {
+            dogam = val;
+            return this;
+        }
+
+        public Builder provider(String val) {
+            provider = val;
+            return this;
+        }
+
+        public Builder providerId(String val) {
+            providerId = val;
+            return this;
+        }
+
+        public Builder createdDate(LocalDateTime val) {
+            createdDate = val;
+            return this;
+        }
+
+        public Builder modifiedDate(LocalDateTime val) {
+            modifiedDate = val;
             return this;
         }
 
         public Account build() {
-            return new Account(this.memNo, this.nickname, this.email, this.pass, this.memPoint, this.profileImage, this.provider, this.providerId);
-        }
-
-        public String toString() {
-            return "Account.AccountBuilder(memNo=" + this.memNo + ", nickname=" + this.nickname + ", email=" + this.email + ", pass=" + this.pass + ", memPoint=" + this.memPoint + ", profileImage=" + this.profileImage + ", provider=" + this.provider + ", providerId=" + this.providerId + ")";
+            return new Account(this);
         }
     }
 }

@@ -13,7 +13,7 @@ public class HomeScheduler {
         this.homeService = homeService;
     }
 
-    @Scheduled(zone = "Asia/Seoul", cron = "0 0 0 * * *")
+    @Scheduled(zone = "UTC", cron = "0 0 0 * * *")
     public void changeIndexWallpaperDaily() {
         homeService.changeIndexWallpaperDaily();
     }

@@ -13,7 +13,7 @@ public class BlisgoApplication {
     @PostConstruct
     public void started() {
         // 서버 시간 표준으로 고정(UTC+-0)
-        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
     }
 
     public static void main(String[] args) {

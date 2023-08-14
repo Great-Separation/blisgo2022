@@ -12,7 +12,7 @@ public class DictionaryScheduler {
         this.dictionaryService = dictionaryService;
     }
 
-    @Scheduled(zone = "Asia/Seoul", cron = "0 */30 * ? * *")// 매 10분 마다 수행
+    @Scheduled(zone = "UTC", cron = "0 0 0 * * *")
     public void updateDictionaryPopularity() {
         dictionaryService.modifyDictionaryPopularity();
     }

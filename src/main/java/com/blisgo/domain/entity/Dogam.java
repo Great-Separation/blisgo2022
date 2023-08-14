@@ -6,6 +6,8 @@ import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.time.LocalDateTime;
+
 @Entity
 public class Dogam extends BaseTimeEntity {
     @Id
@@ -30,8 +32,15 @@ public class Dogam extends BaseTimeEntity {
     public Dogam() {
     }
 
-    public static DogamBuilder builder() {
-        return new DogamBuilder();
+    private Dogam(Builder builder) {
+        account = builder.account;
+        dictionary = builder.dictionary;
+        createdDate = builder.createdDate;
+        modifiedDate = builder.modifiedDate;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Account getAccount() {
@@ -42,29 +51,37 @@ public class Dogam extends BaseTimeEntity {
         return this.dictionary;
     }
 
-    public static class DogamBuilder {
+    public static final class Builder {
         private Account account;
         private Dictionary dictionary;
+        private LocalDateTime createdDate;
+        private LocalDateTime modifiedDate;
 
-        DogamBuilder() {
+        private Builder() {
         }
 
-        public DogamBuilder account(Account account) {
-            this.account = account;
+        public Builder account(Account val) {
+            account = val;
             return this;
         }
 
-        public DogamBuilder dictionary(Dictionary dictionary) {
-            this.dictionary = dictionary;
+        public Builder dictionary(Dictionary val) {
+            dictionary = val;
+            return this;
+        }
+
+        public Builder createdDate(LocalDateTime val) {
+            createdDate = val;
+            return this;
+        }
+
+        public Builder modifiedDate(LocalDateTime val) {
+            modifiedDate = val;
             return this;
         }
 
         public Dogam build() {
-            return new Dogam(this.account, this.dictionary);
-        }
-
-        public String toString() {
-            return "Dogam.DogamBuilder(account=" + this.account + ", dictionary=" + this.dictionary + ")";
+            return new Dogam(this);
         }
     }
 }

@@ -40,8 +40,15 @@ public class Guide {
     public Guide() {
     }
 
-    public static GuideBuilder builder() {
-        return new GuideBuilder();
+    private Guide(Builder builder) {
+        guideCode = builder.guideCode;
+        guideName = builder.guideName;
+        guideContent = builder.guideContent;
+        imagePath = builder.imagePath;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Wastes getGuideCode() {
@@ -64,41 +71,37 @@ public class Guide {
         return this.hashtag;
     }
 
-    public static class GuideBuilder {
+    public static final class Builder {
         private Wastes guideCode;
         private String guideName;
         private String guideContent;
         private String imagePath;
 
-        GuideBuilder() {
+        private Builder() {
         }
 
-        public GuideBuilder guideCode(Wastes guideCode) {
-            this.guideCode = guideCode;
+        public Builder guideCode(Wastes val) {
+            guideCode = val;
             return this;
         }
 
-        public GuideBuilder guideName(String guideName) {
-            this.guideName = guideName;
+        public Builder guideName(String val) {
+            guideName = val;
             return this;
         }
 
-        public GuideBuilder guideContent(String guideContent) {
-            this.guideContent = guideContent;
+        public Builder guideContent(String val) {
+            guideContent = val;
             return this;
         }
 
-        public GuideBuilder imagePath(String imagePath) {
-            this.imagePath = imagePath;
+        public Builder imagePath(String val) {
+            imagePath = val;
             return this;
         }
 
         public Guide build() {
-            return new Guide(this.guideCode, this.guideName, this.guideContent, this.imagePath);
-        }
-
-        public String toString() {
-            return "Guide.GuideBuilder(guideCode=" + this.guideCode + ", guideName=" + this.guideName + ", guideContent=" + this.guideContent + ", imagePath=" + this.imagePath + ")";
+            return new Guide(this);
         }
     }
 }

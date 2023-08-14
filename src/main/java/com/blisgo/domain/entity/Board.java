@@ -90,23 +90,6 @@ public class Board extends BaseTimeEntity {
         return new Builder();
     }
 
-    public static Builder builder(Board copy) {
-        Builder builder = new Builder();
-        builder.bdNo = copy.getBdNo();
-        builder.account = copy.getAccount();
-        builder.bdTitle = copy.getBdTitle();
-        builder.bdCategory = copy.getBdCategory();
-        builder.bdContent = copy.getBdContent();
-        builder.bdViews = copy.getBdViews();
-        builder.bdFavorite = copy.getBdFavorite();
-        builder.bdReplyCount = copy.getBdReplyCount();
-        builder.bdThumbnail = copy.getBdThumbnail();
-        builder.reply = copy.getReply();
-        builder.createdDate = copy.getCreatedDate();
-        builder.modifiedDate = copy.getModifiedDate();
-        return builder;
-    }
-
     public Integer getBdNo() {
         return bdNo;
     }

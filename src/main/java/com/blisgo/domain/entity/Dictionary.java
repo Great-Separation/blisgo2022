@@ -64,8 +64,21 @@ public class Dictionary {
     public Dictionary() {
     }
 
-    public static DictionaryBuilder builder() {
-        return new DictionaryBuilder();
+    private Dictionary(Builder builder) {
+        dicNo = builder.dicNo;
+        name = builder.name;
+        engName = builder.engName;
+        category = builder.category;
+        popularity = builder.popularity;
+        hit = builder.hit;
+        thumbnail = builder.thumbnail;
+        treatment = builder.treatment;
+        dogam = builder.dogam;
+        hashtag = builder.hashtag;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     public Integer getDicNo() {
@@ -108,7 +121,7 @@ public class Dictionary {
         return this.hashtag;
     }
 
-    public static class DictionaryBuilder {
+    public static final class Builder {
         private Integer dicNo;
         private String name;
         private String engName;
@@ -117,56 +130,64 @@ public class Dictionary {
         private Short hit;
         private String thumbnail;
         private String treatment;
+        private List<Dogam> dogam;
+        private List<Hashtag> hashtag;
 
-        DictionaryBuilder() {
+        private Builder() {
         }
 
-        public DictionaryBuilder dicNo(Integer dicNo) {
-            this.dicNo = dicNo;
+        public Builder dicNo(Integer val) {
+            dicNo = val;
             return this;
         }
 
-        public DictionaryBuilder name(String name) {
-            this.name = name;
+        public Builder name(String val) {
+            name = val;
             return this;
         }
 
-        public DictionaryBuilder engName(String engName) {
-            this.engName = engName;
+        public Builder engName(String val) {
+            engName = val;
             return this;
         }
 
-        public DictionaryBuilder category(String category) {
-            this.category = category;
+        public Builder category(String val) {
+            category = val;
             return this;
         }
 
-        public DictionaryBuilder popularity(Integer popularity) {
-            this.popularity = popularity;
+        public Builder popularity(Integer val) {
+            popularity = val;
             return this;
         }
 
-        public DictionaryBuilder hit(Short hit) {
-            this.hit = hit;
+        public Builder hit(Short val) {
+            hit = val;
             return this;
         }
 
-        public DictionaryBuilder thumbnail(String thumbnail) {
-            this.thumbnail = thumbnail;
+        public Builder thumbnail(String val) {
+            thumbnail = val;
             return this;
         }
 
-        public DictionaryBuilder treatment(String treatment) {
-            this.treatment = treatment;
+        public Builder treatment(String val) {
+            treatment = val;
+            return this;
+        }
+
+        public Builder dogam(List<Dogam> val) {
+            dogam = val;
+            return this;
+        }
+
+        public Builder hashtag(List<Hashtag> val) {
+            hashtag = val;
             return this;
         }
 
         public Dictionary build() {
-            return new Dictionary(this.dicNo, this.name, this.engName, this.category, this.popularity, this.hit, this.thumbnail, this.treatment);
-        }
-
-        public String toString() {
-            return "Dictionary.DictionaryBuilder(dicNo=" + this.dicNo + ", name=" + this.name + ", engName=" + this.engName + ", category=" + this.category + ", popularity=" + this.popularity + ", hit=" + this.hit + ", thumbnail=" + this.thumbnail + ", treatment=" + this.treatment + ")";
+            return new Dictionary(this);
         }
     }
 }

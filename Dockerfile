@@ -14,7 +14,7 @@ COPY . /build
 RUN gradle build -x test --parallel
 
 # APP
-FROM openjdk:18.0.2.1-slim
+FROM openjdk:21-slim
 WORKDIR /app
 
 # 빌더 이미지에서 jar 파일만 복사

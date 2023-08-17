@@ -7,11 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("unused")
+@Table(indexes = {
+        @Index(columnList = "name"),
+        @Index(columnList = "engName"),
+        @Index(columnList = "thumbnail")
+})
 @Entity
 public class Dictionary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "dic_no", updatable = false, nullable = false)
+    @Column(name = "dic_no",updatable = false, nullable = false)
     @Comment("폐기물 번호(PK)")
     private Integer dicNo;
 

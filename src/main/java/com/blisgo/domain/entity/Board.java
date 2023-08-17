@@ -15,8 +15,8 @@ import java.util.List;
 public class Board extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Comment("글 번호(PK)")
     @Column(name = "bd_no", updatable = false, nullable = false)
+    @Comment("글 번호(PK)")
     private Integer bdNo;
 
     @ManyToOne

@@ -7,16 +7,21 @@ import org.hibernate.annotations.Comment;
 import java.util.ArrayList;
 import java.util.List;
 
+@Table(indexes = {
+        @Index(columnList = "guideName"),
+        @Index(columnList = "guideContent"),
+        @Index(columnList = "imagePath")
+})
 @Entity
 public class Guide {
     @Id
     @Enumerated(EnumType.STRING)
+    @Column(name="guide_code", updatable = false, nullable = false)
     @Comment("가이드 코드(PK)")
-    @Column(name = "guide_code", updatable = false, nullable = false)
     private Wastes guideCode;
 
-    @Comment("폐기물 중분류")
     @Column(nullable = false, length = 50)
+    @Comment("폐기물 중분류")
     private String guideName;
 
     @Column(nullable = false, length = 200)

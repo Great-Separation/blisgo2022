@@ -21,7 +21,6 @@ public record AccountDTO(
         String profileImage,
         @Null(message = "Controller단에서 계산되는 값입니다.")
         LocalDateTime createdDate,
-        // FIXME 실제로 적용되지 않음
         @Null(message = "Controller단에서 계산되는 값입니다.")
         LocalDateTime modifiedDate
 ) {
